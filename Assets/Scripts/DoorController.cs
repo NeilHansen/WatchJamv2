@@ -6,6 +6,7 @@ public class DoorController : MonoBehaviour {
 
 
     public Door[] Gates;
+    public SecurtySystem alarm;
     public bool DoorOpen = false;
 
     // Use this for initialization
@@ -24,7 +25,8 @@ public class DoorController : MonoBehaviour {
         for (int i = 0; i < Gates.Length; i++)
         {
             Gates[i].MoveUp();
-           // Debug.Log("OpeningDoors");
+            // Debug.Log("OpeningDoors");
+            //alarm.alarmOn();
         }
     }
     public void CloseDoors()
@@ -34,6 +36,7 @@ public class DoorController : MonoBehaviour {
         {
             Gates[i].MoveDown();
             Debug.Log("ClosingDoors");
+            //alarm.alarmOff();
         }
     }
 
