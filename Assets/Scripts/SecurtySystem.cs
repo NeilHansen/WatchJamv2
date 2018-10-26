@@ -20,38 +20,47 @@ public class SecurtySystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(alarmIncrease == true)
+        alarmLevel.value = alarmProgress;
+
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            alarmProgress += Time.deltaTime / 2;
+            alarmProgress += 0.25f;
+        }
+
+        if (alarmIncrease == true)
+        {
+            alarmProgress += Time.deltaTime / 30;
         }
 
         if (alarmLevel.value > .5)
         {
             startTimer();
-            alarmProgress += Time.deltaTime;
+            alarmProgress += Time.deltaTime / 40;
         }
     }
 
-    public void valueChange()
+    /*public void valueChange()
     {
         Debug.Log("changing");
 
-    }
+    }*/
 
     private void startTimer()
     {
         Debug.Log("Incoming You Suck");
     }
 
-    /*public void alarmOn()
+    public void alarmOn()
     {
+        Debug.Log("should be moving");
         alarmIncrease = true;
     }
 
     public void alarmOff()
     {
+        Debug.Log("should be moving");
         alarmIncrease = false;
-    }*/
+    }
 
 
 }

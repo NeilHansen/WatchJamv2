@@ -16,27 +16,43 @@ public class DoorController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //testing purposes
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("should be opening");
+            OpenDoors();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("should be closing");
+            CloseDoors();
+        }
 		
 	}
 
     public void OpenDoors()
     {
-       // Debug.Log("OpeningDoors1");
+        alarm.alarmOn();
+        // Debug.Log("OpeningDoors1");
         for (int i = 0; i < Gates.Length; i++)
         {
             Gates[i].MoveUp();
             // Debug.Log("OpeningDoors");
-            //alarm.alarmOn();
+            
         }
     }
     public void CloseDoors()
     {
+        alarm.alarmOff();
         Debug.Log("ClosingDoors1");
         for (int i = 0; i < Gates.Length; i++)
         {
             Gates[i].MoveDown();
             Debug.Log("ClosingDoors");
-            //alarm.alarmOff();
+            
         }
     }
 
