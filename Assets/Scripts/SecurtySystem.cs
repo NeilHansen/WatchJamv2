@@ -6,37 +6,38 @@ using UnityEngine.UI;
 public class SecurtySystem : MonoBehaviour {
 
 
-    [SerializeField] Slider alarmLevel;
+    private Slider alarmLevel;
 
     private float alarmProgress;
-    private bool alarmIncrease;
+    public bool alarmIncrease;
+
+    public float speed;
+    public float reinformentSpeed;
 
 	// Use this for initialization
 	void Start ()
     {
-		
-	}
+       alarmLevel = this.transform.GetChild(0).GetComponent<Slider>();
+        alarmIncrease = true;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        alarmLevel.value = alarmProgress;
-
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (alarmIncrease == true || alarmLevel.value > 0.5f) 
         {
-            alarmProgress += 0.25f;
+            alarmLevel.value = alarmProgress;
+            alarmProgress += Time.deltaTime / speed;
         }
 
-        if (alarmIncrease == true)
+        if (alarmLevel.value == alarmLevel.maxValue )
         {
-            alarmProgress += Time.deltaTime / 30;
-        }
 
-        if (alarmLevel.value > .5)
-        {
-            startTimer();
-            alarmProgress += Time.deltaTime / 40;
+            Debug.Log("You LOOOSSE");
         }
+       
+
+       
     }
 
     /*public void valueChange()
@@ -52,13 +53,13 @@ public class SecurtySystem : MonoBehaviour {
 
     public void alarmOn()
     {
-        Debug.Log("should be moving");
+        Debug.Log("should be moving UP");
         alarmIncrease = true;
     }
 
     public void alarmOff()
     {
-        Debug.Log("should be moving");
+        Debug.Log("STop");
         alarmIncrease = false;
     }
 
