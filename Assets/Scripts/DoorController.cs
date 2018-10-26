@@ -35,7 +35,7 @@ public class DoorController : MonoBehaviour {
 
     public void OpenDoors()
     {
-      //  alarm.alarmOn();
+        alarm.alarmOn();
         // Debug.Log("OpeningDoors1");
         for (int i = 0; i < Gates.Length; i++)
         {
@@ -46,7 +46,7 @@ public class DoorController : MonoBehaviour {
     }
     public void CloseDoors()
     {
-      //  alarm.alarmOff();
+        alarm.alarmOff();
         Debug.Log("ClosingDoors1");
         for (int i = 0; i < Gates.Length; i++)
         {
