@@ -126,7 +126,7 @@ MonoBehaviour:
       assignJoysticksToPlayingPlayersOnly: 0
       distributeJoysticksEvenly: 1
       reassignJoystickToPreviousOwnerOnReconnect: 1
-      defaultJoystickAxis2DDeadZoneType: 1
+      defaultJoystickAxis2DDeadZoneType: 2
       force4WayHats: 0
       editorSettings:
         exportConsts_useParentClass: 0

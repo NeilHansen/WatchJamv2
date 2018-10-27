@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224790479327061094}
   - component: {fileID: 114942653390549658}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Slider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ Camera:
   m_GameObject: {fileID: 1898707035207306}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.110137045, g: 0.12233741, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
@@ -289,7 +289,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65110117099183976
 BoxCollider:
@@ -438,7 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gates: []
-  alarm: {fileID: 114967738762064170}
+  alarm:
+  - {fileID: 0}
   DoorOpen: 0
 --- !u!114 &114923185808104408
 MonoBehaviour:
@@ -517,7 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c75ee4d9e80344ab6a78e58fbecc87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alarmLevel: {fileID: 114942653390549658}
+  alarmIncrease: 0
+  speed: 20
+  reinformentSpeed: 30
 --- !u!114 &114987787314255316
 MonoBehaviour:
   m_ObjectHideFlags: 1
