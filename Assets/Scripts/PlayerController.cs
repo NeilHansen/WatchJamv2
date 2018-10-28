@@ -108,6 +108,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+
+        //monster punch
         punchLength -= Time.deltaTime;
         if (punchLength < 0.0f)
         {
@@ -126,9 +128,21 @@ public class PlayerController : MonoBehaviour {
             this.transform.GetChild(0).gameObject.SetActive(false);
             Debug.Log("Cant Punch");
         }
+
+        //security flashlight
+        if(player.GetButtonDown("FlashLight") && this.gameObject.tag == "Security")
+        {
+            this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().shine = true;
+        }
+        else if (player.GetButtonUp("FlashLight") && this.gameObject.tag == "Security")
+        {
+            this.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = false;
+            this.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
+            this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().shine = false;
+        }
     }
 
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -144,6 +158,8 @@ public class PlayerController : MonoBehaviour {
         {
             Caninteract = false;
         }
+
+      
     }
 
 }
