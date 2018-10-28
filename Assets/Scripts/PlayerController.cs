@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour {
     public float FOVmax;
 
     private bool Caninteract = false;
-    
+
+    private float punchLength;
 
     private DoorController doorManager;
 
@@ -106,7 +107,28 @@ public class PlayerController : MonoBehaviour {
                 doorManager.UpdateDoors();
             }
         }
+
+        punchLength -= Time.deltaTime;
+        if (punchLength < 0.0f)
+        {
+            Debug.Log("Can Punch");
+            if (player.GetButtonDown("Punch") && this.gameObject.tag == "Monster")
+            {
+                this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
+                this.transform.GetChild(0).gameObject.SetActive(true);
+                punchLength = 2.5f;
+                Debug.Log("Punched");
+            }
+        }
+        else if (punchLength < 1.0f)
+        {
+            this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            Debug.Log("Cant Punch");
+        }
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {

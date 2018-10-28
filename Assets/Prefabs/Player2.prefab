@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65560760509816210}
   - component: {fileID: 54604393611764618}
   - component: {fileID: 114062647607553402}
+  - component: {fileID: 114781182300358810}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Security
@@ -322,7 +323,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120716255520654}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 17.79, y: 1, z: 15.57}
+  m_LocalPosition: {x: 13.8, y: 1, z: 22.02}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 224526204040175612}
@@ -897,6 +898,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114781182300358810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120716255520654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae70706cddcdbe4439b954f267883b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunTime: 0
 --- !u!114 &114799112072470358
 MonoBehaviour:
   m_ObjectHideFlags: 1
