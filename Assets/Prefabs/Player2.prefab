@@ -322,7 +322,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120716255520654}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 13.8, y: 1, z: 22.02}
+  m_LocalPosition: {x: 17.79, y: 1, z: 15.57}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 224526204040175612}
@@ -962,8 +962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alarmIncrease: 0
-  speed: 20
-  reinformentSpeed: 20
+  speed: 45
+  reinformentSpeed: 10
 --- !u!114 &114956000181504824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1268,6 +1268,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 107.7}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
