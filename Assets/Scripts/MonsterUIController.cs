@@ -11,6 +11,8 @@ public class MonsterUIController : MonoBehaviour {
     public Slider MonsterUI;
 
     public float UIValue;
+
+    public GameObject spawn;
 	// Use this for initialization
 	void Start () {
         MonsterUI.value = UIValue;
@@ -29,6 +31,12 @@ public class MonsterUIController : MonoBehaviour {
         {
 
             MonsterUI.value -= Time.deltaTime;
+        }
+
+        if (MonsterUI.value == MonsterUI.maxValue)
+        {
+            this.transform.position = spawn.gameObject.transform.position;
+            Debug.Log("Respawn");
         }
         
 	}
