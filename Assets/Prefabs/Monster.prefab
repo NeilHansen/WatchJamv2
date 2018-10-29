@@ -4417,7 +4417,7 @@ MonoBehaviour:
   cameraDistance: 0
   cameraOffset: {x: 0, y: 2.5, z: 0}
   smoothSpeed: 0.125
-  m_cameraRotationSpeed: 1
+  m_cameraRotationSpeed: 3
 --- !u!114 &114710029322582884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4473,9 +4473,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   speed: 5
-  rotSpeed: 1
-  verticalCameraSpeed: 1
-  horizontalCameraSpeed: 1
+  rotSpeed: 3
+  verticalCameraSpeed: 3
+  horizontalCameraSpeed: 3
   FOVmin: -30
   FOVmax: 30
 --- !u!114 &114942653390549658
@@ -4518,7 +4518,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -5008,6 +5008,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 65.30066, y: 27.700012}
+  m_AnchoredPosition: {x: 65.30054, y: 27.699951}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0, y: 0}

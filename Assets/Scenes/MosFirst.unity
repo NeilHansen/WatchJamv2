@@ -4207,6 +4207,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 224182066419880772, guid: 6073e48086352784196ab8b4b1f6d089,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 36.999756
+      objectReference: {fileID: 0}
+    - target: {fileID: 23833379085252710, guid: 6073e48086352784196ab8b4b1f6d089,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7b84fb1c4fbb0464f8fb80ec6874f045, type: 2}
+    - target: {fileID: 23833379085252710, guid: 6073e48086352784196ab8b4b1f6d089,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6073e48086352784196ab8b4b1f6d089, type: 2}
   m_IsPrefabAsset: 0
@@ -4612,7 +4627,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4771925934500836, guid: b688fde1bcf0206488c97c91762a8e1a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 507.6
+      value: 505
       objectReference: {fileID: 0}
     - target: {fileID: 4771925934500836, guid: b688fde1bcf0206488c97c91762a8e1a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6587,6 +6602,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4055131123133822, guid: 438b51f2061c2df4c9db243abd2ffb97,
     type: 2}
   m_PrefabInternal: {fileID: 821297200}
+--- !u!1 &828836476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828836479}
+  - component: {fileID: 828836478}
+  - component: {fileID: 828836477}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &828836477
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828836476}
+  m_Enabled: 1
+--- !u!20 &828836478
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828836476}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 311
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 4
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &828836479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828836476}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.9, y: 41.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &833171847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8010,24 +8102,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1146875387009054, guid: b6502efbc73934147b04618decbb72b9, type: 2}
-      propertyPath: m_Name
-      value: Monster (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114942653390549658, guid: b6502efbc73934147b04618decbb72b9,
-        type: 2}
-      propertyPath: m_MaxValue
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 114092663163574858, guid: b6502efbc73934147b04618decbb72b9,
         type: 2}
       propertyPath: spawn
       value: 
       objectReference: {fileID: 92879187}
-    - target: {fileID: 20064873275554758, guid: b6502efbc73934147b04618decbb72b9,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1335
+    - target: {fileID: 1146875387009054, guid: b6502efbc73934147b04618decbb72b9, type: 2}
+      propertyPath: m_Name
+      value: Monster (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6502efbc73934147b04618decbb72b9, type: 2}
