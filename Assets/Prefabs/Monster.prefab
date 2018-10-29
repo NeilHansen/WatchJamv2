@@ -4006,7 +4006,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 1335
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4242,6 +4242,7 @@ MonoBehaviour:
   isSeen: 0
   MonsterUI: {fileID: 114942653390549658}
   UIValue: 0
+  spawn: {fileID: 0}
 --- !u!114 &114229093683135252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4517,7 +4518,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 4
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
