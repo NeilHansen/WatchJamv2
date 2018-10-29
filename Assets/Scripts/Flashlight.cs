@@ -20,12 +20,14 @@ public class Flashlight : MonoBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-           // hitObject = other.gameObject;
+            hitObject = other.gameObject;
             for (int i = 0; i < playerCam.Length; i++)
             {
                 playerCam[i].GetComponent<Camera>().cullingMask = -1;
 
             }
+
+            other.gameObject.GetComponent<MonsterUIController>().isSeen = true;
             
         }
     }
@@ -36,6 +38,8 @@ public class Flashlight : MonoBehaviour {
         {
             playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
         }
+       if(hitObject != null)
+       hitObject.gameObject.GetComponent<MonsterUIController>().isSeen = false;
     }
 
     private void OnTriggerExit(Collider other)
@@ -47,6 +51,7 @@ public class Flashlight : MonoBehaviour {
                 playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
 
             }
+            other.gameObject.GetComponent<MonsterUIController>().isSeen = false;
         }
     }
 

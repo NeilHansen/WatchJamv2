@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 
     private DoorController doorManager;
 
+    
+
     // Use this for initialization
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
@@ -139,6 +141,7 @@ public class PlayerController : MonoBehaviour {
             this.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = false;
             this.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
             this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().shine = false;
+          
         }
     }
 
@@ -152,11 +155,33 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "flash" && this.gameObject.tag == "Monster")
+        {
+           // Debug.Log("hitting monster");
+           // this.GetComponent<MonsterUIController>().SwitchDirection();
+
+
+        }
+        else if(other.gameObject == null &&this.gameObject.tag == "Monster")
+        {
+          //  Debug.Log("not hitting monster");
+            //this.GetComponent<MonsterUIController>().isSeen = false;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Terminal")
         {
             Caninteract = false;
+        }
+
+        if(other.gameObject.tag == "flash")
+        {
+          //  Debug.Log("not hitting monster");
+           // this.GetComponent<MonsterUIController>().isSeen = false;
         }
 
       
