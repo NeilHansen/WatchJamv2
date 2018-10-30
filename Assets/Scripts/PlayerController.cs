@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour {
 
     
 
+    
+
     // Use this for initialization
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
@@ -103,11 +105,28 @@ public class PlayerController : MonoBehaviour {
             {
                 doorManager.DoorOpen = true;
                 doorManager.UpdateDoors();
-            }else if (this.gameObject.tag == "Security" && doorManager.DoorOpen == true)
+            }
+
+            if (this.gameObject.tag == "Security")
+            {
+                if (doorManager.DoorOpen == true)
+                {
+                 //   doorManager.DoorOpen = false;
+                  //  doorManager.UpdateDoors();
+                }
+                else
+                {
+                   // doorManager.DoorOpen = true;
+                  //  doorManager.UpdateDoors();
+                }
+            }
+
+            if (this.gameObject.tag == "Security" && doorManager.DoorOpen == true)
             {
                 doorManager.DoorOpen = false;
                 doorManager.UpdateDoors();
             }
+
         }
 
 
@@ -142,6 +161,20 @@ public class PlayerController : MonoBehaviour {
             this.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
             this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().shine = false;
           
+        }
+
+        //monster directions
+        if(player.GetButtonDown("ShowDirection")&& this.gameObject.tag == "Monster")
+        {
+            doorManager.path.SetActive(true);
+            GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
+        }
+
+        if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
+        {
+            doorManager.path.SetActive(false);
+            GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
+            //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
         }
     }
 

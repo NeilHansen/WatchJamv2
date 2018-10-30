@@ -42,6 +42,18 @@ public class Flashlight : MonoBehaviour {
        hitObject.gameObject.GetComponent<MonsterUIController>().isSeen = false;
     }
 
+    public void TurnOnMonsterRender()
+    {
+        
+        for (int i = 0; i < playerCam.Length; i++)
+        {
+            playerCam[i].GetComponent<Camera>().cullingMask = -1;
+
+        }
+        if (hitObject != null)
+            hitObject.gameObject.GetComponent<MonsterUIController>().isSeen = true;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Monster")

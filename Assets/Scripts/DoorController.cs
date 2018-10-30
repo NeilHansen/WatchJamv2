@@ -9,6 +9,8 @@ public class DoorController : MonoBehaviour {
     public SecurtySystem[] alarm;
     public bool DoorOpen = false;
 
+    public GameObject path;
+
     // Use this for initialization
     void Start () {
         Gates = GameObject.FindObjectsOfType<Door>();

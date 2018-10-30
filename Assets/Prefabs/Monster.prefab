@@ -4460,6 +4460,7 @@ MonoBehaviour:
   Gates: []
   alarm: []
   DoorOpen: 0
+  path: {fileID: 0}
 --- !u!114 &114923185808104408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4538,7 +4539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alarmIncrease: 0
-  speed: 45
+  speed: 120
   reinformentSpeed: 5
 --- !u!114 &114987787314255316
 MonoBehaviour:
