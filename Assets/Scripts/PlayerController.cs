@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour {
 
     private DoorController doorManager;
 
+    public GameObject interactUI;
+    
+
     
 
     
@@ -36,7 +39,8 @@ public class PlayerController : MonoBehaviour {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
         fpsCamera = this.GetComponentInChildren<Camera>();
         doorManager = GameObject.FindObjectOfType<DoorController>();
-	}
+       
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour {
         //security flashlight
         if(player.GetButtonDown("FlashLight") && this.gameObject.tag == "Security")
         {
+       
             this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().shine = true;
         }
         else if (player.GetButtonUp("FlashLight") && this.gameObject.tag == "Security")
@@ -168,13 +173,26 @@ public class PlayerController : MonoBehaviour {
         {
             doorManager.path.SetActive(true);
             GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
+            doorManager.seenUI.SetActive(true);
         }
 
         if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
         {
             doorManager.path.SetActive(false);
             GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
+            doorManager.seenUI.SetActive(false);
             //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
+        }
+
+        //Interact UI
+
+        if(Caninteract)
+        {
+            interactUI.SetActive(true);
+        }
+        else
+        {
+            interactUI.SetActive(false);
         }
     }
 
@@ -182,9 +200,10 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Terminal")
+        if(other.gameObject.tag == "Terminal" && this.gameObject.name != "Cone")
         {
             Caninteract = true;
+         //   interactUI.SetActive(true);
         }
     }
 
@@ -209,6 +228,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.tag == "Terminal")
         {
             Caninteract = false;
+          //  interactUI.SetActive(false);
         }
 
         if(other.gameObject.tag == "flash")

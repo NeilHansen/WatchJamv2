@@ -19,6 +19,7 @@ public class SecurtySystem : MonoBehaviour {
     {
        alarmLevel = this.transform.GetChild(0).GetComponent<Slider>();
         alarmIncrease = true;
+        StartCoroutine("FlashBar");
     }
 	
 	// Update is called once per frame
@@ -28,6 +29,12 @@ public class SecurtySystem : MonoBehaviour {
         {
             alarmLevel.value = alarmProgress;
             alarmProgress += Time.deltaTime / speed;
+            //flash alarm here
+            //StartCoroutine("FlashBar");
+        }
+        else if(!alarmIncrease)
+        {
+          //  StopAllCoroutines();
         }
 
         if (alarmLevel.value == alarmLevel.maxValue )
@@ -38,6 +45,15 @@ public class SecurtySystem : MonoBehaviour {
        
 
        
+    }
+
+    private IEnumerator FlashBar()
+    {
+        yield return new WaitForSeconds(0.25f);
+        alarmLevel.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.black;
+        yield return new WaitForSeconds(0.25f);
+        alarmLevel.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
+        StartCoroutine("FlashBar");
     }
 
     /*public void valueChange()
@@ -55,12 +71,15 @@ public class SecurtySystem : MonoBehaviour {
     {
         Debug.Log("should be moving UP");
         alarmIncrease = true;
+        StartCoroutine("FlashBar");
     }
 
     public void alarmOff()
     {
         Debug.Log("STop");
         alarmIncrease = false;
+        StopAllCoroutines();
+        alarmLevel.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
     }
 
 

@@ -10,6 +10,7 @@ public class DoorController : MonoBehaviour {
     public bool DoorOpen = false;
 
     public GameObject path;
+    public GameObject seenUI;
 
     // Use this for initialization
     void Start () {
@@ -57,7 +58,8 @@ public class DoorController : MonoBehaviour {
         {
             for (int i = 0; i < alarm.Length; i++)
             {
-                alarm[i].alarmIncrease = false;
+                alarm[i].alarmOff();
+               //alarm[i].alarmIncrease = false;
             }
 
             Debug.Log(DoorOpen);
@@ -67,7 +69,8 @@ public class DoorController : MonoBehaviour {
         {
             for (int i = 0; i < alarm.Length; i++)
             {
-                alarm[i].alarmIncrease = true;
+                alarm[i].alarmOn();
+                //alarm[i].alarmIncrease = true;
             }
             
             CloseDoors();

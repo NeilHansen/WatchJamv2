@@ -14,7 +14,8 @@ public class Flashlight : MonoBehaviour {
         playerCam = GameObject.FindGameObjectsWithTag("SecurityCam");
         oldMask = playerCam[0].GetComponent<Camera>().cullingMask;
         TurnOffMonsterRender();
-	}
+        Physics.IgnoreLayerCollision(11, 12, true);
+    }
 
     private void OnTriggerStay(Collider other)
     {

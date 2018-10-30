@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 65283023453934050}
   - component: {fileID: 65111211542872572}
   - component: {fileID: 108352370877169266}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Switch
   m_TagString: Terminal
   m_Icon: {fileID: 0}

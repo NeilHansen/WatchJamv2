@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stun : MonoBehaviour {
 
     public float stunTime;
-
+    public GameObject stunnedText;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,10 +16,12 @@ public class Stun : MonoBehaviour {
         stunTime -= Time.deltaTime;
 		if(stunTime > 0.0f)
         {
+            stunnedText.SetActive(true);
             this.GetComponent<PlayerController>().enabled = false;
         }
         else if(stunTime <= 0.0f)
         {
+            stunnedText.SetActive(false);
             this.GetComponent<PlayerController>().enabled = true;
         }
 	}
