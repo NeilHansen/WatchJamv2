@@ -16,6 +16,8 @@ public class FlashlightController : MonoBehaviour {
 
     public Slider flashUI;
 
+    public float brightness;
+
 	// Use this for initialization
 	void Start () {
         flashUI.maxValue = maxTime;
@@ -30,7 +32,7 @@ public class FlashlightController : MonoBehaviour {
             if(useTime > 0.0f)
             {
                 useTime -= Time.deltaTime;
-                flashlight.GetComponent<Light>().intensity = 1.0f;
+                flashlight.GetComponent<Light>().intensity = brightness;
                 lense.GetComponent<Light>().intensity = 16.0f;
                 flashlight.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = true;
             }

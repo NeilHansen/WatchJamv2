@@ -936,7 +936,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979452386060852}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
   m_Name: 
@@ -1249,6 +1249,7 @@ MonoBehaviour:
   useTime: 0
   rechargeRate: 0
   flashUI: {fileID: 114994392736975130}
+  brightness: 50
 --- !u!114 &114580879995524920
 MonoBehaviour:
   m_ObjectHideFlags: 1

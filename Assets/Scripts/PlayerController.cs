@@ -38,14 +38,45 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
         fpsCamera = this.GetComponentInChildren<Camera>();
-        doorManager = GameObject.FindObjectOfType<DoorController>();
-       
+       // doorManager = GameObject.FindObjectOfType<DoorController>();
+        doorManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DoorController>();
+
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         HandleInput();
         
+    }
+
+     void Update()
+    {
+        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
+        {
+            if (doorManager.DoorOpen == false)
+            {
+                doorManager.DoorOpen = true;
+                doorManager.UpdateDoors();
+            }
+        }
+
+        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Security")
+        {
+            if (doorManager.DoorOpen == true)
+            {
+                // doorManager.DoorOpen = true;
+                //  doorManager.UpdateDoors();
+                doorManager.CloseDoors();
+                Debug.Log("HERE");
+            }
+            else
+            {
+                Debug.Log("HERE2");
+                doorManager.OpenDoors();
+                //  doorManager.DoorOpen = false;
+                //  doorManager.UpdateDoors();
+            }
+        }
     }
 
     void HandleInput()
@@ -101,35 +132,86 @@ public class PlayerController : MonoBehaviour {
             fpsCamera.transform.localEulerAngles = new Vector3(pitch, 0.0f, 0.0f);
         }
 
-        if (player.GetButtonDown("Interact") && Caninteract)
+
+        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
+        {
+            if (doorManager.DoorOpen == false)
+            {
+             //   doorManager.DoorOpen = true;
+          //      doorManager.UpdateDoors();
+            }
+        }
+
+        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Security")
+        {
+            if (doorManager.DoorOpen == true)
+            {
+                // doorManager.DoorOpen = true;
+                //  doorManager.UpdateDoors();
+             //   doorManager.CloseDoors();
+                Debug.Log("HERE");
+            }
+            else
+            {
+                Debug.Log("HERE2");
+             //   doorManager.OpenDoors();
+              //  doorManager.DoorOpen = false;
+              //  doorManager.UpdateDoors();
+            }
+        }
+
+
+            if (player.GetButtonDown("Interact") && Caninteract)
         {
             Debug.Log("Can Interact");
             // Caninteract = false;
-            if (this.gameObject.tag == "Monster" && doorManager.DoorOpen == false)
+            if (this.gameObject.tag == "Monster" )
             {
-                doorManager.DoorOpen = true;
-                doorManager.UpdateDoors();
+                if(doorManager.DoorOpen == false)
+                {
+                  //  doorManager.DoorOpen = true;
+                  //  doorManager.UpdateDoors();
+                }
+               
+
+            }
+            else if(this.gameObject.tag == "Security")
+            {
+                if (doorManager.DoorOpen == false)
+                {
+                  //  doorManager.DoorOpen = true;
+                   // doorManager.UpdateDoors();
+                }
+                else 
+                {
+                  //  doorManager.DoorOpen = false;
+                   // doorManager.UpdateDoors();
+                }
             }
 
-            if (this.gameObject.tag == "Security")
-            {
-                if (doorManager.DoorOpen == true)
+                if (doorManager.DoorOpen == false)
                 {
-                 //   doorManager.DoorOpen = false;
-                  //  doorManager.UpdateDoors();
+                //    doorManager.DoorOpen = true;
+                 //   doorManager.UpdateDoors();
                 }
                 else
                 {
-                   // doorManager.DoorOpen = true;
-                  //  doorManager.UpdateDoors();
+                //    doorManager.DoorOpen = false;
+                //    doorManager.UpdateDoors();
                 }
-            }
+            
 
             if (this.gameObject.tag == "Security" && doorManager.DoorOpen == true)
             {
-                doorManager.DoorOpen = false;
-                doorManager.UpdateDoors();
+               // doorManager.DoorOpen = false;
+               // doorManager.UpdateDoors();
             }
+          //  else if(this.gameObject.tag == "Security" && doorManager.DoorOpen == false)
+          //  {
+           //     doorManager.DoorOpen = true;
+           //     doorManager.UpdateDoors();
+           // }
+
 
         }
 

@@ -969,7 +969,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853756690099310}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
   m_Name: 
@@ -1381,6 +1381,7 @@ MonoBehaviour:
   useTime: 0
   rechargeRate: 0
   flashUI: {fileID: 114938091719117894}
+  brightness: 50
 --- !u!114 &114913934182183698
 MonoBehaviour:
   m_ObjectHideFlags: 1

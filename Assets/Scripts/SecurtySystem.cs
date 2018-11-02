@@ -14,6 +14,8 @@ public class SecurtySystem : MonoBehaviour {
     public float speed;
     public float reinformentSpeed;
 
+   
+
 	// Use this for initialization
 	void Start ()
     {
@@ -72,10 +74,13 @@ public class SecurtySystem : MonoBehaviour {
         Debug.Log("should be moving UP");
         alarmIncrease = true;
         StartCoroutine("FlashBar");
+        
+
     }
 
     public void alarmOff()
     {
+        
         Debug.Log("STop");
         alarmIncrease = false;
         StopAllCoroutines();
