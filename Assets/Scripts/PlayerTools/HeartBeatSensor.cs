@@ -92,107 +92,107 @@ public class HeartBeatSensor : MonoBehaviour {
             Debug.Log("Did not Hit");
         }
 
-        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward, out hit1, counter, layerMask))
+        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle2, transform.up) * transform.forward, out hit2, counter, layerMask))
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * hit1.distance, Color.yellow);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle2, transform.up) * transform.forward * hit2.distance, Color.yellow);
             Debug.Log("Did Hit");
 
-            if (rayObject1 == null)
+            if (rayObject2 == null)
             {
                 Debug.Log("Setting Object");
 
-                rayObject1 = hit1.collider.gameObject;
-                rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(true);
+                rayObject2 = hit2.collider.gameObject;
+                rayObject2.GetComponent<HeartBeat>().heartBeat.SetActive(true);
             }
         }
-        else if (rayObject1 != null)
+        else if (rayObject2 != null)
         {
             Debug.Log("Removing Object");
 
-            rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(false);
-            rayObject1 = null;
+            rayObject2.GetComponent<HeartBeat>().heartBeat.SetActive(false);
+            rayObject2 = null;
         }
         else
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * counter, Color.white);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle2, transform.up) * transform.forward * counter, Color.white);
             Debug.Log("Did not Hit");
         }
 
-        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward, out hit1, counter, layerMask))
+        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle3, transform.up) * transform.forward, out hit3, counter, layerMask))
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * hit1.distance, Color.yellow);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle3, transform.up) * transform.forward * hit3.distance, Color.yellow);
             Debug.Log("Did Hit");
 
-            if (rayObject1 == null)
+            if (rayObject3 == null)
             {
                 Debug.Log("Setting Object");
 
-                rayObject1 = hit1.collider.gameObject;
-                rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(true);
+                rayObject3 = hit3.collider.gameObject;
+                rayObject3.GetComponent<HeartBeat>().heartBeat.SetActive(true);
             }
         }
-        else if (rayObject1 != null)
+        else if (rayObject3 != null)
         {
             Debug.Log("Removing Object");
 
-            rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(false);
-            rayObject1 = null;
+            rayObject3.GetComponent<HeartBeat>().heartBeat.SetActive(false);
+            rayObject3 = null;
         }
         else
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * counter, Color.white);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle3, transform.up) * transform.forward * counter, Color.white);
             Debug.Log("Did not Hit");
         }
 
-        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward, out hit1, counter, layerMask))
+        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle4, transform.up) * transform.forward, out hit4, counter, layerMask))
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * hit1.distance, Color.yellow);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle4, transform.up) * transform.forward * hit4.distance, Color.yellow);
             Debug.Log("Did Hit");
 
-            if (rayObject1 == null)
+            if (rayObject4 == null)
             {
                 Debug.Log("Setting Object");
 
-                rayObject1 = hit1.collider.gameObject;
-                rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(true);
+                rayObject4 = hit4.collider.gameObject;
+                rayObject4.GetComponent<HeartBeat>().heartBeat.SetActive(true);
             }
         }
-        else if (rayObject1 != null)
+        else if (rayObject4 != null)
         {
             Debug.Log("Removing Object");
 
-            rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(false);
-            rayObject1 = null;
+            rayObject4.GetComponent<HeartBeat>().heartBeat.SetActive(false);
+            rayObject4 = null;
         }
         else
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * counter, Color.white);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle4, transform.up) * transform.forward * counter, Color.white);
             Debug.Log("Did not Hit");
         }
 
-        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward, out hit1, counter, layerMask))
+        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(angle5, transform.up) * transform.forward, out hit5, counter, layerMask))
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * hit1.distance, Color.yellow);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle5, transform.up) * transform.forward * hit5.distance, Color.yellow);
             Debug.Log("Did Hit");
 
-            if (rayObject1 == null)
+            if (rayObject5 == null)
             {
                 Debug.Log("Setting Object");
 
-                rayObject1 = hit1.collider.gameObject;
-                rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(true);
+                rayObject5 = hit5.collider.gameObject;
+                rayObject5.GetComponent<HeartBeat>().heartBeat.SetActive(true);
             }
         }
-        else if (rayObject1 != null)
+        else if (rayObject5 != null)
         {
             Debug.Log("Removing Object");
 
-            rayObject1.GetComponent<HeartBeat>().heartBeat.SetActive(false);
-            rayObject1 = null;
+            rayObject5.GetComponent<HeartBeat>().heartBeat.SetActive(false);
+            rayObject5 = null;
         }
         else
         {
-            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle1, transform.up) * transform.forward * counter, Color.white);
+            Debug.DrawRay(transform.position, Quaternion.AngleAxis(angle5, transform.up) * transform.forward * counter, Color.white);
             Debug.Log("Did not Hit");
         }
 
