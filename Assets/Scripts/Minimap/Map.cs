@@ -6,7 +6,7 @@ using UnityEngine;
 public class Map : MonoBehaviour {
 
     //Map refresh timer
-    public float refreshTime = 1.0f;
+    public float refreshTime = 1.5f;
 
     //Read the two corners on the map from LayoutGen
     public Transform Corner1, Corner2;

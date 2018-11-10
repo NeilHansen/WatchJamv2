@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -28,11 +29,16 @@ public class PlayerController : MonoBehaviour {
     private DoorController doorManager;
 
     public GameObject interactUI;
-    
 
-    
 
-    
+    public NavMeshAgent meshAgent;
+
+    public Transform trail;
+
+
+    private bool ShowTrail;
+
+    private LineRenderer line;
 
     // Use this for initialization
     void Start () {
@@ -40,17 +46,20 @@ public class PlayerController : MonoBehaviour {
         fpsCamera = this.GetComponentInChildren<Camera>();
        // doorManager = GameObject.FindObjectOfType<DoorController>();
         doorManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DoorController>();
+        line = GetComponent<LineRenderer>();
 
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        HandleInput();
+
         
     }
 
      void Update()
     {
+
+        HandleInput();
         if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
         {
             if (doorManager.DoorOpen == false)
@@ -77,8 +86,15 @@ public class PlayerController : MonoBehaviour {
                 //  doorManager.UpdateDoors();
             }
         }
+
+        if(ShowTrail)
+        {
+
+        }
     }
 
+
+    
     void HandleInput()
     {
         if(player.GetAxis("HorizontalMove") > 0.0f)
@@ -225,15 +241,19 @@ public class PlayerController : MonoBehaviour {
             {
                 this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
                 this.transform.GetChild(0).gameObject.SetActive(true);
+                fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
+                fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
                 punchLength = 2.5f;
-                Debug.Log("Punched");
+              //  Debug.Log("Punched");
             }
         }
         else if (punchLength < 1.0f)
         {
             this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
             this.transform.GetChild(0).gameObject.SetActive(false);
-            Debug.Log("Cant Punch");
+            fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
+            fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
+           // Debug.Log("Cant Punch");
         }
 
         //security flashlight
@@ -251,19 +271,48 @@ public class PlayerController : MonoBehaviour {
         }
 
         //monster directions
-        if(player.GetButtonDown("ShowDirection")&& this.gameObject.tag == "Monster")
+        if(player.GetButton("ShowDirection")&& this.gameObject.tag == "Monster")
         {
-            doorManager.path.SetActive(true);
+           // doorManager.path.SetActive(true);
             GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
             doorManager.seenUI.SetActive(true);
+
+           Exit exit =  FindObjectOfType<Exit>();
+
+            if(exit != null && line != null)
+            {
+                meshAgent.SetDestination(exit.transform.position);
+                Vector3 start = this.transform.position;
+                
+                line.positionCount = meshAgent.path.corners.Length;
+               // line = Instantiate(line, transform);
+                for(int i = 0; i < meshAgent.path.corners.Length; i++ )
+                {
+                    Debug.DrawLine(start, meshAgent.path.corners[i], Color.green);
+                    start = meshAgent.path.corners[i];
+                    line.SetPosition(i, meshAgent.path.corners[i]);
+                }
+                foreach (Vector3 v in meshAgent.path.corners)
+                {
+                   // Debug.DrawLine(start, v);
+                    start = v;
+                  //  line = Instantiate(line, transform);
+                 //   line.SetPosition(v);
+                  //  line.SetPosition(1, v);
+                }
+              //  Instantiate(trail, this.transform.position + new Vector3(0,0,1), transform.rotation);
+                
+            }
         }
 
         if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
         {
-            doorManager.path.SetActive(false);
+          //  doorManager.path.SetActive(false);
             GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
             doorManager.seenUI.SetActive(false);
             //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
+
+
         }
 
         //Interact UI

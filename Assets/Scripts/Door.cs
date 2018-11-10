@@ -43,14 +43,14 @@ public class Door : MonoBehaviour {
 
         if (movingUp)
         {
-            //journeyLength = Vector3.Distance(doorStartPos, new Vector3(0, height, 0));
-           // this.transform.position = Vector3.Lerp(doorStartPos, doorEndPos, fracJourney);
+            journeyLength = Vector3.Distance(doorStartPos, new Vector3(0, height, 0));
+            this.transform.position = Vector3.Lerp(doorStartPos, doorEndPos, fracJourney);
 
         }
         else
         {
-            //journeyLength = Vector3.Distance(this.transform.position, doorStartPos);
-           // this.transform.position = Vector3.Lerp(doorEndPos, doorStartPos, downfracJourney);
+            journeyLength = Vector3.Distance(this.transform.position, doorStartPos);
+            this.transform.position = Vector3.Lerp(doorEndPos, doorStartPos, downfracJourney);
         }
 	}
 
@@ -60,7 +60,7 @@ public class Door : MonoBehaviour {
         journeyLength = Vector3.Distance(doorStartPos, doorEndPos);
         movingUp = true;
        
-       this.gameObject.transform.position += new Vector3(0, height,0);
+      // this.gameObject.transform.position += new Vector3(0, height,0);
 
     }
 
@@ -69,7 +69,7 @@ public class Door : MonoBehaviour {
         distCovered = 0.0f;
         journeyLength = Vector3.Distance(doorEndPos, doorStartPos);
         movingUp = false;
-        this.gameObject.transform.position -= new Vector3(0, height,0);
+      //  this.gameObject.transform.position -= new Vector3(0, height,0);
       
     }
 }

@@ -242,9 +242,9 @@ GameObject:
   - component: {fileID: 23833379085252710}
   - component: {fileID: 64358355910067484}
   - component: {fileID: 114811450969888610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone
-  m_TagString: Untagged
+  m_TagString: flash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,7 +425,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4843899020929996}
   - component: {fileID: 20763720462649120}
-  - component: {fileID: 81822533886802250}
   - component: {fileID: 114441552215257782}
   m_Layer: 0
   m_Name: Camera
@@ -471,7 +470,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120716255520654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.79, y: 1, z: 15.57}
+  m_LocalPosition: {x: 5.67, y: 1, z: -9.43}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 4843899020929996}
@@ -716,7 +715,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1b408360088a7f449847e3968d074aa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -882,13 +881,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81822533886802250
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1875504230084838}
-  m_Enabled: 1
 --- !u!108 &108076537824929566
 Light:
   m_ObjectHideFlags: 1
@@ -1025,6 +1017,8 @@ MonoBehaviour:
   FOVmin: -30
   FOVmax: 30
   interactUI: {fileID: 1373864591933934}
+  meshAgent: {fileID: 0}
+  trail: {fileID: 0}
 --- !u!114 &114336801151400658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1380,6 +1374,7 @@ MonoBehaviour:
   DoorOpen: 0
   path: {fileID: 0}
   seenUI: {fileID: 0}
+  alarmSound: {fileID: 0}
 --- !u!114 &114950440040279752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1453,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1622,7 +1617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 36.999756, y: 176.5}
+  m_AnchoredPosition: {x: 36.999756, y: 130.59998}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224308540629074118
@@ -1883,8 +1878,8 @@ RectTransform:
   m_Father: {fileID: 224403052319490330}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 107.7}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -123.70001}
   m_SizeDelta: {x: 160, y: 20}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
