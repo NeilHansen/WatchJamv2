@@ -24,7 +24,7 @@ public class Flashlight : MonoBehaviour {
             hitObject = other.gameObject;
             for (int i = 0; i < playerCam.Length; i++)
             {
-                playerCam[i].GetComponent<Camera>().cullingMask = -1;
+             //   playerCam[i].GetComponent<Camera>().cullingMask = -1;
 
             }
 
@@ -37,7 +37,7 @@ public class Flashlight : MonoBehaviour {
     {
        for (int i = 0; i < playerCam.Length; i++)
         {
-            playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
+          //  playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
         }
        if(hitObject != null)
        hitObject.gameObject.GetComponent<MonsterUIController>().isSeen = false;
@@ -48,7 +48,7 @@ public class Flashlight : MonoBehaviour {
         
         for (int i = 0; i < playerCam.Length; i++)
         {
-            playerCam[i].GetComponent<Camera>().cullingMask = -1;
+          //  playerCam[i].GetComponent<Camera>().cullingMask = -1;
 
         }
         if (hitObject != null)
@@ -61,7 +61,7 @@ public class Flashlight : MonoBehaviour {
         {
             for (int i = 0; i < playerCam.Length; i++)
             {
-                playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
+             //   playerCam[i].GetComponent<Camera>().cullingMask = oldMask;
 
             }
             other.gameObject.GetComponent<MonsterUIController>().isSeen = false;

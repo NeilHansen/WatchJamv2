@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MonsterUIController : MonoBehaviour {
 
-
+    private float SavedUseTime = 5.0f;
     public bool isSeen;
 
     public Slider MonsterUI;
@@ -13,30 +13,47 @@ public class MonsterUIController : MonoBehaviour {
     public float UIValue;
 
     public GameObject spawn;
-	// Use this for initialization
-	void Start () {
-        MonsterUI.value = UIValue;
 
+    private Material monsterMaterial;
+    private float materialAlpha;
+
+    public float materialAlphaFadeRate;
+
+    public bool isDraining;
+
+    private Color monsterColor;
+    // Use this for initialization
+    void Start () {
+       // MonsterUI.value = UIValue;
+         monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
+        monsterMaterial.color = monsterColor;
+        MonsterUI.maxValue = UIValue;
     }
 	
 	// Update is called once per frame
 	void Update () {
-       // MonsterUI.value = UIValue;
+        monsterMaterial.color = monsterColor;
+
+        
         if (isSeen)
         {
            
             MonsterUI.value += Time.deltaTime;
+            monsterColor.a += materialAlphaFadeRate * Time.deltaTime;
         }
-        else
+        else if(isDraining)
         {
-
+            MonsterUI.maxValue = SavedUseTime;
             MonsterUI.value -= Time.deltaTime;
         }
 
         if (MonsterUI.value == MonsterUI.maxValue)
         {
+            monsterColor.a = 0.0f;
+            UIValue = 0.0f;
             this.transform.position = spawn.gameObject.transform.position;
             Debug.Log("Respawn");
+            MonsterUI.value = 0.0f;
         }
         
 	}

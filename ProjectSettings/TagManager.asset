@@ -10,6 +10,7 @@ TagManager:
   - Security
   - SecurityCam
   - flash
+  - Monster Material
   layers:
   - Default
   - TransparentFX

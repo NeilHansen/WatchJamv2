@@ -241,8 +241,8 @@ public class PlayerController : MonoBehaviour {
             {
                 this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
                 this.transform.GetChild(0).gameObject.SetActive(true);
-                fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
-                fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
+              //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
+              //  fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
                 punchLength = 2.5f;
               //  Debug.Log("Punched");
             }
@@ -251,8 +251,8 @@ public class PlayerController : MonoBehaviour {
         {
             this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
             this.transform.GetChild(0).gameObject.SetActive(false);
-            fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
-            fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
+          //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
+          //fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
            // Debug.Log("Cant Punch");
         }
 
@@ -276,11 +276,13 @@ public class PlayerController : MonoBehaviour {
            // doorManager.path.SetActive(true);
             GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
             doorManager.seenUI.SetActive(true);
+            this.GetComponent<MonsterUIController>().isSeen = true;
 
-           Exit exit =  FindObjectOfType<Exit>();
+            Exit exit =  FindObjectOfType<Exit>();
 
             if(exit != null && line != null)
             {
+                line.enabled = true;
                 meshAgent.SetDestination(exit.transform.position);
                 Vector3 start = this.transform.position;
                 
@@ -307,13 +309,19 @@ public class PlayerController : MonoBehaviour {
 
         if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
         {
-          //  doorManager.path.SetActive(false);
+            //  doorManager.path.SetActive(false);
+            line.enabled = false;
             GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
+            this.GetComponent<MonsterUIController>().isSeen = false;
             doorManager.seenUI.SetActive(false);
             //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
 
 
         }
+        
+
+
+
 
         //Interact UI
 
