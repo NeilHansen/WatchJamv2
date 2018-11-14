@@ -54,7 +54,7 @@ public class FlashlightController : MonoBehaviour {
 
             if (useTime < maxTime )
             {
-                useTime += Time.deltaTime;
+                useTime += Time.deltaTime /2.0f;
             }
         }
 	}

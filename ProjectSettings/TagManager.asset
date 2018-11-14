@@ -11,6 +11,7 @@ TagManager:
   - SecurityCam
   - flash
   - Monster Material
+  - Drain
   layers:
   - Default
   - TransparentFX

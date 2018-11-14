@@ -50,7 +50,7 @@ public class PowerDrain : MonoBehaviour {
             if (hitObject != null && hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime > 0.0f)
             {
                 hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
-               // hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
+                hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
                 this.GetComponentInParent<MonsterUIController>().isDraining = true;
                 Debug.Log(hitObject.gameObject.name + " Draining Power");
             }
@@ -60,7 +60,7 @@ public class PowerDrain : MonoBehaviour {
             if (hitObject != null)
             {
                // hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
-               // hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
+                hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime = 5;
                 this.GetComponentInParent<MonsterUIController>().isDraining = false;
                 Debug.Log(hitObject.gameObject.name + " Not Draining Power");
             }

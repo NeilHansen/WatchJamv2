@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private bool Caninteract = false;
 
     private float punchLength;
+    private float drainLength;
 
     private DoorController doorManager;
 
@@ -40,6 +41,13 @@ public class PlayerController : MonoBehaviour {
 
     private LineRenderer line;
 
+    private GameObject hitObject;
+
+    private CapsuleCollider drainCollider;
+
+    private float defaultRadius = 0.5000001f;
+    private float defaultHeight = 3.0f;
+
     // Use this for initialization
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
@@ -47,7 +55,8 @@ public class PlayerController : MonoBehaviour {
        // doorManager = GameObject.FindObjectOfType<DoorController>();
         doorManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DoorController>();
         line = GetComponent<LineRenderer>();
-
+        if(this.gameObject.tag == "Monster" )
+        drainCollider = this.transform.GetChild(6).gameObject.GetComponent<CapsuleCollider>(); 
     }
 	
 	// Update is called once per frame
@@ -62,28 +71,30 @@ public class PlayerController : MonoBehaviour {
         HandleInput();
         if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
         {
+            hitObject.GetComponentInChildren<SecurityButton>().isPressed = true;
             if (doorManager.DoorOpen == false)
             {
                 doorManager.DoorOpen = true;
                 doorManager.UpdateDoors();
+                
             }
         }
 
         if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Security")
         {
+            hitObject.GetComponentInChildren<SecurityButton>().isPressed = false;
             if (doorManager.DoorOpen == true)
             {
-                // doorManager.DoorOpen = true;
-                //  doorManager.UpdateDoors();
+              
                 doorManager.CloseDoors();
                 Debug.Log("HERE");
+               
             }
             else
             {
                 Debug.Log("HERE2");
                 doorManager.OpenDoors();
-                //  doorManager.DoorOpen = false;
-                //  doorManager.UpdateDoors();
+                
             }
         }
 
@@ -232,6 +243,37 @@ public class PlayerController : MonoBehaviour {
         }
 
 
+        //monster power drain
+        drainLength -= Time.deltaTime;
+        if (drainLength < -2.0f)
+        {
+            //Debug.Log("Can Punch");
+            if (player.GetButtonDown("Drain") && this.gameObject.tag == "Monster")
+            {
+                drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                drainCollider.radius = defaultRadius;
+                drainCollider.height = defaultHeight;
+               // this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
+               // this.transform.GetChild(0).gameObject.SetActive(true);
+                //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
+                //  fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
+                drainLength = 2.5f;
+                //  Debug.Log("Punched");
+            }
+        }
+        else if (drainLength < 1.0f)
+        {
+            drainCollider.radius = 0.0f;
+            drainCollider.height = 0.0f;
+            drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            //this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
+            //this.transform.GetChild(0).gameObject.SetActive(false);
+            //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
+            //fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
+            // Debug.Log("Cant Punch");
+        }
+
+
         //monster punch
         punchLength -= Time.deltaTime;
         if (punchLength < 0.0f)
@@ -341,6 +383,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(other.gameObject.tag == "Terminal" && this.gameObject.name != "Cone")
         {
+            hitObject = other.gameObject;
             Caninteract = true;
          //   interactUI.SetActive(true);
         }
@@ -366,7 +409,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Terminal")
         {
+            hitObject = other.gameObject;
             Caninteract = false;
+            
           //  interactUI.SetActive(false);
         }
 

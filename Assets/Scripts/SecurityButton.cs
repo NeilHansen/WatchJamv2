@@ -22,7 +22,14 @@ public class SecurityButton : MonoBehaviour {
 	void Update ()
     {
 		
-
+        if(isPressed)
+        {
+            pressed();
+        }
+        else
+        {
+            unPressed();
+        }
 
 
 
@@ -30,16 +37,16 @@ public class SecurityButton : MonoBehaviour {
 
     public void pressed()
     {
-        isPressed = true;
+        //isPressed = true;
         _rend.material = buttonPressed;
-        transform.Translate(0, .015f, 0);
+        transform.position = new Vector3 (0.015f, transform.position.y, transform.position.z);
     }
      
     public void unPressed()
     {
-        isPressed = false;
+       // isPressed = false;
         _rend.material = buttonNotPressed;
-        transform.Translate(0, -.015f, 0);
+        transform.position = new Vector3(-0.015f, transform.position.y, transform.position.z);
     }
 
     /*private void OnTriggerEnter(Collider other)

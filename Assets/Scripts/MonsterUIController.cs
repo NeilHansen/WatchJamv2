@@ -45,6 +45,8 @@ public class MonsterUIController : MonoBehaviour {
         {
             MonsterUI.maxValue = SavedUseTime;
             MonsterUI.value -= Time.deltaTime;
+            if(monsterColor.a > 0.0 )
+            monsterColor.a -= materialAlphaFadeRate * Time.deltaTime;
         }
 
         if (MonsterUI.value == MonsterUI.maxValue)
