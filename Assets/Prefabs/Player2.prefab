@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 223286006945917780}
   - component: {fileID: 114968953540073262}
   - component: {fileID: 114050224851623514}
-  - component: {fileID: 114847378682525742}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1094,6 +1093,7 @@ MonoBehaviour:
   interactUI: {fileID: 1373864591933934}
   meshAgent: {fileID: 0}
   trail: {fileID: 0}
+  heldTime: 0
 --- !u!114 &114298144912133186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1457,23 +1457,6 @@ MonoBehaviour:
   rechargeRate: 0
   flashUI: {fileID: 114756039116586110}
   brightness: 50
---- !u!114 &114847378682525742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1155068628335248}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gates: []
-  alarm: []
-  DoorOpen: 0
-  path: {fileID: 0}
-  seenUI: {fileID: 0}
-  alarmSound: {fileID: 0}
 --- !u!114 &114950440040279752
 MonoBehaviour:
   m_ObjectHideFlags: 1

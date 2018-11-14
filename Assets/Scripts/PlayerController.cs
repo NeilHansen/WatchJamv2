@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour {
     private float defaultRadius = 0.5000001f;
     private float defaultHeight = 3.0f;
 
+    public float heldTime;
+
     // Use this for initialization
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
@@ -71,34 +73,49 @@ public class PlayerController : MonoBehaviour {
         HandleInput();
         if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
         {
-            hitObject.GetComponentInChildren<SecurityButton>().isPressed = true;
+            //hitObject.GetComponentInChildren<SecurityButton>().isPressed = true;
             if (doorManager.DoorOpen == false)
             {
-                doorManager.DoorOpen = true;
-                doorManager.UpdateDoors();
+              //  doorManager.DoorOpen = true;
+               // doorManager.UpdateDoors();
                 
             }
         }
 
-        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Security")
+        if (player.GetButton("Interact") && Caninteract && this.gameObject.tag == "Security")
         {
-            hitObject.GetComponentInChildren<SecurityButton>().isPressed = false;
+            // heldTime = 0.0f;
+            heldTime += Time.deltaTime;
+            Debug.Log("holding");
+            if (heldTime >= 3.0f)
+            {
+                Debug.Log("finished");
+                hitObject.gameObject.GetComponent<TerminalController>().isBroken = false;
+                hitObject.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+            }
+            //hitObject.GetComponentInChildren<SecurityButton>().isPressed = false;
             if (doorManager.DoorOpen == true)
             {
               
-                doorManager.CloseDoors();
-                Debug.Log("HERE");
+               // doorManager.CloseDoors();
+                
                
             }
             else
-            {
-                Debug.Log("HERE2");
-                doorManager.OpenDoors();
+            { 
+
+              //  doorManager.OpenDoors();
                 
             }
         }
+        if (player.GetButtonUp("Interact") && Caninteract && this.gameObject.tag == "Security")
+        {
+            heldTime = 0.0f;
+            
+        }
 
-        if(ShowTrail)
+
+            if (ShowTrail)
         {
 
         }
@@ -176,11 +193,11 @@ public class PlayerController : MonoBehaviour {
                 // doorManager.DoorOpen = true;
                 //  doorManager.UpdateDoors();
              //   doorManager.CloseDoors();
-                Debug.Log("HERE");
+                
             }
             else
             {
-                Debug.Log("HERE2");
+               
              //   doorManager.OpenDoors();
               //  doorManager.DoorOpen = false;
               //  doorManager.UpdateDoors();
@@ -190,7 +207,7 @@ public class PlayerController : MonoBehaviour {
 
             if (player.GetButtonDown("Interact") && Caninteract)
         {
-            Debug.Log("Can Interact");
+
             // Caninteract = false;
             if (this.gameObject.tag == "Monster" )
             {
@@ -253,6 +270,7 @@ public class PlayerController : MonoBehaviour {
                 drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = true;
                 drainCollider.radius = defaultRadius;
                 drainCollider.height = defaultHeight;
+                drainCollider.gameObject.transform.localPosition = new Vector3(0, 0, 1.325f);
                // this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
                // this.transform.GetChild(0).gameObject.SetActive(true);
                 //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
@@ -263,14 +281,18 @@ public class PlayerController : MonoBehaviour {
         }
         else if (drainLength < 1.0f)
         {
-            drainCollider.radius = 0.0f;
-            drainCollider.height = 0.0f;
-            drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            //this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
-            //this.transform.GetChild(0).gameObject.SetActive(false);
-            //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
-            //fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
-            // Debug.Log("Cant Punch");
+            if (this.gameObject.tag == "Monster")
+            {
+                drainCollider.radius = 0.0f;
+                drainCollider.height = 0.0f;
+                drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                drainCollider.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                //this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
+                //this.transform.GetChild(0).gameObject.SetActive(false);
+                //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 2.5f, 0);
+                //fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 0;
+                // Debug.Log("Cant Punch");
+            }
         }
 
 
@@ -278,7 +300,7 @@ public class PlayerController : MonoBehaviour {
         punchLength -= Time.deltaTime;
         if (punchLength < 0.0f)
         {
-            Debug.Log("Can Punch");
+
             if (player.GetButtonDown("Punch") && this.gameObject.tag == "Monster")
             {
                 this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");

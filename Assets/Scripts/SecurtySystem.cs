@@ -22,6 +22,7 @@ public class SecurtySystem : MonoBehaviour {
        alarmLevel = this.transform.GetChild(0).GetComponent<Slider>();
         alarmIncrease = true;
         StartCoroutine("FlashBar");
+       
     }
 	
 	// Update is called once per frame

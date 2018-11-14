@@ -444,7 +444,6 @@ GameObject:
   - component: {fileID: 223986599396806770}
   - component: {fileID: 114742359573173158}
   - component: {fileID: 114294190247765662}
-  - component: {fileID: 114029503628879986}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1030,23 +1029,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114029503628879986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853756690099310}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gates: []
-  alarm: []
-  DoorOpen: 0
-  path: {fileID: 0}
-  seenUI: {fileID: 0}
-  alarmSound: {fileID: 0}
 --- !u!114 &114048806435705648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1114,6 +1096,7 @@ MonoBehaviour:
   interactUI: {fileID: 1838611476469756}
   meshAgent: {fileID: 0}
   trail: {fileID: 0}
+  heldTime: 0
 --- !u!114 &114140744834974946
 MonoBehaviour:
   m_ObjectHideFlags: 1

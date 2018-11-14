@@ -14,21 +14,66 @@ public class DoorController : MonoBehaviour {
 
     public AudioSource alarmSound;
 
+    public TerminalController[] Terminals;
+    public int brokenTerminalCount;
+    public int maxTerminals;
     // Use this for initialization
     void Start () {
         Gates = GameObject.FindObjectsOfType<Door>();
          alarm = GameObject.FindObjectsOfType<SecurtySystem>();
-       // alarm = GameObject.FindGameObjectsWithTag("SecuritySystem")GetComponent<SecurtySystem>();
-	}
+        // alarm = GameObject.FindGameObjectsWithTag("SecuritySystem")GetComponent<SecurtySystem>();
+        Terminals = GameObject.FindObjectsOfType<TerminalController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
- 
+       // CheckDoors();
+        if(brokenTerminalCount >= maxTerminals)
+        {
+            Debug.Log("Doors Open");
+        }
+        else
+        {
+            Debug.Log("Doors Closed");
+        }
 
       
 		
 	}
+
+     public void CheckDoors()
+    {
+        brokenTerminalCount =0;
+        Debug.Log(Terminals.Length);
+        for(int i =0; i < Terminals.Length  ; i++)
+        {
+            //int tempBrokenTerminalCount = 0;
+            if (Terminals[i].isBroken)
+            {
+
+                 brokenTerminalCount ++;
+                
+               // 
+               // brokenTerminalCount = tempBrokenTerminalCount;
+            }
+            else
+            {
+               // brokenTerminalCount--;
+            }
+        }
+
+        foreach(TerminalController terminal in Terminals)
+        {
+            int tempBrokenTerminalCount = brokenTerminalCount;
+            if (terminal.isBroken)
+            {
+                //int tempBrokenTerminalCount = brokenTerminalCount -1;
+               // tempBrokenTerminalCount +=1;
+              //  brokenTerminalCount = tempBrokenTerminalCount;
+            }
+        }
+        
+    }
 
     public void OpenDoors()
     {

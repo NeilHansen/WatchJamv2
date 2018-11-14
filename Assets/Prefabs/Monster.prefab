@@ -1073,11 +1073,11 @@ GameObject:
   - component: {fileID: 114311224945287712}
   m_Layer: 9
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Drain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1474256787157198
 GameObject:
   m_ObjectHideFlags: 1
@@ -1119,7 +1119,6 @@ GameObject:
   - component: {fileID: 223036369738415170}
   - component: {fileID: 114987787314255316}
   - component: {fileID: 114710029322582884}
-  - component: {fileID: 114844336478980830}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2902,7 +2901,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146875387009054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.2, y: -1.988, z: -3.986}
+  m_LocalPosition: {x: 27.26, y: -1.988, z: -3.986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4094016670646128}
@@ -4210,7 +4209,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 8192
@@ -4301,7 +4300,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1465869919671258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4430,8 +4429,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.12471, y: 1, z: 1}
+  m_Center: {x: 0.04586029, y: 0, z: 0}
 --- !u!81 &81346080818961488
 AudioListener:
   m_ObjectHideFlags: 1
@@ -4790,23 +4789,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunTime: 5
---- !u!114 &114844336478980830
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1484383044124860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gates: []
-  alarm: []
-  DoorOpen: 0
-  path: {fileID: 0}
-  seenUI: {fileID: 1805295877214530}
-  alarmSound: {fileID: 0}
 --- !u!114 &114874267514116810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4839,7 +4821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS A
+  m_Text: PRESS B TO SMASH
 --- !u!114 &114916053970136764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4884,6 +4866,7 @@ MonoBehaviour:
   interactUI: {fileID: 1275327658238398}
   meshAgent: {fileID: 195413592282254212}
   trail: {fileID: 4343693587595506}
+  heldTime: 0
 --- !u!114 &114925529432812536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5220,8 +5203,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2.0000005
+  m_Radius: 0
+  m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 0.00000047683716, z: 0}
 --- !u!137 &137774531241036660
@@ -5494,7 +5477,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &224017744177593298
 RectTransform:

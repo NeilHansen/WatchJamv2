@@ -23,5 +23,14 @@ public class Punch : MonoBehaviour {
             other.gameObject.GetComponent<Stun>().stunTime = stunTime;
             Debug.Log(other.gameObject.name + " Stunned");
         }
+
+        if(other.gameObject.tag == "Terminal")
+        {
+            other.gameObject.GetComponent<TerminalController>().isBroken = true;
+            other.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+        }
     }
+
+
+    
 }
