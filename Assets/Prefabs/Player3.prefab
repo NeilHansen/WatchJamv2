@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 114484388456652608}
   - component: {fileID: 114963414973919398}
   - component: {fileID: 114222851734816182}
+  - component: {fileID: 114331215935622992}
   m_Layer: 0
   m_Name: Player3
   m_TagString: Security
@@ -1227,6 +1228,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114331215935622992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396178299094964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0fb2fd1bac5054e9bd2f727c8835f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteEnum: 1
+  color: {r: 0, g: 0, b: 0, a: 1}
+  map: {fileID: 0}
 --- !u!114 &114363715056382324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1539,7 +1554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a4b06e4d220304c8c0a3f7fbc16d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteEnum: 1
   color: {r: 1, g: 0, b: 0.8746815, a: 1}
+  map1: {fileID: 0}
+  map2: {fileID: 0}
+  map3: {fileID: 0}
 --- !u!136 &136296764989686092
 CapsuleCollider:
   m_ObjectHideFlags: 1

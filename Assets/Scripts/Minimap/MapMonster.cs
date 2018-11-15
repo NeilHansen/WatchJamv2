@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Script to handle the minimap
-public class Map : MonoBehaviour {
+public class MapMonster : MonoBehaviour {
 
     //Map refresh timer
     public float refreshTime = 1.5f;
@@ -21,7 +21,7 @@ public class Map : MonoBehaviour {
     public RectTransform mapRect;
 
     //For reference in other scripts
-    public static Map Instance;
+    public static MapMonster Instance;
 
     // Use this for initialization
     void Awake()

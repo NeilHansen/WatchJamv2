@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114781182300358810}
   - component: {fileID: 114641532581560180}
   - component: {fileID: 114298144912133186}
+  - component: {fileID: 114487186203722974}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Security
@@ -1179,6 +1180,20 @@ MonoBehaviour:
   cameraOffset: {x: 0, y: 2.5, z: 0}
   smoothSpeed: 0.125
   m_cameraRotationSpeed: 3
+--- !u!114 &114487186203722974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120716255520654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0fb2fd1bac5054e9bd2f727c8835f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteEnum: 1
+  color: {r: 0, g: 0, b: 0, a: 1}
+  map: {fileID: 0}
 --- !u!114 &114641532581560180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1190,7 +1205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a4b06e4d220304c8c0a3f7fbc16d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteEnum: 1
   color: {r: 0, g: 0.1901753, b: 1, a: 1}
+  map1: {fileID: 0}
+  map2: {fileID: 0}
+  map3: {fileID: 0}
 --- !u!114 &114646038009794560
 MonoBehaviour:
   m_ObjectHideFlags: 1

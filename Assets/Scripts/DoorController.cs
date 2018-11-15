@@ -31,10 +31,12 @@ public class DoorController : MonoBehaviour {
         if(brokenTerminalCount >= maxTerminals)
         {
             Debug.Log("Doors Open");
+            OpenDoors();
         }
         else
         {
             Debug.Log("Doors Closed");
+            CloseDoors();
         }
 
       
@@ -88,10 +90,10 @@ public class DoorController : MonoBehaviour {
 
         for (int i = 0; i < alarm.Length; i++)
         {
-            alarm[i].alarmOff();
+            //alarm[i].alarmOff();
             //alarm[i].alarmIncrease = false;
         }
-        alarmSound.Stop();
+        //alarmSound.Stop();
     }
     public void CloseDoors()
     {
@@ -106,11 +108,11 @@ public class DoorController : MonoBehaviour {
 
         for (int i = 0; i < alarm.Length; i++)
         {
-            alarm[i].alarmOn();
+           // alarm[i].alarmOn();
             //alarm[i].alarmIncrease = true;
         }
 
-        alarmSound.Play();
+       // alarmSound.Play();
     }
 
     public void UpdateDoors()
