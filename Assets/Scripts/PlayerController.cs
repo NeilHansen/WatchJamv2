@@ -87,11 +87,21 @@ public class PlayerController : MonoBehaviour {
             // heldTime = 0.0f;
             heldTime += Time.deltaTime;
             Debug.Log("holding");
-            if (heldTime >= 3.0f)
+            if (hitObject.gameObject.GetComponent<TerminalController>().isBroken == true)
+            {                
+                if (heldTime >= 3.0f)
+                {
+                    Debug.Log("finished");
+                    hitObject.gameObject.GetComponent<TerminalController>().isBroken = false;
+                    hitObject.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+                }
+            }
+            else
             {
-                Debug.Log("finished");
-                hitObject.gameObject.GetComponent<TerminalController>().isBroken = false;
-                hitObject.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+                if (this.transform.GetChild(2).GetComponent<FlashlightController>().maxTime < 5)
+                {
+                    this.transform.GetChild(2).GetComponent<FlashlightController>().maxTime += Time.deltaTime;
+                }
             }
             //hitObject.GetComponentInChildren<SecurityButton>().isPressed = false;
             if (doorManager.DoorOpen == true)
@@ -335,53 +345,55 @@ public class PlayerController : MonoBehaviour {
         }
 
         //monster directions
-        if(player.GetButton("ShowDirection")&& this.gameObject.tag == "Monster")
-        {
-           // doorManager.path.SetActive(true);
-            GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
-            doorManager.seenUI.SetActive(true);
-            this.GetComponent<MonsterUIController>().isSeen = true;
+        //if(player.GetButton("ShowDirection")&& this.gameObject.tag == "Monster")
+        //{
+        //   // doorManager.path.SetActive(true);
+        //    GameObject.FindObjectOfType<Flashlight>().TurnOnMonsterRender();
+        //    doorManager.seenUI.SetActive(true);
+        //    this.GetComponent<MonsterUIController>().isSeen = true;
 
-            Exit exit =  FindObjectOfType<Exit>();
+        //    Exit exit =  FindObjectOfType<Exit>();
 
-            if(exit != null && line != null)
-            {
-                line.enabled = true;
-                meshAgent.SetDestination(exit.transform.position);
-                Vector3 start = this.transform.position;
+        //    if(exit != null && line != null)
+        //    {
+        //        line.enabled = true;
+        //        meshAgent.SetDestination(exit.transform.position);
+        //        Vector3 start = this.transform.position;
                 
-                line.positionCount = meshAgent.path.corners.Length;
-               // line = Instantiate(line, transform);
-                for(int i = 0; i < meshAgent.path.corners.Length; i++ )
-                {
-                    Debug.DrawLine(start, meshAgent.path.corners[i], Color.green);
-                    start = meshAgent.path.corners[i];
-                    line.SetPosition(i, meshAgent.path.corners[i]);
-                }
-                foreach (Vector3 v in meshAgent.path.corners)
-                {
-                   // Debug.DrawLine(start, v);
-                    start = v;
-                  //  line = Instantiate(line, transform);
-                 //   line.SetPosition(v);
-                  //  line.SetPosition(1, v);
-                }
-              //  Instantiate(trail, this.transform.position + new Vector3(0,0,1), transform.rotation);
+        //        line.positionCount = meshAgent.path.corners.Length;
+        //       // line = Instantiate(line, transform);
+        //        for(int i = 0; i < meshAgent.path.corners.Length; i++ )
+        //        {
+        //            Debug.DrawLine(start, meshAgent.path.corners[i], Color.green);
+        //            start = meshAgent.path.corners[i];
+        //            line.SetPosition(i, meshAgent.path.corners[i]);
+        //        }
+        //        foreach (Vector3 v in meshAgent.path.corners)
+        //        {
+        //           // Debug.DrawLine(start, v);
+        //            start = v;
+        //          //  line = Instantiate(line, transform);
+        //         //   line.SetPosition(v);
+        //          //  line.SetPosition(1, v);
+        //        }
+        //      //  Instantiate(trail, this.transform.position + new Vector3(0,0,1), transform.rotation);
                 
-            }
-        }
+        //    }
+        //}
 
-        if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
-        {
-            //  doorManager.path.SetActive(false);
-            line.enabled = false;
-            GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
-            this.GetComponent<MonsterUIController>().isSeen = false;
-            doorManager.seenUI.SetActive(false);
-            //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
+        // uncomment for exit line renderer^^
+
+        //if(player.GetButtonUp("ShowDirection") && this.gameObject.tag == "Monster")
+        //{
+        //    //  doorManager.path.SetActive(false);
+        //    line.enabled = false;
+        //    GameObject.FindObjectOfType<Flashlight>().TurnOffMonsterRender();
+        //    this.GetComponent<MonsterUIController>().isSeen = false;
+        //    doorManager.seenUI.SetActive(false);
+        //    //this.transform.GetChild(2).gameObject.GetComponent<FlashlightController>().flashlight.gameObject.GetComponent<Flashlight>().TurnOffMonsterRender();
 
 
-        }
+        //}
         
 
 
