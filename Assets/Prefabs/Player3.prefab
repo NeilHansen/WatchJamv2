@@ -549,7 +549,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396178299094964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.61, y: -1, z: 4.17}
+  m_LocalPosition: {x: 2.3600025, y: 1.4, z: 58.6}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 4616160026825720}
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396178299094964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d0fb2fd1bac5054e9bd2f727c8835f9, type: 3}
   m_Name: 
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1594,7 +1594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HOLD A TO REPAIR
+  m_Text: HOLD A TO REPAIR/RECHARGE
 --- !u!114 &114938091719117894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2042,7 +2042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -12.200073, y: 128.20007}
+  m_AnchoredPosition: {x: -12.199951, y: 128.20007}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 1, y: 0}
 --- !u!224 &224816695522448970

@@ -60,6 +60,7 @@ public class MapBlipMonster : MonoBehaviour {
 
             //Making sure to update the blip as it moves
             Blip.transform.position = map.WorldPositionToMap(transform.position);
+            Blip.GetComponent<Image>().color = color;
         }
 
     }

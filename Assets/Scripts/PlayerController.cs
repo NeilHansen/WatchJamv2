@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour {
                     Debug.Log("finished");
                     hitObject.gameObject.GetComponent<TerminalController>().isBroken = false;
                     hitObject.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+                    hitObject.gameObject.GetComponent<MapBlip>().color = Color.white;
+                    hitObject.gameObject.GetComponent<MapBlipMonster>().color = Color.white;
                 }
             }
             else
