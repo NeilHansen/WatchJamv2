@@ -49,9 +49,6 @@ public class Map : MonoBehaviour {
     //Calcuating my world position relative to the map
     public Vector2 WorldPositionToMap(Vector3 point)
     {
-
-        Debug.Log(mapRect.anchoredPosition.y);
-        Debug.Log(mapRect.rect.height);
         Vector2 mapPos;
         //var pos = point - Corner1.position;
         if (mapRect.anchoredPosition.y > 0 && mapRect.anchoredPosition.x > 0)
