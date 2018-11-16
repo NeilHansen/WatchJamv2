@@ -28,6 +28,8 @@ public class Punch : MonoBehaviour {
         {
             other.gameObject.GetComponent<TerminalController>().isBroken = true;
             other.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+            other.gameObject.GetComponent<MapBlip>().color = Color.red;
+            other.gameObject.GetComponent<MapBlipMonster>().color = Color.red;
         }
     }
 
