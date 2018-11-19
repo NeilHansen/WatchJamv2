@@ -11,6 +11,7 @@ public class MapBlip : MonoBehaviour {
         none,
         character,
         terminal,
+        exit,
     }
 
     public sprite spriteEnum = sprite.none;
@@ -48,6 +49,11 @@ public class MapBlip : MonoBehaviour {
                 Blip1 = GameObject.Instantiate(map1.TermainalBlip);
                 Blip2 = GameObject.Instantiate(map2.TermainalBlip);
                 Blip3 = GameObject.Instantiate(map3.TermainalBlip);
+                break;
+            case sprite.exit:
+                Blip1 = GameObject.Instantiate(map1.ExitBlip);
+                Blip2 = GameObject.Instantiate(map2.ExitBlip);
+                Blip3 = GameObject.Instantiate(map3.ExitBlip);
                 break;
 
         }

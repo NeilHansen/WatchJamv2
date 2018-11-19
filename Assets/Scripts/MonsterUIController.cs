@@ -9,7 +9,7 @@ public class MonsterUIController : MonoBehaviour {
     public bool isSeen;
 
     public Slider MonsterUI;
-
+    public GameObject SeenUI;
     public float UIValue;
 
     public GameObject spawn;
@@ -40,6 +40,7 @@ public class MonsterUIController : MonoBehaviour {
            
             MonsterUI.value += Time.deltaTime;
             monsterColor.a += materialAlphaFadeRate * Time.deltaTime;
+            SeenUI.SetActive(true);
         }
         else if(isDraining)
         {
@@ -56,6 +57,11 @@ public class MonsterUIController : MonoBehaviour {
             this.transform.position = spawn.gameObject.transform.position;
             Debug.Log("Respawn");
             MonsterUI.value = 0.0f;
+        }
+
+        if(!isSeen)
+        {
+            SeenUI.SetActive(false);
         }
         
 	}

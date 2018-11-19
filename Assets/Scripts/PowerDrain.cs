@@ -7,10 +7,14 @@ public class PowerDrain : MonoBehaviour {
 
     public bool isDraining;
     private GameObject hitObject = null;
+
+    public Material drainMaterial;
+    private Material defaultMaterial;
     // Use this for initialization
     void Start () {
-		
-	}
+
+        defaultMaterial = this.GetComponent<MeshRenderer>().material;
+}
 
     private void OnTriggerStay(Collider other)
     {
@@ -19,6 +23,7 @@ public class PowerDrain : MonoBehaviour {
         {
             hitObject = other.gameObject;
             isDraining = true;
+            
            // other.gameObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
            // other.gameObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
           //  other.gameObject.transform.parent.GetComponent<MonsterUIController>().isDraining = true;
@@ -52,6 +57,7 @@ public class PowerDrain : MonoBehaviour {
                 hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
                 hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
                 this.GetComponentInParent<MonsterUIController>().isDraining = true;
+                this.GetComponent<MeshRenderer>().material = drainMaterial;
                 Debug.Log(hitObject.gameObject.name + " Draining Power");
             }
         }
@@ -62,6 +68,7 @@ public class PowerDrain : MonoBehaviour {
                // hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
                // hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime = 5;
                 this.GetComponentInParent<MonsterUIController>().isDraining = false;
+                this.GetComponent<MeshRenderer>().material = defaultMaterial;
                 Debug.Log(hitObject.gameObject.name + " Not Draining Power");
             }
             
