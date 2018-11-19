@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
     {
        this.transform.position = cameraOffset;
         cameraTransform = transform;
-        CameraShaker.Instance.StartShake(2, 2, 1);
+      //  CameraShaker.Instance.StartShake(2, 2, 1);
         // 
     }
 

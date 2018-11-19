@@ -20,7 +20,8 @@ public class Stun : MonoBehaviour {
         {
             stunnedText.SetActive(true);
             this.GetComponent<PlayerController>().enabled = false;
-            this.transform.GetChild(0).gameObject.GetComponent<EZCameraShake.CameraShaker>().enabled = true;
+            // this.transform.GetChild(0).gameObject.GetComponent<EZCameraShake.CameraShaker>().enabled = true;
+            this.transform.GetChild(0).gameObject.GetComponent<ScreenShaker>().ShakeIt();
             this.gameObject.GetComponent<MeshRenderer>().material.color =  Color.black;
         }
         else if(stunTime <= 0.0f)
@@ -28,7 +29,7 @@ public class Stun : MonoBehaviour {
             stunnedText.SetActive(false);
             this.GetComponent<PlayerController>().enabled = true;
             //this.transform.GetChild(0).gameObject.GetComponent<EZCameraShake.CameraShaker>().ShakeOnce;
-            this.transform.GetChild(0).gameObject.GetComponent<EZCameraShake.CameraShaker>().enabled = false;
+           // this.transform.GetChild(0).gameObject.GetComponent<EZCameraShake.CameraShaker>().enabled = false;
             this.gameObject.GetComponent<MeshRenderer>().material.color = defaultColor;
         }
 	}

@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 4616160026825720}
   - component: {fileID: 20498821964744602}
   - component: {fileID: 114048806435705648}
-  - component: {fileID: 114723181651501530}
+  - component: {fileID: 114356675058348960}
   m_Layer: 0
   m_Name: Camera
   m_TagString: SecurityCam
@@ -1298,6 +1298,20 @@ MonoBehaviour:
   spriteEnum: 1
   color: {r: 0, g: 0, b: 0, a: 1}
   map: {fileID: 0}
+--- !u!114 &114356675058348960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1812372309149132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7347ea6d773bb684aa47fe3e555246e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 20498821964744602}
+  shakeDuration: 1
+  shakeMagnitude: 0.5
 --- !u!114 &114363715056382324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1431,10 +1445,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1511,19 +1525,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114723181651501530
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1812372309149132}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
-  DefaultRotInfluence: {x: 1, y: 1, z: 1}
 --- !u!114 &114742359573173158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1585,10 +1586,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0

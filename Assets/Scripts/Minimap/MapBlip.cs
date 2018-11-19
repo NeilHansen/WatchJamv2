@@ -84,6 +84,10 @@ public class MapBlip : MonoBehaviour {
             Blip1.transform.position = map1.WorldPositionToMap(transform.position);
             Blip2.transform.position = map2.WorldPositionToMap(transform.position);
             Blip3.transform.position = map3.WorldPositionToMap(transform.position);
+
+            Blip1.GetComponent<Image>().color = color;
+            Blip2.GetComponent<Image>().color = color;
+            Blip3.GetComponent<Image>().color = color;
         }
 
     }

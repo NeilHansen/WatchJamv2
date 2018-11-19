@@ -22,18 +22,24 @@ public class MonsterUIController : MonoBehaviour {
     public bool isDraining;
 
     private Color monsterColor;
+
+    public int MaxLives;
+    private int NumOfLives;
+
+    public Text livesText;
     // Use this for initialization
     void Start () {
        // MonsterUI.value = UIValue;
          monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
         monsterMaterial.color = monsterColor;
         MonsterUI.maxValue = UIValue;
+        NumOfLives = MaxLives;
     }
 	
 	// Update is called once per frame
 	void Update () {
         monsterMaterial.color = monsterColor;
-
+        livesText.text = "Lives: " + NumOfLives; 
         
         if (isSeen)
         {
@@ -56,7 +62,13 @@ public class MonsterUIController : MonoBehaviour {
             UIValue = 0.0f;
             this.transform.position = spawn.gameObject.transform.position;
             Debug.Log("Respawn");
+            NumOfLives -= 1;
             MonsterUI.value = 0.0f;
+        }
+
+        if(NumOfLives <=0 )
+        {
+            Time.timeScale = 0.0f;
         }
 
         if(!isSeen)
