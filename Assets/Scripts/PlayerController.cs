@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -50,6 +51,11 @@ public class PlayerController : MonoBehaviour {
 
     public float heldTime;
 
+    public Image punchIcon;
+    public Image drainIcon;
+    public Color punchColor;
+
+    public Color drainColor;
     // Use this for initialization
     void Start () {
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
@@ -57,8 +63,12 @@ public class PlayerController : MonoBehaviour {
        // doorManager = GameObject.FindObjectOfType<DoorController>();
         doorManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DoorController>();
         line = GetComponent<LineRenderer>();
-        if(this.gameObject.tag == "Monster" )
-        drainCollider = this.transform.GetChild(6).gameObject.GetComponent<CapsuleCollider>(); 
+        if (this.gameObject.tag == "Monster")
+        {
+            drainCollider = this.transform.GetChild(6).gameObject.GetComponent<CapsuleCollider>();
+            drainColor = drainIcon.color;
+
+        }
     }
 	
 	// Update is called once per frame
@@ -131,6 +141,11 @@ public class PlayerController : MonoBehaviour {
         {
 
         }
+            if(this.gameObject.tag == "Monster")
+        {
+          //  drainIcon.color = drainColor;
+        }
+     
     }
 
 
@@ -189,93 +204,18 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Monster")
-        {
-            if (doorManager.DoorOpen == false)
-            {
-             //   doorManager.DoorOpen = true;
-          //      doorManager.UpdateDoors();
-            }
-        }
+     
 
-        if (player.GetButtonDown("Interact") && Caninteract && this.gameObject.tag == "Security")
-        {
-            if (doorManager.DoorOpen == true)
-            {
-                // doorManager.DoorOpen = true;
-                //  doorManager.UpdateDoors();
-             //   doorManager.CloseDoors();
-                
-            }
-            else
-            {
-               
-             //   doorManager.OpenDoors();
-              //  doorManager.DoorOpen = false;
-              //  doorManager.UpdateDoors();
-            }
-        }
-
-
-            if (player.GetButtonDown("Interact") && Caninteract)
-        {
-
-            // Caninteract = false;
-            if (this.gameObject.tag == "Monster" )
-            {
-                if(doorManager.DoorOpen == false)
-                {
-                  //  doorManager.DoorOpen = true;
-                  //  doorManager.UpdateDoors();
-                }
-               
-
-            }
-            else if(this.gameObject.tag == "Security")
-            {
-                if (doorManager.DoorOpen == false)
-                {
-                  //  doorManager.DoorOpen = true;
-                   // doorManager.UpdateDoors();
-                }
-                else 
-                {
-                  //  doorManager.DoorOpen = false;
-                   // doorManager.UpdateDoors();
-                }
-            }
-
-                if (doorManager.DoorOpen == false)
-                {
-                //    doorManager.DoorOpen = true;
-                 //   doorManager.UpdateDoors();
-                }
-                else
-                {
-                //    doorManager.DoorOpen = false;
-                //    doorManager.UpdateDoors();
-                }
-            
-
-            if (this.gameObject.tag == "Security" && doorManager.DoorOpen == true)
-            {
-               // doorManager.DoorOpen = false;
-               // doorManager.UpdateDoors();
-            }
-          //  else if(this.gameObject.tag == "Security" && doorManager.DoorOpen == false)
-          //  {
-           //     doorManager.DoorOpen = true;
-           //     doorManager.UpdateDoors();
-           // }
-
-
-        }
+        
 
 
         //monster power drain
         drainLength -= Time.deltaTime;
-        if (drainLength < -2.0f)
+        if (drainLength < -2.0f && this.gameObject.tag == "Monster")
         {
+           // Color drainColor = drainIcon.GetComponent<Image>().color;
+            drainColor.a = 1;
+            drainIcon.color = drainColor;
             //Debug.Log("Can Punch");
             if (player.GetButtonDown("Drain") && this.gameObject.tag == "Monster")
             {
@@ -283,10 +223,14 @@ public class PlayerController : MonoBehaviour {
                 drainCollider.radius = defaultRadius;
                 drainCollider.height = defaultHeight;
                 drainCollider.gameObject.transform.localPosition = new Vector3(0, 0, 1.325f);
-               // this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
-               // this.transform.GetChild(0).gameObject.SetActive(true);
+                // this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("attack2");
+                // this.transform.GetChild(0).gameObject.SetActive(true);
                 //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
                 //  fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
+
+                drainColor.a = 0.35f;
+                drainIcon.color = drainColor;
+                Debug.Log(drainIcon.GetComponent<Image>().color);
                 drainLength = 2.5f;
                 //  Debug.Log("Punched");
             }
@@ -310,8 +254,10 @@ public class PlayerController : MonoBehaviour {
 
         //monster punch
         punchLength -= Time.deltaTime;
-        if (punchLength < 0.0f)
+        if (punchLength < 0.0f && this.gameObject.tag == "Monster")
         {
+            punchColor.a = 1;
+            punchIcon.color = punchColor;
 
             if (player.GetButtonDown("Punch") && this.gameObject.tag == "Monster")
             {
@@ -320,10 +266,12 @@ public class PlayerController : MonoBehaviour {
               //  fpsCamera.gameObject.GetComponent<CameraController>().cameraOffset = new Vector3(0, 0, 0);
               //  fpsCamera.gameObject.GetComponent<CameraController>().cameraDistance = 2;
                 punchLength = 2.5f;
-              //  Debug.Log("Punched");
+                punchColor.a = 0.35f;
+                punchIcon.color = punchColor;
+                //  Debug.Log("Punched");
             }
         }
-        else if (punchLength < 1.0f)
+        else if (punchLength < 1.0f && this.gameObject.tag == "Monster")
         {
             this.transform.GetChild(1).gameObject.GetComponent<Animation>().Play("idleLookAround");
             this.transform.GetChild(0).gameObject.SetActive(false);

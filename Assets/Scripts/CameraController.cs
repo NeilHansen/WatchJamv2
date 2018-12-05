@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using EZCameraShake;
 
 public class CameraController : MonoBehaviour
 {
@@ -36,7 +37,8 @@ public class CameraController : MonoBehaviour
     {
        this.transform.position = cameraOffset;
         cameraTransform = transform;
-       // 
+      //  CameraShaker.Instance.StartShake(2, 2, 1);
+        // 
     }
 
     private void Update()

@@ -13,7 +13,7 @@ public class MapMonster : MonoBehaviour {
     //Little icon to spawn on the map
     public GameObject BlipPrefab;
     public GameObject TermainalBlip;
-
+    public GameObject ExitBlip;
     //Terrain size based on the two points
     private Vector2 terrainSize;
 
