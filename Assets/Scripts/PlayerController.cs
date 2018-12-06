@@ -8,8 +8,12 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public int playerNumber;
+    public int controllerNumber;
     public Player player;
     public Camera fpsCamera;
+
+    public TerminalFixer tFixer;
+    public FlashlightController flashLight;
 
     //Movement and Rotation Varaibles
     public float speed = 5.0f;
@@ -20,12 +24,17 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = Rewired.ReInput.players.GetPlayer(playerNumber);
-
+        //Set Gamemanager with references
         GameManager.Instance.players.Add(this.gameObject);
         GameManager.Instance.playerControllers.Add(this);
 
-        Debug.Log("Done Adding");
+        //Give Children References
+        tFixer.playerController = this;
+        flashLight.playerController = this;
+
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+
+        fpsCamera.targetDisplay = playerNumber;
     }
 
     void Update()

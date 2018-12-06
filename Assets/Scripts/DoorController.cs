@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour {
-
+    public static DoorController Instance;
 
     public Door[] Gates;
     public SecurtySystem[] alarm;
@@ -17,6 +17,23 @@ public class DoorController : MonoBehaviour {
     public TerminalController[] Terminals;
     public int brokenTerminalCount;
     public int maxTerminals;
+
+    // Use this for initialization
+    void Awake()
+    {
+        // Singleton logic:
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
     // Use this for initialization
     void Start () {
         Gates = GameObject.FindObjectsOfType<Door>();

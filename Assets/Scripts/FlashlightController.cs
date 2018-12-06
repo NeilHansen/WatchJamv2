@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class FlashlightController : MonoBehaviour {
+    public PlayerController playerController;
 
     public GameObject flashlight;
     public GameObject lense;
 
-    public bool shine;
+    public bool b_Shinning = false;
 
     public float maxTime;
     public float useTime;
@@ -27,7 +29,17 @@ public class FlashlightController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         flashUI.value = useTime;
-		if(shine == true)
+        if(playerController.player.GetButtonDown("FlashLight") && !b_Shinning)
+        {
+            b_Shinning = true;
+        }
+
+        if(playerController.player.GetButtonUp("FlashLight"))
+        {
+            b_Shinning = false;
+        }
+
+		if(b_Shinning)
         {
             if(useTime > 0.0f)
             {

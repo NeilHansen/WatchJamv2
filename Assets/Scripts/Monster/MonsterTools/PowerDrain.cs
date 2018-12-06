@@ -31,10 +31,10 @@ public class PowerDrain : MonoBehaviour {
         {
             hitObject = other.gameObject;
 
-            UIManager.Instance.MonsterDrainUI();
+            UIManager.Instance.MonsterDrainUI(monster.playerNumber, monster);
 
-            hitObject.transform.GetChild(2).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
-            hitObject.transform.GetChild(2).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
+            hitObject.transform.GetChild(1).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
+            hitObject.transform.GetChild(1).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
             monster.isHittingPlayer = true;
             meshRender.material = drainMaterial;
 
@@ -50,8 +50,6 @@ public class PowerDrain : MonoBehaviour {
 
             monster.isHittingPlayer = false;
             meshRender.material = defaultMaterial;
-
-            //Debug.Log(hitObject.gameObject.name + " Not Draining Power");
         }
     }
 
@@ -63,8 +61,11 @@ public class PowerDrain : MonoBehaviour {
         {
             monster.isDraining = true;
 
+            //Reset Material to default just in case
+            meshRender.material = defaultMaterial;
+
             //To stop draining
-            StartCoroutine(stopDrain());
+            UIManager.Instance.stopDraining(monster.playerNumber, monster);
         }
         //is in draining mode
         else if (monster.isDraining && !monster.drainCooldown)
@@ -79,28 +80,5 @@ public class PowerDrain : MonoBehaviour {
         }
     }
 
-    //To stop draining
-    IEnumerator stopDrain()
-    {
-        //Keep color semi - transparent
-        UIManager.Instance.drainColor.a = 0.35f;
-        UIManager.Instance.drainIcon.color = UIManager.Instance.drainColor;
 
-        yield return new WaitForSeconds(monster.drainLength);
-
-        //Keep transparent when on cooldown
-        UIManager.Instance.drainColor.a = 0.35f;
-        UIManager.Instance.drainIcon.color = UIManager.Instance.drainColor;
-
-        monster.drainCooldown = true;
-
-        yield return new WaitForSeconds(monster.drainCooldownLength);
-
-        //Turn off
-        UIManager.Instance.drainColor.a = 1.0f;
-        UIManager.Instance.drainIcon.color = UIManager.Instance.drainColor;
-
-        monster.isDraining = false;
-        monster.drainCooldown = false;
-    }
 }

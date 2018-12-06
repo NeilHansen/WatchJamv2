@@ -5,93 +5,57 @@ using Rewired;
 
 public class TerminalFixer : MonoBehaviour {
 
-    public Player player;
+    public PlayerController playerController;
 
-    private DoorController doorManager;
+    public float heldTime = 0.0f;
+    public bool isInteracting = false;
 
-    private GameObject hitObject;
-
-    private CapsuleCollider drainCollider;
-
-    public float heldTime;
+    private TerminalController hitObject;
 
     // Use this for initialization
     void Start () {
-        player = GetComponent<PlayerController>().player;
 
-        // doorManager = GameObject.FindObjectOfType<DoorController>();
-        doorManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DoorController>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (player.GetButton("Interact"))
+        //If pressing key and is interacting with terminal
+        if (playerController.player.GetButton("Interact") && isInteracting)
         {
-            // heldTime = 0.0f;
             heldTime += Time.deltaTime;
-            Debug.Log("holding");
-            if (hitObject.gameObject.GetComponent<TerminalController>().isBroken == true)
+            
+            if (hitObject.isBroken == true)
             {
                 if (heldTime >= 3.0f)
                 {
-                    Debug.Log("finished");
-                    hitObject.gameObject.GetComponent<TerminalController>().isBroken = false;
-                    hitObject.gameObject.GetComponent<TerminalController>().securitySystem.CheckDoors();
+                    hitObject.isBroken = false;
+                    DoorController.Instance.CheckDoors();
                     hitObject.gameObject.GetComponent<MapBlip>().color = Color.white;
-                    hitObject.gameObject.GetComponent<MapBlipMonster>().color = Color.white;
                 }
             }
             else
             {
-                if (this.transform.GetChild(2).GetComponent<FlashlightController>().maxTime < 5)
+                if (playerController.flashLight.maxTime < 5)
                 {
-                    this.transform.GetChild(2).GetComponent<FlashlightController>().maxTime += Time.deltaTime;
+                    playerController.flashLight.maxTime += Time.deltaTime;
                 }
-            }
-            //hitObject.GetComponentInChildren<SecurityButton>().isPressed = false;
-            if (doorManager.DoorOpen == true)
-            {
-
-                // doorManager.CloseDoors();
-
-
-            }
-            else
-            {
-
-                //  doorManager.OpenDoors();
-
             }
         }
-        if (player.GetButtonUp("Interact"))
+
+        //If let go reset Timer
+        if (playerController.player.GetButtonUp("Interact"))
         {
             heldTime = 0.0f;
-
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Terminal" && this.gameObject.name != "Cone")
+        if (other.gameObject.tag == "Terminal")
         {
-            hitObject = other.gameObject;
-            //   interactUI.SetActive(true);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "flash" && this.gameObject.tag == "Monster")
-        {
-            // Debug.Log("hitting monster");
-            // this.GetComponent<MonsterUIController>().SwitchDirection();
-
-
-        }
-        else if (other.gameObject == null && this.gameObject.tag == "Monster")
-        {
-            //  Debug.Log("not hitting monster");
-            //this.GetComponent<MonsterUIController>().isSeen = false;
+            hitObject = other.GetComponent<TerminalController>();
+            isInteracting = true;
+            UIManager.Instance.ToggleInteractText(playerController.playerNumber, true);
         }
     }
 
@@ -99,17 +63,9 @@ public class TerminalFixer : MonoBehaviour {
     {
         if (other.gameObject.tag == "Terminal")
         {
-            hitObject = other.gameObject;
-
-            //  interactUI.SetActive(false);
+            hitObject = null;
+            isInteracting = false;
+            UIManager.Instance.ToggleInteractText(playerController.playerNumber, false);
         }
-
-        if (other.gameObject.tag == "flash")
-        {
-            //  Debug.Log("not hitting monster");
-            // this.GetComponent<MonsterUIController>().isSeen = false;
-        }
-
-
     }
 }

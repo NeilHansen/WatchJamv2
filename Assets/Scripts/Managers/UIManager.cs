@@ -6,19 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public static UIManager Instance;
 
-    public GameObject monsterInteractUI;
-
-    public Image SeenUI;
-    public Slider MonsterUI;
-    public Text livesText;
-
-    public Image drainIcon;
-    public Color drainColor;
-
-    public Image punchIcon;
-    public Color punchColor;
-
-    private int NumOfLives;
+    public List<MonsterUI> monsterUIs = new List<MonsterUI>();
+    public List<PlayerUI> playerUIs = new List<PlayerUI>();
 
     // Use this for initialization
     void Awake()
@@ -36,64 +25,86 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start()
+    #region Player Functions
+    public void ToggleInteractText(int playerNumber, bool b)
     {
-        drainColor = drainIcon.color;
-        punchColor = punchIcon.color;
-
-        MonsterUI.maxValue = GameManager.Instance.WinTimer;
-        NumOfLives = GameManager.Instance.MonsterNumOfLives;
-        livesText.text = "Lives: " + NumOfLives;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        MonsterUIUpdate();
-        PlayerUIUpdate();
-    }
-
-    #region Player Stuff
-    private void PlayerUIUpdate()
-    {
-
+        foreach (PlayerUI p in playerUIs)
+        {
+            if (p.playerNumber == playerNumber)
+            {
+                p.ToggleInteractText(b);
+                break;
+            }
+            else
+            {
+                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
+            }
+        }
     }
     #endregion
 
-    #region Monster Stuff
-    private void MonsterUIUpdate()
+    #region Monster Functions
+    public void MonsterSeenUI(int playerNumber, MonsterController mon, bool b)
     {
-        //Reset
-        if (MonsterUI.value == MonsterUI.maxValue)
+        foreach(MonsterUI m in monsterUIs)
         {
-            GameManager.Instance.Reset();
-            GameManager.Instance.MonsterNumOfLives -= 1;
-            MonsterUI.value = 0.0f;
+            if(m.playerNumber == playerNumber)
+            {
+                m.MonsterSeenUI(mon, b);
+                break;
+            }
+            else
+            {
+                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
+            }
         }
     }
 
-    //Call to either see or hide the icon
-    public void MonsterSeenUI(bool b)
+    public void MonsterDrainUI(int playerNumber, MonsterController mon)
     {
-        //If true then add to slider
-        if(b)
+        foreach (MonsterUI m in monsterUIs)
         {
-            MonsterUI.value += Time.deltaTime;
-            GameManager.Instance.monsterController.monsterColor.a += GameManager.Instance.monsterController.materialAlphaFadeRate * Time.deltaTime;
-            GameManager.Instance.monsterController.monsterMaterial.color = GameManager.Instance.monsterController.monsterColor;
+            if (m.playerNumber == playerNumber)
+            {
+                m.MonsterDrainUI(mon);
+                break;
+            }
+            else
+            {
+                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
+            }
         }
-        SeenUI.enabled = b;
     }
 
-    //Call to drain the UI
-    public void MonsterDrainUI()
+    public void stopDraining(int playerNumber, MonsterController mon)
     {
-        MonsterUI.value -= Time.deltaTime;
-        if(GameManager.Instance.monsterController.monsterColor.a > 0.0f)
+        foreach (MonsterUI m in monsterUIs)
         {
-            GameManager.Instance.monsterController.monsterColor.a -= GameManager.Instance.monsterController.materialAlphaFadeRate * Time.deltaTime;
-            GameManager.Instance.monsterController.monsterMaterial.color = GameManager.Instance.monsterController.monsterColor;
+            if (m.playerNumber == playerNumber)
+            {
+                StartCoroutine(m.stopDraining(mon));
+                break;
+            }
+            else
+            {
+                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
+            }
+        }
+    }
+
+    public void stopPunching(int playerNumber, MonsterController mon)
+    {
+        foreach (MonsterUI m in monsterUIs)
+        {
+            if (m.playerNumber == playerNumber)
+            {
+                StartCoroutine(m.stopPunching(mon));
+                break;
+            }
+            else
+            {
+                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
+            }
         }
     }
     #endregion

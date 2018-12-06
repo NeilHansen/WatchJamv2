@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MonsterController : MonoBehaviour {
 
     public int playerNumber;
+    public int controllerNumber;
     public Player player;
     public Camera fpsCamera;
 
@@ -49,11 +50,13 @@ public class MonsterController : MonoBehaviour {
         powerDrain.monster = this;
         powerPunch.monster = this;
 
-        player = Rewired.ReInput.players.GetPlayer(playerNumber);
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
 
         //Find Material with monster
         monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
         monsterMaterial.color = monsterColor;
+
+        fpsCamera.targetDisplay = playerNumber;
     }
 	
 	// Update is called once per frame
