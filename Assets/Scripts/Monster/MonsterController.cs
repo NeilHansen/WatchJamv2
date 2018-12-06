@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
-{
+public class MonsterController : MonoBehaviour {
+
     public int playerNumber;
     public Player player;
     public Camera fpsCamera;
@@ -17,21 +16,50 @@ public class PlayerController : MonoBehaviour
     public float FOVmin = -30.0f;
     public float FOVmax = 30.0f;
 
+    public PowerDrain powerDrain;
+    public PowerPunch powerPunch;
+
+    public bool isSeen = false;
+
+    //Drain and punch Variables
+    public float punchLength = 3.0f;
+    public float punchCooldownLength = 3.0f;
+    public float drainLength = 3.0f;
+    public float drainCooldownLength = 3.0f;
+
+    public bool isHittingPlayer = false;
+
+    public bool isDraining = false;
+    public bool drainCooldown = false;
+    public bool isPunching = false;
+    public bool punchCooldown = false;
+
+    //Monster Transparency
+    public float materialAlphaFadeRate;
+
+    public Material monsterMaterial;
+    public Color monsterColor;
+
     // Use this for initialization
-    void Start()
-    {
+    void Start () {
+        //Give the game manager a copy of the monster gameobject
+        GameManager.Instance.monsterGameObject = this.gameObject;
+        GameManager.Instance.monsterController = this;
+        //Give children a reference to this script
+        powerDrain.monster = this;
+        powerPunch.monster = this;
+
         player = Rewired.ReInput.players.GetPlayer(playerNumber);
 
-        GameManager.Instance.players.Add(this.gameObject);
-        GameManager.Instance.playerControllers.Add(this);
-
-        Debug.Log("Done Adding");
+        //Find Material with monster
+        monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
+        monsterMaterial.color = monsterColor;
     }
-
-    void Update()
-    {
+	
+	// Update is called once per frame
+	void Update () {
         InputHandler();
-    }
+	}
 
     void InputHandler()
     {
@@ -46,7 +74,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0.0f, player.GetAxis("RotHorizontal") * rotSpeed * Time.deltaTime, 0.0f);
 
         //Looking Up
-        if (player.GetAxis("RotVertical") > 0)
+        if(player.GetAxis("RotVertical") > 0)
         {
             //Check if greater then our FOVmin
             if (!(currentRotationX <= FOVmin))

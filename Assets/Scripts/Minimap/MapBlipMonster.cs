@@ -16,38 +16,34 @@ public class MapBlipMonster : MonoBehaviour {
 
     public sprite spriteEnum = sprite.none;
 
-    //For access outside this script
-    public GameObject Blip { get; private set; }
-
     public Color color;
-    public MapMonster map;
-
 
     //Map refresh timer
     private float refreshTime;
+    private GameObject Blip;
 
     // Use this for initialization
     void Start()
     {
         //Set time to the global set map refresh time
-        refreshTime = map.refreshTime;
+        refreshTime = MapManager.Instance.refreshTimeMonster;
 
         switch (spriteEnum)
         {
             case sprite.character:
-                Blip = GameObject.Instantiate(map.BlipPrefab);
+                Blip = GameObject.Instantiate(MapManager.Instance.PlayerBlip);
                 break;
             case sprite.terminal:
-                Blip = GameObject.Instantiate(map.TermainalBlip);
+                Blip = GameObject.Instantiate(MapManager.Instance.TermainalBlip);
                 break;
             case sprite.exit:
-                Blip = GameObject.Instantiate(map.ExitBlip);
+                Blip = GameObject.Instantiate(MapManager.Instance.ExitBlip);
                 break;
 
         }
 
         //Set the blip gameobject parent to the map HUD
-        Blip.transform.SetParent(map.transform.GetChild(0));
+        Blip.transform.SetParent(MapManager.Instance.monsterMap.transform);
 
         Blip.GetComponent<Image>().color = color;
     }
@@ -55,15 +51,14 @@ public class MapBlipMonster : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         refreshTime -= Time.deltaTime;
         if (refreshTime < 0)
         {
             //Reset Time
-            refreshTime = map.refreshTime;
+            refreshTime = MapManager.Instance.refreshTimeMonster;
 
             //Making sure to update the blip as it moves
-            Blip.transform.position = map.WorldPositionToMap(transform.position);
+            Blip.GetComponent<RectTransform>().anchoredPosition = MapManager.Instance.WorldPositionToMap(transform.position);
             Blip.GetComponent<Image>().color = color;
         }
 

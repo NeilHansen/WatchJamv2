@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 
-public class MonsterMovement : MonoBehaviour
+public class MonsterWallMovement : MonoBehaviour
 {
-    public float moveSpeed = 6; // Move speed
-    public float turnSpeed = 90; // Turning speed (degrees/second)
     public float lerpSpeed = 10; // Smoothing speed
     public float gravity = 10; // Gravity acceleration(Rounding because decimals suck!)
     public float flipSpeed = 2.0f; // How fast to flip onto wall
@@ -24,8 +23,12 @@ public class MonsterMovement : MonoBehaviour
     private Transform myTransform;
     private BoxCollider boxCollider; // drag BoxCollider ref in editor
 
+    private Player player;
+
     void Start()
     {
+        player = Rewired.ReInput.players.GetPlayer(GetComponent<MonsterController>().playerNumber);
+
         rigidbody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         myTransform = transform;
@@ -59,7 +62,9 @@ public class MonsterMovement : MonoBehaviour
         {
             // Wall ahead?
             // Yes: jump to the wall
-            FlipToWall(hit.point, hit.normal);
+            if(player.GetButtonDown("WallClimb")) {
+                FlipToWall(hit.point, hit.normal);
+            }
         }
         else if (isGrounded)
         { 
@@ -89,11 +94,6 @@ public class MonsterMovement : MonoBehaviour
         // Align character to the new myNormal while keeping the forward direction:
         Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
         myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
-
-        //Movement code - turn left/right with Horizontal axis:
-        myTransform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
-        //Move the character forth/back with Vertical axis:
-        myTransform.Translate(0, 0, Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
     }
 
     private void FlipToWall(Vector3 point, Vector3 normal)
