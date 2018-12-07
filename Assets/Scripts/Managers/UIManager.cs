@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public static UIManager Instance;
 
-    public List<MonsterUI> monsterUIs = new List<MonsterUI>();
-    public List<PlayerUI> playerUIs = new List<PlayerUI>();
+    public Dictionary<int, MonsterUI> monsterUIsDictionary = new Dictionary<int, MonsterUI>();
+    public Dictionary<int, PlayerUI> playerUIsDictionary = new Dictionary<int, PlayerUI>();
 
     // Use this for initialization
     void Awake()
@@ -26,86 +26,60 @@ public class UIManager : MonoBehaviour {
     }
 
     #region Player Functions
-    public void ToggleInteractText(int playerNumber, bool b)
+    public void SetFlashUIValue(int playerNumber, float value)
     {
-        foreach (PlayerUI p in playerUIs)
-        {
-            if (p.playerNumber == playerNumber)
-            {
-                p.ToggleInteractText(b);
-                break;
-            }
-            else
-            {
-                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
-            }
-        }
+        PlayerUI temp = playerUIsDictionary[playerNumber];
+        temp.SetFlashUIValue(value);
+    }
+
+    public void SetFlashUIMaxValue(int playerNumber, float value)
+    {
+        PlayerUI temp = playerUIsDictionary[playerNumber];
+        temp.SetFlashUIMaxValue(value);
+    }
+
+    public void TogglePlayerInteractText(int playerNumber, bool b)
+    {
+        PlayerUI temp = playerUIsDictionary[playerNumber];
+        temp.TogglePlayerInteractText(b);
+    }
+
+    public void ToggleStunnedText(int playerNumber, bool b)
+    {
+        PlayerUI temp = playerUIsDictionary[playerNumber];
+        temp.ToggleStunnedText(b);
     }
     #endregion
 
     #region Monster Functions
+    public void ToggleMonsterInteractText(int playerNumber, bool b)
+    {
+        MonsterUI temp = monsterUIsDictionary[playerNumber];
+        temp.ToggleMonsterInteractText(b);
+    }
+
     public void MonsterSeenUI(int playerNumber, MonsterController mon, bool b)
     {
-        foreach(MonsterUI m in monsterUIs)
-        {
-            if(m.playerNumber == playerNumber)
-            {
-                m.MonsterSeenUI(mon, b);
-                break;
-            }
-            else
-            {
-                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
-            }
-        }
+        MonsterUI temp = monsterUIsDictionary[playerNumber];
+        temp.MonsterSeenUI(mon, b);
     }
 
     public void MonsterDrainUI(int playerNumber, MonsterController mon)
     {
-        foreach (MonsterUI m in monsterUIs)
-        {
-            if (m.playerNumber == playerNumber)
-            {
-                m.MonsterDrainUI(mon);
-                break;
-            }
-            else
-            {
-                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
-            }
-        }
+        MonsterUI temp = monsterUIsDictionary[playerNumber];
+        temp.MonsterDrainUI(mon);
     }
 
     public void stopDraining(int playerNumber, MonsterController mon)
     {
-        foreach (MonsterUI m in monsterUIs)
-        {
-            if (m.playerNumber == playerNumber)
-            {
-                StartCoroutine(m.stopDraining(mon));
-                break;
-            }
-            else
-            {
-                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
-            }
-        }
+        MonsterUI temp = monsterUIsDictionary[playerNumber];
+        StartCoroutine(temp.stopDraining(mon));
     }
 
     public void stopPunching(int playerNumber, MonsterController mon)
     {
-        foreach (MonsterUI m in monsterUIs)
-        {
-            if (m.playerNumber == playerNumber)
-            {
-                StartCoroutine(m.stopPunching(mon));
-                break;
-            }
-            else
-            {
-                Debug.Log("Couldn't find player Hud that matches that ID. Or something went wrong");
-            }
-        }
+        MonsterUI temp = monsterUIsDictionary[playerNumber];
+        StartCoroutine(temp.stopPunching(mon));
     }
     #endregion
 }

@@ -7,9 +7,7 @@ public class TerminalFixer : MonoBehaviour {
 
     public PlayerController playerController;
 
-    public float heldTime = 0.0f;
-    public bool isInteracting = false;
-
+    private float heldTime = 0.0f;
     private TerminalController hitObject;
 
     // Use this for initialization
@@ -20,13 +18,13 @@ public class TerminalFixer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //If pressing key and is interacting with terminal
-        if (playerController.player.GetButton("Interact") && isInteracting)
+        if (playerController.player.GetButton("Interact") && playerController.b_isInteracting)
         {
             heldTime += Time.deltaTime;
             
             if (hitObject.isBroken == true)
             {
-                if (heldTime >= 3.0f)
+                if (heldTime >= playerController.TerminalFixTime)
                 {
                     hitObject.isBroken = false;
                     DoorController.Instance.CheckDoors();
@@ -35,9 +33,9 @@ public class TerminalFixer : MonoBehaviour {
             }
             else
             {
-                if (playerController.flashLight.maxTime < 5)
+                if (playerController.flashLightMaxTime < 5)
                 {
-                    playerController.flashLight.maxTime += Time.deltaTime;
+                    playerController.flashLightMaxTime += Time.deltaTime;
                 }
             }
         }
@@ -54,8 +52,7 @@ public class TerminalFixer : MonoBehaviour {
         if (other.gameObject.tag == "Terminal")
         {
             hitObject = other.GetComponent<TerminalController>();
-            isInteracting = true;
-            UIManager.Instance.ToggleInteractText(playerController.playerNumber, true);
+            playerController.b_isInteracting = true;
         }
     }
 
@@ -64,8 +61,7 @@ public class TerminalFixer : MonoBehaviour {
         if (other.gameObject.tag == "Terminal")
         {
             hitObject = null;
-            isInteracting = false;
-            UIManager.Instance.ToggleInteractText(playerController.playerNumber, false);
+            playerController.b_isInteracting = false;
         }
     }
 }

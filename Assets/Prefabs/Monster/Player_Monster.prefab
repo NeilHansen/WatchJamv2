@@ -984,7 +984,6 @@ GameObject:
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
   - component: {fileID: 114040901706193044}
-  - component: {fileID: 114824647932074466}
   m_Layer: 9
   m_Name: Player_Monster
   m_TagString: Monster
@@ -4090,9 +4089,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a4b06e4d220304c8c0a3f7fbc16d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteEnum: 0
-  display: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  spriteEnum: 1
+  display: 2
+  color: {r: 0, g: 0, b: 0, a: 1}
+  PlayerBlip: {fileID: 0}
+  MonsterBlips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114083016283368648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4134,6 +4138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
+  controllerNumber: 0
   fpsCamera: {fileID: 20617779312069726}
   speed: 5
   rotSpeed: 90
@@ -4167,19 +4172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
   stunTime: 5
---- !u!114 &114824647932074466
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1558698934536914}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0fb2fd1bac5054e9bd2f727c8835f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteEnum: 1
-  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114869916949457344
 MonoBehaviour:
   m_ObjectHideFlags: 1

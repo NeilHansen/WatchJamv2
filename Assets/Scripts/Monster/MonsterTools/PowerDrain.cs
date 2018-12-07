@@ -33,8 +33,6 @@ public class PowerDrain : MonoBehaviour {
 
             UIManager.Instance.MonsterDrainUI(monster.playerNumber, monster);
 
-            hitObject.transform.GetChild(1).GetComponent<FlashlightController>().useTime -= 2 * Time.deltaTime;
-            hitObject.transform.GetChild(1).GetComponent<FlashlightController>().maxTime -= 2 * Time.deltaTime;
             monster.isHittingPlayer = true;
             meshRender.material = drainMaterial;
 

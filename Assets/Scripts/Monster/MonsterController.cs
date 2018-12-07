@@ -20,11 +20,11 @@ public class MonsterController : MonoBehaviour {
     public PowerDrain powerDrain;
     public PowerPunch powerPunch;
 
-    public bool isSeen = false;
-
     //Drain and punch Variables
+    public float stunTime = 3.0f;
     public float punchLength = 3.0f;
     public float punchCooldownLength = 3.0f;
+
     public float drainLength = 3.0f;
     public float drainCooldownLength = 3.0f;
 
@@ -43,26 +43,30 @@ public class MonsterController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //Give the game manager a copy of the monster gameobject
-        GameManager.Instance.monsterGameObject = this.gameObject;
-        GameManager.Instance.monsterController = this;
         //Give children a reference to this script
         powerDrain.monster = this;
         powerPunch.monster = this;
 
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
-
         //Find Material with monster
         monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
         monsterMaterial.color = monsterColor;
-
-        fpsCamera.targetDisplay = playerNumber;
     }
 	
 	// Update is called once per frame
 	void Update () {
         InputHandler();
 	}
+
+    public void Init(int playerN, int controllerN)
+    {
+        //Assign Variables
+        playerNumber = playerN;
+        controllerNumber = controllerN;
+
+        //Set Controls and display to right screen
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+        fpsCamera.targetDisplay = playerNumber;
+    }
 
     void InputHandler()
     {

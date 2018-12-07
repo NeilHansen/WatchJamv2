@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public TerminalFixer tFixer;
     public FlashlightController flashLight;
+    public PlayerStunned stun;
 
     //Movement and Rotation Varaibles
     public float speed = 5.0f;
@@ -21,25 +22,41 @@ public class PlayerController : MonoBehaviour
     public float FOVmin = -30.0f;
     public float FOVmax = 30.0f;
 
+    public bool b_isInteracting = false;
+    public bool b_Shinning = false;
+    public float TerminalFixTime = 3.0f;
+    public float flashLightMaxTime = 5.0f;
+    public float stunTime;
+
     // Use this for initialization
     void Start()
     {
-        //Set Gamemanager with references
-        GameManager.Instance.players.Add(this.gameObject);
-        GameManager.Instance.playerControllers.Add(this);
+        stun.playerController = this;
+
+        flashLight.UseTime = flashLightMaxTime;
 
         //Give Children References
         tFixer.playerController = this;
         flashLight.playerController = this;
-
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
-
-        fpsCamera.targetDisplay = playerNumber;
     }
 
     void Update()
     {
         InputHandler();
+    }
+
+    public void Init(int playerN, int controllerN)
+    {
+        //Assign Variables
+        playerNumber = playerN;
+        controllerNumber = controllerN;
+
+        //Set Controls and display to right screen
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+        fpsCamera.targetDisplay = playerNumber;
+
+        //Set Flashlight variables
+        UIManager.Instance.SetFlashUIMaxValue(playerNumber, flashLightMaxTime);
     }
 
     void InputHandler()

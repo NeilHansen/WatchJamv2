@@ -18,17 +18,17 @@ public class MapManager : MonoBehaviour {
     private Vector2 terrainSize;
 
     //Read the two corners on the map from LayoutGen
-    public Transform Corner1, Corner2;
+    private Transform Corner1, Corner2;
 
     //For access outside this script
     public GameObject PlayerBlip;
     public GameObject TermainalBlip;
     public GameObject ExitBlip;
 
+    public GameObject monsterMap;
     public GameObject playerMap1;
     public GameObject playerMap2;
     public GameObject playerMap3;
-    public GameObject monsterMap;
 
     // Use this for initialization
     void Awake()
@@ -49,16 +49,23 @@ public class MapManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        //Calculating the terrain size based on the two corners
-        terrainSize = new Vector2(
-            MapManager.Instance.Corner2.position.x - MapManager.Instance.Corner1.position.x,
-            MapManager.Instance.Corner2.position.z - MapManager.Instance.Corner1.position.z);
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void SetTerrainSize()
+    {
+        Corner1 = GameObject.FindGameObjectWithTag("MapCorner1").transform;
+        Corner2 = GameObject.FindGameObjectWithTag("MapCorner2").transform;
+
+        //Calculating the terrain size based on the two corners
+        terrainSize = new Vector2(
+            MapManager.Instance.Corner2.position.x - MapManager.Instance.Corner1.position.x,
+            MapManager.Instance.Corner2.position.z - MapManager.Instance.Corner1.position.z);
+    }
 
     //Calcuating my world position relative to the map
     public Vector2 WorldPositionToMap(Vector3 point)

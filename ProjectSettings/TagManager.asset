@@ -12,6 +12,8 @@ TagManager:
   - flash
   - Monster Material
   - Drain
+  - MapCorner1
+  - MapCorner2
   layers:
   - Default
   - TransparentFX

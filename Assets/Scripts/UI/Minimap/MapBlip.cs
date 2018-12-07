@@ -28,14 +28,17 @@ public class MapBlip : MonoBehaviour {
     public Color color;
 
     //Map refresh timer
-    private float refreshTime;
-    public GameObject PlayerBlip;
-    public GameObject[] MonsterBlips = new GameObject[3];
+    private float refreshTimeMonster;
+    private float refreshTimePlayer;
+
+    public GameObject MonsterBlips;
+    public GameObject[] PlayerBlips = new GameObject[3];
 
     // Use this for initialization
     void Start()
     {
-        refreshTime = MapManager.Instance.refreshTimePlayer;
+        refreshTimeMonster = MapManager.Instance.refreshTimeMonster;
+        refreshTimePlayer = MapManager.Instance.refreshTimePlayer;
 
         CreateBlips(display);
     }
@@ -68,58 +71,62 @@ public class MapBlip : MonoBehaviour {
         switch(d)
         {
             case displayOnMap.security:
-                refreshTime -= Time.deltaTime;
-                if (refreshTime < 0)
+                refreshTimePlayer -= Time.deltaTime;
+                if (refreshTimePlayer < 0)
                 {
                     //Reset Time
-                    refreshTime = MapManager.Instance.refreshTimePlayer;
+                    refreshTimePlayer = MapManager.Instance.refreshTimePlayer;
 
                     //Making sure to update the blip as it moves
-                    MonsterBlips[0].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
-                    MonsterBlips[1].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
-                    MonsterBlips[2].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[0].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[1].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[2].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
 
                     //Set Colour if it ever changes
-                    MonsterBlips[0].GetComponent<Image>().color = color;
-                    MonsterBlips[1].GetComponent<Image>().color = color;
-                    MonsterBlips[2].GetComponent<Image>().color = color;
+                    PlayerBlips[0].GetComponent<Image>().color = color;
+                    PlayerBlips[1].GetComponent<Image>().color = color;
+                    PlayerBlips[2].GetComponent<Image>().color = color;
                 }
                 break;
             case displayOnMap.monster:
-                refreshTime -= Time.deltaTime;
-                if (refreshTime < 0)
+                refreshTimeMonster -= Time.deltaTime;
+                if (refreshTimeMonster < 0)
                 {
                     //Reset Time
-                    refreshTime = MapManager.Instance.refreshTimePlayer;
+                    refreshTimeMonster = MapManager.Instance.refreshTimePlayer;
 
                     //Making sure to update the blip as it moves
-                    PlayerBlip.transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    MonsterBlips.transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
 
                     //Set Colour if it ever changes
-                    PlayerBlip.GetComponent<Image>().color = color;
+                    MonsterBlips.GetComponent<Image>().color = color;
                 }
                 break;
             case displayOnMap.both:
-                refreshTime -= Time.deltaTime;
-                if (refreshTime < 0)
+                refreshTimePlayer -= Time.deltaTime;
+                refreshTimeMonster -= Time.deltaTime;
+                if (refreshTimePlayer < 0)
                 {
                     //Reset Time
-                    refreshTime = MapManager.Instance.refreshTimePlayer;
+                    refreshTimePlayer = MapManager.Instance.refreshTimePlayer;
 
                     //Making sure to update the blip as it moves
-                    MonsterBlips[0].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
-                    MonsterBlips[1].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
-                    MonsterBlips[2].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
-
-                    //Making sure to update the blip as it moves
-                    PlayerBlip.transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[0].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[1].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
+                    PlayerBlips[2].transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
 
                     //Set Colour if it ever changes
-                    MonsterBlips[0].GetComponent<Image>().color = color;
-                    MonsterBlips[1].GetComponent<Image>().color = color;
-                    MonsterBlips[2].GetComponent<Image>().color = color;
+                    PlayerBlips[0].GetComponent<Image>().color = color;
+                    PlayerBlips[1].GetComponent<Image>().color = color;
+                    PlayerBlips[2].GetComponent<Image>().color = color;
+                }
+                if(refreshTimeMonster < 0)
+                {
+                    //Making sure to update the blip as it moves
+                    MonsterBlips.transform.position = MapManager.Instance.WorldPositionToMap(transform.position);
 
-                    PlayerBlip.GetComponent<Image>().color = color;
+                    //Set Colour if it ever changes
+                    MonsterBlips.GetComponent<Image>().color = color;
                 }
                 break;
         }
@@ -130,32 +137,32 @@ public class MapBlip : MonoBehaviour {
         switch (spriteEnum)
         {
             case sprite.character:
-                for (int i = 0; i < MonsterBlips.Length; i++)
+                for (int i = 0; i < PlayerBlips.Length; i++)
                 {
-                    MonsterBlips[i] = GameObject.Instantiate(MapManager.Instance.PlayerBlip);
-                    MonsterBlips[i].GetComponent<Image>().color = color;
+                    PlayerBlips[i] = GameObject.Instantiate(MapManager.Instance.PlayerBlip);
+                    PlayerBlips[i].GetComponent<Image>().color = color;
                 }
                 break;
             case sprite.terminal:
-                for (int i = 0; i < MonsterBlips.Length; i++)
+                for (int i = 0; i < PlayerBlips.Length; i++)
                 {
-                    MonsterBlips[i] = GameObject.Instantiate(MapManager.Instance.TermainalBlip);
-                    MonsterBlips[i].GetComponent<Image>().color = color;
+                    PlayerBlips[i] = GameObject.Instantiate(MapManager.Instance.TermainalBlip);
+                    PlayerBlips[i].GetComponent<Image>().color = color;
                 }
                 break;
             case sprite.exit:
-                for (int i = 0; i < MonsterBlips.Length; i++)
+                for (int i = 0; i < PlayerBlips.Length; i++)
                 {
-                    MonsterBlips[i] = GameObject.Instantiate(MapManager.Instance.ExitBlip);
-                    MonsterBlips[i].GetComponent<Image>().color = color;
+                    PlayerBlips[i] = GameObject.Instantiate(MapManager.Instance.ExitBlip);
+                    PlayerBlips[i].GetComponent<Image>().color = color;
                 }
                 break;
         }
 
         //Set the blip gameobject parent to the map HUD
-        MonsterBlips[0].transform.SetParent(MapManager.Instance.playerMap1.transform);
-        MonsterBlips[1].transform.SetParent(MapManager.Instance.playerMap2.transform);
-        MonsterBlips[2].transform.SetParent(MapManager.Instance.playerMap3.transform);
+        PlayerBlips[0].transform.SetParent(MapManager.Instance.playerMap1.transform);
+        PlayerBlips[1].transform.SetParent(MapManager.Instance.playerMap2.transform);
+        PlayerBlips[2].transform.SetParent(MapManager.Instance.playerMap3.transform);
     }
 
     private void MonsterCreate()
@@ -164,26 +171,26 @@ public class MapBlip : MonoBehaviour {
         {
             case sprite.character:
                 {
-                    PlayerBlip = GameObject.Instantiate(MapManager.Instance.PlayerBlip);
-                    PlayerBlip.GetComponent<Image>().color = color;
+                    MonsterBlips = GameObject.Instantiate(MapManager.Instance.PlayerBlip);
+                    MonsterBlips.GetComponent<Image>().color = color;
                 }
                 break;
             case sprite.terminal:
                 {
-                    PlayerBlip = GameObject.Instantiate(MapManager.Instance.TermainalBlip);
-                    PlayerBlip.GetComponent<Image>().color = color;
+                    MonsterBlips = GameObject.Instantiate(MapManager.Instance.TermainalBlip);
+                    MonsterBlips.GetComponent<Image>().color = color;
                 }
                 break;
             case sprite.exit:
                 {
-                    PlayerBlip = GameObject.Instantiate(MapManager.Instance.ExitBlip);
-                    PlayerBlip.GetComponent<Image>().color = color;
+                    MonsterBlips = GameObject.Instantiate(MapManager.Instance.ExitBlip);
+                    MonsterBlips.GetComponent<Image>().color = color;
                 }
                 break;
 
         }
 
         //Set the blip gameobject parent to the map HUD
-        PlayerBlip.transform.SetParent(MapManager.Instance.monsterMap.transform);
+        MonsterBlips.transform.SetParent(MapManager.Instance.monsterMap.transform);
     }
 }

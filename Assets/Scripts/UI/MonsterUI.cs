@@ -28,9 +28,6 @@ public class MonsterUI : MonoBehaviour {
         VisibilitySlider.maxValue = GameManager.Instance.WinTimer;
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
         livesText.text = "Lives: " + NumOfLives;
-
-        //Set display to the correct player number
-        GetComponent<Canvas>().targetDisplay = playerNumber;
     }
 	
 	// Update is called once per frame
@@ -42,6 +39,23 @@ public class MonsterUI : MonoBehaviour {
             GameManager.Instance.MonsterNumOfLives -= 1;
             VisibilitySlider.value = 0.0f;
         }
+    }
+
+    public void InitUI(int playerN)
+    {
+        playerNumber = playerN;
+
+        //Set display to the correct player number
+        GetComponent<Canvas>().targetDisplay = playerNumber;
+
+        //Add to UIManager List
+        UIManager.Instance.monsterUIsDictionary.Add(playerNumber, this);
+    }
+
+    //Turn on/off interaction text when hitting terminal
+    public void ToggleMonsterInteractText(bool b)
+    {
+        interactText.enabled = b;
     }
 
     //Call to either see or hide the icon
