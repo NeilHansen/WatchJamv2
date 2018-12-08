@@ -10,6 +10,7 @@ public class FlashlightController : MonoBehaviour {
     public Light light;
     private MeshRenderer flashMeshRender;
     private MeshCollider flashMeshCollider;
+    private MonsterController monsterController;
 
     private float brightness;
     private float useTime = 0.0f;
@@ -25,9 +26,9 @@ public class FlashlightController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Turn on flash light
-		if(playerController.player.GetButton("FlashLight") /*&& !playerController.b_Shinning*/)
+		if(playerController.player.GetButton("FlashLight"))
         {
-            //playerController.b_Shinning = true;
+            playerController.b_Shinning = true;
 
             //As long as we still have time keep on
             if (!(useTime <= 0.0f))
@@ -49,7 +50,7 @@ public class FlashlightController : MonoBehaviour {
         //Turn off flash light
         else
         {
-            //playerController.b_Shinning = false;
+            playerController.b_Shinning = false;
 
             light.intensity = 0.0f;
             flashMeshRender.enabled = false;
@@ -60,10 +61,27 @@ public class FlashlightController : MonoBehaviour {
             {
                 useTime += Time.deltaTime / 2.0f;
             }
+
+            //Were not hitting anything so remove the reference to the controller
+            monsterController = null;
         }
 
         //Update Use time
         UIManager.Instance.SetFlashUIValue(playerController.playerNumber, useTime);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            //Get the other component once so were not spamming it
+            if(monsterController == null)
+            {
+                monsterController = other.gameObject.GetComponent<MonsterController>();
+            }
+
+            UIManager.Instance.MonsterSeenUI(monsterController.playerNumber, monsterController);
+        }
     }
 
     public float UseTime

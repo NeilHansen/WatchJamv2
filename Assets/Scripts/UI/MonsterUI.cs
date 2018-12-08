@@ -25,7 +25,9 @@ public class MonsterUI : MonoBehaviour {
         drainColor = drainIcon.color;
         punchColor = punchIcon.color;
 
-        VisibilitySlider.maxValue = GameManager.Instance.WinTimer;
+        VisibilitySlider.value = 0;
+        VisibilitySlider.maxValue = 1;
+
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
         livesText.text = "Lives: " + NumOfLives;
     }
@@ -35,9 +37,11 @@ public class MonsterUI : MonoBehaviour {
         //Reset
         if (VisibilitySlider.value == VisibilitySlider.maxValue)
         {
-            GameManager.Instance.Reset();
-            GameManager.Instance.MonsterNumOfLives -= 1;
             VisibilitySlider.value = 0.0f;
+            livesText.text = "Lives: " + NumOfLives;
+
+            GameManager.Instance.MonsterNumOfLives -= 1;
+            GameManager.Instance.Reset();
         }
     }
 
@@ -59,26 +63,29 @@ public class MonsterUI : MonoBehaviour {
     }
 
     //Call to either see or hide the icon
-    public void MonsterSeenUI(MonsterController monster, bool b)
+    public void MonsterSeenUI(MonsterController monster)
     {
         //If true then add to slider
-        if (b)
-        {
-            VisibilitySlider.value += Time.deltaTime;
-            monster.monsterColor.a += monster.materialAlphaFadeRate * Time.deltaTime;
-            monster.monsterMaterial.color = monster.monsterColor;
-        }
-        SeenImage.enabled = b;
+        monster.monsterColor.a += monster.materialAlphaChangeRate * Time.deltaTime;
+        monster.monsterMaterial.color = monster.monsterColor;
+        VisibilitySlider.value = monster.monsterColor.a;
+
+        SeenImage.enabled = true;
     }
 
     //Call to drain the UI
     public void MonsterDrainUI(MonsterController monster)
     {
-        VisibilitySlider.value -= Time.deltaTime;
         if (monster.monsterColor.a > 0.0f)
         {
-            monster.monsterColor.a -= monster.materialAlphaFadeRate * Time.deltaTime;
+            monster.monsterColor.a -= monster.materialAlphaChangeRate * Time.deltaTime;
             monster.monsterMaterial.color = monster.monsterColor;
+            VisibilitySlider.value = monster.monsterColor.a;
+        }
+        else
+        {
+            //Turn off seen imageg when alpha is 0
+            SeenImage.enabled = false;
         }
     }
 

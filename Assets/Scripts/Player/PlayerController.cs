@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public bool b_isInteracting = false;
     public bool b_Shinning = false;
+    public bool b_isStunned = false;
     public float TerminalFixTime = 3.0f;
     public float flashLightMaxTime = 5.0f;
     public float stunTime;

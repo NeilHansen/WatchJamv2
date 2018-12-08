@@ -36,7 +36,7 @@ public class MonsterController : MonoBehaviour {
     public bool punchCooldown = false;
 
     //Monster Transparency
-    public float materialAlphaFadeRate;
+    public float materialAlphaChangeRate = 0.1f;
 
     public Material monsterMaterial;
     public Color monsterColor;

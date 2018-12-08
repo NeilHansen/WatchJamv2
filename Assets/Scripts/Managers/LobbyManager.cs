@@ -12,6 +12,11 @@ public class LobbyManager : MonoBehaviour {
 
     public Dictionary<int, int> playerNumbers = new Dictionary<int, int>();
 
+    public int monsterPlayerNumber = 0;
+    public int player1Number = 1;
+    public int player2Number = 2;
+    public int player3Number = 3;
+
     // Use this for initialization
     void Awake()
     {
@@ -41,9 +46,32 @@ public class LobbyManager : MonoBehaviour {
 		
 	}
 
+    public void StartSoloMonster()
+    {
+        foreach (LobbyController l in lobbyPlayers)
+        {
+            playerNumbers.Add(l.playerNumber, l.controllerNumber);
+        }
+
+        SceneManager.LoadScene("DannyLevel");
+    }
+
+    public void StartSoloPlayer()
+    {
+        monsterPlayerNumber = 1;
+        player1Number = 0;
+
+        foreach (LobbyController l in lobbyPlayers)
+        {
+            playerNumbers.Add(l.playerNumber, l.controllerNumber);
+        }
+
+        SceneManager.LoadScene("DannyLevel");
+    }
+
     public void StartGame()
     {
-        foreach(LobbyController l in lobbyPlayers)
+        foreach (LobbyController l in lobbyPlayers)
         {
             playerNumbers.Add(l.playerNumber, l.controllerNumber);
         }

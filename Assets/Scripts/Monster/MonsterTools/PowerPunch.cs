@@ -6,6 +6,7 @@ public class PowerPunch : MonoBehaviour {
     public MonsterController monster;
 
     private BoxCollider boxCollider;
+    private PlayerController playerController;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +22,7 @@ public class PowerPunch : MonoBehaviour {
     {
         if(other.gameObject.tag == "Security")
         {
+            other.gameObject.GetComponent<PlayerController>().b_isStunned = true;
             other.gameObject.GetComponent<PlayerController>().stunTime = monster.stunTime;
             Debug.Log(other.gameObject.name + " Stunned");
         }

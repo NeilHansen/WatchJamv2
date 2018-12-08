@@ -4092,8 +4092,8 @@ MonoBehaviour:
   spriteEnum: 1
   display: 2
   color: {r: 0, g: 0, b: 0, a: 1}
-  PlayerBlip: {fileID: 0}
-  MonsterBlips:
+  MonsterBlips: {fileID: 0}
+  PlayerBlips:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -4146,7 +4146,7 @@ MonoBehaviour:
   FOVmax: 30
   powerDrain: {fileID: 114436298853683834}
   powerPunch: {fileID: 114799397751561696}
-  isSeen: 0
+  stunTime: 3
   punchLength: 3
   punchCooldownLength: 3
   drainLength: 3
@@ -4156,9 +4156,9 @@ MonoBehaviour:
   drainCooldown: 0
   isPunching: 0
   punchCooldown: 0
-  materialAlphaFadeRate: 0
+  materialAlphaFadeRate: 0.1
   monsterMaterial: {fileID: 0}
-  monsterColor: {r: 0, g: 0, b: 0, a: 0}
+  monsterColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &114799397751561696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4171,7 +4171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
-  stunTime: 5
 --- !u!114 &114869916949457344
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ public class LobbyController : MonoBehaviour {
         {
             getNumberOnce = true;
             playerNumber = LobbyManager.Instance.playerNumberStack.Pop();
+            UIManager.Instance.SetLobbySlot(playerNumber, controllerNumber);
             Debug.Log("Assigning playerNumber " + playerNumber + " to controller " + controllerNumber);
         }
 	}

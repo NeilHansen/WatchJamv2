@@ -30,10 +30,14 @@ public class GameManager : MonoBehaviour {
     public GameObject interactables;
 
     [Header("Game Related Variables")]
-    public float WinTimer = 5.0f;
     public int MonsterNumOfLives = 1;
 
     public bool reset = false;
+
+    private int monsterPlayerNumber = 0;
+    private int player1Number = 1;
+    private int player2Number = 2;
+    private int player3Number = 3;
 
     // Use this for initialization
     void Awake () {
@@ -67,6 +71,12 @@ public class GameManager : MonoBehaviour {
     //Setup UI before player spawn to set all variables
     public void SetupGame()
     {
+        //For Dev purposes - If you only have one controller
+        monsterPlayerNumber = LobbyManager.Instance.monsterPlayerNumber;
+        player1Number = LobbyManager.Instance.player1Number;
+        player2Number = LobbyManager.Instance.player2Number;
+        player3Number = LobbyManager.Instance.player3Number;
+
         SpawnUI();
         SpawnPlayers();
         interactables.SetActive(true);
@@ -75,6 +85,7 @@ public class GameManager : MonoBehaviour {
     //Spawn all players including monster
     public void SpawnPlayers()
     {
+        //Spawn the monster and players
         monsterGameObject = GameObject.Instantiate(monsterPrefab, monsterSpawnLocation.position, monsterSpawnLocation.rotation);
         monsterController = monsterGameObject.GetComponent<MonsterController>();
 
@@ -88,10 +99,10 @@ public class GameManager : MonoBehaviour {
         }
 
         //Init controllers to set display and variables
-        monsterController.Init(0, LobbyManager.Instance.playerNumbers[0]);
-        playerControllers[0].Init(1, LobbyManager.Instance.playerNumbers[1]);
-        playerControllers[1].Init(2, LobbyManager.Instance.playerNumbers[2]);
-        playerControllers[2].Init(3, LobbyManager.Instance.playerNumbers[3]);
+        monsterController.Init(monsterPlayerNumber, LobbyManager.Instance.playerNumbers[monsterPlayerNumber]);
+        playerControllers[0].Init(player1Number, LobbyManager.Instance.playerNumbers[player1Number]);
+        playerControllers[1].Init(player2Number, LobbyManager.Instance.playerNumbers[player2Number]);
+        playerControllers[2].Init(player3Number, LobbyManager.Instance.playerNumbers[player3Number]);
     }
 
     //Setup UI
@@ -103,10 +114,10 @@ public class GameManager : MonoBehaviour {
         GameObject hud4 = GameObject.Instantiate(playerHUD, UIManager.Instance.transform);
 
         //Init Hud to set display and variables
-        hud1.GetComponent<MonsterUI>().InitUI(0);
-        hud2.GetComponent<PlayerUI>().InitUI(1);
-        hud3.GetComponent<PlayerUI>().InitUI(2);
-        hud4.GetComponent<PlayerUI>().InitUI(3);
+        hud1.GetComponent<MonsterUI>().InitUI(monsterPlayerNumber);
+        hud2.GetComponent<PlayerUI>().InitUI(player1Number);
+        hud3.GetComponent<PlayerUI>().InitUI(player2Number);
+        hud4.GetComponent<PlayerUI>().InitUI(player3Number);
 
         //Settings map manager variables that are in the scene
         MapManager.Instance.Hud = hud1.GetComponent<RectTransform>();
