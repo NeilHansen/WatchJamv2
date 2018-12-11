@@ -1767,6 +1767,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1885152937139194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4224763396816896}
+  m_Layer: 9
+  m_Name: CornerChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1890939505255576
 GameObject:
   m_ObjectHideFlags: 1
@@ -2409,6 +2424,19 @@ Transform:
   - {fileID: 4666478766028588}
   m_Father: {fileID: 4585165681024476}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4224763396816896
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885152937139194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4870954845623552}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232828022836482
 Transform:
@@ -3643,7 +3671,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558698934536914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.660004, y: 1, z: 31.299997}
+  m_LocalPosition: {x: 43.703445, y: -3.824668, z: 35.7313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4807902750778410}
@@ -3651,6 +3679,7 @@ Transform:
   - {fileID: 4232828022836482}
   - {fileID: 4529712144455922}
   - {fileID: 4498426949363800}
+  - {fileID: 4224763396816896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -4113,6 +4142,7 @@ MonoBehaviour:
   flipSpeed: 2
   deltaGround: 0.2
   flipRange: 1
+  cornerCheck: {fileID: 1885152937139194}
 --- !u!114 &114436298853683834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4156,7 +4186,7 @@ MonoBehaviour:
   drainCooldown: 0
   isPunching: 0
   punchCooldown: 0
-  materialAlphaFadeRate: 0.1
+  materialAlphaChangeRate: 0.1
   monsterMaterial: {fileID: 0}
   monsterColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &114799397751561696
