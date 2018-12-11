@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1551680803084036}
+  m_IsPrefabAsset: 1
+--- !u!1 &1551680803084036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4872985630740152}
+  - component: {fileID: 114431707938121550}
+  - component: {fileID: 114540655323472064}
+  - component: {fileID: 114392994195860030}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4872985630740152
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551680803084036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114392994195860030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551680803084036}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3d4705850192e429cb7838005e9c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114431707938121550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551680803084036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a79fb2afa4764d49b33a4e0eb02b74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterGameObject: {fileID: 0}
+  monsterController: {fileID: 0}
+  players: []
+  playerControllers: []
+  monsterPrefab: {fileID: 1558698934536914, guid: 1d2a7abd388a5924eacbaa7b04371217,
+    type: 2}
+  playerPrefab: {fileID: 1332495364744774, guid: 7e74989afd218ab42a75f3d928531231,
+    type: 2}
+  monsterHUD: {fileID: 1328751588330754, guid: 6d52dd4d345b4f842b2c17d075a10186, type: 2}
+  playerHUD: {fileID: 1478324548360078, guid: 5002d9a2842426141b80ff0d10bdea7e, type: 2}
+  monsterSpawnLocation: {fileID: 0}
+  playerSpawnLocation1: {fileID: 0}
+  playerSpawnLocation2: {fileID: 0}
+  playerSpawnLocation3: {fileID: 0}
+  WinTimer: 5
+  MonsterNumOfLives: 1
+  reset: 0
+--- !u!114 &114540655323472064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551680803084036}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gates: []
+  alarm: []
+  DoorOpen: 0
+  path: {fileID: 0}
+  seenUI: {fileID: 0}
+  alarmSound: {fileID: 0}
+  Terminals: []
+  brokenTerminalCount: 0
+  maxTerminals: 4

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1676069846087730}
+  m_IsPrefabAsset: 1
+--- !u!1 &1676069846087730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4110731126097854}
+  - component: {fileID: 114837714582497670}
+  - component: {fileID: 114696958345353824}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4110731126097854
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676069846087730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114696958345353824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676069846087730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dce48bf0278f2f40af272386db53e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshTimePlayer: 1.5
+  refreshTimeMonster: 1.5
+  Hud: {fileID: 0}
+  mapRect: {fileID: 0}
+  Corner1: {fileID: 0}
+  Corner2: {fileID: 0}
+  PlayerBlip: {fileID: 1923891946007298, guid: ba97f4dad5ebc1e44ae5a3a64eefd883, type: 2}
+  TermainalBlip: {fileID: 1923891946007298, guid: 5e8303849ccd8bb4a818b3c2c16aebe1,
+    type: 2}
+  ExitBlip: {fileID: 1923891946007298, guid: 073b18f5b6df4e14ebdbc7e027461cc4, type: 2}
+  playerMap1: {fileID: 0}
+  playerMap2: {fileID: 0}
+  playerMap3: {fileID: 0}
+  monsterMap: {fileID: 0}
+--- !u!114 &114837714582497670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676069846087730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f5e17069a3e904592f0f4ddd8a30e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterUIs:
+  - {fileID: 0}
+  playerUIs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -8,6 +8,12 @@ TagManager:
   - Gate
   - Monster
   - Security
+  - SecurityCam
+  - flash
+  - Monster Material
+  - Drain
+  - MapCorner1
+  - MapCorner2
   layers:
   - Default
   - TransparentFX
@@ -19,12 +25,12 @@ TagManager:
   - 
   - PostProcessing
   - Monster
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Exit
+  - Flash
+  - Terminal
+  - HeartBeat
+  - Player
+  - Walkable
   - 
   - 
   - 
