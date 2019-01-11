@@ -13,6 +13,8 @@ public class MonsterWallMovement : MonoBehaviour
     public float deltaGround = 0.2f; // Character is grounded up to this distance
     public float flipRange = 1; // Range to detect target wall
 
+    public GameObject cornerCheck;
+
     private bool isGrounded;
     private bool flipping = false; // Flag "I'm flipping to wall";
 
@@ -62,7 +64,8 @@ public class MonsterWallMovement : MonoBehaviour
         {
             // Wall ahead?
             // Yes: jump to the wall
-            if(player.GetButtonDown("WallClimb")) {
+            //if(player.GetButtonDown("WallClimb"))
+            {
                 FlipToWall(hit.point, hit.normal);
             }
         }
@@ -71,10 +74,12 @@ public class MonsterWallMovement : MonoBehaviour
             // No: if grounded, don't do anything  
         }
 
+        Debug.DrawRay(cornerCheck.transform.position, -1 * cornerCheck.transform.forward * flipRange, Color.blue);
+
         // Update surface normal and isGrounded:
         // Cast ray downwards
         ray = new Ray(myTransform.position, -myNormal);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 2))
         { 
             // Use it to update myNormal and isGrounded
             isGrounded = hit.distance <= distGround + deltaGround;
@@ -82,9 +87,20 @@ public class MonsterWallMovement : MonoBehaviour
         }
         else
         {
-            isGrounded = false;
-            // Assume usual ground normal to avoid "falling forever"
-            surfaceNormal = Vector3.up;
+            //Going over a corner, check back if its hitting a wall
+            ray = new Ray(cornerCheck.transform.position, -1 * cornerCheck.transform.forward);
+            if(Physics.Raycast(ray, out hit, 2))
+            {
+                Debug.Log("Going over corner");
+                FlipToWall(hit.point, hit.normal);
+            }
+            else
+            {
+                Debug.Log("IsGrounded False");
+                isGrounded = false;
+                // Assume usual ground normal to avoid "falling forever"
+                surfaceNormal = Vector3.up;
+            }
         }
 
         // Lerping
