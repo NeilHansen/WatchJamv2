@@ -12,6 +12,8 @@ public class LobbyManager : MonoBehaviour {
 
     public Dictionary<int, int> playerNumbers = new Dictionary<int, int>();
 
+    public string levelString;
+
     public int monsterPlayerNumber = 0;
     public int player1Number = 1;
     public int player2Number = 2;
@@ -53,7 +55,7 @@ public class LobbyManager : MonoBehaviour {
             playerNumbers.Add(l.playerNumber, l.controllerNumber);
         }
 
-        SceneManager.LoadScene("DannyLevel");
+        SceneManager.LoadScene(levelString);
     }
 
     public void StartSoloPlayer()
@@ -66,7 +68,7 @@ public class LobbyManager : MonoBehaviour {
             playerNumbers.Add(l.playerNumber, l.controllerNumber);
         }
 
-        SceneManager.LoadScene("DannyLevel");
+        SceneManager.LoadScene(levelString);
     }
 
     public void StartGame()
@@ -76,6 +78,6 @@ public class LobbyManager : MonoBehaviour {
             playerNumbers.Add(l.playerNumber, l.controllerNumber);
         }
 
-        SceneManager.LoadScene("DannyLevel");
+        SceneManager.LoadScene(levelString);
     }
 }
