@@ -11,13 +11,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Neils Test Level.unity
     guid: 66569d5d3f87d61469458ca2097b35e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NeilLevel2.unity
     guid: f22ebe26c7dd6384ca9f4081872cb078
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLevels/DannyLevel.unity
     guid: 346fac03fa7f95948a535588b43ddb03
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLevels/DannyLobby.unity
     guid: 38977a1ae4e015440b211cd79e886433
+  - enabled: 1
+    path: Assets/NetworkTemp/Lobby.unity
+    guid: e7c8043c51684f34e9833b152410672a
+  - enabled: 1
+    path: Assets/NetworkTemp/Game.unity
+    guid: 9818fa3b56d37b44f8eaa52735640d55
   m_configObjects: {}
