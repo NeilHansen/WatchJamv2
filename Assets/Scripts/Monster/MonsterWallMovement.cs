@@ -28,6 +28,9 @@ public class MonsterWallMovement : NetworkBehaviour
 
     private Player player;
 
+    // Bit shift the index of the layer (9) to get a bit mask
+    private int layerMask = 1 << 9;
+
     void Start()
     {
         player = Rewired.ReInput.players.GetPlayer(GetComponent<MonsterController>().playerNumber);
@@ -67,7 +70,7 @@ public class MonsterWallMovement : NetworkBehaviour
             Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
 
             ray = new Ray(myTransform.position, myTransform.forward);
-            if (Physics.Raycast(ray, out hit, flipRange))
+            if (Physics.Raycast(ray, out hit, flipRange, layerMask))
             {
                 // Wall ahead?
                 // Yes: jump to the wall
@@ -86,7 +89,7 @@ public class MonsterWallMovement : NetworkBehaviour
             // Update surface normal and isGrounded:
             // Cast ray downwards
             ray = new Ray(myTransform.position, -myNormal);
-            if (Physics.Raycast(ray, out hit, 2))
+            if (Physics.Raycast(ray, out hit, 2, layerMask))
             {
                 // Use it to update myNormal and isGrounded
                 isGrounded = hit.distance <= distGround + deltaGround;
@@ -96,7 +99,7 @@ public class MonsterWallMovement : NetworkBehaviour
             {
                 //Going over a corner, check back if its hitting a wall
                 ray = new Ray(cornerCheck.transform.position, -1 * cornerCheck.transform.forward);
-                if (Physics.Raycast(ray, out hit, 2))
+                if (Physics.Raycast(ray, out hit, 2, layerMask))
                 {
                     Debug.Log("Going over corner");
                     FlipToWall(hit.point, hit.normal);

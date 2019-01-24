@@ -33,17 +33,23 @@ public class SecurityController : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        if(hasAuthority)
+        if (hasAuthority)
         {
             GameManager.Instance.localPlayer = this.gameObject;
-            fpsCamera.enabled = true;
+            fpsCamera = Camera.main;
+            fpsCamera.transform.SetParent(this.transform);
+            fpsCamera.transform.localRotation = Quaternion.identity;
+            fpsCamera.transform.localPosition = Vector3.zero;
+
+            //Set MiniMap
+            FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
+
+            //Set Controls and display to right screen
+            player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+
+            //Set Flashlight variables
+            SecurityUI.Instance.SetFlashUIMaxValue(flashLightMaxTime);
         }
-
-        //Set Controls and display to right screen
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
-
-        //Set Flashlight variables
-        SecurityUI.Instance.SetFlashUIMaxValue(flashLightMaxTime);
 
         stun.securityController = this;
 
@@ -59,6 +65,7 @@ public class SecurityController : NetworkBehaviour
         if(hasAuthority)
         {
             InputHandler();
+            flashLight.SecurityFlashLight();
         }
     }
 

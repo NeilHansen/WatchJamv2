@@ -13,6 +13,8 @@ TagManager:
   - SecuritySpawn1
   - SecuritySpawn2
   - SecuritySpawn3
+  - SecurityCam
+  - MiniMap
   layers:
   - Default
   - TransparentFX
@@ -23,13 +25,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Monster
-  - Exit
-  - Flash
-  - Terminal
-  - HeartBeat
-  - Player
   - Walkable
+  - Monster
+  - Security
+  - Terminal
+  - Exit
+  - 
+  - 
   - 
   - 
   - 

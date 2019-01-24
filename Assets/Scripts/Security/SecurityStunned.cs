@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SecurityStunned : MonoBehaviour {
+public class SecurityStunned : NetworkBehaviour {
     public SecurityController securityController;
 
     private MeshRenderer meshRend;
@@ -16,19 +17,22 @@ public class SecurityStunned : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        securityController.stunTime -= Time.deltaTime;
-		if(!(securityController.stunTime <= 0.0f))
+        if(hasAuthority)
         {
-            SecurityUI.Instance.ToggleStunnedText(true);
-            securityController.enabled = false;
-            //this.transform.GetChild(0).gameObject.GetComponent<ScreenShaker>().ShakeIt();
-            meshRend.material.color =  Color.black;
+            securityController.stunTime -= Time.deltaTime;
+            if (!(securityController.stunTime <= 0.0f))
+            {
+                SecurityUI.Instance.ToggleStunnedText(true);
+                securityController.enabled = false;
+                //this.transform.GetChild(0).gameObject.GetComponent<ScreenShaker>().ShakeIt();
+                meshRend.material.color = Color.black;
+            }
+            else
+            {
+                SecurityUI.Instance.ToggleStunnedText(false);
+                securityController.enabled = true;
+                meshRend.material.color = defaultColor;
+            }
         }
-        else
-        {
-            SecurityUI.Instance.ToggleStunnedText(false);
-            securityController.enabled = true;
-            meshRend.material.color = defaultColor;
-        }
-	}  
+    }  
 }

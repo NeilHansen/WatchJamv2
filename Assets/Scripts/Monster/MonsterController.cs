@@ -29,7 +29,8 @@ public class MonsterController : NetworkBehaviour {
     public float drainLength = 3.0f;
     public float drainCooldownLength = 3.0f;
 
-    public bool isHittingPlayer = false;
+    public bool isFlashLightHitting = false;
+    public bool isDrainHitting = false;
 
     public bool isDraining = false;
     public bool drainCooldown = false;
@@ -38,20 +39,28 @@ public class MonsterController : NetworkBehaviour {
 
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
+    [SyncVar(hook = "OnChangeMonsterAlpha")]
+    public float currentAlpha = 0.0f;
 
-    public Material monsterMaterial;
-    public Color monsterColor;
+    private Material monsterMaterial;
+    private Color monsterColor;
 
     // Use this for initialization
     void Start () {
         if (hasAuthority)
         {
             GameManager.Instance.localPlayer = this.gameObject;
-            fpsCamera.enabled = true;
-        }
+            fpsCamera = Camera.main;
+            fpsCamera.transform.SetParent(this.transform);
+            fpsCamera.transform.localRotation = Quaternion.identity;
+            fpsCamera.transform.localPosition = Vector3.zero;
 
-        //Set Controls and display to right screen
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+            //Set MiniMap
+            FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
+
+            //Set Controls and display to right screen
+            player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+        }
 
         //Give children a reference to this script
         powerDrain.monster = this;
@@ -67,7 +76,18 @@ public class MonsterController : NetworkBehaviour {
     {
         if(hasAuthority)
         {
+            if(isFlashLightHitting)
+            {
+                NetworkTakeDamage();
+            }
+            if(isDrainHitting)
+            {
+                NetworkRemoveDamage();
+            }
+
             InputHandler();
+            powerDrain.MonsterDrain();
+            powerPunch.MonsterPunch();
         }
 	}
 
@@ -102,5 +122,86 @@ public class MonsterController : NetworkBehaviour {
                 fpsCamera.transform.Rotate(player.GetAxis("RotVertical") * rotSpeed * Time.deltaTime * -1.0f, 0.0f, 0.0f);
             }
         }
+    }
+
+    void NetworkTakeDamage()
+    {
+        if(isServer)
+        {
+            RpcTakeDamage();
+        }
+        else
+        {
+            CmdTakeDamage();
+        }
+    }
+
+    void NetworkRemoveDamage()
+    {
+        if (isServer)
+        {
+            RpcRemoveDamage();
+        }
+        else
+        {
+            CmdRemoveDamage();
+        }
+    }
+
+    void OnChangeMonsterAlpha(float alpha)
+    {
+        if (alpha > 0.0)
+        {
+            if (hasAuthority)
+            {
+                MonsterUI.Instance.SetMonsterSeenIcon(true);
+                MonsterUI.Instance.SetVisibilitySlider(alpha);
+            }
+
+            monsterColor.a = currentAlpha;
+            monsterMaterial.color = monsterColor;
+        }
+        else
+        {
+            if (hasAuthority)
+            {
+                MonsterUI.Instance.SetMonsterSeenIcon(false);
+                MonsterUI.Instance.SetVisibilitySlider(alpha);
+            }
+
+            monsterColor.a = currentAlpha;
+            monsterMaterial.color = monsterColor;
+        }
+
+    }
+
+    //This is a Network command, so the damage is done to the relevant GameObject
+    [ClientRpc]
+    void RpcTakeDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        currentAlpha += damage;
+    }
+
+    [ClientRpc]
+    void RpcRemoveDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        currentAlpha -= damage;
+    }
+
+    //This is a Network command, so the damage is done to the relevant GameObject
+    [Command]
+    void CmdTakeDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        currentAlpha += damage;
+    }
+
+    [Command]
+    void CmdRemoveDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        currentAlpha -= damage;
     }
 }

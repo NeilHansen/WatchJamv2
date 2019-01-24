@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEngine.Networking;
 
-public class TerminalFixer : MonoBehaviour {
+public class TerminalFixer : NetworkBehaviour {
 
     public SecurityController securityController;
 
@@ -17,32 +18,35 @@ public class TerminalFixer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //If pressing key and is interacting with terminal
-        if (securityController.player.GetButton("Interact") && securityController.b_isInteracting)
+        if(hasAuthority)
         {
-            heldTime += Time.deltaTime;
-            
-            if (hitObject.isBroken == true)
+            //If pressing key and is interacting with terminal
+            if (securityController.player.GetButton("Interact") && securityController.b_isInteracting)
             {
-                if (heldTime >= securityController.TerminalFixTime)
-                {
-                    hitObject.isBroken = false;
-                    DoorController.Instance.CheckDoors();
-                }
-            }
-            else
-            {
-                if (securityController.flashLightMaxTime < 5)
-                {
-                    securityController.flashLightMaxTime += Time.deltaTime;
-                }
-            }
-        }
+                heldTime += Time.deltaTime;
 
-        //If let go reset Timer
-        if (securityController.player.GetButtonUp("Interact"))
-        {
-            heldTime = 0.0f;
+                if (hitObject.isBroken == true)
+                {
+                    if (heldTime >= securityController.TerminalFixTime)
+                    {
+                        hitObject.isBroken = false;
+                        DoorController.Instance.CheckDoors();
+                    }
+                }
+                else
+                {
+                    if (securityController.flashLightMaxTime < 5)
+                    {
+                        securityController.flashLightMaxTime += Time.deltaTime;
+                    }
+                }
+            }
+
+            //If let go reset Timer
+            if (securityController.player.GetButtonUp("Interact"))
+            {
+                heldTime = 0.0f;
+            }
         }
     }
 

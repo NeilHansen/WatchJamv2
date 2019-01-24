@@ -68,30 +68,15 @@ public class MonsterUI : MonoBehaviour {
     }
 
     //Call to either see or hide the icon
-    public void MonsterSeenUI(MonsterController monster)
+    public void SetMonsterSeenIcon(bool b)
     {
-        //If true then add to slider
-        monster.monsterColor.a += monster.materialAlphaChangeRate * Time.deltaTime;
-        monster.monsterMaterial.color = monster.monsterColor;
-        VisibilitySlider.value = monster.monsterColor.a;
-
-        SeenImage.enabled = true;
+        //Turn off seen imageg when alpha is 0
+        SeenImage.enabled = b;
     }
 
-    //Call to drain the UI
-    public void MonsterDrainUI(MonsterController monster)
+    public void SetVisibilitySlider(float value)
     {
-        if (monster.monsterColor.a > 0.0f)
-        {
-            monster.monsterColor.a -= monster.materialAlphaChangeRate * Time.deltaTime;
-            monster.monsterMaterial.color = monster.monsterColor;
-            VisibilitySlider.value = monster.monsterColor.a;
-        }
-        else
-        {
-            //Turn off seen imageg when alpha is 0
-            SeenImage.enabled = false;
-        }
+        VisibilitySlider.value = value;
     }
 
     public void StopDraining(MonsterController monster)

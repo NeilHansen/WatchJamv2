@@ -18,48 +18,57 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject gamePlayerPrefab;
     public Transform spawnPosition;
 
+    private GameObject tempUnit;
+
     void Start()
     {
-        if (isLocalPlayer)
-            Init();
-
         if (isServer)
             StartCoroutine(WaitForReady());
+
+        if (isLocalPlayer)
+            SpawnUI();
     }
 
-    //Get Spawn Location and Spawn UI
-    private void Init()
+    public void SpawnUI()
     {
-        switch (playerNumber)
+        if(playerNumber == 0)
         {
-            case 0:
-                spawnPosition = GameObject.FindGameObjectWithTag("MonsterSpawn").transform;
-                GameManager.Instance.spawnPosition = spawnPosition;
-                GameObject.Instantiate(prefab_MonsterHud);
-                break;
-
-            case 1:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn1").transform;
-                GameObject.Instantiate(prefab_SecurityHud);
-                break;
-
-            case 2:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn2").transform;
-                GameObject.Instantiate(prefab_SecurityHud);
-                break;
-
-            case 3:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn3").transform;
-                GameObject.Instantiate(prefab_SecurityHud);
-                break;
+            GameObject.Instantiate(prefab_MonsterHud);
+        }
+        else
+        {
+            GameObject.Instantiate(prefab_SecurityHud);
         }
     }
 
     //Spawning the correct gameobject and giving authority over it.
     public void SpawnUnit()
     {
-        GameObject tempUnit = Instantiate(gamePlayerPrefab);
-        tempUnit.transform.position = spawnPosition.position;
+        tempUnit = Instantiate(gamePlayerPrefab);
+
+        switch (playerNumber)
+        {
+            case 0:
+                spawnPosition = GameObject.FindGameObjectWithTag("MonsterSpawn").transform;
+                tempUnit.transform.position = spawnPosition.position;
+                GameManager.Instance.spawnPosition = spawnPosition;
+                break;
+
+            case 1:
+                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn1").transform;
+                tempUnit.transform.position = spawnPosition.position;
+                break;
+
+            case 2:
+                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn2").transform;
+                tempUnit.transform.position = spawnPosition.position;
+                break;
+
+            case 3:
+                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn3").transform;
+                tempUnit.transform.position = spawnPosition.position;
+                break;
+        }
         NetworkServer.SpawnWithClientAuthority(tempUnit, connectionToClient);
     }
 

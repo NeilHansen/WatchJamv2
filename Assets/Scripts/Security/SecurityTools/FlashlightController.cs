@@ -25,8 +25,13 @@ public class FlashlightController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+             
+    }
+
+    public void SecurityFlashLight()
+    {
         //Turn on flash light
-		if(securityController.player.GetButton("FlashLight"))
+        if (securityController.player.GetButton("FlashLight"))
         {
             securityController.b_Shinning = true;
 
@@ -80,7 +85,21 @@ public class FlashlightController : MonoBehaviour {
                 monsterController = other.gameObject.GetComponent<MonsterController>();
             }
 
-            MonsterUI.Instance.MonsterSeenUI(monsterController);
+            monsterController.isFlashLightHitting = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            //Get the other component once so were not spamming it
+            if (monsterController == null)
+            {
+                monsterController = other.gameObject.GetComponent<MonsterController>();
+            }
+
+            monsterController.isFlashLightHitting = false;
         }
     }
 

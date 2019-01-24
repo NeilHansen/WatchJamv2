@@ -12,11 +12,6 @@ public class PowerPunch : MonoBehaviour {
     void Start () {
         boxCollider = GetComponent<BoxCollider>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        MonsterPunch();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +30,7 @@ public class PowerPunch : MonoBehaviour {
         }
     }
 
-    void MonsterPunch()
+    public void MonsterPunch()
     {
         //Monster punch
         if (monster.player.GetButtonDown("Punch") && !monster.isPunching)

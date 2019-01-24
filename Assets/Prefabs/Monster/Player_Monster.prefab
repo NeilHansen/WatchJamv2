@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4653590729572510}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_B_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4245890273914106}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_L_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4063216652197156}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595872953400284}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_I_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4486084003697388}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Factice027
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4222530916887726}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_D_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4401348539695028}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_L_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4292749610366602}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVEIL_WATCHER_ROOT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4862681456599230}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037157818321056}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_J_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4059463917546256}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337892087845312}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4977365340544904}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252261611445250}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_R_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4646574724105058}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4591077339060954}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4419936874688872}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_G_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4783609789469790}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_a_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4977182475982588}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658103979665894}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_J_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4832667570915678}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_C_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4195571708165476}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_a_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215081756048464}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_b_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262081408539444}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_G_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666478766028588}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_D_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4356796480243302}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_C_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4127719829378928}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_F_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4722532078709820}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_G_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4298979942236046}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_B_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4170779843403784}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4467105611578366}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_B_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4301055263909162}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_jaw_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4436252232397422}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_B_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456279335689538}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_B_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658470755462316}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_c_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4585165681024476}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_D_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677025809563586}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_D_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4786520357793776}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_F_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4094902701703918}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_C_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4030815973132854}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4782471600600840}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_middle_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4427461337324222}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4043770988343502}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_H_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4833648260726772}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_A_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4778195840607052}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_A_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4176217670486564}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_b_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4533250365795180}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_C_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4979912918554144}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_I_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4912554588252624}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_a_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4149275039142132}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_B_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4347322126002324}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_H_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4603515358719886}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_J_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4928045129364226}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_A_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559616818220250}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4547267273084338}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_J_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4157941950070096}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_c_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4548408600484752}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_G_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4093197097947232}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4846549456116670}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_F_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4771921424866774}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262527256032764}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_b_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584375511176046}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4275208330224242}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_H_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4900406868603518}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_c_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +985,7 @@ GameObject:
   - component: {fileID: 65857892298773862}
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Player_Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266224602345672}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_A_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4598223461456476}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Factice026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1030,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4886841138242174}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_D_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,10 +1048,10 @@ GameObject:
   - component: {fileID: 33502826012562150}
   - component: {fileID: 23102725034920334}
   - component: {fileID: 136169430472961764}
-  - component: {fileID: 114436298853683834}
-  m_Layer: 11
+  - component: {fileID: 114858713180327242}
+  m_Layer: 10
   m_Name: DrainCollider
-  m_TagString: Drain
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1064,7 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4047429204279368}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_E_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391654241393398}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_J_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4465430335455962}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_R_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4778643520243058}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_C_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4667503082280642}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_b_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4685182529221582}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_I_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4552868652408532}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_c_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4481727930807660}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_L_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4072638680217532}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_R_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4119901466060336}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_F_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,7 +1214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4851102821625986}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_A_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4534806925271752}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4545560856689642}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_C_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,27 +1260,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4720083264141352}
   - component: {fileID: 111350254609643470}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_PBR
   m_TagString: Monster
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1652867263804298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4807902750778410}
-  - component: {fileID: 20617779312069726}
-  - component: {fileID: 81454628039002756}
-  - component: {fileID: 114869916949457344}
-  m_Layer: 0
-  m_Name: MonsterCamera
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1293,7 +1275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4365792144310464}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_L_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4918785169611670}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_b_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4719795153137152}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_J_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1338,7 +1320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4098058573282180}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_H_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1353,7 +1335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167137740892710}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_G_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4973958609294762}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_L_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,7 +1365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308088449355478}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_E_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4757580463399312}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_I_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1413,7 +1395,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930171610168070}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_H_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751732122303520}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_A_R_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4270608534297116}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_c_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1458,7 +1440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4025157646524720}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_G_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1473,7 +1455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4609379063319414}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_upper_B_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1488,7 +1470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772282048812356}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_F_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,7 +1486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4361958570481506}
   - component: {fileID: 137337954162128732}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_NO_TAIL
   m_TagString: Monster Material
   m_Icon: {fileID: 0}
@@ -1519,7 +1501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4731056232372804}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_I_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4779580322058110}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1549,7 +1531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4707335494288806}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_I_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1564,7 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784388226981952}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_E_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1579,7 +1561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4172524842904122}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_E_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4425968872159074}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_a_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,7 +1591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4590197687755174}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_C_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1625,7 +1607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4232828022836482}
   - component: {fileID: 20267514665214136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HeartBeatCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1640,7 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4909361270302366}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_A_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1655,7 +1637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4885348998253828}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_b_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1670,7 +1652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4683924546620618}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_A_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4127054829262532}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_D_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1700,7 +1682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4442773013749010}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_H_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4075969342623684}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4968431895011144}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_B_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1745,7 +1727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4378817299509646}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_E_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,7 +1742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084678999635774}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_D_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1775,7 +1757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4224763396816896}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: CornerChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1790,7 +1772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4508199246060480}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1805,7 +1787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4425648287442848}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_L_finger_a_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,7 +1802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4445102305483712}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_J_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1835,7 +1817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843835855881130}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_E_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,7 +1832,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174986744153234}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_G_upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,7 +1847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391149850394620}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_B_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1880,7 +1862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4251326461285022}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_F_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1895,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4058487688188458}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_H_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1910,7 +1892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658603008746854}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eyelid_F_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,7 +1907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4194671574496008}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_a_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1940,7 +1922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4882920229982496}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_eyelid_lower_A_R_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1955,7 +1937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4599033010459834}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_fin_R_finger_c_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1970,7 +1952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4800542265323550}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_I_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1988,8 +1970,8 @@ GameObject:
   - component: {fileID: 33484991521321438}
   - component: {fileID: 23166976007240028}
   - component: {fileID: 65253046688356332}
-  - component: {fileID: 114799397751561696}
-  m_Layer: 9
+  - component: {fileID: 114138490069996580}
+  m_Layer: 10
   m_Name: PunchCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2004,7 +1986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4864867958145118}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EVIL_WATCHER_tentacle_eye_E_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2436,7 +2418,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4870954845623552}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232828022836482
 Transform:
@@ -2449,7 +2431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4870954845623552}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4245890273914106
 Transform:
@@ -2923,7 +2905,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0502, z: 0.39004135}
   m_Children: []
   m_Father: {fileID: 4870954845623552}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4508199246060480
 Transform:
@@ -3357,7 +3339,7 @@ Transform:
   - {fileID: 4292749610366602}
   - {fileID: 4361958570481506}
   m_Father: {fileID: 4870954845623552}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4722532078709820
 Transform:
@@ -3556,19 +3538,6 @@ Transform:
   m_Father: {fileID: 4685182529221582}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4807902750778410
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652867263804298}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: 0.136}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4870954845623552}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4832667570915678
 Transform:
   m_ObjectHideFlags: 1
@@ -3674,11 +3643,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4807902750778410}
   - {fileID: 4720083264141352}
   - {fileID: 4232828022836482}
-  - {fileID: 4529712144455922}
   - {fileID: 4498426949363800}
+  - {fileID: 4529712144455922}
   - {fileID: 4224763396816896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3911,46 +3879,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!20 &20617779312069726
-Camera:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652867263804298}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.110137045, g: 0.12233741, b: 0.14150941, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.01
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 24375
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!23 &23102725034920334
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -4074,13 +4002,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81454628039002756
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652867263804298}
-  m_Enabled: 1
 --- !u!111 &111350254609643470
 Animation:
   m_ObjectHideFlags: 1
@@ -4124,19 +4045,18 @@ MonoBehaviour:
   deltaGround: 0.2
   flipRange: 1
   cornerCheck: {fileID: 1885152937139194}
---- !u!114 &114436298853683834
+--- !u!114 &114138490069996580
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578365672631644}
+  m_GameObject: {fileID: 1977187815586518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129bd2957eb31dc40ad49261c204c39e, type: 3}
+  m_Script: {fileID: 11500000, guid: cdf6046ffb00afe44be059e96da5cf70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
-  drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
 --- !u!114 &114793082615492070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4150,65 +4070,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   controllerNumber: 0
-  fpsCamera: {fileID: 20617779312069726}
+  fpsCamera: {fileID: 0}
   speed: 5
   rotSpeed: 90
   FOVmin: -30
   FOVmax: 30
-  powerDrain: {fileID: 114436298853683834}
-  powerPunch: {fileID: 114799397751561696}
+  powerDrain: {fileID: 114858713180327242}
+  powerPunch: {fileID: 114138490069996580}
   stunTime: 3
   punchLength: 3
   punchCooldownLength: 3
   drainLength: 3
   drainCooldownLength: 3
-  isHittingPlayer: 0
+  isFlashLightHitting: 0
+  isDrainHitting: 0
   isDraining: 0
   drainCooldown: 0
   isPunching: 0
   punchCooldown: 0
   materialAlphaChangeRate: 0.1
-  monsterMaterial: {fileID: 0}
-  monsterColor: {r: 1, g: 1, b: 1, a: 0}
---- !u!114 &114799397751561696
+  currentAlpha: 0
+--- !u!114 &114858713180327242
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1977187815586518}
+  m_GameObject: {fileID: 1578365672631644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf6046ffb00afe44be059e96da5cf70, type: 3}
+  m_Script: {fileID: 11500000, guid: 129bd2957eb31dc40ad49261c204c39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
---- !u!114 &114869916949457344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652867263804298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showMainBehavior: 1
-  showInnerGlowBehavior: 1
-  rtFormat: 2
-  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
-  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
-  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
-    type: 3}
-  glowLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  glowType: 0
-  glowTint: {r: 0.990566, g: 0.07789934, b: 0.06074228, a: 0}
-  blurSpreadInner: 0.81
-  blurIterations: 1
-  glowIntensityInner: 1
-  samples: 2
+  drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
 --- !u!114 &114873671681735608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4270,7 +4164,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1578365672631644}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2.0000002
   m_Direction: 1

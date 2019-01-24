@@ -5,13 +5,13 @@ using UnityEngine;
 public class PowerDrain : MonoBehaviour {
 
     public MonsterController monster;
-    private MeshRenderer meshRender;
-
-    public Material drainMaterial;
-    private Material defaultMaterial;
 
     private GameObject hitObject = null;
     private CapsuleCollider drainCollider;
+
+    public Material drainMaterial;
+    private MeshRenderer meshRender;
+    private Material defaultMaterial;
 
     // Use this for initialization
     void Start () {
@@ -20,23 +20,14 @@ public class PowerDrain : MonoBehaviour {
         defaultMaterial = meshRender.material;
     }
 
-    // Update is called once per frame
-    void Update () {
-        MonsterDrain();
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Security")
         {
             hitObject = other.gameObject;
 
-            MonsterUI.Instance.MonsterDrainUI(monster);
-
-            monster.isHittingPlayer = true;
+            monster.isDrainHitting = true;
             meshRender.material = drainMaterial;
-
-            //Debug.Log(hitObject.gameObject.name + " Draining Power");
         }
     }
 
@@ -46,13 +37,13 @@ public class PowerDrain : MonoBehaviour {
         {
             hitObject = other.gameObject;
 
-            monster.isHittingPlayer = false;
+            monster.isDrainHitting = false;
             meshRender.material = defaultMaterial;
         }
     }
 
     //Handles turning on and off of the drain beam
-    void MonsterDrain()
+    public void MonsterDrain()
     {
         //Monster drain
         if (monster.player.GetButtonDown("Drain") && !monster.isDraining)
@@ -77,6 +68,4 @@ public class PowerDrain : MonoBehaviour {
             drainCollider.enabled = false;
         }
     }
-
-
 }
