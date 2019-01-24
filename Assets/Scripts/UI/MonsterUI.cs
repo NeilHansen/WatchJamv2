@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MonsterUI : MonoBehaviour {
-    public int playerNumber;
+    public static MonsterUI Instance;
 
     public Text interactText;
 
@@ -19,6 +19,22 @@ public class MonsterUI : MonoBehaviour {
     public Color punchColor;
 
     private int NumOfLives;
+
+    // Use this for initialization
+    void Awake()
+    {
+        // Singleton logic:
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -43,17 +59,6 @@ public class MonsterUI : MonoBehaviour {
             GameManager.Instance.MonsterNumOfLives -= 1;
             GameManager.Instance.Reset();
         }
-    }
-
-    public void InitUI(int playerN)
-    {
-        playerNumber = playerN;
-
-        //Set display to the correct player number
-        GetComponent<Canvas>().targetDisplay = playerNumber;
-
-        //Add to UIManager List
-        UIManager.Instance.monsterUIsDictionary.Add(playerNumber, this);
     }
 
     //Turn on/off interaction text when hitting terminal
@@ -89,8 +94,18 @@ public class MonsterUI : MonoBehaviour {
         }
     }
 
+    public void StopDraining(MonsterController monster)
+    {
+        StartCoroutine(stopDraining(monster));
+    }
+
+    public void StopPunching(MonsterController monster)
+    {
+        StartCoroutine(stopPunching(monster));
+    }
+
     //To stop draining
-    public IEnumerator stopDraining(MonsterController monster)
+    private IEnumerator stopDraining(MonsterController monster)
     {
         //Keep color semi - transparent
         drainColor.a = 0.35f;
@@ -115,7 +130,7 @@ public class MonsterUI : MonoBehaviour {
     }
 
     //To stop punching
-    public IEnumerator stopPunching(MonsterController monster)
+    private IEnumerator stopPunching(MonsterController monster)
     {
         //Keep color semi - transparent
         punchColor.a = 0.35f;

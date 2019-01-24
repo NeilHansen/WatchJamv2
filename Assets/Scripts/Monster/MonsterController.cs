@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class MonsterController : MonoBehaviour {
+public class MonsterController : NetworkBehaviour {
 
     public int playerNumber;
     public int controllerNumber;
@@ -43,6 +44,15 @@ public class MonsterController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        if (hasAuthority)
+        {
+            GameManager.Instance.localPlayer = this.gameObject;
+            fpsCamera.enabled = true;
+        }
+
+        //Set Controls and display to right screen
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+
         //Give children a reference to this script
         powerDrain.monster = this;
         powerPunch.monster = this;
@@ -53,20 +63,13 @@ public class MonsterController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        InputHandler();
-	}
-
-    public void Init(int playerN, int controllerN)
+	void Update ()
     {
-        //Assign Variables
-        playerNumber = playerN;
-        controllerNumber = controllerN;
-
-        //Set Controls and display to right screen
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
-        fpsCamera.targetDisplay = playerNumber;
-    }
+        if(hasAuthority)
+        {
+            InputHandler();
+        }
+	}
 
     void InputHandler()
     {

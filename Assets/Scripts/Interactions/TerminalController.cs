@@ -31,12 +31,12 @@ public class TerminalController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-            UIManager.Instance.ToggleMonsterInteractText(other.GetComponent<MonsterController>().playerNumber, true);
+            MonsterUI.Instance.ToggleMonsterInteractText(true);
         }
 
         if (other.gameObject.tag == "Security")
         {
-            UIManager.Instance.TogglePlayerInteractText(other.GetComponent<MonsterController>().playerNumber, true);
+            SecurityUI.Instance.TogglePlayerInteractText(true);
         }
     }
 
@@ -44,12 +44,12 @@ public class TerminalController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-            UIManager.Instance.ToggleMonsterInteractText(other.GetComponent<MonsterController>().playerNumber, false);
+            MonsterUI.Instance.ToggleMonsterInteractText(false);
         }
 
         if (other.gameObject.tag == "Security")
         {
-            UIManager.Instance.TogglePlayerInteractText(other.GetComponent<MonsterController>().playerNumber, false);
+            SecurityUI.Instance.TogglePlayerInteractText(false);
         }
     }
 }

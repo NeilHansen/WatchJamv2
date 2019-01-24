@@ -64,22 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a79fb2afa4764d49b33a4e0eb02b74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterGameObject: {fileID: 0}
-  monsterController: {fileID: 0}
-  players: []
-  playerControllers: []
-  monsterPrefab: {fileID: 1558698934536914, guid: 1d2a7abd388a5924eacbaa7b04371217,
-    type: 2}
-  playerPrefab: {fileID: 1332495364744774, guid: 7e74989afd218ab42a75f3d928531231,
-    type: 2}
+  localPlayer: {fileID: 0}
   monsterHUD: {fileID: 1328751588330754, guid: 6d52dd4d345b4f842b2c17d075a10186, type: 2}
   playerHUD: {fileID: 1478324548360078, guid: 5002d9a2842426141b80ff0d10bdea7e, type: 2}
-  monsterSpawnLocation: {fileID: 0}
-  playerSpawnLocation1: {fileID: 0}
-  playerSpawnLocation2: {fileID: 0}
-  playerSpawnLocation3: {fileID: 0}
-  WinTimer: 5
-  MonsterNumOfLives: 1
+  spawnPosition: {fileID: 0}
+  MonsterNumOfLives: 3
   reset: 0
 --- !u!114 &114540655323472064
 MonoBehaviour:

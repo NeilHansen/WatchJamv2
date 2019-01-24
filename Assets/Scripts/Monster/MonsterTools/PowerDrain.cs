@@ -31,7 +31,7 @@ public class PowerDrain : MonoBehaviour {
         {
             hitObject = other.gameObject;
 
-            UIManager.Instance.MonsterDrainUI(monster.playerNumber, monster);
+            MonsterUI.Instance.MonsterDrainUI(monster);
 
             monster.isHittingPlayer = true;
             meshRender.material = drainMaterial;
@@ -63,7 +63,7 @@ public class PowerDrain : MonoBehaviour {
             meshRender.material = defaultMaterial;
 
             //To stop draining
-            UIManager.Instance.stopDraining(monster.playerNumber, monster);
+            MonsterUI.Instance.StopDraining(monster);
         }
         //is in draining mode
         else if (monster.isDraining && !monster.drainCooldown)

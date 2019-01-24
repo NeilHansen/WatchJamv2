@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23056066313607922}
   - component: {fileID: 65146028496844864}
   - component: {fileID: 114005523506704152}
-  - component: {fileID: 114382160289923272}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -112,22 +111,3 @@ MonoBehaviour:
   height: 4
   speed: 4
   movingUp: 0
---- !u!114 &114382160289923272
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1982157401967020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a4b06e4d220304c8c0a3f7fbc16d1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteEnum: 3
-  display: 3
-  color: {r: 1, g: 0, b: 0, a: 1}
-  PlayerBlip: {fileID: 0}
-  MonsterBlips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

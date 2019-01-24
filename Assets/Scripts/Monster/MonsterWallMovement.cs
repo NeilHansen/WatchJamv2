@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Rewired;
+using UnityEngine.Networking;
 
-public class MonsterWallMovement : MonoBehaviour
+public class MonsterWallMovement : NetworkBehaviour
 {
     public float lerpSpeed = 10; // Smoothing speed
     public float gravity = 10; // Gravity acceleration(Rounding because decimals suck!)
@@ -45,71 +46,78 @@ public class MonsterWallMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply constant weight force according to character normal:
-        rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
+        if(hasAuthority)
+        {
+            // Apply constant weight force according to character normal:
+            rigidbody.AddForce(-gravity * rigidbody.mass * myNormal);
+        }
     }
 
     void Update()
     {
-        // If flipping don't update
-        if (flipping) return;
-
-        Ray ray;
-        RaycastHit hit;
-        // Drawing ray to see
-        Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
-
-        ray = new Ray(myTransform.position, myTransform.forward);
-        if (Physics.Raycast(ray, out hit, flipRange))
+        if(hasAuthority)
         {
-            // Wall ahead?
-            // Yes: jump to the wall
-            //if(player.GetButtonDown("WallClimb"))
+            // If flipping don't update
+            if (flipping)
+                return;
+
+            Ray ray;
+            RaycastHit hit;
+            // Drawing ray to see
+            Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
+
+            ray = new Ray(myTransform.position, myTransform.forward);
+            if (Physics.Raycast(ray, out hit, flipRange))
             {
-                FlipToWall(hit.point, hit.normal);
+                // Wall ahead?
+                // Yes: jump to the wall
+                //if(player.GetButtonDown("WallClimb"))
+                {
+                    FlipToWall(hit.point, hit.normal);
+                }
             }
-        }
-        else if (isGrounded)
-        { 
-            // No: if grounded, don't do anything  
-        }
-
-        Debug.DrawRay(cornerCheck.transform.position, -1 * cornerCheck.transform.forward * flipRange, Color.blue);
-
-        // Update surface normal and isGrounded:
-        // Cast ray downwards
-        ray = new Ray(myTransform.position, -myNormal);
-        if (Physics.Raycast(ray, out hit, 2))
-        { 
-            // Use it to update myNormal and isGrounded
-            isGrounded = hit.distance <= distGround + deltaGround;
-            surfaceNormal = hit.normal;
-        }
-        else
-        {
-            //Going over a corner, check back if its hitting a wall
-            ray = new Ray(cornerCheck.transform.position, -1 * cornerCheck.transform.forward);
-            if(Physics.Raycast(ray, out hit, 2))
+            else if (isGrounded)
             {
-                Debug.Log("Going over corner");
-                FlipToWall(hit.point, hit.normal);
+                // No: if grounded, don't do anything  
+            }
+
+            Debug.DrawRay(cornerCheck.transform.position, -1 * cornerCheck.transform.forward * flipRange, Color.blue);
+
+            // Update surface normal and isGrounded:
+            // Cast ray downwards
+            ray = new Ray(myTransform.position, -myNormal);
+            if (Physics.Raycast(ray, out hit, 2))
+            {
+                // Use it to update myNormal and isGrounded
+                isGrounded = hit.distance <= distGround + deltaGround;
+                surfaceNormal = hit.normal;
             }
             else
             {
-                Debug.Log("IsGrounded False");
-                isGrounded = false;
-                // Assume usual ground normal to avoid "falling forever"
-                surfaceNormal = Vector3.up;
+                //Going over a corner, check back if its hitting a wall
+                ray = new Ray(cornerCheck.transform.position, -1 * cornerCheck.transform.forward);
+                if (Physics.Raycast(ray, out hit, 2))
+                {
+                    Debug.Log("Going over corner");
+                    FlipToWall(hit.point, hit.normal);
+                }
+                else
+                {
+                    Debug.Log("IsGrounded False");
+                    isGrounded = false;
+                    // Assume usual ground normal to avoid "falling forever"
+                    surfaceNormal = Vector3.up;
+                }
             }
-        }
 
-        // Lerping
-        myNormal = Vector3.Lerp(myNormal, surfaceNormal, lerpSpeed * Time.deltaTime);
-        // Find forward direction with new myNormal:
-        Vector3 myForward = Vector3.Cross(myTransform.right, myNormal);
-        // Align character to the new myNormal while keeping the forward direction:
-        Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
-        myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
+            // Lerping
+            myNormal = Vector3.Lerp(myNormal, surfaceNormal, lerpSpeed * Time.deltaTime);
+            // Find forward direction with new myNormal:
+            Vector3 myForward = Vector3.Cross(myTransform.right, myNormal);
+            // Align character to the new myNormal while keeping the forward direction:
+            Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
+            myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
+        }
     }
 
     private void FlipToWall(Vector3 point, Vector3 normal)

@@ -6,7 +6,7 @@ public class PowerPunch : MonoBehaviour {
     public MonsterController monster;
 
     private BoxCollider boxCollider;
-    private PlayerController playerController;
+    private SecurityController securityController;
 
     // Use this for initialization
     void Start () {
@@ -22,8 +22,8 @@ public class PowerPunch : MonoBehaviour {
     {
         if(other.gameObject.tag == "Security")
         {
-            other.gameObject.GetComponent<PlayerController>().b_isStunned = true;
-            other.gameObject.GetComponent<PlayerController>().stunTime = monster.stunTime;
+            other.gameObject.GetComponent<SecurityController>().b_isStunned = true;
+            other.gameObject.GetComponent<SecurityController>().stunTime = monster.stunTime;
             Debug.Log(other.gameObject.name + " Stunned");
         }
 
@@ -32,7 +32,6 @@ public class PowerPunch : MonoBehaviour {
 
             other.gameObject.GetComponent<TerminalController>().isBroken = true;
             DoorController.Instance.CheckDoors();
-            other.gameObject.GetComponent<MapBlip>().color = Color.red;
         }
     }
 
@@ -44,7 +43,7 @@ public class PowerPunch : MonoBehaviour {
             monster.isPunching = true;
 
             //To stop punch
-            UIManager.Instance.stopPunching(monster.playerNumber, monster);
+            MonsterUI.Instance.StopPunching(monster);
         }
         //Is in punching mode
         else if (monster.isPunching && !monster.punchCooldown)

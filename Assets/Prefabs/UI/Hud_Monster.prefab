@@ -977,7 +977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5205c97e7cc33046a6d891c70832f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 0
   interactText: {fileID: 114590494245194674}
   SeenImage: {fileID: 114267383852188372}
   VisibilitySlider: {fileID: 114842611057623360}
@@ -1110,7 +1109,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!224 &224047042642818162
 RectTransform:
   m_ObjectHideFlags: 1

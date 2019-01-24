@@ -8,12 +8,11 @@ TagManager:
   - Gate
   - Monster
   - Security
-  - SecurityCam
-  - flash
   - Monster Material
-  - Drain
-  - MapCorner1
-  - MapCorner2
+  - MonsterSpawn
+  - SecuritySpawn1
+  - SecuritySpawn2
+  - SecuritySpawn3
   layers:
   - Default
   - TransparentFX
