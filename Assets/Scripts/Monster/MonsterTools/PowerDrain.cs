@@ -6,17 +6,14 @@ public class PowerDrain : MonoBehaviour {
 
     public MonsterController monster;
 
-    private GameObject hitObject = null;
-    private CapsuleCollider drainCollider;
+    public CapsuleCollider drainCollider;
+    public MeshRenderer meshRender;
 
     public Material drainMaterial;
-    private MeshRenderer meshRender;
-    private Material defaultMaterial;
+    public Material defaultMaterial;
 
     // Use this for initialization
     void Start () {
-        drainCollider = GetComponent<CapsuleCollider>();
-        meshRender = GetComponent<MeshRenderer>();
         defaultMaterial = meshRender.material;
     }
 
@@ -24,8 +21,6 @@ public class PowerDrain : MonoBehaviour {
     {
         if (other.gameObject.tag == "Security")
         {
-            hitObject = other.gameObject;
-
             monster.isDrainHitting = true;
             meshRender.material = drainMaterial;
         }
@@ -35,8 +30,6 @@ public class PowerDrain : MonoBehaviour {
     {
         if (other.gameObject.tag == "Security")
         {
-            hitObject = other.gameObject;
-
             monster.isDrainHitting = false;
             meshRender.material = defaultMaterial;
         }
@@ -54,7 +47,7 @@ public class PowerDrain : MonoBehaviour {
             meshRender.material = defaultMaterial;
 
             //To stop draining
-            MonsterUI.Instance.StopDraining(monster);
+            StartCoroutine(stopDraining());
         }
         //is in draining mode
         else if (monster.isDraining && !monster.drainCooldown)
@@ -64,8 +57,32 @@ public class PowerDrain : MonoBehaviour {
         }
         else
         {
+            monster.isDrainHitting = false;
             drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = false;
             drainCollider.enabled = false;
         }
+    }
+
+    //To stop draining
+    private IEnumerator stopDraining()
+    {
+        //Keep color semi - transparent
+        MonsterUI.Instance.SetDrainIcon();
+
+        yield return new WaitForSeconds(monster.drainLength);
+
+        //Keep transparent when on cooldown
+        MonsterUI.Instance.SetDrainIcon();
+
+        monster.isDrainHitting = false;
+        monster.drainCooldown = true;
+
+        yield return new WaitForSeconds(monster.drainCooldownLength);
+
+        //Turn off
+        MonsterUI.Instance.SetDrainIcon(1.0f);
+
+        monster.isDraining = false;
+        monster.drainCooldown = false;
     }
 }

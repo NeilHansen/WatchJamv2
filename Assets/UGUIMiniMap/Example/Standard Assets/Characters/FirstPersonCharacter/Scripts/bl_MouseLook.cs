@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using Rewired;
 
 namespace UGUIMiniMap
 {
@@ -19,18 +19,21 @@ namespace UGUIMiniMap
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
 
+        private Player player;
 
-        public void Init(Transform character, Transform camera)
+
+        public void Init(Transform character, Transform camera, Player p)
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
+            player = p;
         }
 
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = Input.GetAxis("Mouse X") * XSensitivity;
-            float xRot = Input.GetAxis("Mouse Y") * YSensitivity;
+            float yRot = player.GetAxis("RotHorizontal") * XSensitivity;
+            float xRot = player.GetAxis("RotVertical") * YSensitivity;
 
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);

@@ -981,8 +981,8 @@ GameObject:
   - component: {fileID: 4870954845623552}
   - component: {fileID: 114873671681735608}
   - component: {fileID: 114946084793668850}
+  - component: {fileID: 65569556016623258}
   - component: {fileID: 54838934354559372}
-  - component: {fileID: 65857892298773862}
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
   m_Layer: 10
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 33502826012562150}
   - component: {fileID: 23102725034920334}
   - component: {fileID: 136169430472961764}
-  - component: {fileID: 114858713180327242}
+  - component: {fileID: 114093867689942054}
   m_Layer: 10
   m_Name: DrainCollider
   m_TagString: Untagged
@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 33484991521321438}
   - component: {fileID: 23166976007240028}
   - component: {fileID: 65253046688356332}
-  - component: {fileID: 114138490069996580}
+  - component: {fileID: 114404981717284742}
   m_Layer: 10
   m_Name: PunchCollider
   m_TagString: Untagged
@@ -3639,8 +3639,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558698934536914}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.098778, y: -16.20396, z: 37.63679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4720083264141352}
@@ -3650,7 +3650,7 @@ Transform:
   - {fileID: 4224763396816896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4882920229982496
 Transform:
   m_ObjectHideFlags: 1
@@ -3885,7 +3885,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578365672631644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3929,7 +3929,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 57befcc3db0ce2a4e935c2aafcb666f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3976,7 +3976,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65253046688356332
 BoxCollider:
@@ -3988,9 +3988,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2.12471, y: 1, z: 1}
-  m_Center: {x: 0.04586029, y: 0, z: 0}
---- !u!65 &65857892298773862
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65569556016623258
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4045,7 +4045,23 @@ MonoBehaviour:
   deltaGround: 0.2
   flipRange: 1
   cornerCheck: {fileID: 1885152937139194}
---- !u!114 &114138490069996580
+--- !u!114 &114093867689942054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578365672631644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129bd2957eb31dc40ad49261c204c39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 0}
+  drainCollider: {fileID: 136169430472961764}
+  meshRender: {fileID: 23102725034920334}
+  drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
+  defaultMaterial: {fileID: 0}
+--- !u!114 &114404981717284742
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4057,6 +4073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 0}
+  boxCollider: {fileID: 65253046688356332}
+  meshRender: {fileID: 23166976007240028}
 --- !u!114 &114793082615492070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4075,8 +4093,8 @@ MonoBehaviour:
   rotSpeed: 90
   FOVmin: -30
   FOVmax: 30
-  powerDrain: {fileID: 114858713180327242}
-  powerPunch: {fileID: 114138490069996580}
+  powerDrain: {fileID: 114093867689942054}
+  powerPunch: {fileID: 114404981717284742}
   stunTime: 3
   punchLength: 3
   punchCooldownLength: 3
@@ -4090,19 +4108,6 @@ MonoBehaviour:
   punchCooldown: 0
   materialAlphaChangeRate: 0.1
   currentAlpha: 0
---- !u!114 &114858713180327242
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578365672631644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129bd2957eb31dc40ad49261c204c39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 0}
-  drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
 --- !u!114 &114873671681735608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4146,7 +4151,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
+  m_TransformSyncMode: 3
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0

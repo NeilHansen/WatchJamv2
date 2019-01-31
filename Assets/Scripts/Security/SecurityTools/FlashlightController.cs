@@ -4,22 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using Rewired;
 
-public class FlashlightController : MonoBehaviour {
+public class FlashlightController : MonoBehaviour
+{
     public SecurityController securityController;
 
     public Light light;
-    private MeshRenderer flashMeshRender;
-    private MeshCollider flashMeshCollider;
+    public MeshRenderer flashMeshRender;
+    public MeshCollider flashMeshCollider;
     private MonsterController monsterController;
 
     private float brightness;
-    private float useTime = 0.0f;
+    public float useTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
-        flashMeshRender = GetComponent<MeshRenderer>();
-        flashMeshCollider = GetComponent<MeshCollider>();
-
         brightness = light.intensity;
 	}
 	
@@ -28,51 +26,45 @@ public class FlashlightController : MonoBehaviour {
              
     }
 
-    public void SecurityFlashLight()
+    public void SecurityFlashLightOn()
     {
-        //Turn on flash light
-        if (securityController.player.GetButton("FlashLight"))
+        //As long as we still have time keep on
+        if (!(useTime <= 0.0f))
         {
-            securityController.b_Shinning = true;
+            useTime -= Time.deltaTime;
 
-            //As long as we still have time keep on
-            if (!(useTime <= 0.0f))
-            {
-                useTime -= Time.deltaTime;
-
-                light.intensity = brightness;
-                flashMeshRender.enabled = true;
-                flashMeshCollider.enabled = true;
-            }
-            //Turn off
-            else
-            {
-                light.intensity = 0.0f;
-                flashMeshRender.enabled = false;
-                flashMeshCollider.enabled = false;
-            }
+            light.intensity = brightness;
+            flashMeshRender.enabled = true;
+            flashMeshCollider.enabled = true;
         }
-        //Turn off flash light
+        //Turn off
         else
         {
-            securityController.b_Shinning = false;
-
             light.intensity = 0.0f;
             flashMeshRender.enabled = false;
             flashMeshCollider.enabled = false;
+            //Stop hitting monster
+            monsterController.isFlashLightHitting = false;
+        }
+    }
 
-            //If we used anything then keep refilling it
-            if (useTime < securityController.flashLightMaxTime)
-            {
-                useTime += Time.deltaTime / 2.0f;
-            }
+    public void SecurityFlashLightOff()
+    {
+        light.intensity = 0.0f;
+        flashMeshRender.enabled = false;
+        flashMeshCollider.enabled = false;
 
-            //Were not hitting anything so remove the reference to the controller
-            monsterController = null;
+        //If we used anything then keep refilling it
+        if (useTime < securityController.flashLightMaxTime)
+        {
+            useTime += Time.deltaTime / 2.0f;
         }
 
-        //Update Use time
-        SecurityUI.Instance.SetFlashUIValue(useTime);
+        if (monsterController)
+        {
+            //Stop hitting monster
+            monsterController.isFlashLightHitting = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)

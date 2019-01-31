@@ -153,8 +153,7 @@ public class MonsterWallMovement : NetworkBehaviour
         // Enable physics
         rigidbody.isKinematic = false;
         // Jumping to wall finished
-        flipping = false; 
-
+        flipping = false;
     }
 
 }

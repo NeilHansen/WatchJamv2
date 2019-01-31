@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.Networking;
+using Rewired;
 
 namespace UGUIMiniMap
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
-    public class bl_FirstPersonController : MonoBehaviour
+    public class bl_FirstPersonControllerSecurity : NetworkBehaviour
     {
         [SerializeField]private bool is2D = false;
         [SerializeField] private bool m_IsWalking;
@@ -41,24 +43,45 @@ namespace UGUIMiniMap
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public int playerNumber;
+        public int controllerNumber;
+        public Player player;
+
         // Use this for initialization
         private void Start()
         {
-            m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            if (!is2D)
-            {                          
-                m_FovKick.Setup(m_Camera);
-                m_HeadBob.Setup(m_Camera, m_StepInterval);
-            }
-            m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
-            m_Jumping = false;
-            m_AudioSource = GetComponent<AudioSource>();
-            if (!is2D)
+            if (hasAuthority)
             {
-                m_MouseLook.Init(transform, m_Camera.transform);
+                GameManager.Instance.localPlayer = this.gameObject;
+
+                //Set MiniMap
+                FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
+
+                //Set Controls and display to right screen
+                player = Rewired.ReInput.players.GetPlayer(controllerNumber);
+                GetComponent<SecurityController>().player = player;
+
+                m_CharacterController = GetComponent<CharacterController>();
+
+                m_Camera = Camera.main;
+                m_Camera.transform.SetParent(this.transform);
+                m_Camera.transform.localRotation = Quaternion.identity;
+                m_Camera.transform.localPosition = Vector3.zero;
+
+                m_OriginalCameraPosition = m_Camera.transform.localPosition;
+                if (!is2D)
+                {
+                    m_FovKick.Setup(m_Camera);
+                    m_HeadBob.Setup(m_Camera, m_StepInterval);
+                }
+                m_StepCycle = 0f;
+                m_NextStep = m_StepCycle / 2f;
+                m_Jumping = false;
+                m_AudioSource = GetComponent<AudioSource>();
+                if (!is2D)
+                {
+                    m_MouseLook.Init(transform, m_Camera.transform, player);
+                }
             }
         }
 
@@ -66,6 +89,9 @@ namespace UGUIMiniMap
         // Update is called once per frame
         private void Update()
         {
+            if (!hasAuthority)
+                return;
+
             if (!is2D)
             {
                 RotateView();
@@ -73,7 +99,7 @@ namespace UGUIMiniMap
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                m_Jump = Input.GetKeyDown(KeyCode.Space);
+                m_Jump = player.GetButton("Jump");
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -102,6 +128,9 @@ namespace UGUIMiniMap
 
         private void FixedUpdate()
         {
+            if (!hasAuthority)
+                return;
+
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
@@ -222,8 +251,8 @@ namespace UGUIMiniMap
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            float horizontal = player.GetAxis("VerticalMove");
+            float vertical = player.GetAxis("HorizontalMove");
 
             bool waswalking = m_IsWalking;
 

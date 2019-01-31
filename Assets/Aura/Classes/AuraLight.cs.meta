@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: f01d29d88278f45458d99e6b5199e920
-timeCreated: 1513526440
-licenseType: Store
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -19,7 +17,7 @@ MonoImporter:
       type: 3}
   - storePointLightCookieMapShader: {fileID: 4800000, guid: 83815c326d7f2514884f3fc7a05b5aef,
       type: 3}
-  executionOrder: 100
+  executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

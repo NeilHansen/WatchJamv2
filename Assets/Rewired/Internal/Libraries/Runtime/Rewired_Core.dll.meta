@@ -17,92 +17,150 @@ labels:
 - Xbox360
 - XInput
 - DirectInput
-timeCreated: 1491679661
-licenseType: Store
 PluginImporter:
-  serializedVersion: 1
+  externalObjects: {}
+  serializedVersion: 2
   iconMap: {}
-  executionOrder:
-    Rewired.Internal.OnGUIHelper: -31990
+  executionOrder: {}
   isPreloaded: 0
+  isOverridable: 0
   platformData:
-    Android:
+  - first:
+      '': BlackBerry
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      '': OSXIntel
+    second:
       enabled: 1
       settings:
         CPU: AnyCPU
-    Any:
-      enabled: 0
-      settings: {}
-    BlackBerry:
-      enabled: 1
-      settings: {}
-    Editor:
+  - first:
+      '': OSXIntel64
+    second:
       enabled: 1
       settings:
         CPU: AnyCPU
-        DefaultValueInitialized: true
-        OS: AnyOS
-    Linux:
-      enabled: 1
-      settings:
-        CPU: x86
-    Linux64:
-      enabled: 1
-      settings:
-        CPU: x86_64
-    LinuxUniversal:
-      enabled: 1
-      settings: {}
-    OSXIntel:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    OSXIntel64:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    OSXUniversal:
-      enabled: 1
-      settings: {}
-    PS4:
-      enabled: 1
-      settings: {}
-    WP8:
+  - first:
+      '': WP8
+    second:
       enabled: 0
       settings:
         CPU: AnyCPU
         DontProcess: False
         PlaceholderPath: 
-    Web:
+  - first:
+      '': Web
+    second:
       enabled: 1
       settings: {}
-    WebGL:
+  - first:
+      '': WebStreamed
+    second:
       enabled: 1
       settings: {}
-    WebStreamed:
-      enabled: 1
-      settings: {}
-    Win:
+  - first:
+      Android: Android
+    second:
       enabled: 1
       settings:
         CPU: AnyCPU
-    Win64:
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
       enabled: 1
       settings:
         CPU: AnyCPU
-    WindowsStoreApps:
+        DefaultValueInitialized: true
+        OS: AnyOS
+  - first:
+      Facebook: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Facebook: Win
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Facebook: Win64
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      PS4: PS4
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Standalone: Linux
+    second:
+      enabled: 1
+      settings:
+        CPU: x86
+  - first:
+      Standalone: Linux64
+    second:
+      enabled: 1
+      settings:
+        CPU: x86_64
+  - first:
+      Standalone: LinuxUniversal
+    second:
+      enabled: 1
+      settings:
+        CPU: 
+  - first:
+      Standalone: OSXUniversal
+    second:
+      enabled: 1
+      settings:
+        CPU: 
+  - first:
+      Standalone: Win
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: Win64
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      WebGL: WebGL
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Windows Store Apps: WindowsStoreApps
+    second:
       enabled: 0
       settings:
         CPU: AnyCPU
         DontProcess: False
         PlaceholderPath: 
         SDK: AnySDK
-    iOS:
+  - first:
+      iPhone: iOS
+    second:
       enabled: 1
       settings:
         CompileFlags: 
         FrameworkDependencies: 
-    tvOS:
+  - first:
+      tvOS: tvOS
+    second:
       enabled: 1
       settings: {}
   userData: 

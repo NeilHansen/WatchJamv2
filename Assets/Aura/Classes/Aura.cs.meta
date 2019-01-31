@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: cdcd06815c47d30489f70df42db56a48
-timeCreated: 1512486126
-licenseType: Store
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -18,7 +16,7 @@ MonoImporter:
   - blueNoiseTexture: {fileID: 2800000, guid: f02fc82ea1694684aa62125356580673, type: 3}
   - blueNoiseTexturesArray: {fileID: 18700000, guid: 518b8337a0340444aa49dd0780efa9c2,
       type: 2}
-  executionOrder: 20
+  executionOrder: 0
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class MonsterController : NetworkBehaviour {
-
     public int playerNumber;
     public int controllerNumber;
     public Player player;
@@ -74,13 +73,13 @@ public class MonsterController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(hasAuthority)
+        if (hasAuthority)
         {
-            if(isFlashLightHitting)
+            if (isFlashLightHitting)
             {
                 NetworkTakeDamage();
             }
-            if(isDrainHitting)
+            if (isDrainHitting)
             {
                 NetworkRemoveDamage();
             }
@@ -89,7 +88,7 @@ public class MonsterController : NetworkBehaviour {
             powerDrain.MonsterDrain();
             powerPunch.MonsterPunch();
         }
-	}
+    }
 
     void InputHandler()
     {
@@ -169,10 +168,9 @@ public class MonsterController : NetworkBehaviour {
                 MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
 
-            monsterColor.a = currentAlpha;
+            monsterColor.a = 0;
             monsterMaterial.color = monsterColor;
         }
-
     }
 
     //This is a Network command, so the damage is done to the relevant GameObject

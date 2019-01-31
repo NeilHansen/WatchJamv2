@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
     public Transform spawnPosition;
 
     [Header("Game Related Variables")]
-    public int MonsterNumOfLives = 1;
+    public int MonsterNumOfLives = 3;
     public bool reset = false;
 
     // Use this for initialization
