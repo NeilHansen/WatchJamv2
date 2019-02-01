@@ -14,9 +14,12 @@ public class SecurityController : NetworkBehaviour
     public SecurityStunned stun;
 
     public bool b_isInteracting = false;
+    [SyncVar(hook = "OnStunChange")]
     public bool b_isStunned = false;
     public float TerminalFixTime = 3.0f;
     public float flashLightMaxTime = 5.0f;
+
+    
 
     // Use this for initialization
     void Start()
@@ -104,4 +107,30 @@ public class SecurityController : NetworkBehaviour
     {
         flashLight.SecurityFlashLightOff();
     }
+
+    #region Monster Punch
+    //Command to receive when being punched
+    [Command]
+    public void CmdReceivePunch()
+    {
+        RpcPunchEffect();
+        stun.ResetStunTimer();
+        b_isStunned = true;
+    }
+
+    [ClientRpc]
+    void RpcPunchEffect()
+    {
+        //Delete this function if you don't need it.
+    }
+
+    void OnStunChange(bool isStunned)
+    {
+        if (isStunned)
+            stun.StunOn();
+        else
+            stun.StunOff();
+    }
+    #endregion
+
 }

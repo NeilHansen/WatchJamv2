@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tFixer: {fileID: 114146233960669560}
-  flashLight: {fileID: 0}
+  flashLight: {fileID: 114451813176518922}
   stun: {fileID: 114888288243832620}
   b_isInteracting: 0
   b_isStunned: 0

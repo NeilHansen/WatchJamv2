@@ -6,102 +6,56 @@ using UnityEngine.Networking;
 public class SecurityStunned : NetworkBehaviour {
     public SecurityController securityController;
 
-    public float stunTime = 3.0f;
-    private float defaultStunTime;
-
+    private float stunTimer = 0.0f;
+    public float stunDuration = 3.0f;
     private MeshRenderer meshRend;
     private Color defaultColor;
 
     // Use this for initialization
     void Start()
     {
-        defaultStunTime = stunTime;
         meshRend = GetComponent<MeshRenderer>();
         defaultColor = meshRend.material.color;
     }
 
     void Update()
     {
-        if(hasAuthority)
+        if (isServer)
         {
             if (securityController.b_isStunned)
             {
-                stunTime -= Time.deltaTime;
-                if(stunTime <= 0.0)
+                stunTimer -= Time.deltaTime;
+                if (stunTimer <= 0.0)
                 {
                     securityController.b_isStunned = false;
-                    stunTime = defaultStunTime;
-                    SecurityUI.Instance.ToggleStunnedText(false);
-                    NetworkStunOff();
-                }
-                else
-                {
-                    NetworkStunOn();
-                    SecurityUI.Instance.ToggleStunnedText(true);
                 }
             }
         }
-    }
 
-    void NetworkStunOn()
-    {
-        if (isServer)
+        if(hasAuthority)
         {
-            RpcStunOn();
-        }
-        else
-        {
-            RpcStunOff();
+            
         }
     }
 
-    void NetworkStunOff()
+    public void StunOn()
     {
-        if (isServer)
-        {
-            CmdStunOn();
-        }
-        else
-        {
-            CmdStunOff();
-        }
-    }
-
-    //This is a Network command, so the damage is done to the relevant GameObject
-    [ClientRpc]
-    void RpcStunOn()
-    {
-        StunOn();
-    }
-
-    [ClientRpc]
-    void RpcStunOff()
-    {
-        StunOff();
-    }
-
-    //This is a Network command, so the damage is done to the relevant GameObject
-    [Command]
-    void CmdStunOn()
-    {
-        StunOn();
-    }
-
-    [Command]
-    void CmdStunOff()
-    {
-        StunOff();
-    }
-
-    void StunOn()
-    {
-        securityController.enabled = true;
-        meshRend.material.color = defaultColor;
-    }
-
-    void StunOff()
-    {
+        //SecurityUI.Instance.ToggleStunnedText(true);
         securityController.enabled = false;
         meshRend.material.color = Color.black;
+        Debug.Log("Stun on");
+    }
+
+    public void StunOff()
+    {
+        //SecurityUI.Instance.ToggleStunnedText(false);
+        securityController.enabled = true;
+        meshRend.material.color = defaultColor;
+        Debug.Log("Stun off");
+    }
+
+    public void ResetStunTimer()
+    {
+        stunTimer = stunDuration;
     }
 }

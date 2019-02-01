@@ -305,6 +305,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4460868664528768, guid: 8b789983937099644bf52a3b54c8f46d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -336,6 +346,31 @@ Prefab:
     - target: {fileID: 4460868664528768, guid: 8b789983937099644bf52a3b54c8f46d, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[0].id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMapIdCounter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[0]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[0]._elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[0]._elementIdentifierId
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b789983937099644bf52a3b54c8f46d, type: 2}

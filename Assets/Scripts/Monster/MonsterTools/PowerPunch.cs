@@ -16,7 +16,8 @@ public class PowerPunch : MonoBehaviour {
     {
         if(other.gameObject.tag == "Security")
         {
-            other.gameObject.GetComponent<SecurityController>().b_isStunned = true;
+            //Cannot call security commands if not server, have to delegate stun target to server.
+            monster.CmdStunTarget(other.gameObject);
             Debug.Log(other.gameObject.name + " Stunned");
         }
 

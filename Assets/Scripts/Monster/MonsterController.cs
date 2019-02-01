@@ -202,4 +202,42 @@ public class MonsterController : NetworkBehaviour {
         float damage = materialAlphaChangeRate * Time.deltaTime;
         currentAlpha -= damage;
     }
+
+    //Saveguard so only the server security call its own receive punch function.
+    [Command]
+    public void CmdStunTarget(GameObject target)
+    {
+        target.GetComponent<SecurityController>().CmdReceivePunch();
+    }
+
+    /// <summary>
+    /// Proper network function call template.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (!hasAuthority)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Only call command function, command function auto calls rpc to relay back to us and all other clients.
+            //Works for both server (since it is client at the same time) and clients.
+            CmdFunction();
+        }
+    }
+    [Command]
+    void CmdFunction()
+    {
+        Debug.Log("This command only gets executed on server.");
+        //No functionality just call client RPC unless server should behave differently.
+        RpcFunction();
+    }
+    [ClientRpc]
+    void RpcFunction()
+    {
+        Debug.Log("All clients do this.");
+        //Actual functionality here. Everyone does the same thing.
+    }
+
+
 }
