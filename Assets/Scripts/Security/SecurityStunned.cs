@@ -31,27 +31,30 @@ public class SecurityStunned : NetworkBehaviour {
                 }
             }
         }
-
-        if(hasAuthority)
-        {
-            
-        }
     }
 
     public void StunOn()
     {
+        if (hasAuthority)
+        {
+            SecurityUI.Instance.ToggleStunnedText(true);
+        }
+
         //SecurityUI.Instance.ToggleStunnedText(true);
         securityController.enabled = false;
         meshRend.material.color = Color.black;
-        Debug.Log("Stun on");
     }
 
     public void StunOff()
     {
+        if (hasAuthority)
+        {
+            SecurityUI.Instance.ToggleStunnedText(false);
+        }
+
         //SecurityUI.Instance.ToggleStunnedText(false);
         securityController.enabled = true;
         meshRend.material.color = defaultColor;
-        Debug.Log("Stun off");
     }
 
     public void ResetStunTimer()

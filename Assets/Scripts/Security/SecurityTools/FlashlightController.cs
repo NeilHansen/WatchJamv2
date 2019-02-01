@@ -8,17 +8,15 @@ public class FlashlightController : MonoBehaviour
 {
     public SecurityController securityController;
 
-    public Light light;
     public MeshRenderer flashMeshRender;
     public MeshCollider flashMeshCollider;
-    private MonsterController monsterController;
 
-    private float brightness;
     public float useTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
-        brightness = light.intensity;
+        flashMeshRender.enabled = false;
+        flashMeshCollider.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -33,25 +31,25 @@ public class FlashlightController : MonoBehaviour
         {
             useTime -= Time.deltaTime;
 
-            light.intensity = brightness;
-            flashMeshRender.enabled = true;
+            TurnVioletOn();
             flashMeshCollider.enabled = true;
         }
         //Turn off
         else
         {
-            light.intensity = 0.0f;
-            flashMeshRender.enabled = false;
+            securityController.CmdTurnLightOff();
             flashMeshCollider.enabled = false;
-            //Stop hitting monster
-            monsterController.isFlashLightHitting = false;
         }
+    }
+
+    public void TurnVioletOn()
+    {
+        flashMeshRender.enabled = true;
     }
 
     public void SecurityFlashLightOff()
     {
-        light.intensity = 0.0f;
-        flashMeshRender.enabled = false;
+        TurnVioletOff();
         flashMeshCollider.enabled = false;
 
         //If we used anything then keep refilling it
@@ -59,39 +57,18 @@ public class FlashlightController : MonoBehaviour
         {
             useTime += Time.deltaTime / 2.0f;
         }
+    }
 
-        if (monsterController)
-        {
-            //Stop hitting monster
-            monsterController.isFlashLightHitting = false;
-        }
+    public void TurnVioletOff()
+    {
+        flashMeshRender.enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Monster")
         {
-            //Get the other component once so were not spamming it
-            if(monsterController == null)
-            {
-                monsterController = other.gameObject.GetComponent<MonsterController>();
-            }
-
-            monsterController.isFlashLightHitting = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Monster")
-        {
-            //Get the other component once so were not spamming it
-            if (monsterController == null)
-            {
-                monsterController = other.gameObject.GetComponent<MonsterController>();
-            }
-
-            monsterController.isFlashLightHitting = false;
+            securityController.CmdDamageTarget(other.gameObject);
         }
     }
 

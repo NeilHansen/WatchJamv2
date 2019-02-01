@@ -23,6 +23,7 @@ public class PowerDrain : MonoBehaviour {
         {
             monster.isDrainHitting = true;
             meshRender.material = drainMaterial;
+            monster.CmdRemoveDamage();
         }
     }
 

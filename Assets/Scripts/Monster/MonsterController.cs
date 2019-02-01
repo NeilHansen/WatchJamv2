@@ -73,21 +73,12 @@ public class MonsterController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (hasAuthority)
-        {
-            if (isFlashLightHitting)
-            {
-                NetworkTakeDamage();
-            }
-            if (isDrainHitting)
-            {
-                NetworkRemoveDamage();
-            }
+        if (!hasAuthority)
+            return;
 
-            InputHandler();
-            powerDrain.MonsterDrain();
-            powerPunch.MonsterPunch();
-        }
+        InputHandler();
+        powerPunch.MonsterPunch();
+        powerDrain.MonsterDrain();
     }
 
     void InputHandler()
@@ -123,32 +114,11 @@ public class MonsterController : NetworkBehaviour {
         }
     }
 
-    void NetworkTakeDamage()
-    {
-        if(isServer)
-        {
-            RpcTakeDamage();
-        }
-        else
-        {
-            CmdTakeDamage();
-        }
-    }
-
-    void NetworkRemoveDamage()
-    {
-        if (isServer)
-        {
-            RpcRemoveDamage();
-        }
-        else
-        {
-            CmdRemoveDamage();
-        }
-    }
-
     void OnChangeMonsterAlpha(float alpha)
     {
+        //Bug current alpha doesn't replicate across
+        currentAlpha = alpha;
+
         if (alpha > 0.0)
         {
             if (hasAuthority)
@@ -174,30 +144,15 @@ public class MonsterController : NetworkBehaviour {
     }
 
     //This is a Network command, so the damage is done to the relevant GameObject
-    [ClientRpc]
-    void RpcTakeDamage()
-    {
-        float damage = materialAlphaChangeRate * Time.deltaTime;
-        currentAlpha += damage;
-    }
-
-    [ClientRpc]
-    void RpcRemoveDamage()
-    {
-        float damage = materialAlphaChangeRate * Time.deltaTime;
-        currentAlpha -= damage;
-    }
-
-    //This is a Network command, so the damage is done to the relevant GameObject
     [Command]
-    void CmdTakeDamage()
+    public void CmdTakeDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
         currentAlpha += damage;
     }
 
     [Command]
-    void CmdRemoveDamage()
+    public void CmdRemoveDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
         currentAlpha -= damage;
@@ -209,35 +164,4 @@ public class MonsterController : NetworkBehaviour {
     {
         target.GetComponent<SecurityController>().CmdReceivePunch();
     }
-
-    /// <summary>
-    /// Proper network function call template.
-    /// </summary>
-    private void FixedUpdate()
-    {
-        if (!hasAuthority)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Only call command function, command function auto calls rpc to relay back to us and all other clients.
-            //Works for both server (since it is client at the same time) and clients.
-            CmdFunction();
-        }
-    }
-    [Command]
-    void CmdFunction()
-    {
-        Debug.Log("This command only gets executed on server.");
-        //No functionality just call client RPC unless server should behave differently.
-        RpcFunction();
-    }
-    [ClientRpc]
-    void RpcFunction()
-    {
-        Debug.Log("All clients do this.");
-        //Actual functionality here. Everyone does the same thing.
-    }
-
-
 }

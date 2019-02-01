@@ -55,12 +55,7 @@ namespace Prototype.NetworkLobby
 
         void DropdownValueChanged(TMP_Dropdown change)
         {
-            if(isServer)
-            {
-                playerChoiceInt = change.value;
-                RpcChangeDropDown(playerChoiceInt);
-            }
-            else
+            if(isLocalPlayer)
             {
                 playerChoiceInt = change.value;
                 CmdChangeDropDown(playerChoiceInt);
@@ -76,7 +71,7 @@ namespace Prototype.NetworkLobby
         [Command]
         void CmdChangeDropDown(int vartosync)
         {
-            playerChoice.value = vartosync;
+            RpcChangeDropDown(vartosync);
         }
 
         public override void OnClientEnterLobby()

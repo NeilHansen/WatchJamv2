@@ -18,7 +18,6 @@ public class SecurityController : NetworkBehaviour
     public bool b_isStunned = false;
     public float TerminalFixTime = 3.0f;
     public float flashLightMaxTime = 5.0f;
-
     
 
     // Use this for initialization
@@ -41,72 +40,56 @@ public class SecurityController : NetworkBehaviour
 
     void Update()
     {
-        if(hasAuthority)
-        {
-            if (player.GetButton("FlashLight"))
-            {
-                NetworkTurnFlashLightOn();
-                SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
-            }
-            else
-            {
-                NetworkTurnFlashLightOff();
-                SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
-            }
-        }
-    }
+        if (!hasAuthority)
+            return;
 
-    void NetworkTurnFlashLightOn()
-    {
-        if (isServer)
+        if (player.GetButton("FlashLight"))
         {
-            RpcTurnLightOn();
-        }
-        else
-        {
-            flashLight.SecurityFlashLightOn();
             CmdTurnLightOn();
-        }
-    }
-
-    void NetworkTurnFlashLightOff()
-    {
-        if (isServer)
-        {
-            RpcTurnLightOff();
+            SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
         }
         else
         {
-            flashLight.SecurityFlashLightOff();
             CmdTurnLightOff();
+            SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
         }
     }
 
+    #region Flashlight
     //This is a Network command, so the damage is done to the relevant GameObject
-    [ClientRpc]
-    void RpcTurnLightOn()
+    [Command]
+    public void CmdTurnLightOn()
     {
+        RpcTurnLightOn();
         flashLight.SecurityFlashLightOn();
+    }
+
+    [ClientRpc]
+    public void RpcTurnLightOn()
+    {
+        flashLight.TurnVioletOn();
+    }
+
+    [Command]
+    public void CmdTurnLightOff()
+    {
+        RpcTurnLightOff();
+        flashLight.SecurityFlashLightOff();
     }
 
     [ClientRpc]
     void RpcTurnLightOff()
     {
-        flashLight.SecurityFlashLightOff();
+        flashLight.TurnVioletOff();
     }
 
-    //This is a Network command, so the damage is done to the relevant GameObject
+    //Make sure that target only takes damage
     [Command]
-    void CmdTurnLightOn()
+    public void CmdDamageTarget(GameObject target)
     {
-        flashLight.SecurityFlashLightOn();
+        target.GetComponent<MonsterController>().CmdTakeDamage();
     }
-
-    [Command]
-    void CmdTurnLightOff()
-    {
-        flashLight.SecurityFlashLightOff();
-    }
+    #endregion
 
     #region Monster Punch
     //Command to receive when being punched
