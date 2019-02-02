@@ -51,22 +51,25 @@ public class NetworkPlayer : NetworkBehaviour
             case 0:
                 spawnPosition = GameObject.FindGameObjectWithTag("MonsterSpawn").transform;
                 tempUnit.transform.position = spawnPosition.position;
-                GameManager.Instance.spawnPosition = spawnPosition;
+                tempUnit.GetComponent<MonsterController>().networkPlayer = this;
                 break;
 
             case 1:
                 spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn1").transform;
                 tempUnit.transform.position = spawnPosition.position;
+                tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
 
             case 2:
                 spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn2").transform;
                 tempUnit.transform.position = spawnPosition.position;
+                tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
 
             case 3:
                 spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn3").transform;
                 tempUnit.transform.position = spawnPosition.position;
+                tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
         }
         NetworkServer.SpawnWithClientAuthority(tempUnit, connectionToClient);

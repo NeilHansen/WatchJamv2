@@ -983,6 +983,7 @@ GameObject:
   - component: {fileID: 114946084793668850}
   - component: {fileID: 65569556016623258}
   - component: {fileID: 54838934354559372}
+  - component: {fileID: 114365686389514042}
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
   m_Layer: 10
@@ -4061,6 +4062,23 @@ MonoBehaviour:
   meshRender: {fileID: 23102725034920334}
   drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
   defaultMaterial: {fileID: 0}
+--- !u!114 &114365686389514042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558698934536914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc67f60b5ad307f4ab5870cc1e87664f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerNumber: 0
+  fpsCamera: {fileID: 0}
+  speed: 5
+  rotSpeed: 90
+  FOVmin: -30
+  FOVmax: 30
 --- !u!114 &114404981717284742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4086,13 +4104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e525b2786619a748902c660e6f4a395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 0
-  controllerNumber: 0
-  fpsCamera: {fileID: 0}
-  speed: 5
-  rotSpeed: 90
-  FOVmin: -30
-  FOVmax: 30
+  networkPlayer: {fileID: 0}
   powerDrain: {fileID: 114093867689942054}
   powerPunch: {fileID: 114404981717284742}
   stunTime: 3
@@ -4102,6 +4114,7 @@ MonoBehaviour:
   drainCooldownLength: 3
   isFlashLightHitting: 0
   isDrainHitting: 0
+  b_terminalInteraction: 0
   isDraining: 0
   drainCooldown: 0
   isPunching: 0

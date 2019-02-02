@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SecurityUI : MonoBehaviour {
     public static SecurityUI Instance;
@@ -10,6 +11,8 @@ public class SecurityUI : MonoBehaviour {
     public Text stunnedText;
 
     public Slider flashUI;
+
+    public TMP_Text GameTimerText;
 
     // Use this for initialization
     void Awake()
@@ -34,8 +37,13 @@ public class SecurityUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        SetGameTimerText(GameManager.Instance.GameTimer);
+    }
+
+    public void SetGameTimerText(float time)
+    {
+        GameTimerText.text = "Timer: " + time;
+    }
 
     public void SetFlashUIValue(float value)
     {

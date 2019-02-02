@@ -13,8 +13,8 @@ public class Exit : MonoBehaviour {
     {
         if(other.gameObject.tag == "Monster")
         {
+            GameManager.Instance.CmdMonsterWins();
             Time.timeScale = 0.0f;
-            Debug.Log("MonsterEscaped");
         }
     }
     // Update is called once per frame

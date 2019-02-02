@@ -19,6 +19,7 @@ namespace UGUIMiniMap
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
         [SerializeField] private bl_MouseLook m_MouseLook;
+        [SerializeField] private bl_MouseLook m_MouseLookFlashLight;
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private bl_FOVKick m_FovKick = new bl_FOVKick();
         [SerializeField] private bool m_UseHeadBob;
@@ -43,9 +44,9 @@ namespace UGUIMiniMap
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        public int playerNumber;
-        public int controllerNumber;
+        public int controllerNumber = 0;
         public Player player;
+        private GameObject flashlightTran;
 
         // Use this for initialization
         private void Start()
@@ -61,13 +62,14 @@ namespace UGUIMiniMap
                 player = Rewired.ReInput.players.GetPlayer(controllerNumber);
                 GetComponent<SecurityController>().player = player;
 
-                m_CharacterController = GetComponent<CharacterController>();
-
                 m_Camera = Camera.main;
                 m_Camera.transform.SetParent(this.transform);
                 m_Camera.transform.localRotation = Quaternion.identity;
                 m_Camera.transform.localPosition = Vector3.zero;
 
+                flashlightTran = GetComponent<SecurityController>().flashLight.gameObject.transform.parent.gameObject;
+
+                m_CharacterController = GetComponent<CharacterController>();
                 m_OriginalCameraPosition = m_Camera.transform.localPosition;
                 if (!is2D)
                 {
@@ -81,6 +83,8 @@ namespace UGUIMiniMap
                 if (!is2D)
                 {
                     m_MouseLook.Init(transform, m_Camera.transform, player);
+                    //Set Flashlight to camera
+                    m_MouseLookFlashLight.Init(transform, flashlightTran.transform, player);
                 }
             }
         }
@@ -284,6 +288,7 @@ namespace UGUIMiniMap
         private void RotateView()
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLookFlashLight.LookRotation(transform, flashlightTran.transform);
         }
 
 

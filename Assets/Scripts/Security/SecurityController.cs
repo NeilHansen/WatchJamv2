@@ -8,17 +8,24 @@ using UnityEngine.Networking;
 
 public class SecurityController : NetworkBehaviour
 {
+    public NetworkPlayer networkPlayer;
     public Player player;
     public TerminalFixer tFixer;
     public FlashlightController flashLight;
     public SecurityStunned stun;
 
-    public bool b_isInteracting = false;
     [SyncVar(hook = "OnStunChange")]
     public bool b_isStunned = false;
-    public float TerminalFixTime = 3.0f;
+    [SyncVar]
+    public bool b_UsingFlashLight = false;
+    [SyncVar]
+    public bool b_OverHeatFlashLight = false;
+    public float flashLightUseTime = 5.0f;
     public float flashLightMaxTime = 5.0f;
-    
+
+    public GameObject terminalInteraction;
+    public bool b_terminalInteraction = false;
+    public float TerminalFixTime = 3.0f;
 
     // Use this for initialization
     void Start()
@@ -26,12 +33,10 @@ public class SecurityController : NetworkBehaviour
         if (hasAuthority)
         {
             //Set Flashlight variables
-            SecurityUI.Instance.SetFlashUIMaxValue(flashLightMaxTime);
+            SecurityUI.Instance.SetFlashUIMaxValue(flashLightUseTime);
         }
 
         stun.securityController = this;
-
-        flashLight.UseTime = flashLightMaxTime;
 
         //Give Children References
         tFixer.securityController = this;
@@ -43,17 +48,63 @@ public class SecurityController : NetworkBehaviour
         if (!hasAuthority)
             return;
 
-        if (player.GetButton("FlashLight"))
+        //Flashlight network handling
+        if (player.GetButton("FlashLight") && flashLightUseTime >= 0.0f && !b_OverHeatFlashLight)
         {
             CmdTurnLightOn();
-            SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
         }
         else
         {
             CmdTurnLightOff();
-            SecurityUI.Instance.SetFlashUIValue(flashLight.useTime);
+            SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
+        }
+
+        //Locally Set flashlight time and UI
+        if (b_UsingFlashLight)
+        {
+            flashLightUseTime -= Time.deltaTime;
+            //Set UI
+            SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
+        }
+        else
+        {
+            if(flashLightUseTime <= 0.0f && !b_OverHeatFlashLight)
+            {
+                CmdOverHeartOff();
+            }
+
+            //If we used anything then keep refilling it
+            if (flashLightUseTime < flashLightMaxTime)
+            {
+                flashLightUseTime += Time.deltaTime / 2.0f;
+            }
+            else
+            {
+                CmdOverHeartOn();
+            }
+
+            //Set UI
+            SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
+        }
+
+        if(b_terminalInteraction)
+        {
+            SecurityUI.Instance.TogglePlayerInteractText(true);
+        }
+        else
+        {
+            SecurityUI.Instance.TogglePlayerInteractText(false);
         }
     }
+
+    #region Terminal
+    //Saveguard so only the server call
+    [Command]
+    public void CmdSendFixTerminal(GameObject target)
+    {
+        target.GetComponent<TerminalController>().CmdReceiveFixTerminal();
+    }
+    #endregion
 
     #region Flashlight
     //This is a Network command, so the damage is done to the relevant GameObject
@@ -64,12 +115,6 @@ public class SecurityController : NetworkBehaviour
         flashLight.SecurityFlashLightOn();
     }
 
-    [ClientRpc]
-    public void RpcTurnLightOn()
-    {
-        flashLight.TurnVioletOn();
-    }
-
     [Command]
     public void CmdTurnLightOff()
     {
@@ -77,10 +122,44 @@ public class SecurityController : NetworkBehaviour
         flashLight.SecurityFlashLightOff();
     }
 
+    //OverHeat
+    [Command]
+    public void CmdOverHeartOn()
+    {
+        RpcOverHeartOn();
+        b_OverHeatFlashLight = false;
+    }
+
+    [Command]
+    public void CmdOverHeartOff()
+    {
+        RpcOverHeartOff();
+        b_OverHeatFlashLight = true;
+    }
+
+    [ClientRpc]
+    public void RpcTurnLightOn()
+    {
+        flashLight.TurnVioletOn();
+    }
+
     [ClientRpc]
     void RpcTurnLightOff()
     {
         flashLight.TurnVioletOff();
+    }
+
+    //OverHeat
+    [ClientRpc]
+    public void RpcOverHeartOn()
+    {
+        flashLight.ToggleFlashLightOn();
+    }
+
+    [ClientRpc]
+    void RpcOverHeartOff()
+    {
+        flashLight.ToggleFlashLightOff();
     }
 
     //Make sure that target only takes damage
@@ -96,23 +175,22 @@ public class SecurityController : NetworkBehaviour
     [Command]
     public void CmdReceivePunch()
     {
-        RpcPunchEffect();
         stun.ResetStunTimer();
         b_isStunned = true;
     }
 
-    [ClientRpc]
-    void RpcPunchEffect()
-    {
-        //Delete this function if you don't need it.
-    }
-
     void OnStunChange(bool isStunned)
     {
+        b_isStunned = isStunned;
+
         if (isStunned)
+        {
             stun.StunOn();
+        }
         else
+        {
             stun.StunOff();
+        }
     }
     #endregion
 

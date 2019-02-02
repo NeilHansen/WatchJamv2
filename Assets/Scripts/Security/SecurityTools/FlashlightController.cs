@@ -8,55 +8,56 @@ public class FlashlightController : MonoBehaviour
 {
     public SecurityController securityController;
 
+    public GameObject flashlight;
     public MeshRenderer flashMeshRender;
     public MeshCollider flashMeshCollider;
-
-    public float useTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
         flashMeshRender.enabled = false;
         flashMeshCollider.enabled = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-             
-    }
 
+    //For Normal Light(Always on)
     public void SecurityFlashLightOn()
     {
         //As long as we still have time keep on
-        if (!(useTime <= 0.0f))
+        if (!(securityController.flashLightUseTime <= 0.0f))
         {
-            useTime -= Time.deltaTime;
-
             TurnVioletOn();
             flashMeshCollider.enabled = true;
+            securityController.b_UsingFlashLight = true;
         }
         //Turn off
         else
         {
             securityController.CmdTurnLightOff();
             flashMeshCollider.enabled = false;
+            securityController.b_UsingFlashLight = false;
         }
-    }
-
-    public void TurnVioletOn()
-    {
-        flashMeshRender.enabled = true;
     }
 
     public void SecurityFlashLightOff()
     {
         TurnVioletOff();
         flashMeshCollider.enabled = false;
+        securityController.b_UsingFlashLight = false;
+    }
 
-        //If we used anything then keep refilling it
-        if (useTime < securityController.flashLightMaxTime)
-        {
-            useTime += Time.deltaTime / 2.0f;
-        }
+    public void ToggleFlashLightOn()
+    {
+        flashlight.SetActive(true);
+    }
+
+    public void ToggleFlashLightOff()
+    {
+        flashlight.SetActive(false);
+    }
+
+    //For Violet Light
+    public void TurnVioletOn()
+    {
+        flashMeshRender.enabled = true;
     }
 
     public void TurnVioletOff()
@@ -69,14 +70,6 @@ public class FlashlightController : MonoBehaviour
         if (other.gameObject.tag == "Monster")
         {
             securityController.CmdDamageTarget(other.gameObject);
-        }
-    }
-
-    public float UseTime
-    {
-        set
-        {
-            useTime = value;
         }
     }
 }

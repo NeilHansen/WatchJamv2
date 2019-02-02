@@ -33,7 +33,7 @@ public class MonsterWallMovement : NetworkBehaviour
 
     void Start()
     {
-        player = Rewired.ReInput.players.GetPlayer(GetComponent<MonsterController>().playerNumber);
+        player = Rewired.ReInput.players.GetPlayer(GetComponent<MonsterMovement>().controllerNumber);
 
         rigidbody = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();

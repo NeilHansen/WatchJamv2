@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MonsterUI : MonoBehaviour {
     public static MonsterUI Instance;
@@ -17,6 +18,8 @@ public class MonsterUI : MonoBehaviour {
 
     public Image punchIcon;
     public Color punchColor;
+
+    public TMP_Text GameTimerText;
 
     private int NumOfLives;
 
@@ -47,18 +50,21 @@ public class MonsterUI : MonoBehaviour {
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
         livesText.text = "Lives: " + NumOfLives;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //Reset
-        if (VisibilitySlider.value == VisibilitySlider.maxValue)
-        {
-            VisibilitySlider.value = 0.0f;
-            livesText.text = "Lives: " + NumOfLives;
 
-            GameManager.Instance.MonsterNumOfLives -= 1;
-            GameManager.Instance.Reset();
-        }
+    void Update()
+    {
+        SetGameTimerText(GameManager.Instance.GameTimer);
+    }
+
+    public void SetGameTimerText(float time)
+    {
+        GameTimerText.text = "Timer: " + time;
+    }
+
+    public void ResetMonsterUI()
+    {
+        VisibilitySlider.value = 0.0f;
+        livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
     }
 
     //Turn on/off interaction text when hitting terminal

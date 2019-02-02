@@ -18,14 +18,11 @@ public class PowerPunch : MonoBehaviour {
         {
             //Cannot call security commands if not server, have to delegate stun target to server.
             monster.CmdStunTarget(other.gameObject);
-            Debug.Log(other.gameObject.name + " Stunned");
         }
 
         if(other.gameObject.tag == "Terminal")
         {
-
-            other.gameObject.GetComponent<TerminalController>().isBroken = true;
-            DoorController.Instance.CheckDoors();
+            monster.CmdSendBreakTerminal(other.gameObject);           
         }
     }
 

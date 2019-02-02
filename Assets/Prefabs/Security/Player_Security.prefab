@@ -13,7 +13,7 @@ Prefab:
   m_IsPrefabAsset: 1
 --- !u!1 &1040767354739398
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 4462500773032620}
   - component: {fileID: 114041858862858316}
   - component: {fileID: 114399214558951392}
+  - component: {fileID: 114340609943436430}
   - component: {fileID: 33458643728658182}
   - component: {fileID: 23563957859788336}
   - component: {fileID: 143419974357505080}
@@ -125,6 +126,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1679797703864960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4230333913023508}
+  m_Layer: 11
+  m_Name: FlashLightPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1720652188177812
 GameObject:
   m_ObjectHideFlags: 1
@@ -155,6 +171,20 @@ Transform:
   - {fileID: 4310715745073638}
   - {fileID: 4964215797421726}
   m_Father: {fileID: 4863013531067836}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4230333913023508
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679797703864960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4863013531067836}
+  m_Father: {fileID: 4462500773032620}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4310715745073638
@@ -190,10 +220,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332495364744774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.23502, y: -8.356345, z: 32.801636}
+  m_LocalPosition: {x: 9.632343, y: 0.4147873, z: 35.726135}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
-  - {fileID: 4863013531067836}
+  - {fileID: 4230333913023508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -217,11 +247,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040767354739398}
   m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: 0.20569992, y: -0.15990025, z: 10.899801}
-  m_LocalScale: {x: 85.000084, y: 170.00018, z: 1000.00275}
+  m_LocalPosition: {x: 0.20569992, y: -0.15990025, z: 10.899803}
+  m_LocalScale: {x: 85.000114, y: 170.00024, z: 1000.0037}
   m_Children:
   - {fileID: 4181120822916072}
-  m_Father: {fileID: 4462500773032620}
+  m_Father: {fileID: 4230333913023508}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!4 &4964215797421726
@@ -664,13 +694,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b49392b747be9446a714532e5ea5dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  networkPlayer: {fileID: 0}
   tFixer: {fileID: 114146233960669560}
   flashLight: {fileID: 114451813176518922}
   stun: {fileID: 114888288243832620}
-  b_isInteracting: 0
   b_isStunned: 0
-  TerminalFixTime: 3
+  b_UsingFlashLight: 0
+  b_OverHeatFlashLight: 0
+  flashLightUseTime: 5
   flashLightMaxTime: 5
+  terminalInteraction: {fileID: 0}
+  b_terminalInteraction: 0
+  TerminalFixTime: 3
+--- !u!114 &114340609943436430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332495364744774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4230333913023508}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114399214558951392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -712,6 +766,14 @@ MonoBehaviour:
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
+    XSensitivity: 2
+    YSensitivity: 2
+    clampVerticalRotation: 1
+    MinimumX: -30
+    MaximumX: 30
+    smooth: 0
+    smoothTime: 5
+  m_MouseLookFlashLight:
     XSensitivity: 2
     YSensitivity: 2
     clampVerticalRotation: 1
@@ -815,7 +877,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
-  playerNumber: 0
   controllerNumber: 0
 --- !u!114 &114451813176518922
 MonoBehaviour:
@@ -829,10 +890,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   securityController: {fileID: 0}
-  light: {fileID: 108456889695936292}
+  flashlight: {fileID: 1380354205719654}
   flashMeshRender: {fileID: 23811181997248304}
   flashMeshCollider: {fileID: 64417372080232062}
-  useTime: 0
 --- !u!114 &114888288243832620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -845,7 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   securityController: {fileID: 0}
-  stunTime: 0
+  stunDuration: 5
 --- !u!136 &136298806608329162
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -1,42 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TerminalController : MonoBehaviour {
+public class TerminalController : NetworkBehaviour {
 
-    public bool isBroken;
-
-	// Use this for initialization
-	void Start ()
-    {
-
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	    if(isBroken)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
-        }
-        else
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(1).gameObject.SetActive(false);
-        }
-	}
+    [SyncVar]
+    public bool isBroken = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
         {
-            MonsterUI.Instance.ToggleMonsterInteractText(true);
+            other.GetComponent<MonsterController>().b_terminalInteraction = true;
         }
 
         if (other.gameObject.tag == "Security")
         {
-            SecurityUI.Instance.TogglePlayerInteractText(true);
+            if(isBroken)
+            {
+                other.GetComponent<SecurityController>().b_terminalInteraction = true;
+                other.GetComponent<SecurityController>().terminalInteraction = gameObject;
+            }
         }
     }
 
@@ -44,12 +29,42 @@ public class TerminalController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-            MonsterUI.Instance.ToggleMonsterInteractText(false);
+            other.GetComponent<MonsterController>().b_terminalInteraction = false;
         }
 
         if (other.gameObject.tag == "Security")
         {
-            SecurityUI.Instance.TogglePlayerInteractText(false);
+            other.GetComponent<SecurityController>().b_terminalInteraction = false;
         }
+    }
+
+    [Command]
+    public void CmdReceiveBreakTerminal()
+    {
+        isBroken = true;
+        RpcBreakTerminal();
+    }
+
+    [Command]
+    public void CmdReceiveFixTerminal()
+    {
+        isBroken = false;
+        RpcFixTerminal();
+    }
+
+    [ClientRpc]
+    void RpcBreakTerminal()
+    {
+        DoorController.Instance.CheckDoors();
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    [ClientRpc]
+    void RpcFixTerminal()
+    {
+        DoorController.Instance.CheckDoors();
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 }
