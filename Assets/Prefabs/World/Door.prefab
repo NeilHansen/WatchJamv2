@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 23670454023266892}
   - component: {fileID: 65909742193561524}
   - component: {fileID: 114834613062290720}
+  - component: {fileID: 114387763615516578}
   m_Layer: 9
   m_Name: Door
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428464016113800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 1.2, z: 36.88}
+  m_LocalPosition: {x: 12, y: 1.2, z: 31.044}
   m_LocalScale: {x: 4.500002, y: 4, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,6 +121,36 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114387763615516578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1428464016113800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraphicPrefab: {fileID: 197840, guid: 2b4fb31f6472842468de0a7249d7b8da, type: 2}
+  Target: {fileID: 0}
+  OffSet: {x: 0, y: 0, z: 0}
+  Icon: {fileID: 21300000, guid: 12af3aaf8878e2443b325833b84b5aab, type: 3}
+  DeathIcon: {fileID: 0}
+  IconColor: {r: 0, g: 0.073209524, b: 1, a: 1}
+  Size: 14
+  ShowCircleArea: 0
+  CircleAreaRadius: 10
+  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
+  isInteractable: 0
+  InfoItem: This is a Bot
+  OffScreen: 1
+  DestroyWithObject: 0
+  BorderOffScreen: 0
+  OffScreenSize: 9
+  isHoofdPunt: 0
+  RenderDelay: 0.5
+  m_Effect: 2
 --- !u!114 &114718919630620462
 MonoBehaviour:
   m_ObjectHideFlags: 1

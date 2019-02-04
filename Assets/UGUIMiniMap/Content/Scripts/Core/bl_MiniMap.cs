@@ -6,6 +6,8 @@ using UGUIMiniMap;
 
 public class bl_MiniMap : MonoBehaviour
 {
+    public GameObject CenterPoint;
+
     [Separator("General Settings")]
     // Target for the minimap.
     public GameObject m_Target;
@@ -25,7 +27,8 @@ public class bl_MiniMap : MonoBehaviour
     [Range(1, 10)]public int scrollSensitivity = 3;
     //Default height to view from, if you need have a static height, just edit this.
     [Range(5, 500)]
-    public float DefaultHeight = 30;
+    public float Height = 30;
+    public float DefaultHeight = 60;
     [Tooltip("Maximum heights that the camera can reach.")]
     public float maxHeight = 80;
     [Tooltip("Minimum heights that the camera can reach.")]
@@ -157,14 +160,14 @@ public class bl_MiniMap : MonoBehaviour
         DefaultRotationMode = DynamicRotation;
         DeafultMapRot = m_Transform.eulerAngles;
         DefaultRotationCircle = useCompassRotation;
-        SetHoofdPunt();
+        //SetHoofdPunt();
         if (m_Type == RenderType.Picture) { CreateMapPlane(false); }
         else if(m_Type == RenderType.RealTime) { CreateMapPlane(true); }
         if (m_Mode == RenderMode.Mode3D) { ConfigureCamera3D(); }
         if (m_MapType == MapType.Target)
         {
             //Get Save Height
-            DefaultHeight = PlayerPrefs.GetFloat(MMHeightKey, DefaultHeight);
+            Height = DefaultHeight;
         }
         else
         {
@@ -338,18 +341,53 @@ public class bl_MiniMap : MonoBehaviour
             {
                 p.z = ((Target.position.z) * 2) - (maxHeight + minHeight / 2);
             }
-            //Camera follow the target
+            m_Transform.position = Vector3.Lerp(m_Transform.position, p, Time.deltaTime * 10);
+        }
+        else
+        {
+            Vector3 p = m_Transform.position;
+            // Update the transformation of the camera as per the target's position.
+            p.x = CenterPoint.transform.position.x;
+            if (!Ortographic2D)
+            {
+                p.z = CenterPoint.transform.position.z;
+            }
+            else
+            {
+                p.y = CenterPoint.transform.position.y;
+            }
+            p += DragOffset;
+
+            //Calculate player position
+            if (Target != null)
+            {
+                Vector3 pp = MMCamera.WorldToViewportPoint(TargetPosition);
+                PlayerIcon.rectTransform.anchoredPosition = bl_MiniMapUtils.CalculateMiniMapPosition(pp, MapUIRoot);
+            }
+
+            // For this, we add the predefined (but variable, see below) height var.
+            if (!Ortographic2D)
+            {
+                p.y = (maxHeight + minHeight / 2) + (Target.position.y * 2);
+            }
+            else
+            {
+                p.z = ((CenterPoint.transform.position.z) * 2) - (maxHeight + minHeight / 2);
+            }
             m_Transform.position = Vector3.Lerp(m_Transform.position, p, Time.deltaTime * 10);
         }
 
-        if (plane != null && getDelayPositionCamera)
+        if (m_MapType == MapType.Target)
         {
-            Vector3 v = plane.transform.position;
-            //Get Position reference from world space rect.
-            Vector3 pos = WorldSpace.position;
-            float ydif = defaultYCameraPosition - MMCamera.transform.position.y;
-            v.y = pos.y - ydif;
-            plane.transform.position = v;
+            if (plane != null && getDelayPositionCamera)
+            {
+                Vector3 v = plane.transform.position;
+                //Get Position reference from world space rect.
+                Vector3 pos = WorldSpace.position;
+                float ydif = defaultYCameraPosition - MMCamera.transform.position.y;
+                v.y = pos.y - ydif;
+                plane.transform.position = v;
+            }
         }
     }
 
@@ -430,11 +468,11 @@ public class bl_MiniMap : MonoBehaviour
         {
             ToggleSize();
         }
-        if (Input.GetKeyDown(DecreaseHeightKey) && DefaultHeight < maxHeight)
+        if (Input.GetKeyDown(DecreaseHeightKey) && Height < maxHeight)
         {
             ChangeHeight(true);
         }
-        if (Input.GetKeyDown(IncreaseHeightKey) && DefaultHeight > minHeight)
+        if (Input.GetKeyDown(IncreaseHeightKey) && Height > minHeight)
         {
             ChangeHeight(false);
         }
@@ -461,32 +499,36 @@ public class bl_MiniMap : MonoBehaviour
             rt.anchoredPosition = Vector3.Lerp(rt.anchoredPosition, MiniMapPosition, Time.deltaTime * LerpTransition);
             rt.localEulerAngles = Vector3.Lerp(rt.localEulerAngles, MiniMapRotation, Time.deltaTime * LerpTransition);
         }
-        MMCamera.orthographicSize = Mathf.Lerp(MMCamera.orthographicSize, DefaultHeight, Time.deltaTime * LerpHeight);
+        MMCamera.orthographicSize = Mathf.Lerp(MMCamera.orthographicSize, Height, Time.deltaTime * LerpHeight);
     }
 
     /// <summary>
     /// This called one time when press the toggle key
     /// </summary>
-    void ToggleSize()
+    public void ToggleSize()
     {
         isFullScreen = !isFullScreen;
         if (RootAlpha != null && FadeOnFullScreen) { StopCoroutine("StartFade"); StartCoroutine("StartFade",0.35f); }
         if (isFullScreen)
         {
-            if (m_MapType != MapType.World)
+            //Hard Set for full screen full map
+            m_MapType = MapType.World;
+            //if (m_MapType != MapType.World)
             {
                 //when change to full screen, the height is the max
-                DefaultHeight = maxHeight;
+                Height = maxHeight;
             }
             useCompassRotation = false;
             if (m_maskHelper) { m_maskHelper.OnChange(true); }
         }
         else
         {
+            //Hard Set to switch back to minimap
+            m_MapType = MapType.Target;
             if (m_MapType != MapType.World)
             {
                 //when return of full screen, return to current height
-                DefaultHeight = PlayerPrefs.GetFloat(MMHeightKey, DefaultHeight);
+                Height = DefaultHeight;
             }
             if (useCompassRotation != DefaultRotationCircle) { useCompassRotation = DefaultRotationCircle; }
             if (m_maskHelper) { m_maskHelper.OnChange(); }
@@ -568,27 +610,27 @@ public class bl_MiniMap : MonoBehaviour
         
             if (b)
         {
-            if (DefaultHeight + scrollSensitivity <= maxHeight)
+            if (Height + scrollSensitivity <= maxHeight)
             {
-                DefaultHeight += scrollSensitivity;
+                Height += scrollSensitivity;
             }
             else
             {
-                DefaultHeight = maxHeight;
+                Height = maxHeight;
             }
         }
         else
         {
-            if (DefaultHeight - scrollSensitivity >= minHeight)
+            if (Height - scrollSensitivity >= minHeight)
             {
-                DefaultHeight -= scrollSensitivity;
+                Height -= scrollSensitivity;
             }
             else
             {
-                DefaultHeight = minHeight;
+                Height = minHeight;
             }
         }
-        PlayerPrefs.SetFloat(MMHeightKey, DefaultHeight);
+        PlayerPrefs.SetFloat(MMHeightKey, Height);
     }
 
     /// <summary>
@@ -703,7 +745,7 @@ public class bl_MiniMap : MonoBehaviour
     {
         if(MMCamera != null)
         {
-            MMCamera.orthographicSize = DefaultHeight;
+            MMCamera.orthographicSize = Height;
         }
         if(AreaMaterial != null)
         {

@@ -18,6 +18,8 @@ public class MonsterWallMovement : NetworkBehaviour
 
     private bool isGrounded;
     private bool flipping = false; // Flag "I'm flipping to wall";
+    private bool goingToGround = false;
+    public bool onRoof = false;
 
     private Vector3 surfaceNormal; // Current surface normal
     private Vector3 myNormal; // Character normal
@@ -58,32 +60,71 @@ public class MonsterWallMovement : NetworkBehaviour
 
     void Update()
     {
-        if(hasAuthority)
+        if (!hasAuthority)
+            return;
+
+        // If flipping don't update
+        if (flipping)
+            return;
+
+        Ray ray;
+        RaycastHit hit;
+        // Drawing ray to see
+        Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
+        //Forward
+        ray = new Ray(myTransform.position, myTransform.forward);
+        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
         {
-            // If flipping don't update
-            if (flipping)
-                return;
-
-            Ray ray;
-            RaycastHit hit;
-            // Drawing ray to see
-            Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
-
-            ray = new Ray(myTransform.position, myTransform.forward);
-            if (Physics.Raycast(ray, out hit, flipRange, layerMask))
+            // Wall ahead?
+            // Yes: jump to the wall
+            if(player.GetButtonDown("WallClimb"))
             {
-                // Wall ahead?
-                // Yes: jump to the wall
-                //if(player.GetButtonDown("WallClimb"))
-                {
-                    FlipToWall(hit.point, hit.normal);
-                }
+                FlipToWall(myTransform.right, hit.point, hit.normal);
             }
-            else if (isGrounded)
-            {
-                // No: if grounded, don't do anything  
-            }
+        }
 
+        // Drawing ray to see
+        Debug.DrawRay(transform.position, transform.right * flipRange, Color.red);
+        //Right
+        ray = new Ray(myTransform.position, myTransform.right);
+        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
+        {
+            // Wall ahead?
+            // Yes: jump to the wall
+            if (player.GetButtonDown("WallClimb"))
+            {
+                FlipToWall(myTransform.up, hit.point, hit.normal);
+            }
+        }
+
+        // Drawing ray to see
+        Debug.DrawRay(transform.position, -transform.right * flipRange, Color.magenta);
+        //Left
+        ray = new Ray(myTransform.position, -myTransform.right);
+        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
+        {
+            // Wall ahead?
+            // Yes: jump to the wall
+            if (player.GetButtonDown("WallClimb"))
+            {
+                FlipToWall(-myTransform.up, hit.point, hit.normal);
+            }
+        }
+
+        if (player.GetButtonDown("WallDismount"))
+        {
+            Debug.Log("Go To Ground");
+            isGrounded = false;
+            goingToGround = true;
+            StartCoroutine(DismonutFlipTime());
+            // Assume usual ground normal to avoid "falling forever"
+
+            //Check if on roof
+            onRoof = surfaceNormal == -Vector3.up;
+            surfaceNormal = Vector3.up;
+        }
+        else if(!goingToGround)
+        {
             Debug.DrawRay(cornerCheck.transform.position, -1 * cornerCheck.transform.forward * flipRange, Color.blue);
 
             // Update surface normal and isGrounded:
@@ -102,7 +143,7 @@ public class MonsterWallMovement : NetworkBehaviour
                 if (Physics.Raycast(ray, out hit, 2, layerMask))
                 {
                     Debug.Log("Going over corner");
-                    FlipToWall(hit.point, hit.normal);
+                    FlipToWall(myTransform.right, hit.point, hit.normal);
                 }
                 else
                 {
@@ -112,7 +153,24 @@ public class MonsterWallMovement : NetworkBehaviour
                     surfaceNormal = Vector3.up;
                 }
             }
+        }
 
+        //Check to see if on roof then rotate according to our normal else were on the wall
+        if(onRoof)
+        {
+            // Lerping
+            myNormal = Vector3.Lerp(myNormal, surfaceNormal, lerpSpeed * Time.deltaTime);
+            // Align character to the new myNormal while keeping the forward direction:
+            Quaternion targetRot = Quaternion.LookRotation(myTransform.forward, myNormal);
+            myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
+
+            if(myNormal == Vector3.up)
+            {
+                onRoof = false;
+            }
+        }
+        else
+        {
             // Lerping
             myNormal = Vector3.Lerp(myNormal, surfaceNormal, lerpSpeed * Time.deltaTime);
             // Find forward direction with new myNormal:
@@ -123,7 +181,7 @@ public class MonsterWallMovement : NetworkBehaviour
         }
     }
 
-    private void FlipToWall(Vector3 point, Vector3 normal)
+    private void FlipToWall(Vector3 axis, Vector3 point, Vector3 normal)
     {
         // Signal it's flppnig to wall
         flipping = true;
@@ -133,10 +191,16 @@ public class MonsterWallMovement : NetworkBehaviour
         Quaternion orgRot = myTransform.rotation;
         // Will flip to 0.5 above wall, so were not inside the wall
         Vector3 dstPos = point + normal * (distGround + 0.5f);
-        Vector3 myForward = Vector3.Cross(myTransform.right, normal);
+        Vector3 myForward = Vector3.Cross(axis, normal);
         Quaternion dstRot = Quaternion.LookRotation(myForward, normal);
 
         StartCoroutine(flipTime(orgPos, orgRot, dstPos, dstRot, normal));
+    }
+
+    private IEnumerator DismonutFlipTime()
+    {
+        yield return new WaitForSeconds(0.5f);
+        goingToGround = false;
     }
 
     private IEnumerator flipTime(Vector3 orgPos, Quaternion orgRot, Vector3 dstPos, Quaternion dstRot, Vector3 normal)

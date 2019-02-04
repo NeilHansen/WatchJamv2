@@ -82,10 +82,11 @@ GameObject:
   - component: {fileID: 143419974357505080}
   - component: {fileID: 54658849448393732}
   - component: {fileID: 114420720492990714}
+  - component: {fileID: 82996223122340750}
   - component: {fileID: 114203123378801148}
   - component: {fileID: 114146233960669560}
   - component: {fileID: 114888288243832620}
-  - component: {fileID: 82996223122340750}
+  - component: {fileID: 114152472635455062}
   m_Layer: 11
   m_Name: Player_Security
   m_TagString: Security
@@ -683,6 +684,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   securityController: {fileID: 0}
+--- !u!114 &114152472635455062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332495364744774}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraphicPrefab: {fileID: 197840, guid: 2b4fb31f6472842468de0a7249d7b8da, type: 2}
+  Target: {fileID: 0}
+  OffSet: {x: 0, y: 0, z: 0}
+  Icon: {fileID: 21300114, guid: b2ff3b281537fbc4d91af3e848afde5c, type: 3}
+  DeathIcon: {fileID: 0}
+  IconColor: {r: 1, g: 0, b: 0.55099344, a: 1}
+  Size: 14
+  ShowCircleArea: 0
+  CircleAreaRadius: 10
+  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
+  isInteractable: 0
+  InfoItem: This is a Bot
+  OffScreen: 1
+  DestroyWithObject: 0
+  BorderOffScreen: 0
+  OffScreenSize: 9
+  isHoofdPunt: 0
+  RenderDelay: 0.5
+  m_Effect: 2
 --- !u!114 &114203123378801148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,8 +790,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is2D: 0
   m_IsWalking: 0
-  m_WalkSpeed: 5
-  m_RunSpeed: 10
+  m_WalkSpeed: 4
+  m_RunSpeed: 6
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 10
   m_StickToGroundForce: 10
@@ -890,9 +921,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   securityController: {fileID: 0}
+  origin: {fileID: 1679797703864960}
   flashlight: {fileID: 1380354205719654}
   flashMeshRender: {fileID: 23811181997248304}
-  flashMeshCollider: {fileID: 64417372080232062}
+  flashlightRange: 10
 --- !u!114 &114888288243832620
 MonoBehaviour:
   m_ObjectHideFlags: 1

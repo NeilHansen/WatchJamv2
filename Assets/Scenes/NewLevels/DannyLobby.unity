@@ -261,6 +261,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
         type: 2}
+      propertyPath: _userData.actions.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
       propertyPath: _userData.keyboardMaps.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -268,6 +273,16 @@ Prefab:
         type: 2}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4460868664528768, guid: 8b789983937099644bf52a3b54c8f46d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -325,6 +340,141 @@ Prefab:
         type: 2}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[0]._elementIdentifierId
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[21]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[21]._elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[21]._elementIdentifierId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[10]._id
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[10]._name
+      value: WallDismount
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[10]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[10]._descriptiveName
+      value: WallDismount
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[10]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[10]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actionIdCounter
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[10]._actionId
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[11]._id
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[11]._name
+      value: Sprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[11]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[11]._descriptiveName
+      value: Sprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[11]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[11]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[15]._actionId
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[12]._id
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[12]._name
+      value: MiniMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[12]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[12]._descriptiveName
+      value: MiniMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actions.Array.data[12]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[12]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[14]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[12]._actionId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815226308588094, guid: 8b789983937099644bf52a3b54c8f46d,
+        type: 2}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[11]._actionId
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b789983937099644bf52a3b54c8f46d, type: 2}

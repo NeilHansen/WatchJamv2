@@ -38,8 +38,21 @@ public class MonsterController : NetworkBehaviour {
     private Material monsterMaterial;
     private Color monsterColor;
 
+
+    private bl_MiniMap mm;
+
     // Use this for initialization
     void Start () {
+        if(hasAuthority)
+        {
+            //Set MiniMap
+            mm = FindObjectOfType<bl_MiniMap>();
+        }
+        else
+        {
+            GetComponent<bl_MiniMapItem>().enabled = true;
+        }
+
         //Give children a reference to this script
         powerDrain.monster = this;
         powerPunch.monster = this;
@@ -55,7 +68,12 @@ public class MonsterController : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
-        if(currentAlpha >= 1.0f)
+        if (player.GetButtonDown("MiniMap"))
+        {
+            mm.ToggleSize();
+        }
+
+        if (currentAlpha >= 1.0f)
         {
             GameManager.Instance.ResetMonster();
         }

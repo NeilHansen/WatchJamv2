@@ -8,6 +8,8 @@ public class PowerPunch : MonoBehaviour {
     public BoxCollider boxCollider;
     public MeshRenderer meshRender;
 
+    private bool hit = false;
+
     // Use this for initialization
     void Start () {
     }
@@ -16,12 +18,14 @@ public class PowerPunch : MonoBehaviour {
     {
         if(other.gameObject.tag == "Security")
         {
+            hit = true;
             //Cannot call security commands if not server, have to delegate stun target to server.
             monster.CmdStunTarget(other.gameObject);
         }
 
         if(other.gameObject.tag == "Terminal")
         {
+            hit = true;
             monster.CmdSendBreakTerminal(other.gameObject);           
         }
     }
@@ -57,17 +61,31 @@ public class PowerPunch : MonoBehaviour {
 
         yield return new WaitForSeconds(monster.punchLength);
 
-        //Keep transparent when on cooldown
-        MonsterUI.Instance.SetPunchIcon();
+        if(!hit)
+        {
+            //Turn off
+            MonsterUI.Instance.SetPunchIcon(1.0f);
 
-        monster.punchCooldown = true;
+            monster.isPunching = false;
+            monster.punchCooldown = false;
+        }
 
-        yield return new WaitForSeconds(monster.punchCooldownLength);
+        else
+        {
+            hit = false;
 
-        //Turn off
-        MonsterUI.Instance.SetPunchIcon(1.0f);
+            //Keep transparent when on cooldown
+            MonsterUI.Instance.SetPunchIcon();
 
-        monster.isPunching = false;
-        monster.punchCooldown = false;
+            monster.punchCooldown = true;
+
+            yield return new WaitForSeconds(monster.punchCooldownLength);
+
+            //Turn off
+            MonsterUI.Instance.SetPunchIcon(1.0f);
+
+            monster.isPunching = false;
+            monster.punchCooldown = false;
+        }
     }
 }

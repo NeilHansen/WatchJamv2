@@ -8,14 +8,15 @@ public class FlashlightController : MonoBehaviour
 {
     public SecurityController securityController;
 
+    public GameObject origin;
     public GameObject flashlight;
     public MeshRenderer flashMeshRender;
-    public MeshCollider flashMeshCollider;
+    public float flashlightRange = 10.0f;
+    public float raycastRadius = 0.2f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         flashMeshRender.enabled = false;
-        flashMeshCollider.enabled = false;
 	}
 
     //For Normal Light(Always on)
@@ -24,15 +25,25 @@ public class FlashlightController : MonoBehaviour
         //As long as we still have time keep on
         if (!(securityController.flashLightUseTime <= 0.0f))
         {
+            // Drawing ray to see
+            Debug.DrawRay(origin.transform.position, origin.transform.forward * flashlightRange, Color.yellow);
+
+            RaycastHit hit;
+            if (Physics.SphereCast(origin.transform.position, raycastRadius, origin.transform.forward, out hit, flashlightRange))
+            {
+                if(hit.collider.tag == "Monster")
+                {
+                    securityController.CmdDamageTarget(hit.collider.gameObject);
+                }
+            }
+
             TurnVioletOn();
-            flashMeshCollider.enabled = true;
             securityController.b_UsingFlashLight = true;
         }
         //Turn off
         else
         {
             securityController.CmdTurnLightOff();
-            flashMeshCollider.enabled = false;
             securityController.b_UsingFlashLight = false;
         }
     }
@@ -40,7 +51,6 @@ public class FlashlightController : MonoBehaviour
     public void SecurityFlashLightOff()
     {
         TurnVioletOff();
-        flashMeshCollider.enabled = false;
         securityController.b_UsingFlashLight = false;
     }
 
@@ -63,13 +73,5 @@ public class FlashlightController : MonoBehaviour
     public void TurnVioletOff()
     {
         flashMeshRender.enabled = false;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Monster")
-        {
-            securityController.CmdDamageTarget(other.gameObject);
-        }
     }
 }

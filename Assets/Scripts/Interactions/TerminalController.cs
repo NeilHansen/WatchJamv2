@@ -8,6 +8,9 @@ public class TerminalController : NetworkBehaviour {
     [SyncVar]
     public bool isBroken = false;
 
+    public Color WorkingColor;
+    public Color BrokenColor;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
@@ -56,6 +59,7 @@ public class TerminalController : NetworkBehaviour {
     void RpcBreakTerminal()
     {
         DoorController.Instance.CheckDoors();
+        GetComponent<bl_MiniMapItem>().SetIconColor(BrokenColor);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
     }
@@ -64,6 +68,7 @@ public class TerminalController : NetworkBehaviour {
     void RpcFixTerminal()
     {
         DoorController.Instance.CheckDoors();
+        GetComponent<bl_MiniMapItem>().SetIconColor(WorkingColor);
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(false);
     }

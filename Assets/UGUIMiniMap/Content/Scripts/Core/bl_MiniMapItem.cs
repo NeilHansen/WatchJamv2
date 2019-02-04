@@ -213,6 +213,11 @@ public class bl_MiniMapItem : MonoBehaviour {
         }
     }
 
+    public void SetIconColor(Color color)
+    {
+        Graphic.color = color;
+    }
+
     /// <summary>
     /// When player or the target die,desactive,remove,etc..
     /// call this for remove the item UI from Map

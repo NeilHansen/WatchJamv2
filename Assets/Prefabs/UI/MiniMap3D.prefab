@@ -583,6 +583,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1743012437499160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4916742023936430}
+  m_Layer: 0
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1772091240126038
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +608,7 @@ GameObject:
   - component: {fileID: 4418987295530974}
   m_Layer: 0
   m_Name: MiniMap3D
-  m_TagString: Untagged
+  m_TagString: MiniMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -825,6 +840,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4916742023936430}
   - {fileID: 4670948414868346}
   - {fileID: 224191636549070982}
   - {fileID: 224270364346965790}
@@ -842,6 +858,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4288429513320766}
+  m_Father: {fileID: 4418987295530974}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4916742023936430
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743012437499160}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 11.5, y: 0, z: 15.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 4418987295530974}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -869,7 +898,7 @@ Camera:
   far clip plane: 500
   field of view: 60
   orthographic: 1
-  orthographic size: 61
+  orthographic size: 60
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
@@ -1493,10 +1522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771cb5e14b192b643a85322e8a340a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CenterPoint: {fileID: 1743012437499160}
   m_Target: {fileID: 0}
   LevelName: Example Level
   MiniMapLayer: 8
-  ToogleKey: 101
+  ToogleKey: 0
   MMCamera: {fileID: 20491931925915204}
   m_Type: 0
   m_Mode: 1
@@ -1504,8 +1534,9 @@ MonoBehaviour:
   Ortographic2D: 0
   IconMultiplier: 1
   scrollSensitivity: 3
-  DefaultHeight: 61
-  maxHeight: 60
+  Height: 60
+  DefaultHeight: 60
+  maxHeight: 100
   minHeight: 7
   IncreaseHeightKey: 270
   DecreaseHeightKey: 269
@@ -1513,14 +1544,14 @@ MonoBehaviour:
   useCompassRotation: 0
   CompassSize: 175
   RotationAlwaysFront: 1
-  DynamicRotation: 1
+  DynamicRotation: 0
   SmoothRotation: 1
   LerpRotation: 12
-  ShowAreaGrid: 1
+  ShowAreaGrid: 0
   AreasSize: 4
   AreaMaterial: {fileID: 2100000, guid: 23feda432d21d8c4596189f994dcbe7f, type: 2}
-  ShowLevelName: 1
-  ShowPanelInfo: 1
+  ShowLevelName: 0
+  ShowPanelInfo: 0
   FadeOnFullScreen: 0
   HitEffectSpeed: 1.5
   BottonAnimator: {fileID: 95737857197037036}
@@ -1533,7 +1564,7 @@ MonoBehaviour:
   GetWorldRect: 
   CanDragMiniMap: 1
   DragOnlyOnFullScreen: 1
-  ResetOffSetOnChange: 1
+  ResetOffSetOnChange: 0
   DragMovementSpeed: {x: 22, y: 22}
   MaxOffSetPosition: {x: 215, y: 175}
   DragCursorIcon: {fileID: 2800000, guid: 1826d50b3cb9b914c899f276f4066858, type: 3}
@@ -2832,7 +2863,7 @@ RectTransform:
   m_Children:
   - {fileID: 224109104961349766}
   m_Father: {fileID: 4418987295530974}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2884,16 +2915,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1657827636944948}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 32.5}
+  m_LocalPosition: {x: 0, y: 0, z: 15.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4418987295530974}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.1, y: -0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 11.5, y: 0}
+  m_SizeDelta: {x: 150, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224273239176062206
 RectTransform:

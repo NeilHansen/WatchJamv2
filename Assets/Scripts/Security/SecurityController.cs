@@ -27,13 +27,22 @@ public class SecurityController : NetworkBehaviour
     public bool b_terminalInteraction = false;
     public float TerminalFixTime = 3.0f;
 
+    private bl_MiniMap mm;
+
     // Use this for initialization
     void Start()
     {
         if (hasAuthority)
         {
+            //Set MiniMap
+            mm = FindObjectOfType<bl_MiniMap>();
+
             //Set Flashlight variables
             SecurityUI.Instance.SetFlashUIMaxValue(flashLightUseTime);
+        }
+        else
+        {
+            GetComponent<bl_MiniMapItem>().enabled = true;
         }
 
         stun.securityController = this;
@@ -47,6 +56,11 @@ public class SecurityController : NetworkBehaviour
     {
         if (!hasAuthority)
             return;
+
+        if(player.GetButtonDown("MiniMap"))
+        {
+            mm.ToggleSize();
+        }
 
         //Flashlight network handling
         if (player.GetButton("FlashLight") && flashLightUseTime >= 0.0f && !b_OverHeatFlashLight)
