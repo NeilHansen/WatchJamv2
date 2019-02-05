@@ -48,10 +48,6 @@ public class MonsterController : NetworkBehaviour {
             //Set MiniMap
             mm = FindObjectOfType<bl_MiniMap>();
         }
-        else
-        {
-            GetComponent<bl_MiniMapItem>().enabled = true;
-        }
 
         //Give children a reference to this script
         powerDrain.monster = this;

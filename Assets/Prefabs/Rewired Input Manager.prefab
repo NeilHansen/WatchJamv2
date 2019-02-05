@@ -313,6 +313,42 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 10
+      _name: Jump
+      _type: 1
+      _descriptiveName: Jump
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 11
+      _name: MiniMap
+      _type: 1
+      _descriptiveName: MiniMap
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 12
+      _name: WallDismount
+      _type: 1
+      _descriptiveName: WallDismount
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 14
+      _name: Sprint
+      _type: 1
+      _descriptiveName: Sprint
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -322,7 +358,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
+        actionIds: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -490,7 +526,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 12
         _elementType: 1
         _elementIdentifierId: 10
         _axisRange: 0
@@ -501,7 +537,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 11
         _elementType: 1
         _elementIdentifierId: 11
         _axisRange: 0
@@ -545,7 +581,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 14
         _elementType: 1
         _elementIdentifierId: 14
         _axisRange: 0
@@ -615,7 +651,7 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 5
-    actionIdCounter: 10
+    actionIdCounter: 15
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1

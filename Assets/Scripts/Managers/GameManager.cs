@@ -53,7 +53,7 @@ public class GameManager : NetworkBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if(isServer && GameTimer >= 0.0f)
+        if(GameTimer >= 0.0f)
         {
             GameTimer += Time.deltaTime;
             if (MonsterNumOfLives <= 0)
@@ -63,7 +63,7 @@ public class GameManager : NetworkBehaviour {
             }
         }
 
-        if(SecurityWins)
+        if(SecurityWins || MonsterWins)
         {
             Time.timeScale = 0.0f;
             Debug.Log("Security Wins");
@@ -88,6 +88,12 @@ public class GameManager : NetworkBehaviour {
 
     [Command]
     public void CmdMinusMonsterLife()
+    {
+        RpcMinusMonsterLife();
+    }
+
+    [ClientRpc]
+    public void RpcMinusMonsterLife()
     {
         GameManager.Instance.MonsterNumOfLives -= 1;
     }

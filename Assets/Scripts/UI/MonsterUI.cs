@@ -54,6 +54,7 @@ public class MonsterUI : MonoBehaviour {
     void Update()
     {
         SetGameTimerText(GameManager.Instance.GameTimer);
+        livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
     }
 
     public void SetGameTimerText(float time)

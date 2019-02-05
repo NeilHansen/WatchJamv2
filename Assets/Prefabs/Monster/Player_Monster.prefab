@@ -986,7 +986,6 @@ GameObject:
   - component: {fileID: 114365686389514042}
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
-  - component: {fileID: 114460052845198424}
   m_Layer: 10
   m_Name: Player_Monster
   m_TagString: Monster
@@ -4077,7 +4076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNumber: 0
   fpsCamera: {fileID: 0}
-  speed: 5
+  speed: 7.5
   rotSpeed: 90
   FOVmin: -30
   FOVmax: 30
@@ -4095,36 +4094,6 @@ MonoBehaviour:
   monster: {fileID: 0}
   boxCollider: {fileID: 65253046688356332}
   meshRender: {fileID: 23166976007240028}
---- !u!114 &114460052845198424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1558698934536914}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GraphicPrefab: {fileID: 197840, guid: 2b4fb31f6472842468de0a7249d7b8da, type: 2}
-  Target: {fileID: 0}
-  OffSet: {x: 0, y: 0, z: 0}
-  Icon: {fileID: 21300114, guid: b2ff3b281537fbc4d91af3e848afde5c, type: 3}
-  DeathIcon: {fileID: 0}
-  IconColor: {r: 1, g: 0, b: 0.55099344, a: 1}
-  Size: 14
-  ShowCircleArea: 0
-  CircleAreaRadius: 10
-  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
-  isInteractable: 0
-  InfoItem: This is a Bot
-  OffScreen: 1
-  DestroyWithObject: 0
-  BorderOffScreen: 0
-  OffScreenSize: 9
-  isHoofdPunt: 0
-  RenderDelay: 0.5
-  m_Effect: 2
 --- !u!114 &114793082615492070
 MonoBehaviour:
   m_ObjectHideFlags: 1

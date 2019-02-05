@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: dcdcced1bb5d10e439597cce801bc35b
+guid: 182b156f46b118d46bf43e687fd77fc6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Red
-    2100002: Walls_White
+    2100000: Walls_White
+    2100002: Red
     2300000: //RootNode
     3300000: //RootNode
-    4300000: HallWay_TIntersection_001
+    4300000: HallWay_Wide_001
   externalObjects: {}
   materials:
     importMaterials: 1

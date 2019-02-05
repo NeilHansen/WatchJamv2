@@ -234,7 +234,10 @@ MonoBehaviour:
   spawnPositionSecurity1: {fileID: 4747199491888918}
   spawnPositionSecurity2: {fileID: 4451038781699686}
   spawnPositionSecurity3: {fileID: 4343155154043896}
+  GameTimer: 0
   MonsterNumOfLives: 3
+  MonsterWins: 0
+  SecurityWins: 0
   reset: 0
 --- !u!114 &114488996635173660
 MonoBehaviour:
@@ -253,16 +256,19 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1551680803084036}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8bd17c06461c0343a4ba09506a24a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gates: []
+  Gates:
+  - {fileID: 0}
+  - {fileID: 0}
   DoorOpen: 0
-  Terminals: []
+  Terminals:
+  - {fileID: 0}
   brokenTerminalCount: 0
-  maxTerminals: 4
+  maxTerminals: 1
 --- !u!114 &114652135681057258
 MonoBehaviour:
   m_ObjectHideFlags: 1
