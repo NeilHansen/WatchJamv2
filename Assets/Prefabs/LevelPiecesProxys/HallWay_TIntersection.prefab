@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4348211250332764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_TIntersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33605409113533772}
   - component: {fileID: 23983700873321186}
   - component: {fileID: 64359272725401616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_TIntersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990227058356134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33537631284253988}
   - component: {fileID: 23767773140570634}
   - component: {fileID: 64784702158535708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}

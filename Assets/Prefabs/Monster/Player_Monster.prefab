@@ -4113,7 +4113,6 @@ MonoBehaviour:
   punchCooldownLength: 3
   drainLength: 3
   drainCooldownLength: 3
-  isFlashLightHitting: 0
   isDrainHitting: 0
   b_terminalInteraction: 0
   isDraining: 0
@@ -4121,7 +4120,8 @@ MonoBehaviour:
   isPunching: 0
   punchCooldown: 0
   materialAlphaChangeRate: 0.1
-  currentAlpha: 0
+  monsterHealth: 0
+  monsterAlphaWhenSeen: 0.5
 --- !u!114 &114873671681735608
 MonoBehaviour:
   m_ObjectHideFlags: 1

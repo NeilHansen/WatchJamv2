@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33181125086729404}
   - component: {fileID: 23865528314748674}
   - component: {fileID: 64032373814594514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_Straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4893953100277218}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_Straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

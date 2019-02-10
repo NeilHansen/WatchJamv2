@@ -20,7 +20,6 @@ public class MonsterController : NetworkBehaviour {
     public float drainLength = 3.0f;
     public float drainCooldownLength = 3.0f;
 
-    public bool isFlashLightHitting = false;
     public bool isDrainHitting = false;
 
     public bool b_terminalInteraction = false;
@@ -33,11 +32,11 @@ public class MonsterController : NetworkBehaviour {
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
     [SyncVar(hook = "OnChangeMonsterAlpha")]
-    public float currentAlpha = 0.0f;
+    public float monsterHealth = 0.0f;
+    public float monsterAlphaWhenSeen = 0.35f;
 
     private Material monsterMaterial;
     private Color monsterColor;
-
 
     private bl_MiniMap mm;
 
@@ -64,14 +63,15 @@ public class MonsterController : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
+        if (monsterHealth >= 1.0f)
+        {
+            monsterHealth = 0.0f;
+            ResetMonster();
+        }
+
         if (player.GetButtonDown("MiniMap"))
         {
             mm.ToggleSize();
-        }
-
-        if (currentAlpha >= 1.0f)
-        {
-            GameManager.Instance.ResetMonster();
         }
 
         powerPunch.MonsterPunch();
@@ -100,7 +100,7 @@ public class MonsterController : NetworkBehaviour {
     void OnChangeMonsterAlpha(float alpha)
     {
         //Bug current alpha doesn't replicate across
-        currentAlpha = alpha;
+        monsterHealth = alpha;
 
         if (alpha > 0.0)
         {
@@ -109,9 +109,6 @@ public class MonsterController : NetworkBehaviour {
                 MonsterUI.Instance.SetMonsterSeenIcon(true);
                 MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
-
-            monsterColor.a = currentAlpha;
-            monsterMaterial.color = monsterColor;
         }
         else
         {
@@ -120,23 +117,31 @@ public class MonsterController : NetworkBehaviour {
                 MonsterUI.Instance.SetMonsterSeenIcon(false);
                 MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
-
-            monsterColor.a = 0;
-            monsterMaterial.color = monsterColor;
         }
+    }
+
+    //Repspawn player in right position
+    public void ResetMonster()
+    {
+        CmdMinusMonsterLife();
+        CmdResetHealth();
+        MonsterUI.Instance.ResetMonsterUI();
+        transform.position = GameManager.Instance.spawnPositionMonster.gameObject.transform.position;
+        Debug.Log("Respawn Mon");
     }
 
     //For reseting the monster
     [Command]
-    public void CmdResetAlpha()
+    public void CmdMinusMonsterLife()
     {
-        RpcResetAlpha();
+        GameManager.Instance.MinusMonsterLife();
     }
 
-    [ClientRpc]
-    public void RpcResetAlpha()
+    //For reseting the monster
+    [Command]
+    public void CmdResetHealth()
     {
-        currentAlpha = 0.0f;
+        monsterHealth = 0.0f;
     }
 
     #region Drain and Flashlight
@@ -145,14 +150,40 @@ public class MonsterController : NetworkBehaviour {
     public void CmdTakeDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
-        currentAlpha += damage;
+        monsterHealth += damage;
     }
 
     [Command]
     public void CmdRemoveDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
-        currentAlpha -= damage;
+        monsterHealth -= damage;
+    }
+
+    [Command]
+    public void CmdShowMonster()
+    {
+        RpcShowMonster();
+    }
+
+    [Command]
+    public void CmdHideMonster()
+    {
+        RpcHideMonster();
+    }
+
+    [ClientRpc]
+    public void RpcShowMonster()
+    {
+        monsterColor.a = monsterAlphaWhenSeen;
+        monsterMaterial.color = monsterColor;
+    }
+
+    [ClientRpc]
+    public void RpcHideMonster()
+    {
+        monsterColor.a = 0;
+        monsterMaterial.color = monsterColor;
     }
     #endregion
 

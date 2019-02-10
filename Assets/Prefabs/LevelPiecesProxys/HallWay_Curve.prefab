@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4972307535224096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33406781911601230}
   - component: {fileID: 23180273192299334}
   - component: {fileID: 64031840596039958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HallWay_Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
