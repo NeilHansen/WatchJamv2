@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4923988087412882}
   - component: {fileID: 33050146020915416}
   - component: {fileID: 23652792868652636}
-  - component: {fileID: 64026727513508844}
   m_Layer: 0
   m_Name: HallWay_XIntersection
   m_TagString: Untagged
@@ -113,18 +112,4 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052752353991522}
-  m_Mesh: {fileID: 4300000, guid: f5d4c4dc51f58e64cb3160122bf9f997, type: 3}
---- !u!64 &64026727513508844
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1052752353991522}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f5d4c4dc51f58e64cb3160122bf9f997, type: 3}

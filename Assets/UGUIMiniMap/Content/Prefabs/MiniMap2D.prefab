@@ -1567,6 +1567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771cb5e14b192b643a85322e8a340a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CenterPoint: {fileID: 0}
   m_Target: {fileID: 0}
   LevelName: Example Level
   MiniMapLayer: 8
@@ -1578,6 +1579,7 @@ MonoBehaviour:
   Ortographic2D: 0
   IconMultiplier: 1
   scrollSensitivity: 3
+  Height: 30
   DefaultHeight: 30
   maxHeight: 60
   minHeight: 7
