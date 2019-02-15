@@ -19,6 +19,9 @@ public class MonsterUI : MonoBehaviour {
     public Image punchIcon;
     public Color punchColor;
 
+    public GameObject mountIcon;
+    public GameObject dismountIcon;
+
     public TMP_Text GameTimerText;
 
     private int NumOfLives;
@@ -83,6 +86,18 @@ public class MonsterUI : MonoBehaviour {
     public void SetVisibilitySlider(float value)
     {
         VisibilitySlider.value = value;
+    }
+
+    public void SetMountIcon(bool b)
+    {
+        //Keep color semi - transparent
+        mountIcon.SetActive(b);
+    }
+
+    public void SetDismountIcon(bool b)
+    {
+        //Keep color semi - transparent
+        dismountIcon.SetActive(b);
     }
 
     public void SetDrainIcon(float dc = 0.35f)
