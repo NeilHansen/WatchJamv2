@@ -16,7 +16,9 @@ public class NetworkPlayer : NetworkBehaviour
     public GameObject prefab_SecurityHud;
 
     public GameObject gamePlayerPrefab;
-    public Transform spawnPosition;
+
+    public float monsterLightNumber = 1.0f;
+    public float securityLightNumber = 0.5f;
 
     private GameObject tempUnit;
 
@@ -33,10 +35,12 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if(playerNumber == 0)
         {
+            RenderSettings.ambientIntensity = monsterLightNumber;
             GameObject.Instantiate(prefab_MonsterHud);
         }
         else
         {
+            RenderSettings.ambientIntensity = securityLightNumber;
             GameObject.Instantiate(prefab_SecurityHud);
         }
     }
@@ -49,26 +53,22 @@ public class NetworkPlayer : NetworkBehaviour
         switch (playerNumber)
         {
             case 0:
-                spawnPosition = GameObject.FindGameObjectWithTag("MonsterSpawn").transform;
-                tempUnit.transform.position = spawnPosition.position;
+                tempUnit.transform.position = GameManager.Instance.GetMonsterSpawnPosition().position;
                 tempUnit.GetComponent<MonsterController>().networkPlayer = this;
                 break;
 
             case 1:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn1").transform;
-                tempUnit.transform.position = spawnPosition.position;
+                tempUnit.transform.position = GameManager.Instance.GetSecurity1SpawnPosition().position;
                 tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
 
             case 2:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn2").transform;
-                tempUnit.transform.position = spawnPosition.position;
+                tempUnit.transform.position = GameManager.Instance.GetSecurity2SpawnPosition().position;
                 tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
 
             case 3:
-                spawnPosition = GameObject.FindGameObjectWithTag("SecuritySpawn3").transform;
-                tempUnit.transform.position = spawnPosition.position;
+                tempUnit.transform.position = GameManager.Instance.GetSecurity3SpawnPosition().position;
                 tempUnit.GetComponent<SecurityController>().networkPlayer = this;
                 break;
         }

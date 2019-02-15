@@ -17,15 +17,6 @@ public class TerminalController : NetworkBehaviour {
         {
             other.GetComponent<MonsterController>().b_terminalInteraction = true;
         }
-
-        if (other.gameObject.tag == "Security")
-        {
-            if(isBroken)
-            {
-                other.GetComponent<SecurityController>().b_terminalInteraction = true;
-                other.GetComponent<SecurityController>().terminalInteraction = gameObject;
-            }
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -33,11 +24,6 @@ public class TerminalController : NetworkBehaviour {
         if (other.gameObject.tag == "Monster")
         {
             other.GetComponent<MonsterController>().b_terminalInteraction = false;
-        }
-
-        if (other.gameObject.tag == "Security")
-        {
-            other.GetComponent<SecurityController>().b_terminalInteraction = false;
         }
     }
 
@@ -48,13 +34,6 @@ public class TerminalController : NetworkBehaviour {
         RpcBreakTerminal();
     }
 
-    [Command]
-    public void CmdReceiveFixTerminal()
-    {
-        isBroken = false;
-        RpcFixTerminal();
-    }
-
     [ClientRpc]
     void RpcBreakTerminal()
     {
@@ -62,14 +41,5 @@ public class TerminalController : NetworkBehaviour {
         GetComponent<bl_MiniMapItem>().SetIconColor(BrokenColor);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
-    }
-
-    [ClientRpc]
-    void RpcFixTerminal()
-    {
-        DoorController.Instance.CheckDoors();
-        GetComponent<bl_MiniMapItem>().SetIconColor(WorkingColor);
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(false);
     }
 }

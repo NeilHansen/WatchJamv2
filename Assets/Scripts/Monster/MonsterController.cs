@@ -154,7 +154,7 @@ public class MonsterController : NetworkBehaviour {
         CmdMinusMonsterLife();
         CmdResetHealth();
         MonsterUI.Instance.ResetMonsterUI();
-        transform.position = GameManager.Instance.spawnPositionMonster.gameObject.transform.position;
+        transform.position = GameManager.Instance.GetMonsterSpawnPosition().position;
         Debug.Log("Respawn Mon");
     }
 

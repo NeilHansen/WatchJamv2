@@ -5,14 +5,16 @@ using Rewired;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 public class SecurityController : NetworkBehaviour
 {
     public NetworkPlayer networkPlayer;
     public Player player;
-    public TerminalFixer tFixer;
     public FlashlightController flashLight;
     public SecurityStunned stun;
+
+    public TMP_Text playerName;
 
     [SyncVar(hook = "OnStunChange")]
     public bool b_isStunned = false;
@@ -22,10 +24,6 @@ public class SecurityController : NetworkBehaviour
     public bool b_OverHeatFlashLight = false;
     public float flashLightUseTime = 5.0f;
     public float flashLightMaxTime = 5.0f;
-
-    public GameObject terminalInteraction;
-    public bool b_terminalInteraction = false;
-    public float TerminalFixTime = 3.0f;
 
     private bl_MiniMap mm;
 
@@ -45,10 +43,11 @@ public class SecurityController : NetworkBehaviour
             GetComponent<bl_MiniMapItem>().enabled = true;
         }
 
+        playerName.text = networkPlayer.playerName;
+
         stun.securityController = this;
 
         //Give Children References
-        tFixer.securityController = this;
         flashLight.securityController = this;
     }
 
@@ -100,25 +99,7 @@ public class SecurityController : NetworkBehaviour
             //Set UI
             SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
         }
-
-        if(b_terminalInteraction)
-        {
-            SecurityUI.Instance.TogglePlayerInteractText(true);
-        }
-        else
-        {
-            SecurityUI.Instance.TogglePlayerInteractText(false);
-        }
     }
-
-    #region Terminal
-    //Saveguard so only the server call
-    [Command]
-    public void CmdSendFixTerminal(GameObject target)
-    {
-        target.GetComponent<TerminalController>().CmdReceiveFixTerminal();
-    }
-    #endregion
 
     #region Flashlight
     //This is a Network command, so the damage is done to the relevant GameObject
