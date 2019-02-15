@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4414649631370222}
   - component: {fileID: 114129294155508018}
   - component: {fileID: 65671655523430160}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: HallWay_XIntersection
   m_TagString: MapPiece
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532773931461396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 37.195053, y: 3.0000002, z: 31.87958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4923988087412882}
@@ -137,11 +137,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532773931461396}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114129294155508018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,3 +156,8 @@ MonoBehaviour:
   type: 4
   localCenter: {x: 0, y: 0, z: 0}
   graphListIndex: -1
+  travelCost: 1
+  accumulatedCost: 0
+  heuristic: 0
+  pathfindingPrevious: {fileID: 0}
+  pathfindingNext: {fileID: 0}

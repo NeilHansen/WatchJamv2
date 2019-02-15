@@ -5,6 +5,8 @@ using MapPieceUtility;
 
 public class MapManager : MonoBehaviour {
 
+    public static MapManager Instance;
+
     //Debug variables
     List<Color> debugLineColours = new List<Color>();
     [SerializeField]
@@ -22,9 +24,20 @@ public class MapManager : MonoBehaviour {
     public GameObject arrowLinePrefab;
     List<GameObject> arrowLineRenderers = new List<GameObject>();
 
-    // Use this for initialization
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     void Start () {
-        mapLayer = LayerMask.GetMask("Walkable"); 
+        mapLayer = LayerMask.GetMask("MapPiece"); 
 
         debugLineColours.Add(Color.red);
         debugLineColours.Add(Color.blue);
@@ -33,7 +46,7 @@ public class MapManager : MonoBehaviour {
         debugLineColours.Add(Color.cyan);
         debugLineColours.Add(Color.yellow);
 
-        foreach (Transform mapPiece in transform)
+        foreach (Transform mapPiece in GameObject.Find("LevelWalls").transform)
         {
             AbstractPiece mapPieceScript = mapPiece.GetComponent<AbstractPiece>();
             mapPieceScript.graphListIndex = MapGraph.Count;
@@ -47,19 +60,8 @@ public class MapManager : MonoBehaviour {
 
         GenerateMapGraph();
 
-        if (pathStart != null && pathEnd != null)
-        {
-            FindPath(pathStart, pathEnd);
-            ShowPath(pathStart);
-        }
-
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     //Generate map graph
     void GenerateMapGraph()
     {
@@ -81,7 +83,7 @@ public class MapManager : MonoBehaviour {
                     Vector3 rayStartPoint = mapPiece.transform.TransformPoint(mapPiece.localCenter);
                     Vector3 rayDirection = mapPiece.transform.TransformDirection(mapPiece.openings[i]);
                     Ray ray = new Ray(rayStartPoint, rayDirection);
-                    if (Physics.Raycast(ray, out hit, 20, mapLayer))
+                    if (Physics.Raycast(ray, out hit, 20, mapLayer, QueryTriggerInteraction.Collide))
                     {
                         //Debug.Log(mapPiece.name + " at " + mapPiece.transform.position + " looking in direction " + rayDirection + " found " + hit.collider.name);
                         AbstractPiece neighbourPiece = hit.collider.GetComponent<AbstractPiece>();
@@ -229,6 +231,26 @@ public class MapManager : MonoBehaviour {
             //Debug.DrawLine(current.transform.TransformPoint(current.localCenter), current.pathfindingNext.transform.TransformPoint(current.pathfindingNext.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
             current = current.pathfindingNext;
             lineColourCount++;
+        }
+    }
+
+    public void ChangePathStart(int index)
+    {
+        pathStart = MapGraph[index];
+        if (pathStart != null && pathEnd != null)
+        {
+            if (FindPath(pathStart, pathEnd))
+                ShowPath(pathStart);
+        }
+    }
+
+    public void ChangePathEnd(int index)
+    {
+        pathEnd = MapGraph[index];
+        if (pathStart != null && pathEnd != null)
+        {
+            if (FindPath(pathStart, pathEnd))
+                ShowPath(pathStart);
         }
     }
 }

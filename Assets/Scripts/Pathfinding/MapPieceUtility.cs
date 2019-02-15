@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace MapPieceUtility
 {
@@ -82,8 +83,19 @@ namespace MapPieceUtility
             pathfindingNext = null;
         }
 
-        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Monster")
+            {
+                MapManager.Instance.ChangePathEnd(graphListIndex);
+            }
+            else if (other.gameObject.tag == "Security" && other.gameObject.GetComponent<NetworkIdentity>().hasAuthority)
+            {
+                MapManager.Instance.ChangePathStart(graphListIndex);
+            }
+        }
 
+        #region Static Functions
         public static void CreateConnection(AbstractPiece piece1, int openingListIndex1, AbstractPiece piece2, int openingListIndex2)
         {
             if (openingListIndex1 >= piece1.openings.Count || openingListIndex2 >= piece2.openings.Count)
@@ -106,10 +118,6 @@ namespace MapPieceUtility
 
             List<GameObject> lines = new List<GameObject>();
 
-            //LineRenderer line = current.gameObject.AddComponent<LineRenderer>();
-            //line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            //line.receiveShadows = false;
-            //line.widthMultiplier = 0.2f;
             if (current.type == PieceType.Curve)
             {
                 float innerArcAngle = (3.0f * Mathf.PI + 2.0f) / (36.0f * Mathf.PI);
@@ -122,7 +130,6 @@ namespace MapPieceUtility
                     {
                         Vector3 point = current.localCenter + 7.5f * new Vector3(-1.0f + Mathf.Cos((-0.25f + innerArcAngle * i) * Mathf.PI), 0.0f, 1.0f + Mathf.Sin((-0.25f + innerArcAngle * i) * Mathf.PI));
                         tempPoints[i] = current.transform.TransformPoint(point);
-                        //line.SetPosition(i, current.transform.TransformPoint(point));
                     }
                 }
                 else if (current.DirectionTowardsIncomingVector(-leavingCurveVector) == 1)
@@ -132,11 +139,9 @@ namespace MapPieceUtility
                     {
                         Vector3 point = current.localCenter + 7.5f * new Vector3(-1.0f + Mathf.Cos((-0.25f - innerArcAngle * i) * Mathf.PI), 0.0f, 1.0f + Mathf.Sin((-0.25f - innerArcAngle * i) * Mathf.PI));
                         tempPoints[i] = current.transform.TransformPoint(point);
-                        //line.SetPosition(i, current.transform.TransformPoint(point));
                     }
                 }
                 tempPoints[3] = next.transform.TransformPoint(next.localCenter);
-                //line.SetPosition(3, next.transform.TransformPoint(next.localCenter));
                 for (int i = 0; i < tempPoints.Length - 1; i++)
                 {
                     GameObject newLine = Instantiate(linePrefab);
@@ -152,7 +157,6 @@ namespace MapPieceUtility
                 float innerArcAngle = (3.0f * Mathf.PI + 2.0f) / (36.0f * Mathf.PI);
                 Vector3[] tempPoints = new Vector3[4];
                 tempPoints[0] = current.transform.TransformPoint(current.localCenter);
-                //line.SetPosition(0, current.transform.TransformPoint(current.localCenter));
                 Vector3 towardsCurveVector = next.transform.TransformPoint(next.localCenter) - current.transform.TransformPoint(current.localCenter);
                 if (next.DirectionTowardsIncomingVector(towardsCurveVector) == 0)
                 {
@@ -161,7 +165,6 @@ namespace MapPieceUtility
                     {
                         Vector3 point = next.localCenter + 7.5f * new Vector3(-1.0f + Mathf.Cos((-outerArcAngle - innerArcAngle * i) * Mathf.PI), 0.0f, 1.0f + Mathf.Sin((-outerArcAngle - innerArcAngle * i) * Mathf.PI));
                         tempPoints[i + 1] = next.transform.TransformPoint(point);
-                        //line.SetPosition(i + 1, next.transform.TransformPoint(point));
                     }
                 }
                 else if (next.DirectionTowardsIncomingVector(towardsCurveVector) == 1)
@@ -171,7 +174,6 @@ namespace MapPieceUtility
                     {
                         Vector3 point = next.localCenter + 7.5f * new Vector3(-1.0f + Mathf.Cos((-0.5f + outerArcAngle + innerArcAngle * i) * Mathf.PI), 0.0f, 1.0f + Mathf.Sin((-0.5f + outerArcAngle + innerArcAngle * i) * Mathf.PI));
                         tempPoints[i + 1] = next.transform.TransformPoint(point);
-                        //line.SetPosition(i + 1, next.transform.TransformPoint(point));
                     }
                 }
                 for (int i = 0; i < tempPoints.Length - 1; i++)
@@ -193,5 +195,6 @@ namespace MapPieceUtility
             }
             return lines;
         }
+        #endregion
     }
 }
