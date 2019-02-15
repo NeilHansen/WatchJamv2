@@ -10,5 +10,6 @@ public class MapEnd : AbstractPiece
         type = PieceType.End;
         localCenter = new Vector3(0.0f, 0.0f, -1.5f);
         AddOpening(Vector3.back);
+        travelCost = 0.0f;
     }
 }

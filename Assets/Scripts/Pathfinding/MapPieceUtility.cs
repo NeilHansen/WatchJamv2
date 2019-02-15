@@ -17,6 +17,7 @@ namespace MapPieceUtility
 
     public abstract class AbstractPiece : MonoBehaviour
     {
+        //Info variables
         [HideInInspector]
         public PieceType type;
         [HideInInspector]
@@ -26,6 +27,18 @@ namespace MapPieceUtility
         public readonly List<AbstractPiece> neighbourPieces = new List<AbstractPiece>();
         [HideInInspector]
         public int graphListIndex = -1;
+
+        //Pathfinding variables
+        [HideInInspector]
+        public float travelCost = 1.0f;
+        //[HideInInspector]
+        public float accumulatedCost = 0.0f;
+        [HideInInspector]
+        public float heuristic = 0.0f;
+        //[HideInInspector]
+        public AbstractPiece pathfindingPrevious = null;
+        //[HideInInspector]
+        public AbstractPiece pathfindingNext = null;
 
         protected void AddOpening(Vector3 direction)
         {
@@ -62,7 +75,14 @@ namespace MapPieceUtility
             return -1;
         }
 
-        public static void ConnectTwoPieces(AbstractPiece piece1, int openingListIndex1, AbstractPiece piece2, int openingListIndex2)
+        public void ResetPathfindingVariables()
+        {
+            accumulatedCost = 0.0f;
+            pathfindingPrevious = null;
+            pathfindingNext = null;
+        }
+
+        public static void CreateConnection(AbstractPiece piece1, int openingListIndex1, AbstractPiece piece2, int openingListIndex2)
         {
             if (openingListIndex1 >= piece1.openings.Count || openingListIndex2 >= piece2.openings.Count)
             {
@@ -74,6 +94,15 @@ namespace MapPieceUtility
             piece2.openingConnected[openingListIndex2] = true;
             piece2.neighbourPieces[openingListIndex2] = piece1;
         }
+
+        public static LineRenderer ShowConnectionToNext(AbstractPiece current, AbstractPiece next)
+        {
+            LineRenderer line = current.gameObject.AddComponent<LineRenderer>();
+            line.widthMultiplier = 0.2f;
+            line.positionCount = 2;
+            line.SetPosition(0, current.transform.TransformPoint(next.localCenter));
+            line.SetPosition(1, current.transform.TransformPoint(next.localCenter));
+            return line;
+        }
     }
-    
 }

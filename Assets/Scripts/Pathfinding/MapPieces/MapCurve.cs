@@ -11,5 +11,6 @@ public class MapCurve : AbstractPiece
         localCenter = new Vector3(2.0f, 0.0f, -2.0f);
         AddOpening(Vector3.forward);
         AddOpening(Vector3.left);
+        travelCost = 4.7f;
     }
 }
