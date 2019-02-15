@@ -19,6 +19,8 @@ public class MapManager : MonoBehaviour {
     bool[] visited;
     bool[] neighbourAdded;
     List<AbstractPiece> neighbouring = new List<AbstractPiece>();
+    public GameObject arrowLinePrefab;
+    List<GameObject> arrowLineRenderers = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
@@ -162,12 +164,14 @@ public class MapManager : MonoBehaviour {
         
         if (foundEnd)
         {
+            
             AbstractPiece current = end;
             while (current.pathfindingPrevious != null)
             {
                 current.pathfindingPrevious.pathfindingNext = current;
                 current = current.pathfindingPrevious;
             }
+            
         }
         else
         {
@@ -221,8 +225,9 @@ public class MapManager : MonoBehaviour {
         int lineColourCount = 0;
         while (current.pathfindingNext != null)
         {
-            //AbstractPiece.ShowConnectionToNext(current, current.pathfindingNext);
-            Debug.DrawLine(current.transform.TransformPoint(current.localCenter), current.pathfindingNext.transform.TransformPoint(current.pathfindingNext.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
+            arrowLineRenderers.AddRange(AbstractPiece.ShowConnectionToNext(current, current.pathfindingNext, arrowLinePrefab));
+            //Debug.DrawLine(current.transform.TransformPoint(current.localCenter), current.pathfindingNext.transform.TransformPoint(current.pathfindingNext.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
+            current = current.pathfindingNext;
             lineColourCount++;
         }
     }

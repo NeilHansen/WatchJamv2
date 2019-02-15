@@ -12674,6 +12674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathStart: {fileID: 592077669}
   pathEnd: {fileID: 1686388102}
+  arrowLinePrefab: {fileID: 1822033098940170, guid: 483baa35b6cad594e81c371ebe305ff9,
+    type: 2}
 --- !u!1001 &1337350729
 Prefab:
   m_ObjectHideFlags: 0
@@ -15992,18 +15994,6 @@ Prefab:
     - target: {fileID: 4972307535224096, guid: 5e32ab971a91e9f499666db9109b008a, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4972307535224096, guid: 5e32ab971a91e9f499666db9109b008a, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1344764726134714, guid: 5e32ab971a91e9f499666db9109b008a, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1635334578836610, guid: 5e32ab971a91e9f499666db9109b008a, type: 2}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e32ab971a91e9f499666db9109b008a, type: 2}
