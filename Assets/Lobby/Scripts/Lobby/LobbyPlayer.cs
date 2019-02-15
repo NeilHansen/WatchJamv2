@@ -17,7 +17,7 @@ namespace Prototype.NetworkLobby
         static List<int> _colorInUse = new List<int>();
 
         public TMP_Dropdown playerChoice;
-        [SyncVar]
+        [SyncVar(hook = "OnMyChoice")]
         public int playerChoiceInt;
 
         public Button colorButton;
@@ -48,7 +48,8 @@ namespace Prototype.NetworkLobby
 
         void Start()
         {
-            playerChoice.onValueChanged.AddListener(delegate {
+            playerChoice.onValueChanged.AddListener(delegate
+            {
                 DropdownValueChanged(playerChoice);
             });
         }
@@ -96,6 +97,7 @@ namespace Prototype.NetworkLobby
             //will be created with the right value currently on server
             OnMyName(playerName);
             OnMyColor(playerColor);
+            OnMyChoice(playerChoiceInt);
         }
 
         public override void OnStartAuthority()
@@ -225,6 +227,12 @@ namespace Prototype.NetworkLobby
         {
             playerColor = newColor;
             colorButton.GetComponent<Image>().color = newColor;
+        }
+
+        public void OnMyChoice(int playerNumber)
+        {
+            playerChoiceInt = playerNumber;
+            playerChoice.value = playerNumber;
         }
 
         //===== UI Handler

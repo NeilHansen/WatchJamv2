@@ -30,6 +30,10 @@ public class MonsterWallMovement : NetworkBehaviour
 
     private Player player;
 
+    private bool frontHit = false;
+    private bool leftHit = false;
+    private bool righthit = false;
+
     // Bit shift the index of the layer (9) to get a bit mask
     private int layerMask = 1 << 9;
 
@@ -67,6 +71,25 @@ public class MonsterWallMovement : NetworkBehaviour
         if (flipping)
             return;
 
+        //UI STUFF
+        if (frontHit || righthit || leftHit)
+        {
+            MonsterUI.Instance.SetMountIcon(true);
+        }
+        else
+        {
+            MonsterUI.Instance.SetMountIcon(false);
+        }
+
+        if (surfaceNormal != Vector3.up)
+        {
+            MonsterUI.Instance.SetDismountIcon(true);
+        }
+        else
+        {
+            MonsterUI.Instance.SetDismountIcon(false);
+        }
+
         Ray ray;
         RaycastHit hit;
         // Drawing ray to see
@@ -75,12 +98,17 @@ public class MonsterWallMovement : NetworkBehaviour
         ray = new Ray(myTransform.position, myTransform.forward);
         if (Physics.Raycast(ray, out hit, flipRange, layerMask))
         {
+            leftHit = true;
             // Wall ahead?
             // Yes: jump to the wall
             if(player.GetButtonDown("WallClimb"))
             {
                 FlipToWall(myTransform.right, hit.point, hit.normal);
             }
+        }
+        else
+        {
+            leftHit = false;
         }
 
         // Drawing ray to see
@@ -89,12 +117,17 @@ public class MonsterWallMovement : NetworkBehaviour
         ray = new Ray(myTransform.position, myTransform.right);
         if (Physics.Raycast(ray, out hit, flipRange, layerMask))
         {
+            righthit = true;
             // Wall ahead?
             // Yes: jump to the wall
             if (player.GetButtonDown("WallClimb"))
             {
                 FlipToWall(myTransform.up, hit.point, hit.normal);
             }
+        }
+        else
+        {
+            righthit = false;
         }
 
         // Drawing ray to see
@@ -103,12 +136,17 @@ public class MonsterWallMovement : NetworkBehaviour
         ray = new Ray(myTransform.position, -myTransform.right);
         if (Physics.Raycast(ray, out hit, flipRange, layerMask))
         {
+            frontHit = true;
             // Wall ahead?
             // Yes: jump to the wall
             if (player.GetButtonDown("WallClimb"))
             {
                 FlipToWall(-myTransform.up, hit.point, hit.normal);
             }
+        }
+        else
+        {
+            frontHit = false;
         }
 
         if (player.GetButtonDown("WallDismount"))
@@ -117,7 +155,6 @@ public class MonsterWallMovement : NetworkBehaviour
             isGrounded = false;
             goingToGround = true;
             StartCoroutine(DismonutFlipTime());
-            // Assume usual ground normal to avoid "falling forever"
 
             //Check if on roof
             onRoof = surfaceNormal == -Vector3.up;

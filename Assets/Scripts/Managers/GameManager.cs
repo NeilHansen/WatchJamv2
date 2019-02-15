@@ -15,10 +15,10 @@ public class GameManager : NetworkBehaviour {
     public GameObject playerHUD;
 
     [Header("Spawn Location")]
-    public Transform spawnPositionMonster;
-    public Transform spawnPositionSecurity1;
-    public Transform spawnPositionSecurity2;
-    public Transform spawnPositionSecurity3;
+    public GameObject[] spawnPositionMonster;
+    public GameObject[] spawnPositionSecurity1;
+    public GameObject[] spawnPositionSecurity2;
+    public GameObject[] spawnPositionSecurity3;
 
     [Header("Game Related Variables")]
     [SyncVar]
@@ -49,7 +49,46 @@ public class GameManager : NetworkBehaviour {
 
     void Start()
     {
+    }
 
+    public Transform GetMonsterSpawnPosition()
+    {
+        if(spawnPositionMonster.Length == 0)
+        {
+            spawnPositionMonster = GameObject.FindGameObjectsWithTag("MonsterSpawn");
+        }
+
+        return spawnPositionMonster[Random.Range(0, spawnPositionMonster.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity1SpawnPosition()
+    {
+        if (spawnPositionMonster.Length == 0)
+        {
+            spawnPositionSecurity1 = GameObject.FindGameObjectsWithTag("SecuritySpawn1");
+        }
+
+        return spawnPositionSecurity1[Random.Range(0, spawnPositionSecurity1.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity2SpawnPosition()
+    {
+        if (spawnPositionMonster.Length == 0)
+        {
+            spawnPositionSecurity2 = GameObject.FindGameObjectsWithTag("SecuritySpawn2");
+        }
+
+        return spawnPositionSecurity2[Random.Range(0, spawnPositionSecurity2.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity3SpawnPosition()
+    {
+        if (spawnPositionMonster.Length == 0)
+        {
+            spawnPositionSecurity3 = GameObject.FindGameObjectsWithTag("SecuritySpawn3");
+        }
+
+        return spawnPositionSecurity3[Random.Range(0, spawnPositionSecurity3.Length - 1)].transform;
     }
 
     // Update is called once per frame

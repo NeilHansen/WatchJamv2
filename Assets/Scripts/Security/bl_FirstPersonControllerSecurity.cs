@@ -67,7 +67,7 @@ namespace UGUIMiniMap
                 m_Camera.transform.localRotation = Quaternion.identity;
                 m_Camera.transform.localPosition = Vector3.zero;
 
-                flashlightTran = GetComponent<SecurityController>().flashLight.gameObject.transform.parent.gameObject;
+                flashlightTran = GetComponent<SecurityController>().flashLight.gameObject;
 
                 m_CharacterController = GetComponent<CharacterController>();
                 m_OriginalCameraPosition = m_Camera.transform.localPosition;

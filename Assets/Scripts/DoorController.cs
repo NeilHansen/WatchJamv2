@@ -6,12 +6,12 @@ using UnityEngine.Networking;
 public class DoorController : NetworkBehaviour {
     public static DoorController Instance;
 
-    public Door[] Gates;
-    public bool DoorOpen = false;
+    public SectorController[] Sectors;
+    private List<SectorController> brokenSectors = new List<SectorController>();
 
-    public TerminalController[] Terminals;
-    public int brokenTerminalCount;
-    public int maxTerminals;
+    public bool isOpen = false;
+    public int brokenSectorCount = 0;
+    public int maxBrokenSectorCount = 3;
 
     // Use this for initialization
     void Awake()
@@ -31,54 +31,48 @@ public class DoorController : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        Gates = GameObject.FindObjectsOfType<Door>();
-        Terminals = GameObject.FindObjectsOfType<TerminalController>();
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
         if(isServer)
         {
-            // CheckDoors();
-            if (brokenTerminalCount >= maxTerminals)
+            if (brokenSectorCount >= maxBrokenSectorCount && !isOpen)
             {
-                Debug.Log("Doors Open");
                 OpenDoors();
-            }
-            else
-            {
-                Debug.Log("Doors Closed");
-                CloseDoors();
             }
         }
 	}
 
-     public void CheckDoors()
+    public void CheckDoors()
     {
-        brokenTerminalCount =0;
-        for(int i =0; i < Terminals.Length  ; i++)
+        brokenSectorCount = 0;
+
+        foreach (SectorController s in Sectors)
         {
-            if (Terminals[i].isBroken)
+            s.CheckTerminals();
+            if (s.brokenTerminals >= 2)
             {
-                 brokenTerminalCount++;   
+                brokenSectorCount += 1;
             }
-        }      
+        }
     }
 
     public void OpenDoors()
     {
-        DoorOpen = true;
-        for (int i = 0; i < Gates.Length; i++)
+        isOpen = true;
+
+        foreach (SectorController s in Sectors)
         {
-            Gates[i].MoveUp();          
+            if (s.brokenTerminals >= 2)
+            {
+                brokenSectors.Add(s);
+            }
         }
-    }
-    public void CloseDoors()
-    {
-        DoorOpen = false;
-        for (int i = 0; i < Gates.Length; i++)
-        {
-            Gates[i].MoveDown();   
-        }
+
+        int randomPick = Random.Range(0, 2);
+
+        brokenSectors[randomPick].OpenDoor();
     }
 }

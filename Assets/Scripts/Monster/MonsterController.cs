@@ -29,6 +29,20 @@ public class MonsterController : NetworkBehaviour {
     public bool isPunching = false;
     public bool punchCooldown = false;
 
+    [SyncVar]
+    public bool Security1InSight = false;
+    [SyncVar]
+    public bool Security2InSight = false;
+    [SyncVar]
+    public bool Security3InSight = false;
+
+    [SyncVar]
+    public bool Security1DoDamage = false;
+    [SyncVar]
+    public bool Security2DoDamage = false;
+    [SyncVar]
+    public bool Security3DoDamage = false;
+
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
     [SyncVar(hook = "OnChangeMonsterAlpha")]
@@ -62,6 +76,20 @@ public class MonsterController : NetworkBehaviour {
     {
         if (!hasAuthority)
             return;
+
+        if (Security1InSight || Security2InSight || Security3InSight)
+        {
+            CmdShowMonster();
+        }
+        else
+        {
+            CmdHideMonster();
+        }
+
+        if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
+        {
+            CmdTakeDamage();
+        }
 
         if (monsterHealth >= 1.0f)
         {
@@ -126,7 +154,7 @@ public class MonsterController : NetworkBehaviour {
         CmdMinusMonsterLife();
         CmdResetHealth();
         MonsterUI.Instance.ResetMonsterUI();
-        transform.position = GameManager.Instance.spawnPositionMonster.gameObject.transform.position;
+        transform.position = GameManager.Instance.GetMonsterSpawnPosition().position;
         Debug.Log("Respawn Mon");
     }
 
@@ -158,6 +186,39 @@ public class MonsterController : NetworkBehaviour {
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
         monsterHealth -= damage;
+    }
+
+    [Command]
+    public void CmdSecurityDamage(int playerNumber, bool b)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                Security1DoDamage = b;
+                break;
+            case 2:
+                Security2DoDamage = b;
+                break;
+            case 3:
+                Security3DoDamage = b;
+                break;
+        }
+    }
+
+    public bool CheckSecurityDamage(int playerNumber)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                return Security1DoDamage;
+            case 2:
+                return Security2DoDamage;
+            case 3:
+                return Security3DoDamage;
+
+            default:
+                return false;
+        }
     }
 
     [Command]
