@@ -19,9 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4972307535224096}
+  - component: {fileID: 114515556324324892}
+  - component: {fileID: 65268333098679512}
   m_Layer: 9
   m_Name: HallWay_Curve
-  m_TagString: Untagged
+  m_TagString: MapPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,3 +130,29 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 83a720da469ae84419e0d78c583a9c35, type: 3}
+--- !u!65 &65268333098679512
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344764726134714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 2, y: 0, z: -2}
+--- !u!114 &114515556324324892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344764726134714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c0c24b10510ee41ab25ca8d7393f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 5
+  localCenter: {x: 2, y: 0, z: -2}
+  graphListIndex: -1

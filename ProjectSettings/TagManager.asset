@@ -15,6 +15,7 @@ TagManager:
   - SecuritySpawn3
   - SecurityCam
   - MiniMap
+  - MapPiece
   layers:
   - Default
   - TransparentFX
