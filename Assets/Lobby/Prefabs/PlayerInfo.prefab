@@ -976,6 +976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLobbyGUI: 0
   playerChoice: {fileID: 114533279320616254}
+  playerChoiceInt: 0
   colorButton: {fileID: 11488840}
   nameInput: {fileID: 11487112}
   readyButton: {fileID: 11413860}
@@ -2171,7 +2172,11 @@ MonoBehaviour:
     m_Options:
     - m_Text: Monster
       m_Image: {fileID: 0}
-    - m_Text: Security
+    - m_Text: Security1
+      m_Image: {fileID: 0}
+    - m_Text: Security2
+      m_Image: {fileID: 0}
+    - m_Text: Security3
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

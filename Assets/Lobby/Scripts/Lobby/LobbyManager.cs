@@ -278,6 +278,7 @@ namespace Prototype.NetworkLobby
             GameObject obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
 
             LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
+            newPlayer.playerChoiceInt = _playerNumber;
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
 
 
@@ -339,12 +340,12 @@ namespace Prototype.NetworkLobby
             player.playerColor = cc.playerColor;
             if (cc.playerChoice.value == 0)
             {
-                player.playerNumber = 0;
+                player.playerNumber = cc.playerChoice.value;
                 player.gamePlayerPrefab = spawnPrefabs[0];
             }
             else
             {
-                player.playerNumber = 1;
+                player.playerNumber = cc.playerChoice.value;
                 player.gamePlayerPrefab = spawnPrefabs[1];
             }
 

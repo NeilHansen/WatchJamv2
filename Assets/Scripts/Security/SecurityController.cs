@@ -62,9 +62,6 @@ public class SecurityController : NetworkBehaviour
             mm.ToggleSize();
         }
 
-        //Flashlight always on. If hits monster show it
-        flashLight.SecurityFlashLight();
-
         //Flashlight UV network handling
         if (player.GetButton("FlashLight") && flashLightUseTime >= 0.0f && !b_OverHeatFlashLight)
         {
@@ -181,9 +178,9 @@ public class SecurityController : NetworkBehaviour
 
     //Make sure that target only takes damage
     [Command]
-    public void CmdDamageTarget(GameObject target)
+    public void CmdDamageTarget(GameObject target, int playerNumber, bool b)
     {
-        target.GetComponent<MonsterController>().CmdTakeDamage();
+        target.GetComponent<MonsterController>().CmdSecurityDamage(playerNumber, b);
     }
 
     //Make sure that target only takes damage
