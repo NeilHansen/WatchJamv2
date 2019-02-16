@@ -1,42 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TerminalController : MonoBehaviour {
+public class TerminalController : NetworkBehaviour {
 
-    public bool isBroken;
+    [SyncVar]
+    public bool isBroken = false;
 
-	// Use this for initialization
-	void Start ()
-    {
-
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	     if(isBroken)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
-        }
-        else
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(1).gameObject.SetActive(false);
-        }
-	}
+    public Color WorkingColor;
+    public Color BrokenColor;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
         {
-            UIManager.Instance.ToggleMonsterInteractText(other.GetComponent<MonsterController>().playerNumber, true);
-        }
-
-        if (other.gameObject.tag == "Security")
-        {
-            UIManager.Instance.TogglePlayerInteractText(other.GetComponent<MonsterController>().playerNumber, true);
+            other.GetComponent<MonsterController>().b_terminalInteraction = true;
         }
     }
 
@@ -44,12 +23,23 @@ public class TerminalController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-            UIManager.Instance.ToggleMonsterInteractText(other.GetComponent<MonsterController>().playerNumber, false);
+            other.GetComponent<MonsterController>().b_terminalInteraction = false;
         }
+    }
 
-        if (other.gameObject.tag == "Security")
-        {
-            UIManager.Instance.TogglePlayerInteractText(other.GetComponent<MonsterController>().playerNumber, false);
-        }
+    [Command]
+    public void CmdReceiveBreakTerminal()
+    {
+        isBroken = true;
+        RpcBreakTerminal();
+    }
+
+    [ClientRpc]
+    void RpcBreakTerminal()
+    {
+        DoorController.Instance.CheckDoors();
+        GetComponent<bl_MiniMapItem>().SetIconColor(BrokenColor);
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 }

@@ -5,38 +5,25 @@ using UnityEngine;
 public class PowerDrain : MonoBehaviour {
 
     public MonsterController monster;
-    private MeshRenderer meshRender;
+
+    public CapsuleCollider drainCollider;
+    public MeshRenderer meshRender;
 
     public Material drainMaterial;
-    private Material defaultMaterial;
-
-    private GameObject hitObject = null;
-    private CapsuleCollider drainCollider;
+    public Material defaultMaterial;
 
     // Use this for initialization
     void Start () {
-        drainCollider = GetComponent<CapsuleCollider>();
-        meshRender = GetComponent<MeshRenderer>();
         defaultMaterial = meshRender.material;
-    }
-
-    // Update is called once per frame
-    void Update () {
-        MonsterDrain();
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Security")
         {
-            hitObject = other.gameObject;
-
-            UIManager.Instance.MonsterDrainUI(monster.playerNumber, monster);
-
-            monster.isHittingPlayer = true;
+            monster.isDrainHitting = true;
             meshRender.material = drainMaterial;
-
-            //Debug.Log(hitObject.gameObject.name + " Draining Power");
+            monster.CmdRemoveDamage();
         }
     }
 
@@ -44,15 +31,13 @@ public class PowerDrain : MonoBehaviour {
     {
         if (other.gameObject.tag == "Security")
         {
-            hitObject = other.gameObject;
-
-            monster.isHittingPlayer = false;
+            monster.isDrainHitting = false;
             meshRender.material = defaultMaterial;
         }
     }
 
     //Handles turning on and off of the drain beam
-    void MonsterDrain()
+    public void MonsterDrain()
     {
         //Monster drain
         if (monster.player.GetButtonDown("Drain") && !monster.isDraining)
@@ -63,7 +48,7 @@ public class PowerDrain : MonoBehaviour {
             meshRender.material = defaultMaterial;
 
             //To stop draining
-            UIManager.Instance.stopDraining(monster.playerNumber, monster);
+            StartCoroutine(stopDraining());
         }
         //is in draining mode
         else if (monster.isDraining && !monster.drainCooldown)
@@ -73,10 +58,32 @@ public class PowerDrain : MonoBehaviour {
         }
         else
         {
+            monster.isDrainHitting = false;
             drainCollider.gameObject.GetComponent<MeshRenderer>().enabled = false;
             drainCollider.enabled = false;
         }
     }
 
+    //To stop draining
+    private IEnumerator stopDraining()
+    {
+        //Keep color semi - transparent
+        MonsterUI.Instance.SetDrainIcon();
 
+        yield return new WaitForSeconds(monster.drainLength);
+
+        //Keep transparent when on cooldown
+        MonsterUI.Instance.SetDrainIcon();
+
+        monster.isDrainHitting = false;
+        monster.drainCooldown = true;
+
+        yield return new WaitForSeconds(monster.drainCooldownLength);
+
+        //Turn off
+        MonsterUI.Instance.SetDrainIcon(1.0f);
+
+        monster.isDraining = false;
+        monster.drainCooldown = false;
+    }
 }

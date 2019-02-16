@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33195604341237218}
   - component: {fileID: 23113661471688104}
   - component: {fileID: 65632099346048082}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Exit Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

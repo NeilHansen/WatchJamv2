@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class MonsterController : MonoBehaviour {
-
-    public int playerNumber;
-    public int controllerNumber;
+public class MonsterController : NetworkBehaviour {
+    public NetworkPlayer networkPlayer;
     public Player player;
-    public Camera fpsCamera;
-
-    //Movement and Rotation Varaibles
-    public float speed = 5.0f;
-    public float rotSpeed = 90.0f;
-    public float FOVmin = -30.0f;
-    public float FOVmax = 30.0f;
 
     public PowerDrain powerDrain;
     public PowerPunch powerPunch;
@@ -28,21 +20,48 @@ public class MonsterController : MonoBehaviour {
     public float drainLength = 3.0f;
     public float drainCooldownLength = 3.0f;
 
-    public bool isHittingPlayer = false;
+    public bool isDrainHitting = false;
+
+    public bool b_terminalInteraction = false;
 
     public bool isDraining = false;
     public bool drainCooldown = false;
     public bool isPunching = false;
     public bool punchCooldown = false;
 
+    [SyncVar]
+    public bool Security1InSight = false;
+    [SyncVar]
+    public bool Security2InSight = false;
+    [SyncVar]
+    public bool Security3InSight = false;
+
+    [SyncVar]
+    public bool Security1DoDamage = false;
+    [SyncVar]
+    public bool Security2DoDamage = false;
+    [SyncVar]
+    public bool Security3DoDamage = false;
+
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
+    [SyncVar(hook = "OnChangeMonsterAlpha")]
+    public float monsterHealth = 0.0f;
+    public float monsterAlphaWhenSeen = 0.35f;
 
-    public Material monsterMaterial;
-    public Color monsterColor;
+    private Material monsterMaterial;
+    private Color monsterColor;
+
+    private bl_MiniMap mm;
 
     // Use this for initialization
     void Start () {
+        if(hasAuthority)
+        {
+            //Set MiniMap
+            mm = FindObjectOfType<bl_MiniMap>();
+        }
+
         //Give children a reference to this script
         powerDrain.monster = this;
         powerPunch.monster = this;
@@ -53,51 +72,195 @@ public class MonsterController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        InputHandler();
-	}
-
-    public void Init(int playerN, int controllerN)
+	void Update ()
     {
-        //Assign Variables
-        playerNumber = playerN;
-        controllerNumber = controllerN;
+        if (!hasAuthority)
+            return;
 
-        //Set Controls and display to right screen
-        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
-        fpsCamera.targetDisplay = playerNumber;
-    }
-
-    void InputHandler()
-    {
-        //Simple Movement
-        transform.Translate(player.GetAxis("VerticalMove") * Time.deltaTime * speed, 0.0f, player.GetAxis("HorizontalMove") * Time.deltaTime * speed);
-
-        //Converting Angles to negation
-        float currentRotationX = fpsCamera.transform.localEulerAngles.x;
-        currentRotationX = (currentRotationX > 180) ? currentRotationX - 360 : currentRotationX;
-
-        //Left and right rotation
-        transform.Rotate(0.0f, player.GetAxis("RotHorizontal") * rotSpeed * Time.deltaTime, 0.0f);
-
-        //Looking Up
-        if(player.GetAxis("RotVertical") > 0)
+        if (Security1InSight || Security2InSight || Security3InSight)
         {
-            //Check if greater then our FOVmin
-            if (!(currentRotationX <= FOVmin))
-            {
-                fpsCamera.transform.Rotate(player.GetAxis("RotVertical") * rotSpeed * Time.deltaTime * -1.0f, 0.0f, 0.0f);
-            }
+            CmdShowMonster();
+        }
+        else
+        {
+            CmdHideMonster();
         }
 
-        //Looking Down
-        if (player.GetAxis("RotVertical") < 0)
+        if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
         {
-            //Check if were greater then our FOVmax
-            if (!(currentRotationX >= FOVmax))
+            CmdTakeDamage();
+        }
+
+        if (monsterHealth >= 1.0f)
+        {
+            monsterHealth = 0.0f;
+            ResetMonster();
+        }
+
+        if (player.GetButtonDown("MiniMap"))
+        {
+            mm.ToggleSize();
+        }
+
+        powerPunch.MonsterPunch();
+        powerDrain.MonsterDrain();
+
+        if (b_terminalInteraction)
+        {
+            MonsterUI.Instance.ToggleMonsterInteractText(true);
+        }
+        else
+        {
+            MonsterUI.Instance.ToggleMonsterInteractText(false);
+        }
+    }
+
+    public void TerminalInteractionOn()
+    {
+        SecurityUI.Instance.TogglePlayerInteractText(true);
+    }
+
+    public void TerminalInteractionOff()
+    {
+        SecurityUI.Instance.TogglePlayerInteractText(false);
+    }
+
+    void OnChangeMonsterAlpha(float alpha)
+    {
+        //Bug current alpha doesn't replicate across
+        monsterHealth = alpha;
+
+        if (alpha > 0.0)
+        {
+            if (hasAuthority)
             {
-                fpsCamera.transform.Rotate(player.GetAxis("RotVertical") * rotSpeed * Time.deltaTime * -1.0f, 0.0f, 0.0f);
+                MonsterUI.Instance.SetMonsterSeenIcon(true);
+                MonsterUI.Instance.SetVisibilitySlider(alpha);
+            }
+        }
+        else
+        {
+            if (hasAuthority)
+            {
+                MonsterUI.Instance.SetMonsterSeenIcon(false);
+                MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
         }
     }
+
+    //Repspawn player in right position
+    public void ResetMonster()
+    {
+        CmdMinusMonsterLife();
+        CmdResetHealth();
+        MonsterUI.Instance.ResetMonsterUI();
+        transform.position = GameManager.Instance.GetMonsterSpawnPosition().position;
+        Debug.Log("Respawn Mon");
+    }
+
+    //For reseting the monster
+    [Command]
+    public void CmdMinusMonsterLife()
+    {
+        GameManager.Instance.MinusMonsterLife();
+    }
+
+    //For reseting the monster
+    [Command]
+    public void CmdResetHealth()
+    {
+        monsterHealth = 0.0f;
+    }
+
+    #region Drain and Flashlight
+    //This is a Network command, so the damage is done to the relevant GameObject
+    [Command]
+    public void CmdTakeDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        monsterHealth += damage;
+    }
+
+    [Command]
+    public void CmdRemoveDamage()
+    {
+        float damage = materialAlphaChangeRate * Time.deltaTime;
+        monsterHealth -= damage;
+    }
+
+    [Command]
+    public void CmdSecurityDamage(int playerNumber, bool b)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                Security1DoDamage = b;
+                break;
+            case 2:
+                Security2DoDamage = b;
+                break;
+            case 3:
+                Security3DoDamage = b;
+                break;
+        }
+    }
+
+    public bool CheckSecurityDamage(int playerNumber)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                return Security1DoDamage;
+            case 2:
+                return Security2DoDamage;
+            case 3:
+                return Security3DoDamage;
+
+            default:
+                return false;
+        }
+    }
+
+    [Command]
+    public void CmdShowMonster()
+    {
+        RpcShowMonster();
+    }
+
+    [Command]
+    public void CmdHideMonster()
+    {
+        RpcHideMonster();
+    }
+
+    [ClientRpc]
+    public void RpcShowMonster()
+    {
+        monsterColor.a = monsterAlphaWhenSeen;
+        monsterMaterial.color = monsterColor;
+    }
+
+    [ClientRpc]
+    public void RpcHideMonster()
+    {
+        monsterColor.a = 0;
+        monsterMaterial.color = monsterColor;
+    }
+    #endregion
+
+    #region Monster Punch
+    //Saveguard so only the server call
+    [Command]
+    public void CmdStunTarget(GameObject target)
+    {
+        target.GetComponent<SecurityController>().CmdReceivePunch();
+    }
+
+    //Saveguard so only the server call
+    [Command]
+    public void CmdSendBreakTerminal(GameObject target)
+    {
+        target.GetComponent<TerminalController>().CmdReceiveBreakTerminal();
+    }
+    #endregion
 }

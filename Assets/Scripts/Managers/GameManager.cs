@@ -1,43 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
     public static GameManager Instance;
 
     [Header("Player References")]
-    public GameObject monsterGameObject;
-    public MonsterController monsterController;
-
-    public List<GameObject> players = new List<GameObject>();
-    public List<PlayerController> playerControllers = new List<PlayerController>();
+    public GameObject localPlayer;
 
     [Header("Prefab Variables")]
-    public GameObject monsterPrefab;
-    public GameObject playerPrefab;
-
     public GameObject monsterHUD;
     public GameObject playerHUD;
 
-    [Header("Spawn Locations")]
-    public Transform monsterSpawnLocation;
-    public Transform playerSpawnLocation1;
-    public Transform playerSpawnLocation2;
-    public Transform playerSpawnLocation3;
-
-    [Header("Init Variables")]
-    public GameObject interactables;
+    [Header("Spawn Location")]
+    public GameObject[] spawnPositionMonster;
+    public GameObject[] spawnPositionSecurity1;
+    public GameObject[] spawnPositionSecurity2;
+    public GameObject[] spawnPositionSecurity3;
 
     [Header("Game Related Variables")]
-    public int MonsterNumOfLives = 1;
+    [SyncVar]
+    public float GameTimer = 0.0f;
 
+    [SyncVar]
+    public int MonsterNumOfLives = 3;
+    [SyncVar]
+    public bool MonsterWins = false;
+    [SyncVar]
+    public bool SecurityWins = false;
     public bool reset = false;
-
-    private int monsterPlayerNumber = 0;
-    private int player1Number = 1;
-    private int player2Number = 2;
-    private int player3Number = 3;
 
     // Use this for initialization
     void Awake () {
@@ -56,85 +49,75 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        SetupGame();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //GameOver
-        if (MonsterNumOfLives <= 0)
+
+    public Transform GetMonsterSpawnPosition()
+    {
+        if(spawnPositionMonster.Length == 0)
+        {
+            spawnPositionMonster = GameObject.FindGameObjectsWithTag("MonsterSpawn");
+        }
+
+        return spawnPositionMonster[Random.Range(0, spawnPositionMonster.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity1SpawnPosition()
+    {
+        if (spawnPositionSecurity1.Length == 0)
+        {
+            spawnPositionSecurity1 = GameObject.FindGameObjectsWithTag("SecuritySpawn1");
+        }
+
+        return spawnPositionSecurity1[Random.Range(0, spawnPositionSecurity1.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity2SpawnPosition()
+    {
+        if (spawnPositionSecurity2.Length == 0)
+        {
+            spawnPositionSecurity2 = GameObject.FindGameObjectsWithTag("SecuritySpawn2");
+        }
+
+        return spawnPositionSecurity2[Random.Range(0, spawnPositionSecurity2.Length - 1)].transform;
+    }
+
+    public Transform GetSecurity3SpawnPosition()
+    {
+        if (spawnPositionSecurity3.Length == 0)
+        {
+            spawnPositionSecurity3 = GameObject.FindGameObjectsWithTag("SecuritySpawn3");
+        }
+
+        return spawnPositionSecurity3[Random.Range(0, spawnPositionSecurity3.Length - 1)].transform;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if(GameTimer >= 0.0f)
+        {
+            GameTimer += Time.deltaTime;
+            if (MonsterNumOfLives <= 0)
+            {
+                SecurityWins = true;
+                Debug.Log("Game Over Monster");
+            }
+        }
+
+        if(SecurityWins || MonsterWins)
         {
             Time.timeScale = 0.0f;
+            Debug.Log("Security Wins");
         }
     }
 
-    //Setup UI before player spawn to set all variables
-    public void SetupGame()
+    [Command]
+    public void CmdMonsterWins()
     {
-        //For Dev purposes - If you only have one controller
-        monsterPlayerNumber = LobbyManager.Instance.monsterPlayerNumber;
-        player1Number = LobbyManager.Instance.player1Number;
-        player2Number = LobbyManager.Instance.player2Number;
-        player3Number = LobbyManager.Instance.player3Number;
-
-        SpawnUI();
-        SpawnPlayers();
-        interactables.SetActive(true);
+        MonsterWins = true;
     }
 
-    //Spawn all players including monster
-    public void SpawnPlayers()
+    public void MinusMonsterLife()
     {
-        //Spawn the monster and players
-        monsterGameObject = GameObject.Instantiate(monsterPrefab, monsterSpawnLocation.position, monsterSpawnLocation.rotation);
-        monsterController = monsterGameObject.GetComponent<MonsterController>();
-
-        players.Add(GameObject.Instantiate(playerPrefab, playerSpawnLocation1.position, playerSpawnLocation1.rotation));
-        players.Add(GameObject.Instantiate(playerPrefab, playerSpawnLocation2.position, playerSpawnLocation2.rotation));
-        players.Add(GameObject.Instantiate(playerPrefab, playerSpawnLocation3.position, playerSpawnLocation3.rotation));
-
-        for(int i = 0; i < players.Count; i++)
-        {
-            playerControllers.Add(players[i].GetComponent<PlayerController>());
-        }
-
-        //Init controllers to set display and variables
-        monsterController.Init(monsterPlayerNumber, LobbyManager.Instance.playerNumbers[monsterPlayerNumber]);
-        playerControllers[0].Init(player1Number, LobbyManager.Instance.playerNumbers[player1Number]);
-        playerControllers[1].Init(player2Number, LobbyManager.Instance.playerNumbers[player2Number]);
-        playerControllers[2].Init(player3Number, LobbyManager.Instance.playerNumbers[player3Number]);
-    }
-
-    //Setup UI
-    public void SpawnUI()
-    {
-        GameObject hud1 = GameObject.Instantiate(monsterHUD, UIManager.Instance.transform);
-        GameObject hud2 = GameObject.Instantiate(playerHUD, UIManager.Instance.transform);
-        GameObject hud3 = GameObject.Instantiate(playerHUD, UIManager.Instance.transform);
-        GameObject hud4 = GameObject.Instantiate(playerHUD, UIManager.Instance.transform);
-
-        //Init Hud to set display and variables
-        hud1.GetComponent<MonsterUI>().InitUI(monsterPlayerNumber);
-        hud2.GetComponent<PlayerUI>().InitUI(player1Number);
-        hud3.GetComponent<PlayerUI>().InitUI(player2Number);
-        hud4.GetComponent<PlayerUI>().InitUI(player3Number);
-
-        //Settings map manager variables that are in the scene
-        MapManager.Instance.Hud = hud1.GetComponent<RectTransform>();
-        MapManager.Instance.mapRect = hud1.transform.GetChild(1).gameObject.GetComponent<RectTransform>();
-
-        MapManager.Instance.monsterMap = hud1.transform.GetChild(1).gameObject;
-        MapManager.Instance.playerMap1 = hud2.transform.GetChild(1).gameObject;
-        MapManager.Instance.playerMap2 = hud3.transform.GetChild(1).gameObject;
-        MapManager.Instance.playerMap3 = hud4.transform.GetChild(1).gameObject;
-
-        //Set the terrain size so minimap works
-        MapManager.Instance.SetTerrainSize();
-    }
-
-    public void Reset()
-    {
-        monsterGameObject.transform.position = monsterSpawnLocation.gameObject.transform.position;
-        Debug.Log("Respawn");
+        MonsterNumOfLives -= 1;
     }
 }

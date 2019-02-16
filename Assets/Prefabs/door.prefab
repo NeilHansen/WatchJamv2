@@ -19,12 +19,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4697139467431712}
+  - component: {fileID: 114366631884082342}
+  - component: {fileID: 114346313682330944}
   - component: {fileID: 33962264647961428}
   - component: {fileID: 23056066313607922}
   - component: {fileID: 65146028496844864}
   - component: {fileID: 114005523506704152}
-  - component: {fileID: 114382160289923272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,13 +38,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982157401967020}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 69.75001, y: 1.52, z: 5.779997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: 1.2, z: 36.88}
   m_LocalScale: {x: 4.500002, y: 4, z: 0.50000024}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23056066313607922
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -112,7 +113,7 @@ MonoBehaviour:
   height: 4
   speed: 4
   movingUp: 0
---- !u!114 &114382160289923272
+--- !u!114 &114346313682330944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,14 +121,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 1982157401967020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a4b06e4d220304c8c0a3f7fbc16d1e, type: 3}
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteEnum: 3
-  display: 3
-  color: {r: 1, g: 0, b: 0, a: 1}
-  PlayerBlip: {fileID: 0}
-  MonsterBlips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114366631884082342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982157401967020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 175
+    i1: 104
+    i2: 253
+    i3: 48
+    i4: 227
+    i5: 112
+    i6: 59
+    i7: 52
+    i8: 104
+    i9: 90
+    i10: 241
+    i11: 226
+    i12: 8
+    i13: 150
+    i14: 41
+    i15: 126
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

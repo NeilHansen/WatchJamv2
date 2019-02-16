@@ -1,22 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DoorController : MonoBehaviour {
+public class DoorController : NetworkBehaviour {
     public static DoorController Instance;
 
-    public Door[] Gates;
-    public SecurtySystem[] alarm;
-    public bool DoorOpen = false;
+    public SectorController[] Sectors;
+    private List<SectorController> brokenSectors = new List<SectorController>();
 
-    public GameObject path;
-    public GameObject seenUI;
-
-    public AudioSource alarmSound;
-
-    public TerminalController[] Terminals;
-    public int brokenTerminalCount;
-    public int maxTerminals;
+    public bool isOpen = false;
+    public int brokenSectorCount = 0;
+    public int maxBrokenSectorCount = 3;
 
     // Use this for initialization
     void Awake()
@@ -36,128 +31,48 @@ public class DoorController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Gates = GameObject.FindObjectsOfType<Door>();
-         alarm = GameObject.FindObjectsOfType<SecurtySystem>();
-        // alarm = GameObject.FindGameObjectsWithTag("SecuritySystem")GetComponent<SecurtySystem>();
-        Terminals = GameObject.FindObjectsOfType<TerminalController>();
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-       // CheckDoors();
-        if(brokenTerminalCount >= maxTerminals)
+        if(isServer)
         {
-            Debug.Log("Doors Open");
-            OpenDoors();
+            if (brokenSectorCount >= maxBrokenSectorCount && !isOpen)
+            {
+                OpenDoors();
+            }
         }
-        else
-        {
-            Debug.Log("Doors Closed");
-            CloseDoors();
-        }
-
-      
-		
 	}
 
-     public void CheckDoors()
+    public void CheckDoors()
     {
-        brokenTerminalCount =0;
-        Debug.Log(Terminals.Length);
-        for(int i =0; i < Terminals.Length  ; i++)
-        {
-            //int tempBrokenTerminalCount = 0;
-            if (Terminals[i].isBroken)
-            {
+        brokenSectorCount = 0;
 
-                 brokenTerminalCount ++;
-                
-               // 
-               // brokenTerminalCount = tempBrokenTerminalCount;
-            }
-            else
+        foreach (SectorController s in Sectors)
+        {
+            s.CheckTerminals();
+            if (s.brokenTerminals >= 2)
             {
-               // brokenTerminalCount--;
+                brokenSectorCount += 1;
             }
         }
-
-        foreach(TerminalController terminal in Terminals)
-        {
-            int tempBrokenTerminalCount = brokenTerminalCount;
-            if (terminal.isBroken)
-            {
-                //int tempBrokenTerminalCount = brokenTerminalCount -1;
-               // tempBrokenTerminalCount +=1;
-              //  brokenTerminalCount = tempBrokenTerminalCount;
-            }
-        }
-        
     }
 
     public void OpenDoors()
     {
-        DoorOpen = true;
-        // Debug.Log("OpeningDoors1");
-        for (int i = 0; i < Gates.Length; i++)
-        {
-            Gates[i].MoveUp();
-            // Debug.Log("OpeningDoors");
-            
-        }
+        isOpen = true;
 
-        for (int i = 0; i < alarm.Length; i++)
+        foreach (SectorController s in Sectors)
         {
-            //alarm[i].alarmOff();
-            //alarm[i].alarmIncrease = false;
-        }
-        //alarmSound.Stop();
-    }
-    public void CloseDoors()
-    {
-        DoorOpen = false;
-       
-        for (int i = 0; i < Gates.Length; i++)
-        {
-            Gates[i].MoveDown();
-           
-            
-        }
-
-        for (int i = 0; i < alarm.Length; i++)
-        {
-           // alarm[i].alarmOn();
-            //alarm[i].alarmIncrease = true;
-        }
-
-       // alarmSound.Play();
-    }
-
-    public void UpdateDoors()
-    {
-       
-        Debug.Log(DoorOpen);
-        if (DoorOpen)
-        {
-            for (int i = 0; i < alarm.Length; i++)
+            if (s.brokenTerminals >= 2)
             {
-                alarm[i].alarmOff();
-               //alarm[i].alarmIncrease = false;
+                brokenSectors.Add(s);
             }
+        }
 
-            OpenDoors();
-        }
-        else
-        {
-            for (int i = 0; i < alarm.Length; i++)
-            {
-                alarm[i].alarmOn();
-                //alarm[i].alarmIncrease = true;
-            }
-            
-            CloseDoors();
-        }
-        // DoorSwitch = false;
-      
+        int randomPick = Random.Range(0, 2);
+
+        brokenSectors[randomPick].OpenDoor();
     }
-
 }
