@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewLevels/MainLevelNew Neil.unity
     guid: e671579854993d343bf3030a012649ee
+  - enabled: 1
+    path: Assets/WillsSIIIICKNewMap.unity
+    guid: 581d1c68e44e4104894d6e2ad84f83cf
   m_configObjects: {}

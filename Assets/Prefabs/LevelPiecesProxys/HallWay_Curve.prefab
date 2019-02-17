@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4051955005298456}
   - component: {fileID: 33406781911601230}
   - component: {fileID: 23180273192299334}
+  - component: {fileID: 64467928379424250}
   m_Layer: 0
   m_Name: HallWay_Curve
   m_TagString: Untagged
@@ -112,4 +113,18 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635334578836610}
+  m_Mesh: {fileID: 4300000, guid: 83a720da469ae84419e0d78c583a9c35, type: 3}
+--- !u!64 &64467928379424250
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635334578836610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 83a720da469ae84419e0d78c583a9c35, type: 3}

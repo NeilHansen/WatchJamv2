@@ -23,6 +23,7 @@ public class GameManager : NetworkBehaviour {
     [Header("Game Related Variables")]
     [SyncVar]
     public float GameTimer = 0.0f;
+
     [SyncVar]
     public int MonsterNumOfLives = 3;
     [SyncVar]
@@ -70,31 +71,14 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    //Repspawn player in right position
-    public void ResetMonster()
-    {
-        CmdMinusMonsterLife();
-        localPlayer.GetComponent<MonsterController>().CmdResetAlpha();
-        MonsterUI.Instance.ResetMonsterUI();
-        localPlayer.transform.position = spawnPositionMonster.gameObject.transform.position;
-        Debug.Log("Respawn Mon");
-    }
-
     [Command]
     public void CmdMonsterWins()
     {
         MonsterWins = true;
     }
 
-    [Command]
-    public void CmdMinusMonsterLife()
+    public void MinusMonsterLife()
     {
-        RpcMinusMonsterLife();
-    }
-
-    [ClientRpc]
-    public void RpcMinusMonsterLife()
-    {
-        GameManager.Instance.MonsterNumOfLives -= 1;
+        MonsterNumOfLives -= 1;
     }
 }

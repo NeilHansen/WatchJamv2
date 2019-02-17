@@ -62,14 +62,17 @@ public class SecurityController : NetworkBehaviour
             mm.ToggleSize();
         }
 
-        //Flashlight network handling
+        //Flashlight always on. If hits monster show it
+        flashLight.SecurityFlashLight();
+
+        //Flashlight UV network handling
         if (player.GetButton("FlashLight") && flashLightUseTime >= 0.0f && !b_OverHeatFlashLight)
         {
-            CmdTurnLightOn();
+            CmdTurnUVLightOn();
         }
         else
         {
-            CmdTurnLightOff();
+            CmdTurnUVLightOff();
             SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
         }
 
@@ -84,7 +87,7 @@ public class SecurityController : NetworkBehaviour
         {
             if(flashLightUseTime <= 0.0f && !b_OverHeatFlashLight)
             {
-                CmdOverHeartOff();
+                CmdOverHeatOff();
             }
 
             //If we used anything then keep refilling it
@@ -94,7 +97,7 @@ public class SecurityController : NetworkBehaviour
             }
             else
             {
-                CmdOverHeartOn();
+                CmdOverHeatOn();
             }
 
             //Set UI
@@ -123,55 +126,55 @@ public class SecurityController : NetworkBehaviour
     #region Flashlight
     //This is a Network command, so the damage is done to the relevant GameObject
     [Command]
-    public void CmdTurnLightOn()
+    public void CmdTurnUVLightOn()
     {
-        RpcTurnLightOn();
-        flashLight.SecurityFlashLightOn();
+        RpcTurnUVLightOn();
+        flashLight.SecurityUVFlashLightOn();
     }
 
     [Command]
-    public void CmdTurnLightOff()
+    public void CmdTurnUVLightOff()
     {
-        RpcTurnLightOff();
-        flashLight.SecurityFlashLightOff();
+        RpcTurnUVLightOff();
+        flashLight.SecurityUVFlashLightOff();
     }
 
     //OverHeat
     [Command]
-    public void CmdOverHeartOn()
+    public void CmdOverHeatOn()
     {
-        RpcOverHeartOn();
+        RpcOverHeatOn();
         b_OverHeatFlashLight = false;
     }
 
     [Command]
-    public void CmdOverHeartOff()
+    public void CmdOverHeatOff()
     {
-        RpcOverHeartOff();
+        RpcOverHeatOff();
         b_OverHeatFlashLight = true;
     }
 
     [ClientRpc]
-    public void RpcTurnLightOn()
+    public void RpcTurnUVLightOn()
     {
-        flashLight.TurnVioletOn();
+        flashLight.TurnUVOn();
     }
 
     [ClientRpc]
-    void RpcTurnLightOff()
+    void RpcTurnUVLightOff()
     {
-        flashLight.TurnVioletOff();
+        flashLight.TurnUVOff();
     }
 
     //OverHeat
     [ClientRpc]
-    public void RpcOverHeartOn()
+    public void RpcOverHeatOn()
     {
         flashLight.ToggleFlashLightOn();
     }
 
     [ClientRpc]
-    void RpcOverHeartOff()
+    void RpcOverHeatOff()
     {
         flashLight.ToggleFlashLightOff();
     }
@@ -181,6 +184,19 @@ public class SecurityController : NetworkBehaviour
     public void CmdDamageTarget(GameObject target)
     {
         target.GetComponent<MonsterController>().CmdTakeDamage();
+    }
+
+    //Make sure that target only takes damage
+    [Command]
+    public void CmdShowMonster(GameObject target)
+    {
+        target.GetComponent<MonsterController>().CmdShowMonster();
+    }
+
+    [Command]
+    public void CmdHideMonster(GameObject target)
+    {
+        target.GetComponent<MonsterController>().CmdHideMonster();
     }
     #endregion
 

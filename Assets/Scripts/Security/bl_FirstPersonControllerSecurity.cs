@@ -10,6 +10,7 @@ namespace UGUIMiniMap
     [RequireComponent(typeof (AudioSource))]
     public class bl_FirstPersonControllerSecurity : NetworkBehaviour
     {
+        public GameObject CameraPosition;
         [SerializeField]private bool is2D = false;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -65,7 +66,7 @@ namespace UGUIMiniMap
                 m_Camera = Camera.main;
                 m_Camera.transform.SetParent(this.transform);
                 m_Camera.transform.localRotation = Quaternion.identity;
-                m_Camera.transform.localPosition = Vector3.zero;
+                m_Camera.transform.position = CameraPosition.transform.position;
 
                 flashlightTran = GetComponent<SecurityController>().flashLight.gameObject.transform.parent.gameObject;
 

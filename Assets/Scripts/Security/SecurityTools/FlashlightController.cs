@@ -14,19 +14,46 @@ public class FlashlightController : MonoBehaviour
     public float flashlightRange = 10.0f;
     public float raycastRadius = 0.2f;
 
+    public Light lenseLight;
+    private Color lenseLightDefault;
+    public Color UVLightColor;
+
+    private MonsterController monster;
+
     // Use this for initialization
     void Start () {
+        lenseLightDefault = lenseLight.color;
         flashMeshRender.enabled = false;
 	}
 
     //For Normal Light(Always on)
-    public void SecurityFlashLightOn()
+    public void SecurityFlashLight()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(origin.transform.position, raycastRadius, origin.transform.forward, out hit, flashlightRange))
+        {
+            if (hit.collider.tag == "Monster")
+            {
+                monster = hit.collider.gameObject.GetComponent<MonsterController>();
+                securityController.CmdShowMonster(monster.gameObject);
+            }
+            else if(monster != null)
+            {
+                securityController.CmdHideMonster(monster.gameObject);
+                //Reset so we don't keep calling this
+                monster = null;
+            }
+        }
+    }
+
+    //For UV Light
+    public void SecurityUVFlashLightOn()
     {
         //As long as we still have time keep on
         if (!(securityController.flashLightUseTime <= 0.0f))
         {
             // Drawing ray to see
-            Debug.DrawRay(origin.transform.position, origin.transform.forward * flashlightRange, Color.yellow);
+            Debug.DrawRay(origin.transform.position, origin.transform.forward * flashlightRange, Color.cyan);
 
             RaycastHit hit;
             if (Physics.SphereCast(origin.transform.position, raycastRadius, origin.transform.forward, out hit, flashlightRange))
@@ -37,20 +64,20 @@ public class FlashlightController : MonoBehaviour
                 }
             }
 
-            TurnVioletOn();
+            TurnUVOn();
             securityController.b_UsingFlashLight = true;
         }
         //Turn off
         else
         {
-            securityController.CmdTurnLightOff();
+            securityController.CmdTurnUVLightOff();
             securityController.b_UsingFlashLight = false;
         }
     }
 
-    public void SecurityFlashLightOff()
+    public void SecurityUVFlashLightOff()
     {
-        TurnVioletOff();
+        TurnUVOff();
         securityController.b_UsingFlashLight = false;
     }
 
@@ -65,13 +92,15 @@ public class FlashlightController : MonoBehaviour
     }
 
     //For Violet Light
-    public void TurnVioletOn()
+    public void TurnUVOn()
     {
+        lenseLight.color = UVLightColor;
         flashMeshRender.enabled = true;
     }
 
-    public void TurnVioletOff()
+    public void TurnUVOff()
     {
+        lenseLight.color = lenseLightDefault;
         flashMeshRender.enabled = false;
     }
 }

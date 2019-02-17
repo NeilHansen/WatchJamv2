@@ -65,7 +65,6 @@ public class MonsterUI : MonoBehaviour {
     public void ResetMonsterUI()
     {
         VisibilitySlider.value = 0.0f;
-        livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
     }
 
     //Turn on/off interaction text when hitting terminal

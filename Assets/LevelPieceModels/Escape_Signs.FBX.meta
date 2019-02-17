@@ -36,6 +36,9 @@ ModelImporter:
     4300000: Studio_Walls
     4300002: Ground_Plane
     4300004: SIGNS
+    6400000: Ground_Plane
+    6400002: SIGNS
+    6400004: Studio_Walls
     7400000: Take 001
     9500000: //RootNode
     6000828045688606266: VRayPhysicalCamera01
@@ -72,7 +75,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
