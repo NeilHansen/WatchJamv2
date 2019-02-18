@@ -79,6 +79,7 @@ namespace MapPieceUtility
         public void ResetPathfindingVariables()
         {
             accumulatedCost = 0.0f;
+            heuristic = 0.0f;
             pathfindingPrevious = null;
             pathfindingNext = null;
         }
