@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour {
     bool[] visited;
     bool[] neighbourAdded;
     List<AbstractPiece> neighbouring = new List<AbstractPiece>();
+    //Path display variables
     public GameObject arrowLinePrefab;
     List<GameObject> arrowLineRenderers = new List<GameObject>();
 
@@ -60,6 +61,8 @@ public class MapManager : MonoBehaviour {
 
         GenerateMapGraph();
 
+        if (FindPath(pathStart, pathEnd))
+            ShowPath(pathStart);
     }
 	
     //Generate map graph
@@ -120,7 +123,8 @@ public class MapManager : MonoBehaviour {
     //Returns true if path was found, returns false elsewise (including conditions where start equals end)
     bool FindPath(AbstractPiece start, AbstractPiece end)
     {
-        //Create arrays to track pathfinding progress
+        //Reset arrays to track pathfinding progress
+        neighbouring.Clear();
         for (int i = 0; i < MapGraph.Count; i++)
         {
             MapGraph[i].ResetPathfindingVariables();
