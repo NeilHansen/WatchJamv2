@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using Rewired;
 
 public class MonsterMovement : NetworkBehaviour {
+
+   // public GameObject CameraPosition;
     public int controllerNumber = 0;
     public Player player;
     public Camera fpsCamera;
@@ -23,7 +25,8 @@ public class MonsterMovement : NetworkBehaviour {
             fpsCamera = Camera.main;
             fpsCamera.transform.SetParent(this.transform);
             fpsCamera.transform.localRotation = Quaternion.identity;
-            fpsCamera.transform.localPosition = Vector3.zero;
+            fpsCamera.transform.localPosition = new Vector3(0, 1.5f, 0); //Vector3.zero;
+         // fpsCamera.transform.localPosition = CameraPosition.transform.position;
 
             //Set MiniMap
             FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
