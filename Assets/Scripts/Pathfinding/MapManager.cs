@@ -50,6 +50,10 @@ public class MapManager : MonoBehaviour {
         foreach (Transform mapPiece in GameObject.Find("LevelWalls").transform)
         {
             AbstractPiece mapPieceScript = mapPiece.GetComponent<AbstractPiece>();
+            if (mapPieceScript == null)
+            {
+                Debug.Log(mapPiece.gameObject.name);
+            }
             mapPieceScript.graphListIndex = MapGraph.Count;
             MapGraph.Add(mapPieceScript);
         }
@@ -105,7 +109,7 @@ public class MapManager : MonoBehaviour {
                         }
                         AbstractPiece.CreateConnection(mapPiece, i, neighbourPiece, neighbourPieceDirection);
 
-                        //Debug.DrawLine(rayStartPoint, neighbourPiece.transform.TransformPoint(neighbourPiece.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
+                        Debug.DrawLine(rayStartPoint, neighbourPiece.transform.TransformPoint(neighbourPiece.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
                         lineColourCount++;
                     }
                     else

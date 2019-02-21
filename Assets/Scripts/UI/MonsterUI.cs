@@ -9,8 +9,8 @@ public class MonsterUI : MonoBehaviour {
 
     public Text interactText;
 
-    public Image SeenImage;
-    public Slider VisibilitySlider;
+    public GameObject SeenImage;
+    public Image VisibilitySlider;
     public Text livesText;
 
     public Image drainIcon;
@@ -47,8 +47,8 @@ public class MonsterUI : MonoBehaviour {
         drainColor = drainIcon.color;
         punchColor = punchIcon.color;
 
-        VisibilitySlider.value = 0;
-        VisibilitySlider.maxValue = 1;
+        VisibilitySlider.fillAmount = 0;
+        VisibilitySlider.fillAmount = 1;
 
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
         livesText.text = "Lives: " + NumOfLives;
@@ -67,7 +67,7 @@ public class MonsterUI : MonoBehaviour {
 
     public void ResetMonsterUI()
     {
-        VisibilitySlider.value = 0.0f;
+        VisibilitySlider.fillAmount = 0.0f;
     }
 
     //Turn on/off interaction text when hitting terminal
@@ -80,12 +80,12 @@ public class MonsterUI : MonoBehaviour {
     public void SetMonsterSeenIcon(bool b)
     {
         //Turn off seen imageg when alpha is 0
-        SeenImage.enabled = b;
+        SeenImage.SetActive(b);
     }
 
     public void SetVisibilitySlider(float value)
     {
-        VisibilitySlider.value = value;
+        VisibilitySlider.fillAmount = value;
     }
 
     public void SetMountIcon(bool b)
