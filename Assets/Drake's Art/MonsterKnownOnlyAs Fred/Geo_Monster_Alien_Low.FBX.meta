@@ -9,7 +9,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Group30177
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geo_Alien_Monster_Low_defaultMat
+    second: {fileID: 2100000, guid: c28fea42f3ca2d846a2cbf0b5df15a67, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
