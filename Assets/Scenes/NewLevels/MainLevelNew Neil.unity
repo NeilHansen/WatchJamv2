@@ -14,11 +14,11 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
+  m_FogDensity: 0.02
+  m_LinearFogStart: 0.1
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,6 +241,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -414,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &25512741
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,6 +1308,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -1586,7 +1594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &116764874
 Transform:
   m_ObjectHideFlags: 0
@@ -1727,7 +1735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &129704718
 Transform:
   m_ObjectHideFlags: 0
@@ -1844,6 +1852,10 @@ Prefab:
     - target: {fileID: 400000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -44.146973
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -2117,6 +2129,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -2357,7 +2373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &171900835
 Transform:
   m_ObjectHideFlags: 0
@@ -3164,7 +3180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &255408978
 Transform:
   m_ObjectHideFlags: 0
@@ -3508,7 +3524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &264803370
 Transform:
   m_ObjectHideFlags: 0
@@ -3889,6 +3905,10 @@ Prefab:
     - target: {fileID: 400000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 44.14697
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -4295,6 +4315,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -4621,7 +4645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &345673080
 Transform:
   m_ObjectHideFlags: 0
@@ -4817,7 +4841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &375560023
 Transform:
   m_ObjectHideFlags: 0
@@ -5459,6 +5483,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -5813,6 +5841,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -6198,6 +6230,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -7304,6 +7340,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -7457,7 +7497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &669576143
 Transform:
   m_ObjectHideFlags: 0
@@ -8039,6 +8079,10 @@ Prefab:
     - target: {fileID: 400000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -44.146973
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -9674,6 +9718,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -10144,6 +10192,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -10754,6 +10806,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -12582,6 +12638,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -12652,6 +12712,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -12799,6 +12863,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -12870,6 +12938,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -12893,7 +12965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1216513632
 Transform:
   m_ObjectHideFlags: 0
@@ -13661,6 +13733,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -13861,6 +13937,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -14191,6 +14271,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -15074,6 +15158,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -15097,7 +15185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1370554508
 Transform:
   m_ObjectHideFlags: 0
@@ -15280,6 +15368,10 @@ Prefab:
     - target: {fileID: 400000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 44.14697
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -16115,6 +16207,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -16865,7 +16961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1545999145
 Transform:
   m_ObjectHideFlags: 0
@@ -17069,7 +17165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1552179494
 Transform:
   m_ObjectHideFlags: 0
@@ -17540,6 +17636,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -17610,6 +17710,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -17902,7 +18006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595372090
 Transform:
   m_ObjectHideFlags: 0
@@ -18016,6 +18120,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -18087,6 +18195,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -18110,7 +18222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1615013752
 Transform:
   m_ObjectHideFlags: 0
@@ -18736,6 +18848,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -18759,7 +18875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1655380557
 Transform:
   m_ObjectHideFlags: 0
@@ -18810,6 +18926,67 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1655649257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655649258}
+  - component: {fileID: 1655649259}
+  m_Layer: 15
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1655649258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655649257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.922, z: 1.762}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1618312185}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!215 &1655649259
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655649257}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 0
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 10, y: 10, z: 14.243548}
+  m_BoxOffset: {x: 0, y: 0, z: -0.2300067}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 0.45
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
 --- !u!1001 &1660399921
 Prefab:
   m_ObjectHideFlags: 0
@@ -19646,6 +19823,10 @@ Prefab:
       propertyPath: m_Name
       value: Geo_Hallway_Lights (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -19791,7 +19972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1756796344
 Transform:
   m_ObjectHideFlags: 0
@@ -20741,7 +20922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1829439019
 Transform:
   m_ObjectHideFlags: 0
@@ -22133,7 +22314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1944405640
 Transform:
   m_ObjectHideFlags: 0
@@ -22519,6 +22700,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -22648,6 +22833,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
@@ -22889,7 +23078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2019210738
 Transform:
   m_ObjectHideFlags: 0
@@ -23403,6 +23592,10 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
   m_IsPrefabAsset: 0
@@ -23798,6 +23991,10 @@ Prefab:
     - target: {fileID: 100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
       propertyPath: m_Name
       value: Geo_Hallway_Lights (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
+      propertyPath: m_ImportantGI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd83c9d48540bc4896c127f59b1bfd6, type: 3}
