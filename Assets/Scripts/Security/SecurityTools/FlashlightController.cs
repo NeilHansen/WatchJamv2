@@ -8,41 +8,113 @@ public class FlashlightController : MonoBehaviour
 {
     public SecurityController securityController;
 
-    public GameObject origin;
+    public GameObject CenterPoint;
     public GameObject flashlight;
-    public MeshRenderer flashMeshRender;
     public float flashlightRange = 10.0f;
-    public float raycastRadius = 0.2f;
+    public float fieldOfViewAngle = 110f;
 
     public Light lenseLight;
     private Color lenseLightDefault;
     public Color UVLightColor;
 
-    private MonsterController monster;
+    public MonsterController monster;
+    private bool canHurt = false;
 
     // Use this for initialization
     void Start () {
         lenseLightDefault = lenseLight.color;
-        flashMeshRender.enabled = false;
 	}
 
-    //For Normal Light(Always on)
-    public void SecurityFlashLight()
+    void OnTriggerStay(Collider other)
     {
-        RaycastHit hit;
-        if (Physics.SphereCast(origin.transform.position, raycastRadius, origin.transform.forward, out hit, flashlightRange))
+        if (monster == null)
         {
-            if (hit.collider.tag == "Monster")
+            if (other.gameObject.tag == "Monster")
+                monster = other.GetComponent<MonsterController>();
+        }
+        else
+        {
+            if (other.gameObject.tag == "Monster")
             {
-                monster = hit.collider.gameObject.GetComponent<MonsterController>();
-                securityController.CmdShowMonster(monster.gameObject);
+                canHurt = true;
+
+                Vector3 direction = monster.transform.position - CenterPoint.gameObject.transform.position;
+                float angle = Vector3.Angle(direction, CenterPoint.gameObject.transform.forward);
+
+                if (angle < fieldOfViewAngle * 0.5)
+                {
+                    // Drawing ray to see
+                    Debug.DrawRay(CenterPoint.gameObject.transform.position, direction.normalized * 1000, Color.yellow);
+
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(CenterPoint.gameObject.transform.position, direction.normalized, out hit))
+                    {
+                        Debug.Log(hit.collider.gameObject.name);
+
+                        if (hit.collider.gameObject.tag == "Monster")
+                        {
+                            //Do Once check if true
+                            if(!CheckSecurityIsSeen(monster, securityController.networkPlayer.playerNumber))
+                            {
+                                SwitchSecurityIsSeen(monster, securityController.networkPlayer.playerNumber, true);
+                            }
+                        }
+                        else
+                        {
+                            if (CheckSecurityIsSeen(monster, securityController.networkPlayer.playerNumber))
+                            {
+                                SwitchSecurityIsSeen(monster, securityController.networkPlayer.playerNumber, false);
+                            }
+                        }
+                    }
+                }
             }
-            else if(monster != null)
-            {
-                securityController.CmdHideMonster(monster.gameObject);
-                //Reset so we don't keep calling this
-                monster = null;
-            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            canHurt = false;
+
+            SwitchSecurityIsSeen(monster, securityController.networkPlayer.playerNumber, false);
+        }
+    }
+
+    private bool CheckSecurityIsSeen(MonsterController m, int playerNumber)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                return m.Security1InSight;
+            case 2:
+                return m.Security2InSight;
+            case 3:
+                return m.Security3InSight;
+
+            default:
+                return false;
+        }
+    }
+
+    private void SwitchSecurityIsSeen(MonsterController m, int playerNumber, bool b)
+    {
+        switch(playerNumber)
+        {
+            case 1:
+                Debug.Log(playerNumber + ": " + b);
+                m.Security1InSight = b;
+                break;
+            case 2:
+                Debug.Log(playerNumber + ": " + b);
+                m.Security2InSight = b;
+                break;
+            case 3:
+                Debug.Log(playerNumber + ": " + b);
+                m.Security3InSight = b;
+                break;
         }
     }
 
@@ -52,15 +124,31 @@ public class FlashlightController : MonoBehaviour
         //As long as we still have time keep on
         if (!(securityController.flashLightUseTime <= 0.0f))
         {
-            // Drawing ray to see
-            Debug.DrawRay(origin.transform.position, origin.transform.forward * flashlightRange, Color.cyan);
-
-            RaycastHit hit;
-            if (Physics.SphereCast(origin.transform.position, raycastRadius, origin.transform.forward, out hit, flashlightRange))
+            if(monster != null)
             {
-                if(hit.collider.tag == "Monster")
+                Vector3 direction = monster.transform.position - CenterPoint.gameObject.transform.position;
+                float angle = Vector3.Angle(direction, CenterPoint.gameObject.transform.forward);
+
+                if (angle < fieldOfViewAngle * 0.5)
                 {
-                    securityController.CmdDamageTarget(hit.collider.gameObject);
+                    // Drawing ray to see
+                    Debug.DrawRay(CenterPoint.gameObject.transform.position, direction.normalized * 1000, Color.red);
+
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(CenterPoint.gameObject.transform.position, direction.normalized, out hit))
+                    {
+                        if (hit.collider.gameObject.tag == "Monster")
+                        {
+                            if (!monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber) && canHurt)
+                                securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, true);
+                        }
+                        else
+                        {
+                            if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+                                securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+                        }
+                    }
                 }
             }
 
@@ -70,6 +158,12 @@ public class FlashlightController : MonoBehaviour
         //Turn off
         else
         {
+            if (monster != null)
+            {
+                if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+                    securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+            }
+
             securityController.CmdTurnUVLightOff();
             securityController.b_UsingFlashLight = false;
         }
@@ -77,6 +171,12 @@ public class FlashlightController : MonoBehaviour
 
     public void SecurityUVFlashLightOff()
     {
+        if (monster != null)
+        {
+            if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+                securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+        }
+
         TurnUVOff();
         securityController.b_UsingFlashLight = false;
     }
@@ -95,12 +195,10 @@ public class FlashlightController : MonoBehaviour
     public void TurnUVOn()
     {
         lenseLight.color = UVLightColor;
-        flashMeshRender.enabled = true;
     }
 
     public void TurnUVOff()
     {
         lenseLight.color = lenseLightDefault;
-        flashMeshRender.enabled = false;
     }
 }
