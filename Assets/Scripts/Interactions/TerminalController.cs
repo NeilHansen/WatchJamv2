@@ -12,7 +12,6 @@ public class TerminalController : NetworkBehaviour {
     public Color BrokenColor;
 
     public Outline terminal1;
-    public Outline terminal2;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,7 +32,6 @@ public class TerminalController : NetworkBehaviour {
     public void ShowOutline(bool b)
     {
         terminal1.enabled = b;
-        terminal2.enabled = b;
     }
 
     [Command]

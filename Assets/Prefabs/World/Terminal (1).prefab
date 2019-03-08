@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 4578679307257838}
   - component: {fileID: 33763881147600368}
   - component: {fileID: 23123824680090844}
-  - component: {fileID: 114532139787034298}
   m_Layer: 12
   m_Name: EFIOSFB_big_console_broken
   m_TagString: Untagged
@@ -330,30 +329,12 @@ MonoBehaviour:
   WorkingColor: {r: 0.06666667, g: 0.99215686, b: 0.6, a: 1}
   BrokenColor: {r: 1, g: 0, b: 0, a: 1}
   terminal1: {fileID: 114462307131196258}
-  terminal2: {fileID: 114532139787034298}
 --- !u!114 &114462307131196258
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912100397071570}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 2
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 6
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &114532139787034298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1321323366234322}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
