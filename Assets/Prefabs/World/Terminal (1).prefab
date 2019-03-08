@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4578679307257838}
   - component: {fileID: 33763881147600368}
   - component: {fileID: 23123824680090844}
+  - component: {fileID: 114532139787034298}
   m_Layer: 12
   m_Name: EFIOSFB_big_console_broken
   m_TagString: Untagged
@@ -74,6 +75,7 @@ GameObject:
   - component: {fileID: 33985776445604308}
   - component: {fileID: 23346645681185402}
   - component: {fileID: 64648881783143458}
+  - component: {fileID: 114462307131196258}
   m_Layer: 12
   m_Name: EFIOSFB_big_console_working
   m_TagString: Untagged
@@ -115,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1023734121658418}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 38.92, y: -0.73, z: 66.159996}
+  m_LocalPosition: {x: -6.08, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4044355804970322}
@@ -305,7 +307,7 @@ MonoBehaviour:
   CircleAreaRadius: 10
   CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
   isInteractable: 0
-  InfoItem: This is a Bot
+  InfoItem: 
   OffScreen: 1
   DestroyWithObject: 0
   BorderOffScreen: 0
@@ -327,6 +329,42 @@ MonoBehaviour:
   isBroken: 0
   WorkingColor: {r: 0.06666667, g: 0.99215686, b: 0.6, a: 1}
   BrokenColor: {r: 1, g: 0, b: 0, a: 1}
+  terminal1: {fileID: 114462307131196258}
+  terminal2: {fileID: 114532139787034298}
+--- !u!114 &114462307131196258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912100397071570}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &114532139787034298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321323366234322}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114840169602325494
 MonoBehaviour:
   m_ObjectHideFlags: 1

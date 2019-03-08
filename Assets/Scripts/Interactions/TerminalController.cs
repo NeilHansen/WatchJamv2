@@ -11,6 +11,9 @@ public class TerminalController : NetworkBehaviour {
     public Color WorkingColor;
     public Color BrokenColor;
 
+    public Outline terminal1;
+    public Outline terminal2;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
@@ -25,6 +28,12 @@ public class TerminalController : NetworkBehaviour {
         {
             other.GetComponent<MonsterController>().b_terminalInteraction = false;
         }
+    }
+
+    public void ShowOutline(bool b)
+    {
+        terminal1.enabled = b;
+        terminal2.enabled = b;
     }
 
     [Command]

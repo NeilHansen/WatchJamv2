@@ -49,7 +49,7 @@ public class MonsterController : NetworkBehaviour {
     public float monsterHealth = 0.0f;
     public float monsterAlphaWhenSeen = 0.35f;
 
-    private Material monsterMaterial;
+    public Material monsterMaterial;
     private Color monsterColor;
 
     private bl_MiniMap mm;
@@ -60,6 +60,12 @@ public class MonsterController : NetworkBehaviour {
         {
             //Set MiniMap
             mm = FindObjectOfType<bl_MiniMap>();
+
+            TerminalController[] terminalControllers = FindObjectsOfType<TerminalController>();
+            foreach(TerminalController t in terminalControllers)
+            {
+                t.ShowOutline(true);
+            }
         }
 
         //Give children a reference to this script
@@ -69,6 +75,9 @@ public class MonsterController : NetworkBehaviour {
         //Find Material with monster
         monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
         monsterMaterial.color = monsterColor;
+
+        MonsterUI.Instance.SetMonsterSeenIcon(false);
+        MonsterUI.Instance.SetVisibilitySlider(monsterHealth);
     }
 	
 	// Update is called once per frame
