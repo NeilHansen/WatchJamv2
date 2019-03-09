@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Decal_Script : MonoBehaviour
 {
-    public GameObject ThisDecal;
-    public float LifeTime = 5.0f;
-    private GameObject decalRef;
-    private bool stained = false;
+    public enum colliderPosition {
+        Top,
+        Bottom,
+        Left,
+        Right
+    }
 
+    public Decal_Manager deManager;
+    public GameObject ThisDecal;
+    public colliderPosition colliderLocation = colliderPosition.Top;
+    
     // Start is called before the first frame update
     void Start()
     {      
@@ -18,24 +24,33 @@ public class Decal_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //When Destroyed can stain again
-        if (decalRef == null)
-            stained = false;
+        
     }
     void OnTriggerEnter(Collider other)
     {
         if(other.tag.Equals("Monster"))
         {
-            if(!stained)
-                CreatePrefab(other.transform.position);
+            switch(colliderLocation)
+            {
+                case colliderPosition.Top:
+                    if (!deManager.stained && other.GetComponent<MonsterWallMovement>().onCeilingFloor)
+                        StartCoroutine(deManager.TurnOnStain(ThisDecal));
+                    break;
+                case colliderPosition.Bottom:
+                    if (!deManager.stained && other.GetComponent<MonsterWallMovement>().onGroundFloor)
+                        StartCoroutine(deManager.TurnOnStain(ThisDecal));
+                    break;
+                case colliderPosition.Left:
+                    if (!deManager.stained)
+                        StartCoroutine(deManager.TurnOnStain(ThisDecal));
+                    break;
+                case colliderPosition.Right:
+                    if (!deManager.stained)
+                        StartCoroutine(deManager.TurnOnStain(ThisDecal));
+                    break;
+            }
         }
     }
-    
-    void CreatePrefab(Vector3 pos)
-    {
-        stained = true;
-        // instantiate decal
-        decalRef = Instantiate(ThisDecal, pos, transform.rotation);
-        Destroy(decalRef, LifeTime);
-    }
+
+   
 }

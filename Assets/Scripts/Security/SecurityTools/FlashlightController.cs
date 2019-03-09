@@ -20,6 +20,10 @@ public class FlashlightController : MonoBehaviour
     public MonsterController monster;
     private bool canHurt = false;
 
+    public GameObject monsterSpotted;
+    public float UpdateTime = 1.0f;
+    public bool isSpotted = false;
+
     // Use this for initialization
     void Start () {
         lenseLightDefault = lenseLight.color;
@@ -36,6 +40,12 @@ public class FlashlightController : MonoBehaviour
         {
             if (other.gameObject.tag == "Monster")
             {
+                if (!isSpotted)
+                {
+                    isSpotted = true;
+                    StartCoroutine(InstatiateSpottedIcon(other));
+                }
+
                 canHurt = true;
 
                 Vector3 direction = monster.transform.position - CenterPoint.gameObject.transform.position;
@@ -81,6 +91,14 @@ public class FlashlightController : MonoBehaviour
 
             SwitchSecurityIsSeen(monster, securityController.networkPlayer.playerNumber, false);
         }
+    }
+
+    private IEnumerator InstatiateSpottedIcon(Collider monster)
+    {
+        GameObject temp = Instantiate(monsterSpotted, monster.transform.position, monster.transform.rotation);
+        yield return new WaitForSeconds(UpdateTime);
+        isSpotted = false;
+        Destroy(temp);
     }
 
     private bool CheckSecurityIsSeen(MonsterController m, int playerNumber)
