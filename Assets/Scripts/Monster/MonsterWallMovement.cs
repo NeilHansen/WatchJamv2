@@ -19,7 +19,10 @@ public class MonsterWallMovement : NetworkBehaviour
     private bool isGrounded;
     private bool flipping = false; // Flag "I'm flipping to wall";
     private bool goingToGround = false;
-    public bool onRoof = false;
+    private bool onRoof = false;
+
+    public bool onCeilingFloor = false;
+    public bool onGroundFloor = false;
 
     private Vector3 surfaceNormal; // Current surface normal
     private Vector3 myNormal; // Character normal
@@ -29,6 +32,9 @@ public class MonsterWallMovement : NetworkBehaviour
     private BoxCollider boxCollider; // drag BoxCollider ref in editor
 
     private Player player;
+
+    private Ray ray;
+    private RaycastHit hit;
 
     private bool frontHit = false;
     private bool leftHit = false;
@@ -71,64 +77,11 @@ public class MonsterWallMovement : NetworkBehaviour
         if (flipping)
             return;
 
-        //UI STUFF
-        if (frontHit || righthit || leftHit)
-        {
-            MonsterUI.Instance.SetMountIcon(true);
-        }
-        else
-        {
-            MonsterUI.Instance.SetMountIcon(false);
-        }
+        MonsterRaycastCheck();
+        MonsterUIUpdate();
 
-        if (surfaceNormal != Vector3.up)
-        {
-            MonsterUI.Instance.SetDismountIcon(true);
-        }
-        else
-        {
-            MonsterUI.Instance.SetDismountIcon(false);
-        }
-
-        Ray ray;
-        RaycastHit hit;
-        // Drawing ray to see
-        Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
-        //Forward
-        ray = new Ray(myTransform.position, myTransform.forward);
-        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
-        {
-            leftHit = true;
-            // Wall ahead?
-            // Yes: jump to the wall
-            if(player.GetButtonDown("WallClimb"))
-            {
-                FlipToWall(myTransform.right, hit.point, hit.normal);
-            }
-        }
-        else
-        {
-            leftHit = false;
-        }
-
-        // Drawing ray to see
-        Debug.DrawRay(transform.position, transform.right * flipRange, Color.red);
-        //Right
-        ray = new Ray(myTransform.position, myTransform.right);
-        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
-        {
-            righthit = true;
-            // Wall ahead?
-            // Yes: jump to the wall
-            if (player.GetButtonDown("WallClimb"))
-            {
-                FlipToWall(myTransform.up, hit.point, hit.normal);
-            }
-        }
-        else
-        {
-            righthit = false;
-        }
+        onCeilingFloor = surfaceNormal == -Vector3.up;
+        onGroundFloor = surfaceNormal == Vector3.up;
 
         // Drawing ray to see
         Debug.DrawRay(transform.position, -transform.right * flipRange, Color.magenta);
@@ -193,7 +146,7 @@ public class MonsterWallMovement : NetworkBehaviour
         }
 
         //Check to see if on roof then rotate according to our normal else were on the wall
-        if(onRoof)
+        if (onRoof)
         {
             // Lerping
             myNormal = Vector3.Lerp(myNormal, surfaceNormal, lerpSpeed * Time.deltaTime);
@@ -215,6 +168,69 @@ public class MonsterWallMovement : NetworkBehaviour
             // Align character to the new myNormal while keeping the forward direction:
             Quaternion targetRot = Quaternion.LookRotation(myForward, myNormal);
             myTransform.rotation = Quaternion.Lerp(myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
+        }
+    }
+
+    private void MonsterUIUpdate()
+    {
+        //UI STUFF
+        if (frontHit || righthit || leftHit)
+        {
+            MonsterUI.Instance.SetMountIcon(true);
+        }
+        else
+        {
+            MonsterUI.Instance.SetMountIcon(false);
+        }
+
+        if (surfaceNormal != Vector3.up)
+        {
+            MonsterUI.Instance.SetDismountIcon(true);
+        }
+        else
+        {
+            MonsterUI.Instance.SetDismountIcon(false);
+        }
+    }
+
+    private void MonsterRaycastCheck()
+    {
+        // Drawing ray to see
+        Debug.DrawRay(transform.position, transform.forward * flipRange, Color.yellow);
+        //Forward
+        ray = new Ray(myTransform.position, myTransform.forward);
+        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
+        {
+            leftHit = true;
+            // Wall ahead?
+            // Yes: jump to the wall
+            if (player.GetButtonDown("WallClimb"))
+            {
+                FlipToWall(myTransform.right, hit.point, hit.normal);
+            }
+        }
+        else
+        {
+            leftHit = false;
+        }
+
+        // Drawing ray to see
+        Debug.DrawRay(transform.position, transform.right * flipRange, Color.red);
+        //Right
+        ray = new Ray(myTransform.position, myTransform.right);
+        if (Physics.Raycast(ray, out hit, flipRange, layerMask))
+        {
+            righthit = true;
+            // Wall ahead?
+            // Yes: jump to the wall
+            if (player.GetButtonDown("WallClimb"))
+            {
+                FlipToWall(myTransform.up, hit.point, hit.normal);
+            }
+        }
+        else
+        {
+            righthit = false;
         }
     }
 
