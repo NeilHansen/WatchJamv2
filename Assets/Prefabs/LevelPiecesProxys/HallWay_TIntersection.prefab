@@ -251,3 +251,9 @@ MonoBehaviour:
   heuristic: 0
   pathfindingPrevious: {fileID: 0}
   pathfindingNext: {fileID: 0}
+  lightInterval: 0
+  lightRenderer: {fileID: 23714549874515574}
+  tranverseTex: []
+  invertLighting: 0
+  darkTex: {fileID: 2800000, guid: 786596861f91d1d45b483310b3a906fd, type: 3}
+  inverseTranverseTex: []

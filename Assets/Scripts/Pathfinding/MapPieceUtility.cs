@@ -36,11 +36,43 @@ namespace MapPieceUtility
         public float accumulatedCost = 0.0f;
         [HideInInspector]
         public float heuristic = 0.0f;
-        //[HideInInspector]
+        [Header("Pathfinding")]
         public AbstractPiece pathfindingPrevious = null;
-        //[HideInInspector]
         public AbstractPiece pathfindingNext = null;
+        [Space(1)]
 
+        //Light variables
+        [Header("Lighting")]
+        public float lightInterval;
+        public Renderer lightRenderer;
+        protected MaterialPropertyBlock mpb;
+        protected Color litColour;
+        protected Color offColour;
+        protected Texture fullLitTex;
+        public Texture[] tranverseTex;
+
+        //Light debug variables
+        [Header("LightTesting")]
+        public bool invertLighting;
+        public Texture darkTex;
+        public Texture[] inverseTranverseTex;
+
+        void Awake()
+        {
+            mpb = new MaterialPropertyBlock();
+            lightRenderer.GetPropertyBlock(mpb);
+            litColour = lightRenderer.materials[0].GetColor("_EmissionColor");
+            offColour = Color.black;
+            fullLitTex = lightRenderer.materials[0].GetTexture("_EmissionMap");
+            if (invertLighting)
+            {
+                mpb.SetTexture("_EmissionMap", darkTex);
+                lightRenderer.SetPropertyBlock(mpb);
+            }
+        }
+
+
+        #region Map Graph
         protected void AddOpening(Vector3 direction)
         {
             openings.Add(direction);
@@ -75,7 +107,9 @@ namespace MapPieceUtility
             //Error here
             return -1;
         }
+        #endregion
 
+        #region Pathfinding
         public void ResetPathfindingVariables()
         {
             accumulatedCost = 0.0f;
@@ -95,6 +129,38 @@ namespace MapPieceUtility
                 MapManager.Instance.ChangePathStart(graphListIndex);
             }
         }
+        #endregion
+
+        #region Lighting
+        public void StartLightFlash()
+        {
+            StopAllCoroutines();
+            StartCoroutine(FlashLight());
+        }
+
+        public void StartLightTraverse()
+        {
+            StopAllCoroutines();
+            if (pathfindingNext)
+                StartCoroutine(TraverseLight());
+        }
+
+        protected virtual IEnumerator FlashLight()
+        {
+            mpb.SetColor("_EmissionColor", invertLighting ? offColour : litColour);
+            lightRenderer.SetPropertyBlock(mpb);
+            yield return new WaitForSeconds(lightInterval);
+            mpb.SetColor("_EmissionColor", invertLighting ? litColour : offColour);
+            lightRenderer.SetPropertyBlock(mpb);
+        }
+
+        protected virtual IEnumerator TraverseLight()
+        {
+            yield return null;
+            //Start traverse light to next map piece
+            pathfindingNext.StartLightTraverse();
+        }
+        #endregion
 
         #region Static Functions
         public static void CreateConnection(AbstractPiece piece1, int openingListIndex1, AbstractPiece piece2, int openingListIndex2)

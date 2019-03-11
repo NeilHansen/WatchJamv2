@@ -24,6 +24,7 @@ public class MapManager : MonoBehaviour {
     //Path display variables
     public GameObject arrowLinePrefab;
     List<GameObject> arrowLineRenderers = new List<GameObject>();
+    public float lightInterval = 1.5f;
 
     private void Awake()
     {
@@ -240,6 +241,8 @@ public class MapManager : MonoBehaviour {
             current = current.pathfindingNext;
             lineColourCount++;
         }
+        StopAllCoroutines();
+        StartCoroutine(LightPath(start));
     }
 
     public void ChangePathStart(int index)
@@ -269,6 +272,15 @@ public class MapManager : MonoBehaviour {
             arrowLineRenderers.Clear();
             if (FindPath(pathStart, pathEnd))
                 ShowPath(pathStart);
+        }
+    }
+
+    IEnumerator LightPath(AbstractPiece start)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(lightInterval);
+            start.StartLightTraverse();
         }
     }
 }
