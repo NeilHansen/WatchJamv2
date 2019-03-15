@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 114203123378801148}
   - component: {fileID: 114888288243832620}
   - component: {fileID: 114152472635455062}
+  - component: {fileID: 114532498492672946}
   m_Layer: 11
   m_Name: Player_Security
   m_TagString: Security
@@ -2884,6 +2885,10 @@ MonoBehaviour:
   b_OverHeatFlashLight: 0
   flashLightUseTime: 5
   flashLightMaxTime: 5
+  pingIcon: {fileID: 1284621834816850, guid: adbade5ce854bd3449f5e52b7b946daa, type: 2}
+  isPinging: 0
+  pingTime: 3
+  playerOutline: {fileID: 114532498492672946}
 --- !u!114 &114340609943436430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3101,6 +3106,23 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114532498492672946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332495364744774}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 0.16216493, g: 1, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114650774885278336
 MonoBehaviour:
   m_ObjectHideFlags: 1

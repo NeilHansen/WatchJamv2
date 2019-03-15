@@ -20,6 +20,8 @@ public class GameManager : NetworkBehaviour {
     public GameObject[] spawnPositionSecurity2;
     public GameObject[] spawnPositionSecurity3;
 
+    public bool isMonster = false;
+
     [Header("Game Related Variables")]
     [SyncVar]
     public float GameTimer = 0.0f;
@@ -99,14 +101,20 @@ public class GameManager : NetworkBehaviour {
             if (MonsterNumOfLives <= 0)
             {
                 SecurityWins = true;
-                Debug.Log("Game Over Monster");
             }
         }
 
         if(SecurityWins || MonsterWins)
         {
-            Time.timeScale = 0.0f;
-            Debug.Log("Security Wins");
+            if (MonsterUI.Instance != null)
+            {
+                MonsterUI.Instance.SetMonsterWin(false);
+            }
+
+            if (SecurityUI.Instance != null)
+            {
+                SecurityUI.Instance.SetMonsterWin(false);
+            }
         }
     }
 

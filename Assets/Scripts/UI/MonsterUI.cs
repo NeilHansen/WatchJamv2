@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Prototype.NetworkLobby;
 
 public class MonsterUI : MonoBehaviour {
     public static MonsterUI Instance;
@@ -21,6 +22,10 @@ public class MonsterUI : MonoBehaviour {
 
     public GameObject mountIcon;
     public GameObject dismountIcon;
+
+    public GameObject GameOver;
+    public GameObject MonsterWins;
+    public GameObject SecurityWins;
 
     public TMP_Text GameTimerText;
 
@@ -58,6 +63,20 @@ public class MonsterUI : MonoBehaviour {
     {
         SetGameTimerText(GameManager.Instance.GameTimer);
         livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
+    }
+
+    public void SetMonsterWin(bool b)
+    {
+        GameOver.SetActive(true);
+
+        if (b)
+        {
+            MonsterWins.SetActive(true);
+        }
+        else
+        {
+            SecurityWins.SetActive(true);
+        }
     }
 
     public void SetGameTimerText(float time)
@@ -112,5 +131,10 @@ public class MonsterUI : MonoBehaviour {
         //Keep color semi - transparent
         punchColor.a = pc;
         punchIcon.color = punchColor;
+    }
+
+    public void ReturnToLobby()
+    {
+        LobbyManager.s_Singleton.SendReturnToLobby();
     }
 }

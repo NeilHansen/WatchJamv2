@@ -21,7 +21,9 @@ public class MonsterWallMovement : NetworkBehaviour
     private bool goingToGround = false;
     private bool onRoof = false;
 
+    [SyncVar]
     public bool onCeilingFloor = false;
+    [SyncVar]
     public bool onGroundFloor = false;
 
     private Vector3 surfaceNormal; // Current surface normal
@@ -80,6 +82,7 @@ public class MonsterWallMovement : NetworkBehaviour
         MonsterRaycastCheck();
         MonsterUIUpdate();
 
+        //THIS IS ASSUMMING THE MONSTER IS HOST
         onCeilingFloor = surfaceNormal == -Vector3.up;
         onGroundFloor = surfaceNormal == Vector3.up;
 
