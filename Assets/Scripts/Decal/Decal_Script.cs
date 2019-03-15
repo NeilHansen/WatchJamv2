@@ -26,6 +26,7 @@ public class Decal_Script : MonoBehaviour
     {
         
     }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag.Equals("Monster"))

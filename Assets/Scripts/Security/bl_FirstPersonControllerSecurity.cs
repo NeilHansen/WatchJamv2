@@ -55,6 +55,7 @@ namespace UGUIMiniMap
             if (hasAuthority)
             {
                 GameManager.Instance.localPlayer = this.gameObject;
+                GameManager.Instance.isMonster = false;
 
                 //Set MiniMap
                 FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);

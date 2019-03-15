@@ -28,7 +28,9 @@ public class NetworkPlayer : NetworkBehaviour
             StartCoroutine(WaitForReady());
 
         if (isLocalPlayer)
+        {
             SpawnUI();
+        }
     }
 
     public void SpawnUI()

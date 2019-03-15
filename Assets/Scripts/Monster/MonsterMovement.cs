@@ -22,6 +22,7 @@ public class MonsterMovement : NetworkBehaviour {
         if (hasAuthority)
         {
             GameManager.Instance.localPlayer = this.gameObject;
+            GameManager.Instance.isMonster = true;
             fpsCamera = Camera.main;
             fpsCamera.transform.SetParent(this.transform);
             fpsCamera.transform.localRotation = Quaternion.identity;

@@ -14,6 +14,10 @@ public class SecurityUI : MonoBehaviour {
 
     public TMP_Text GameTimerText;
 
+    public GameObject GameOver;
+    public GameObject MonsterWins;
+    public GameObject SecurityWins;
+
     // Use this for initialization
     void Awake()
     {
@@ -38,6 +42,20 @@ public class SecurityUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SetGameTimerText(GameManager.Instance.GameTimer);
+    }
+
+    public void SetMonsterWin(bool b)
+    {
+        GameOver.SetActive(true);
+
+        if (b)
+        {
+            MonsterWins.SetActive(true);
+        }
+        else
+        {
+            SecurityWins.SetActive(true);
+        }
     }
 
     public void SetGameTimerText(float time)

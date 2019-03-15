@@ -10,6 +10,8 @@ using TMPro;
 public class SecurityController : NetworkBehaviour
 {
     public NetworkPlayer networkPlayer;
+    [SyncVar]
+    public string playername = "NoName";
     public Player player;
     public FlashlightController flashLight;
     public SecurityStunned stun;
@@ -24,6 +26,11 @@ public class SecurityController : NetworkBehaviour
     public bool b_OverHeatFlashLight = false;
     public float flashLightUseTime = 5.0f;
     public float flashLightMaxTime = 5.0f;
+
+    public GameObject pingIcon;
+    public bool isPinging = false;
+    public float pingTime = 3.0f;
+    public Outline playerOutline;
 
     private bl_MiniMap mm;
 
@@ -43,7 +50,8 @@ public class SecurityController : NetworkBehaviour
             GetComponent<bl_MiniMapItem>().enabled = true;
         }
 
-        playerName.text = networkPlayer.playerName;
+        if(isServer)
+            playername = networkPlayer.playerName;
 
         stun.securityController = this;
 
@@ -53,10 +61,18 @@ public class SecurityController : NetworkBehaviour
 
     void Update()
     {
+        playerName.text = playername;
+
         if (!hasAuthority)
             return;
 
-        if(player.GetButtonDown("MiniMap"))
+        if (!isPinging && player.GetButtonDown("Ping"))
+        {
+            isPinging = true;
+            CmdSecurityPing();
+        }
+
+        if (player.GetButtonDown("MiniMap"))
         {
             mm.ToggleSize();
         }
@@ -99,6 +115,35 @@ public class SecurityController : NetworkBehaviour
             //Set UI
             SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
         }
+    }
+
+    [Command]
+    public void CmdSecurityPing()
+    {
+        RpcSecurityPing();
+        if (!GameManager.Instance.isMonster)
+        {
+            StartCoroutine(InstatiatePingIcon());
+        }
+    }
+
+    [ClientRpc]
+    public void RpcSecurityPing()
+    {
+        if (!GameManager.Instance.isMonster)
+        {
+            StartCoroutine(InstatiatePingIcon());
+        }
+    }
+
+    private IEnumerator InstatiatePingIcon()
+    {
+        playerOutline.enabled = true;
+        GameObject temp = Instantiate(pingIcon, this.gameObject.transform);
+        yield return new WaitForSeconds(pingTime);
+        playerOutline.enabled = false;
+        isPinging = false;
+        Destroy(temp);
     }
 
     #region Flashlight
