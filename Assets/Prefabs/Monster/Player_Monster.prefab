@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 137166846058941416}
   m_Layer: 0
   m_Name: GEO_MONSTER
-  m_TagString: Untagged
+  m_TagString: Monster Material
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18300,7 +18300,7 @@ MonoBehaviour:
   materialAlphaChangeRate: 0.1
   monsterHealth: 0
   monsterAlphaWhenSeen: 0.5
-  monsterMaterial: {fileID: 0}
+  monsterMaterial: {fileID: 2100000, guid: 93cf7ca78948fff4e95815235cb34e1d, type: 2}
 --- !u!114 &114873671681735608
 MonoBehaviour:
   m_ObjectHideFlags: 1
