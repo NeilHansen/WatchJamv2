@@ -13,9 +13,18 @@ public class MapManager : MonoBehaviour {
     AbstractPiece pathStart;
     [SerializeField]
     AbstractPiece pathEnd;
+    public enum DrawOptions
+    {
+        None = 0,
+        DrawGraph,
+        DrawRooms
+    }
+    public DrawOptions debugDrawOption = DrawOptions.None;
+    public bool debugShowArrow = true;
 
     //Map graph variables
     List<AbstractPiece> MapGraph = new List<AbstractPiece>();
+    List<Room> RoomList = new List<Room>();
     int mapLayer;
     //Pathfinding variables
     bool[] visited;
@@ -24,6 +33,7 @@ public class MapManager : MonoBehaviour {
     //Path display variables
     public GameObject arrowLinePrefab;
     List<GameObject> arrowLineRenderers = new List<GameObject>();
+    public float lightInterval = 1.5f;
 
     private void Awake()
     {
@@ -52,7 +62,8 @@ public class MapManager : MonoBehaviour {
             AbstractPiece mapPieceScript = mapPiece.GetComponent<AbstractPiece>();
             if (mapPieceScript == null)
             {
-                Debug.Log(mapPiece.gameObject.name);
+                Debug.LogError(mapPiece.gameObject.name + " is not a map piece.");
+                break;
             }
             mapPieceScript.graphListIndex = MapGraph.Count;
             MapGraph.Add(mapPieceScript);
@@ -65,10 +76,14 @@ public class MapManager : MonoBehaviour {
 
         GenerateMapGraph();
 
+        FindRooms();
+        
         if (FindPath(pathStart, pathEnd))
-            ShowPath(pathStart);
+            EnablePath(pathStart);
+        
     }
-	
+
+    #region Map Generation
     //Generate map graph
     void GenerateMapGraph()
     {
@@ -92,7 +107,6 @@ public class MapManager : MonoBehaviour {
                     Ray ray = new Ray(rayStartPoint, rayDirection);
                     if (Physics.Raycast(ray, out hit, 20, mapLayer, QueryTriggerInteraction.Collide))
                     {
-                        //Debug.Log(mapPiece.name + " at " + mapPiece.transform.position + " looking in direction " + rayDirection + " found " + hit.collider.name);
                         AbstractPiece neighbourPiece = hit.collider.GetComponent<AbstractPiece>();
 
                         //Hard code fix
@@ -109,7 +123,10 @@ public class MapManager : MonoBehaviour {
                         }
                         AbstractPiece.CreateConnection(mapPiece, i, neighbourPiece, neighbourPieceDirection);
 
-                        Debug.DrawLine(rayStartPoint, neighbourPiece.transform.TransformPoint(neighbourPiece.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
+                        if (debugDrawOption == DrawOptions.DrawGraph)
+                        {
+                            Debug.DrawLine(rayStartPoint, neighbourPiece.transform.TransformPoint(neighbourPiece.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
+                        }
                         lineColourCount++;
                     }
                     else
@@ -122,6 +139,132 @@ public class MapManager : MonoBehaviour {
         }
     }
 
+    //Find rooms in the map
+    void FindRooms()
+    {
+        int lineColourCount = 0;
+
+        foreach (AbstractPiece mapPiece in MapGraph)
+        {
+            if (mapPiece.roomIndex != -1)
+                continue;
+
+            if (mapPiece.neighbourPieces.Count >= 2 && !mapPiece.GetType().Equals(typeof(MapStraight)))
+            {
+                Room room = null;
+                bool found2ndNeighbour = false;
+                AbstractPiece start = mapPiece;
+                AbstractPiece n1 = mapPiece.neighbourPieces[0];
+                AbstractPiece n2 = mapPiece.neighbourPieces[1];
+                AbstractPiece nn = null;
+                //Loop through all pair neighbours and check if a common secondary neighbour can be found
+                for (int i = 0; i < start.neighbourPieces.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < start.neighbourPieces.Count; j++)
+                    {
+                        n1 = start.neighbourPieces[i];
+                        n2 = start.neighbourPieces[j];
+                        //Previously checked if belongs to a room
+                        if (n1.roomIndex != -1 || n2.roomIndex != -1)
+                        {
+                            continue;
+                        }
+                        foreach (AbstractPiece n1n in n1.neighbourPieces)
+                        {
+                            foreach (AbstractPiece n2n in n2.neighbourPieces)
+                            {
+                                //Found common secondary neighbour
+                                if (n1n.Equals(n2n) && !n1n.Equals(start))
+                                {
+                                    room = new Room(RoomList.Count);
+                                    room.AddPiece(start);
+                                    room.AddPiece(n1);
+                                    room.AddPiece(n2);
+                                    room.AddPiece(n1n);
+                                    if (debugDrawOption == DrawOptions.DrawRooms)
+                                    {
+                                        Debug.DrawLine(start.transform.position, n1.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                        Debug.DrawLine(start.transform.position, n2.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                        Debug.DrawLine(n1.transform.position, n1n.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                        Debug.DrawLine(n2.transform.position, n1n.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                    }
+                                    nn = n1n;
+                                    found2ndNeighbour = true;
+                                    goto Found2ndNeighbour;
+                                }
+                            }
+                        }
+                    }
+                }
+                Found2ndNeighbour:
+                    //If found new room look further to find entire room
+                    if (found2ndNeighbour)
+                    {
+                        //Init new room fronts
+                        Queue<RoomFront> roomFronts = new Queue<RoomFront>();
+                        roomFronts.Enqueue(new RoomFront(start, n1));
+                        roomFronts.Enqueue(new RoomFront(start, n2));
+                        roomFronts.Enqueue(new RoomFront(n1, nn));
+                        roomFronts.Enqueue(new RoomFront(n2, nn));
+                        while(roomFronts.Count > 0)
+                        {
+                            RoomFront current = roomFronts.Dequeue();
+                            bool expendRoom = false;
+                            AbstractPiece f1n = null;
+                            AbstractPiece f2n = null;
+                            //Check if secondary neighbour of one is the neighbour of the other
+                            foreach (AbstractPiece f1np in current.front1.neighbourPieces)
+                            {
+                                //Ignore overlaps
+                                if (f1np.Equals(current.front2))
+                                    continue;
+
+                                foreach (AbstractPiece f1npn in f1np.neighbourPieces)
+                                {
+                                    //Ignore overlaps
+                                    if (f1np.roomIndex != -1 && f1npn.roomIndex != -1)
+                                        continue;
+
+                                    foreach (AbstractPiece f2np in current.front2.neighbourPieces)
+                                    {
+                                        //Found new pieces to expand room size
+                                        if (f1npn.Equals(f2np) && (f2np.roomIndex == -1))
+                                        {
+                                            f1n = f1np;
+                                            f2n = f2np;
+                                            expendRoom = true;
+                                            goto ExpandRoom;
+                                        }
+                                    }
+                                }
+                            }
+                            ExpandRoom:
+                                //Add new pieces to current room and add new room fronts to queue
+                                if (expendRoom)
+                                {
+                                    room.AddPiece(f1n);
+                                    room.AddPiece(f2n);
+                                    if (debugDrawOption == DrawOptions.DrawRooms)
+                                    {
+                                        Debug.DrawLine(current.front1.transform.position, f1n.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                        Debug.DrawLine(current.front2.transform.position, f2n.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                        Debug.DrawLine(f1n.transform.position, f2n.transform.position, debugLineColours[lineColourCount % 6], 1000.0f);
+                                    }
+                                    roomFronts.Enqueue(new RoomFront(current.front1, f1n));
+                                    roomFronts.Enqueue(new RoomFront(current.front2, f2n));
+                                    roomFronts.Enqueue(new RoomFront(f1n, f2n));
+                                }
+                        }
+
+                        RoomList.Add(room);
+                        lineColourCount++;
+                    }
+            }
+        }
+    }
+    #endregion
+
+    #region Pathfinding
     //A* pathfinding function, nagivate the path with pathfindingNext and pathfindingPrevious variables in AbstractPiece
     //Once function is called, previous path will be forgotten
     //Returns true if path was found, returns false elsewise (including conditions where start equals end)
@@ -229,19 +372,6 @@ public class MapManager : MonoBehaviour {
         return false;
     }
 
-    void ShowPath(AbstractPiece start)
-    {
-        AbstractPiece current = start;
-        int lineColourCount = 0;
-        while (current.pathfindingNext != null)
-        {
-            arrowLineRenderers.AddRange(AbstractPiece.ShowConnectionToNext(current, current.pathfindingNext, arrowLinePrefab));
-            //Debug.DrawLine(current.transform.TransformPoint(current.localCenter), current.pathfindingNext.transform.TransformPoint(current.pathfindingNext.localCenter), debugLineColours[lineColourCount % 6], 1000.0f);
-            current = current.pathfindingNext;
-            lineColourCount++;
-        }
-    }
-
     public void ChangePathStart(int index)
     {
         pathStart = MapGraph[index];
@@ -253,7 +383,7 @@ public class MapManager : MonoBehaviour {
             }
             arrowLineRenderers.Clear();
             if (FindPath(pathStart, pathEnd))
-                ShowPath(pathStart);
+                EnablePath(pathStart);
         }
     }
 
@@ -268,7 +398,63 @@ public class MapManager : MonoBehaviour {
             }
             arrowLineRenderers.Clear();
             if (FindPath(pathStart, pathEnd))
-                ShowPath(pathStart);
+                EnablePath(pathStart);
         }
     }
+    #endregion
+
+    #region Path Lighting
+    void EnablePath(AbstractPiece start)
+    {
+        AbstractPiece current = start;
+        while (current.pathfindingNext != null)
+        {
+            if (debugShowArrow)
+                arrowLineRenderers.AddRange(AbstractPiece.ShowConnectionToNext(current, current.pathfindingNext, arrowLinePrefab));
+            current = current.pathfindingNext;
+        }
+        StopAllCoroutines();
+        StartCoroutine(LightPath(start));
+        if (current.roomIndex != 1)
+        {
+            foreach(AbstractPiece piece in RoomList[current.roomIndex].roomPieces)
+            {
+                piece.StartLightFlash();
+            }
+        }
+    }
+
+    void DisablePath(AbstractPiece start)
+    {
+        StopAllCoroutines();
+        AbstractPiece end = start;
+        while (end.pathfindingNext != null)
+        {
+            end.StopLightTraverse();
+            end = end.pathfindingNext;
+        }
+        if (end.roomIndex != 1)
+        {
+            foreach (AbstractPiece piece in RoomList[end.roomIndex].roomPieces)
+            {
+                end.StopLightFlash();
+            }
+        }
+        foreach (GameObject map in arrowLineRenderers)
+        {
+            Destroy(map);
+        }
+        arrowLineRenderers.Clear();
+
+    }
+
+    IEnumerator LightPath(AbstractPiece start)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(lightInterval);
+            start.StartLightTraverse();
+        }
+    }
+    #endregion
 }

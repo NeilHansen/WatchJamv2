@@ -16,6 +16,17 @@ namespace MapPieceUtility
         Curve
     }
 
+    public struct RoomFront
+    {
+        public AbstractPiece front1;
+        public AbstractPiece front2;
+        public RoomFront(AbstractPiece f1, AbstractPiece f2)
+        {
+            front1 = f1;
+            front2 = f2;
+        }
+    }
+
     public abstract class AbstractPiece : MonoBehaviour
     {
         //Info variables
@@ -28,6 +39,8 @@ namespace MapPieceUtility
         public readonly List<AbstractPiece> neighbourPieces = new List<AbstractPiece>();
         [HideInInspector]
         public int graphListIndex = -1;
+        [HideInInspector]
+        public int roomIndex = -1;
 
         //Pathfinding variables
         [HideInInspector]
@@ -36,11 +49,74 @@ namespace MapPieceUtility
         public float accumulatedCost = 0.0f;
         [HideInInspector]
         public float heuristic = 0.0f;
-        //[HideInInspector]
+        [Header("Pathfinding")]
         public AbstractPiece pathfindingPrevious = null;
-        //[HideInInspector]
         public AbstractPiece pathfindingNext = null;
+        [Space(1)]
 
+        //Light variables
+        [Header("Lighting")]
+        public float traverseInterval;
+        public float flashInterval = 1.0f;
+        public Renderer lightRenderer;
+        protected int materialIndex = 0;
+        protected MaterialPropertyBlock mpb;
+        protected Color litColour;
+        protected Color offColour;
+        protected Texture fullLitTex;
+        public Texture[] tranverseTex;
+        protected bool increaseIntensity;
+        protected bool flashLight = false;
+        float lightTimer = 0.0f;
+
+        //Light debug variables
+        [Header("LightTesting")]
+        public bool invertLighting;
+        public Texture darkTex;
+        public Texture[] inverseTranverseTex;
+
+        void Awake()
+        {
+            mpb = new MaterialPropertyBlock();
+            lightRenderer.GetPropertyBlock(mpb);
+            litColour = lightRenderer.materials[materialIndex].GetColor("_EmissionColor");
+            offColour = Color.black;
+            fullLitTex = lightRenderer.materials[materialIndex].GetTexture("_EmissionMap");
+            if (invertLighting)
+            {
+                mpb.SetTexture("_EmissionMap", darkTex);
+                lightRenderer.SetPropertyBlock(mpb);
+            }
+            increaseIntensity = invertLighting;
+        }
+
+        void Update()
+        {
+            if (flashLight)
+            {
+                lightTimer += Time.deltaTime;
+                float value = Mathf.Clamp(lightTimer / flashInterval, 0.0f, 1.0f);
+                Color lightColour;
+                if (increaseIntensity)
+                {
+                    lightColour = Color.Lerp(offColour, litColour, value);
+                }
+                else
+                {
+                    lightColour = Color.Lerp(litColour, offColour, value);
+                }
+                if (value >= 1.0f)
+                {
+                    lightTimer = 0.0f;
+                    increaseIntensity = !increaseIntensity;
+                }
+                mpb.SetColor("_EmissionColor", lightColour);
+                lightRenderer.SetPropertyBlock(mpb);
+            }
+        }
+
+
+        #region Map Graph
         protected void AddOpening(Vector3 direction)
         {
             openings.Add(direction);
@@ -75,7 +151,9 @@ namespace MapPieceUtility
             //Error here
             return -1;
         }
+        #endregion
 
+        #region Pathfinding
         public void ResetPathfindingVariables()
         {
             accumulatedCost = 0.0f;
@@ -95,6 +173,48 @@ namespace MapPieceUtility
                 MapManager.Instance.ChangePathStart(graphListIndex);
             }
         }
+        #endregion
+
+        #region Lighting
+        public void StartLightFlash()
+        {
+            StopAllCoroutines();
+            mpb.SetTexture("_EmissionMap", fullLitTex);
+            lightTimer = 0.0f;
+            increaseIntensity = invertLighting;
+            flashLight = true;
+        }
+
+        public void StopLightFlash()
+        {
+            StopAllCoroutines();
+            mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
+            mpb.SetColor("_EmissionColor", litColour);
+            lightRenderer.SetPropertyBlock(mpb);
+            flashLight = false;
+        }
+
+        public void StartLightTraverse()
+        {
+            StopAllCoroutines();
+            if (pathfindingNext)
+                StartCoroutine(TraverseLight());
+        }
+
+        public void StopLightTraverse()
+        {
+            StopAllCoroutines();
+            mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
+            lightRenderer.SetPropertyBlock(mpb);
+        }
+
+        protected virtual IEnumerator TraverseLight()
+        {
+            yield return null;
+            //Start traverse light to next map piece
+            pathfindingNext.StartLightTraverse();
+        }
+        #endregion
 
         #region Static Functions
         public static void CreateConnection(AbstractPiece piece1, int openingListIndex1, AbstractPiece piece2, int openingListIndex2)
@@ -197,5 +317,22 @@ namespace MapPieceUtility
             return lines;
         }
         #endregion
+    }
+
+    public class Room
+    {
+        public readonly int roomIndex = -1;
+        public readonly List<AbstractPiece> roomPieces = new List<AbstractPiece>();
+
+        public Room(int index)
+        {
+            roomIndex = index;
+        }
+
+        public void AddPiece(AbstractPiece abstractPiece)
+        {
+            abstractPiece.roomIndex = roomIndex;
+            roomPieces.Add(abstractPiece);
+        }
     }
 }
