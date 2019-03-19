@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 7dc081c2b72c8be438f1bc960e3173f4
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
@@ -9,6 +9,7 @@ ModelImporter:
     3300000: //RootNode
     4300000: Big_console
     4300002: EFIOSFB_big_console
+    6400000: //RootNode
     7400000: Take 001
     9500000: //RootNode
   externalObjects:
@@ -49,7 +50,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -67,6 +68,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 1
