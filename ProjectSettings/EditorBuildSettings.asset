@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/WillsSIIIICKNewMap.unity
     guid: 581d1c68e44e4104894d6e2ad84f83cf
+  - enabled: 1
+    path: Assets/Scenes/NewLevels/LevelUpMain(03-17).unity
+    guid: 6eb6dcb72fdce934588f92bdfd7cd6d7
+  - enabled: 1
+    path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-19).unity
+    guid: 02a13a69e19bc7c4399eaf4750ccb3a1
   m_configObjects: {}
