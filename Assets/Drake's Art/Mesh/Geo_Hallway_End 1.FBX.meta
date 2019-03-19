@@ -12,6 +12,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: HallWay_End2
+    6400000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -27,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #42'
-    second: {fileID: 2100000, guid: 82f7a14b3d6f79e4ebc65586e64f4838, type: 2}
+    second: {fileID: 2100000, guid: a56d5e7753d50a0418d537f5c9a253dd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -65,7 +66,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
