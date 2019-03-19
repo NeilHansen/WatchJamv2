@@ -11,18 +11,18 @@ public class MapStraight : AbstractPiece
         localCenter = Vector3.zero;
         AddOpening(Vector3.forward);
         AddOpening(Vector3.back);
-    }
-
-    protected override IEnumerator FlashLight()
-    {
-        return base.FlashLight();
+        materialIndex = 0;
     }
 
     protected override IEnumerator TraverseLight()
     {
+        if (flashLight)
+            goto SkipTraverse;
+
+        List<int> lightTexturePattern = new List<int>();
+
         Vector3 nextDirection = pathfindingNext.transform.position - transform.position;
         int exitDirection = DirectionTowardsIncomingVector(nextDirection);
-        List<int> lightTexturePattern = new List<int>();
         if (exitDirection > -1)
         {
             switch (exitDirection)
@@ -38,17 +38,20 @@ public class MapStraight : AbstractPiece
                     lightTexturePattern.Add(0);
                     break;
             }
-            foreach (int index in lightTexturePattern)
-            {
-                mpb.SetTexture("_EmissionMap", invertLighting ? inverseTranverseTex[index] : tranverseTex[index]);
-                lightRenderer.SetPropertyBlock(mpb);
-                yield return new WaitForSeconds(lightInterval);
-            }
         }
-        yield return null;
+
+        foreach (int index in lightTexturePattern)
+        {
+            mpb.SetTexture("_EmissionMap", invertLighting ? inverseTranverseTex[index] : tranverseTex[index]);
+            lightRenderer.SetPropertyBlock(mpb);
+            yield return new WaitForSeconds(traverseInterval);
+        }
+
         mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
         lightRenderer.SetPropertyBlock(mpb);
 
+        SkipTraverse:
+        yield return null;
         //Start traverse light to next map piece
         pathfindingNext.StartLightTraverse();
     }

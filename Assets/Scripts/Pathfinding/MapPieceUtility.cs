@@ -16,6 +16,17 @@ namespace MapPieceUtility
         Curve
     }
 
+    public struct RoomFront
+    {
+        public AbstractPiece front1;
+        public AbstractPiece front2;
+        public RoomFront(AbstractPiece f1, AbstractPiece f2)
+        {
+            front1 = f1;
+            front2 = f2;
+        }
+    }
+
     public abstract class AbstractPiece : MonoBehaviour
     {
         //Info variables
@@ -28,6 +39,8 @@ namespace MapPieceUtility
         public readonly List<AbstractPiece> neighbourPieces = new List<AbstractPiece>();
         [HideInInspector]
         public int graphListIndex = -1;
+        [HideInInspector]
+        public int roomIndex = -1;
 
         //Pathfinding variables
         [HideInInspector]
@@ -43,13 +56,18 @@ namespace MapPieceUtility
 
         //Light variables
         [Header("Lighting")]
-        public float lightInterval;
+        public float traverseInterval;
+        public float flashInterval = 1.0f;
         public Renderer lightRenderer;
+        protected int materialIndex = 0;
         protected MaterialPropertyBlock mpb;
         protected Color litColour;
         protected Color offColour;
         protected Texture fullLitTex;
         public Texture[] tranverseTex;
+        protected bool increaseIntensity;
+        protected bool flashLight = false;
+        float lightTimer = 0.0f;
 
         //Light debug variables
         [Header("LightTesting")]
@@ -61,12 +79,38 @@ namespace MapPieceUtility
         {
             mpb = new MaterialPropertyBlock();
             lightRenderer.GetPropertyBlock(mpb);
-            litColour = lightRenderer.materials[0].GetColor("_EmissionColor");
+            litColour = lightRenderer.materials[materialIndex].GetColor("_EmissionColor");
             offColour = Color.black;
-            fullLitTex = lightRenderer.materials[0].GetTexture("_EmissionMap");
+            fullLitTex = lightRenderer.materials[materialIndex].GetTexture("_EmissionMap");
             if (invertLighting)
             {
                 mpb.SetTexture("_EmissionMap", darkTex);
+                lightRenderer.SetPropertyBlock(mpb);
+            }
+            increaseIntensity = invertLighting;
+        }
+
+        void Update()
+        {
+            if (flashLight)
+            {
+                lightTimer += Time.deltaTime;
+                float value = Mathf.Clamp(lightTimer / flashInterval, 0.0f, 1.0f);
+                Color lightColour;
+                if (increaseIntensity)
+                {
+                    lightColour = Color.Lerp(offColour, litColour, value);
+                }
+                else
+                {
+                    lightColour = Color.Lerp(litColour, offColour, value);
+                }
+                if (value >= 1.0f)
+                {
+                    lightTimer = 0.0f;
+                    increaseIntensity = !increaseIntensity;
+                }
+                mpb.SetColor("_EmissionColor", lightColour);
                 lightRenderer.SetPropertyBlock(mpb);
             }
         }
@@ -135,7 +179,19 @@ namespace MapPieceUtility
         public void StartLightFlash()
         {
             StopAllCoroutines();
-            StartCoroutine(FlashLight());
+            mpb.SetTexture("_EmissionMap", fullLitTex);
+            lightTimer = 0.0f;
+            increaseIntensity = invertLighting;
+            flashLight = true;
+        }
+
+        public void StopLightFlash()
+        {
+            StopAllCoroutines();
+            mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
+            mpb.SetColor("_EmissionColor", litColour);
+            lightRenderer.SetPropertyBlock(mpb);
+            flashLight = false;
         }
 
         public void StartLightTraverse()
@@ -145,12 +201,10 @@ namespace MapPieceUtility
                 StartCoroutine(TraverseLight());
         }
 
-        protected virtual IEnumerator FlashLight()
+        public void StopLightTraverse()
         {
-            mpb.SetColor("_EmissionColor", invertLighting ? offColour : litColour);
-            lightRenderer.SetPropertyBlock(mpb);
-            yield return new WaitForSeconds(lightInterval);
-            mpb.SetColor("_EmissionColor", invertLighting ? litColour : offColour);
+            StopAllCoroutines();
+            mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
             lightRenderer.SetPropertyBlock(mpb);
         }
 
@@ -263,5 +317,22 @@ namespace MapPieceUtility
             return lines;
         }
         #endregion
+    }
+
+    public class Room
+    {
+        public readonly int roomIndex = -1;
+        public readonly List<AbstractPiece> roomPieces = new List<AbstractPiece>();
+
+        public Room(int index)
+        {
+            roomIndex = index;
+        }
+
+        public void AddPiece(AbstractPiece abstractPiece)
+        {
+            abstractPiece.roomIndex = roomIndex;
+            roomPieces.Add(abstractPiece);
+        }
     }
 }

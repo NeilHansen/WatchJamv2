@@ -367,12 +367,14 @@ MonoBehaviour:
   type: 1
   localCenter: {x: 0, y: 0, z: 0}
   graphListIndex: -1
+  roomIndex: -1
   travelCost: 1
   accumulatedCost: 0
   heuristic: 0
   pathfindingPrevious: {fileID: 0}
   pathfindingNext: {fileID: 0}
-  lightInterval: 0.2
+  traverseInterval: 0.2
+  flashInterval: 1
   lightRenderer: {fileID: 23433077674464220}
   tranverseTex:
   - {fileID: 2800000, guid: 2ca988fa3ac414a458e827b94ff1c5c8, type: 3}

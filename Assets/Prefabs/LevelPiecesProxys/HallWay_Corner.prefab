@@ -113,8 +113,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1530035913185676}
-  m_LocalRotation: {x: -0, y: 0.7071056, z: -0, w: 0.7071081}
-  m_LocalPosition: {x: 33, y: -1, z: 19}
+  m_LocalRotation: {x: 0, y: -0.5735764, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4878618422481290}
@@ -122,7 +122,7 @@ Transform:
   - {fileID: 4745221655946742}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -70, z: 0}
 --- !u!4 &4878618422481290
 Transform:
   m_ObjectHideFlags: 1
@@ -322,14 +322,22 @@ MonoBehaviour:
   type: 2
   localCenter: {x: 0, y: 0, z: 0}
   graphListIndex: -1
+  roomIndex: -1
   travelCost: 1
   accumulatedCost: 0
   heuristic: 0
   pathfindingPrevious: {fileID: 0}
   pathfindingNext: {fileID: 0}
-  lightInterval: 0
+  traverseInterval: 0.2
+  flashInterval: 1
   lightRenderer: {fileID: 23349370379789882}
-  tranverseTex: []
-  invertLighting: 0
+  tranverseTex:
+  - {fileID: 2800000, guid: 6b0d00ca25f5de547bf1f67d481dccd0, type: 3}
+  - {fileID: 2800000, guid: 0ce23fa776d3b184eb82ac23079b0c15, type: 3}
+  - {fileID: 2800000, guid: fe26a70efddd60b45ad64d07f2193cfd, type: 3}
+  invertLighting: 1
   darkTex: {fileID: 2800000, guid: 786596861f91d1d45b483310b3a906fd, type: 3}
-  inverseTranverseTex: []
+  inverseTranverseTex:
+  - {fileID: 2800000, guid: 07083a9f61e4a7742ba0977632ed48ef, type: 3}
+  - {fileID: 2800000, guid: 6d4f38c09d674244d898ab75478a4116, type: 3}
+  - {fileID: 2800000, guid: ee6a85eea3130f447ad21aa2f99972df, type: 3}
