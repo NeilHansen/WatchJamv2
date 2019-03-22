@@ -248,6 +248,7 @@ MonoBehaviour:
   spawnPositionSecurity1: []
   spawnPositionSecurity2: []
   spawnPositionSecurity3: []
+  isMonster: 0
   GameTimer: 0
   MonsterNumOfLives: 3
   MonsterWins: 0

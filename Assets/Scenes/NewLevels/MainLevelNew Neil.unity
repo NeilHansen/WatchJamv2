@@ -22429,26 +22429,6 @@ Prefab:
       propertyPath: m_Name
       value: HallWay_TIntersection (31)
       objectReference: {fileID: 0}
-    - target: {fileID: 4348211250332764, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252489598665786, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1479973075443576, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1653270910540752, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1243883754439594, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
   m_IsPrefabAsset: 0

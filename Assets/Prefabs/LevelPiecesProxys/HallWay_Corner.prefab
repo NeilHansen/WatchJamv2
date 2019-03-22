@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33447537865802720}
   - component: {fileID: 23292524474343794}
   - component: {fileID: 64214233355388764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_LCorner 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

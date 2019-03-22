@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33050146020915416}
   - component: {fileID: 23652792868652636}
   - component: {fileID: 64026727513508844}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: HallWay_XIntersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33603965937942246}
   - component: {fileID: 23520467730084814}
   - component: {fileID: 64274539056970834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_XIntersection 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33461530231327378}
   - component: {fileID: 23003325067012900}
   - component: {fileID: 64398238378747486}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Geo_Hallway_XIntersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

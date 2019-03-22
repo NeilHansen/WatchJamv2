@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33828983930199410}
   - component: {fileID: 23144183878945472}
   - component: {fileID: 64417632660408528}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_TIntersection 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Transform:
   - {fileID: 4124978417862402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -269.999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &4531267290082366
 Transform:
   m_ObjectHideFlags: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
   pathfindingNext: {fileID: 0}
   traverseInterval: 0.2
   flashInterval: 1
-  lightRenderer: {fileID: 0}
+  lightRenderer: {fileID: 23144183878945472}
   tranverseTex:
   - {fileID: 2800000, guid: a3c74463f7e145447937a7803b9c576c, type: 3}
   - {fileID: 2800000, guid: a2e97d8e082d821438a34b0ffa7c657b, type: 3}

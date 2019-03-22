@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33246278589016236}
   - component: {fileID: 23587603837440456}
   - component: {fileID: 64212550372990400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_Straight 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
