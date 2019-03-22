@@ -4387,9 +4387,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4749306537205522}
-  - component: {fileID: 95167312329673052}
-  - component: {fileID: 114298364805673242}
-  - component: {fileID: 114362357473704878}
   m_Layer: 0
   m_Name: monster_RigFinal
   m_TagString: Untagged
@@ -5209,6 +5206,8 @@ GameObject:
   - component: {fileID: 114365686389514042}
   - component: {fileID: 114793082615492070}
   - component: {fileID: 114083016283368648}
+  - component: {fileID: 95710531980837290}
+  - component: {fileID: 114769433820995330}
   m_Layer: 10
   m_Name: Player_Monster
   m_TagString: Monster
@@ -18105,13 +18104,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.1906319, z: 1}
   m_Center: {x: 0, y: 0.73245573, z: 0}
---- !u!95 &95167312329673052
+--- !u!95 &95710531980837290
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1459583316850002}
+  m_GameObject: {fileID: 1558698934536914}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e3c8b8eb280cf5e4597f45de4b24afa6, type: 3}
   m_Controller: {fileID: 9100000, guid: 516ebdcec683a594295dc044adc40965, type: 2}
@@ -18184,57 +18183,6 @@ MonoBehaviour:
   meshRender: {fileID: 23102725034920334}
   drainMaterial: {fileID: 2100000, guid: 035bb743b065b1447b6ca34c38479550, type: 2}
   defaultMaterial: {fileID: 0}
---- !u!114 &114298364805673242
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1459583316850002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 95167312329673052}
-  m_ParameterSendBits: 0
-  param0: 
-  param1: 
-  param2: 
-  param3: 
-  param4: 
-  param5: 
---- !u!114 &114362357473704878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1459583316850002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 29
-    i1: 42
-    i2: 122
-    i3: 189
-    i4: 56
-    i5: 138
-    i6: 89
-    i7: 36
-    i8: 234
-    i9: 203
-    i10: 170
-    i11: 123
-    i12: 4
-    i13: 55
-    i14: 18
-    i15: 23
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114365686389514042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18266,6 +18214,25 @@ MonoBehaviour:
   monster: {fileID: 0}
   boxCollider: {fileID: 65253046688356332}
   meshRender: {fileID: 23166976007240028}
+--- !u!114 &114769433820995330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558698934536914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95710531980837290}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114793082615492070
 MonoBehaviour:
   m_ObjectHideFlags: 1

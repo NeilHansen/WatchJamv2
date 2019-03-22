@@ -33,7 +33,6 @@ public class SectorController : MonoBehaviour {
             if (t.isBroken)
             {
                 brokenTerminals += 1;
-                gm.AddToTermainalCount();
             }
         }
     }

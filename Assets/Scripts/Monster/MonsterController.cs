@@ -272,6 +272,8 @@ public class MonsterController : NetworkBehaviour {
     public void CmdSendBreakTerminal(GameObject target)
     {
         target.GetComponent<TerminalController>().CmdReceiveBreakTerminal();
+        //count up number of broken Terminals
+        GameManager.Instance.AddToTermainalCount();
     }
     #endregion
 }

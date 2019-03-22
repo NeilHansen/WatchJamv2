@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Terminal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1321323366234322
 GameObject:
@@ -40,12 +40,13 @@ GameObject:
   - component: {fileID: 4578679307257838}
   - component: {fileID: 33763881147600368}
   - component: {fileID: 23123824680090844}
+  - component: {fileID: 64226029160369772}
   m_Layer: 12
   m_Name: EFIOSFB_big_console_broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!1 &1635345532757098
 GameObject:
@@ -61,7 +62,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1912100397071570
 GameObject:
@@ -80,7 +81,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4044355804970322
 Transform:
@@ -115,8 +116,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1023734121658418}
-  m_LocalRotation: {x: -0, y: -0.0000011473893, z: -0, w: 1}
-  m_LocalPosition: {x: 10.9, y: -0.73, z: 55.443}
+  m_LocalRotation: {x: -0, y: -0.0000011324881, z: -0, w: 1}
+  m_LocalPosition: {x: 33.17, y: -0.73, z: -21.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4044355804970322}
@@ -220,6 +221,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912100397071570}
+  m_Mesh: {fileID: 4300002, guid: 7dc081c2b72c8be438f1bc960e3173f4, type: 3}
+--- !u!64 &64226029160369772
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321323366234322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 7dc081c2b72c8be438f1bc960e3173f4, type: 3}
 --- !u!64 &64648881783143458
 MeshCollider:
@@ -342,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 2
   outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 6
+  outlineWidth: 8
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

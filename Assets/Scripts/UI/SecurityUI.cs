@@ -18,6 +18,8 @@ public class SecurityUI : MonoBehaviour {
     public GameObject MonsterWins;
     public GameObject SecurityWins;
 
+    public TMP_Text terminalText;
+
     // Use this for initialization
     void Awake()
     {
@@ -42,6 +44,7 @@ public class SecurityUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SetGameTimerText(GameManager.Instance.GameTimer);
+        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount; 
     }
 
     public void SetMonsterWin(bool b)
