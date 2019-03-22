@@ -12,6 +12,7 @@ public class DoorController : NetworkBehaviour {
     public bool isOpen = false;
     public int brokenSectorCount = 0;
     public int maxBrokenSectorCount = 3;
+    
 
     // Use this for initialization
     void Awake()
@@ -44,6 +45,8 @@ public class DoorController : NetworkBehaviour {
             }
         }
 	}
+
+   
 
     public void CheckDoors()
     {

@@ -9,11 +9,11 @@ public class SectorController : MonoBehaviour {
     public Door sectorExit;
     public int brokenTerminals = 0;
     public bool brokenSector = false;
-
+    private GameManager gm;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        gm = FindObjectOfType<GameManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,6 +33,7 @@ public class SectorController : MonoBehaviour {
             if (t.isBroken)
             {
                 brokenTerminals += 1;
+                gm.AddToTermainalCount();
             }
         }
     }

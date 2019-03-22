@@ -33,6 +33,8 @@ public class GameManager : NetworkBehaviour {
     [SyncVar]
     public bool SecurityWins = false;
     public bool reset = false;
+    [SyncVar]
+    public int brokenTerminalCount = 0;
 
     // Use this for initialization
     void Awake () {
@@ -108,7 +110,7 @@ public class GameManager : NetworkBehaviour {
         {
             if (MonsterUI.Instance != null)
             {
-                MonsterUI.Instance.SetMonsterWin(false);
+                MonsterUI.Instance.SetMonsterWin(true);
             }
 
             if (SecurityUI.Instance != null)
@@ -127,5 +129,10 @@ public class GameManager : NetworkBehaviour {
     public void MinusMonsterLife()
     {
         MonsterNumOfLives -= 1;
+    }
+
+    public void AddToTermainalCount()
+    {
+        brokenTerminalCount += 1;
     }
 }

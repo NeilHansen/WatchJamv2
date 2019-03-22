@@ -31,6 +31,8 @@ public class MonsterUI : MonoBehaviour {
 
     private int NumOfLives;
 
+    public TMP_Text terminalText;
+
     // Use this for initialization
     void Awake()
     {
@@ -63,6 +65,7 @@ public class MonsterUI : MonoBehaviour {
     {
         SetGameTimerText(GameManager.Instance.GameTimer);
         livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
+        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount;
     }
 
     public void SetMonsterWin(bool b)
