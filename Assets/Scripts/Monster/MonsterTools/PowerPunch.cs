@@ -37,7 +37,7 @@ public class PowerPunch : MonoBehaviour {
         {
             monster.isPunching = true;
             meshRender.enabled = true;
-
+           
             //To stop punch
             StartCoroutine(stopPunching());
         }
@@ -45,6 +45,7 @@ public class PowerPunch : MonoBehaviour {
         else if (monster.isPunching && !monster.punchCooldown)
         {
             boxCollider.enabled = true;
+            monster.GetComponent<Animator>().SetBool("IsAttacking", true);
         }
         else
         {
@@ -65,7 +66,7 @@ public class PowerPunch : MonoBehaviour {
         {
             //Turn off
             MonsterUI.Instance.SetPunchIcon(1.0f);
-
+            monster.GetComponent<Animator>().SetBool("IsAttacking", false);
             monster.isPunching = false;
             monster.punchCooldown = false;
         }
@@ -83,7 +84,7 @@ public class PowerPunch : MonoBehaviour {
 
             //Turn off
             MonsterUI.Instance.SetPunchIcon(1.0f);
-
+            monster.GetComponent<Animator>().SetBool("IsAttacking", false);
             monster.isPunching = false;
             monster.punchCooldown = false;
         }

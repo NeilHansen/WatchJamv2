@@ -7200,7 +7200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
@@ -8790,7 +8790,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654959395
 MonoBehaviour:
@@ -14581,7 +14581,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4521932383111946, guid: 98d9754b4c9fe294da056c6e4a327df4, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114533009669671220, guid: 98d9754b4c9fe294da056c6e4a327df4,
         type: 2}
@@ -21323,7 +21323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4872985630740152, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
         type: 2}
@@ -21384,6 +21384,10 @@ Prefab:
         type: 2}
       propertyPath: sectorExit
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551680803084036, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
@@ -31066,7 +31070,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 1962243934}
   m_AABB:
     m_Center: {x: 0, y: 0, z: 0.0000038146973}
-    m_Extent: {x: 0.028912889, y: 0.030000046, z: 0.030003076}
+    m_Extent: {x: 0.03000001, y: 0.030000046, z: 0.030003116}
   m_DirtyAABB: 0
 --- !u!4 &1962243934 stripped
 Transform:

@@ -58,10 +58,10 @@ public class MonsterController : NetworkBehaviour {
     void Start () {
         if(hasAuthority)
         {
-            
-            //Set MiniMap
+  
             mm = FindObjectOfType<bl_MiniMap>();
-            mm.gameObject.transform.parent.gameObject.SetActive(false);
+            //Set MiniMap off
+           // mm.gameObject.transform.parent.gameObject.SetActive(false);
 
             TerminalController[] terminalControllers = FindObjectsOfType<TerminalController>();
             foreach(TerminalController t in terminalControllers)

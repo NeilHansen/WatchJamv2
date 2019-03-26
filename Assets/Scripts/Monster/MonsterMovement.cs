@@ -17,6 +17,8 @@ public class MonsterMovement : NetworkBehaviour {
     public float FOVmin = -30.0f;
     public float FOVmax = 30.0f;
 
+    
+
     // Use this for initialization
     void Start () {
         if (hasAuthority)
@@ -51,6 +53,8 @@ public class MonsterMovement : NetworkBehaviour {
         //Simple Movement
         transform.Translate(player.GetAxis("VerticalMove") * Time.deltaTime * speed, 0.0f, player.GetAxis("HorizontalMove") * Time.deltaTime * speed);
 
+        float walking = player.GetAxis("HorizontalMove");
+        this.GetComponent<Animator>().SetFloat("Walking", walking);
         //Converting Angles to negation
         float currentRotationX = fpsCamera.transform.localEulerAngles.x;
         currentRotationX = (currentRotationX > 180) ? currentRotationX - 360 : currentRotationX;
