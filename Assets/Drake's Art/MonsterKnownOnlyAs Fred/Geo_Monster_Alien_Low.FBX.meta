@@ -14,7 +14,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Geo_Alien_Monster_Low_defaultMat
-    second: {fileID: 2100000, guid: c28fea42f3ca2d846a2cbf0b5df15a67, type: 2}
+    second: {fileID: 2100000, guid: 93cf7ca78948fff4e95815235cb34e1d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
