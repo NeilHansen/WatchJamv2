@@ -291,7 +291,7 @@ MonoBehaviour:
   - {fileID: 114235345349888560}
   isOpen: 0
   brokenSectorCount: 0
-  maxBrokenSectorCount: 3
+  maxBrokenSectorCount: 6
 --- !u!114 &114634029692904148
 MonoBehaviour:
   m_ObjectHideFlags: 1

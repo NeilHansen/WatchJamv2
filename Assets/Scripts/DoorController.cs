@@ -11,7 +11,8 @@ public class DoorController : NetworkBehaviour {
 
     public bool isOpen = false;
     public int brokenSectorCount = 0;
-    public int maxBrokenSectorCount = 3;
+    public int maxBrokenSectorCount = 6;
+    public GameManager gm;
     
 
     // Use this for initialization
@@ -32,14 +33,14 @@ public class DoorController : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        gm = GameObject.FindObjectOfType<GameManager>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         if(isServer)
         {
-            if (brokenSectorCount >= maxBrokenSectorCount && !isOpen)
+            if (gm.brokenTerminalCount >= maxBrokenSectorCount && !isOpen)
             {
                 OpenDoors();
             }
@@ -55,7 +56,7 @@ public class DoorController : NetworkBehaviour {
         foreach (SectorController s in Sectors)
         {
             s.CheckTerminals();
-            if (s.brokenTerminals >= 2)
+            if (s.brokenTerminals >= 1)
             {
                 brokenSectorCount += 1;
             }
@@ -68,14 +69,14 @@ public class DoorController : NetworkBehaviour {
 
         foreach (SectorController s in Sectors)
         {
-            if (s.brokenTerminals >= 2)
+            if (s.brokenTerminals >= 1)
             {
                 brokenSectors.Add(s);
             }
         }
 
-        int randomPick = Random.Range(0, 2);
-
+        int randomPick = Random.Range(0, 3);
+        Debug.Log("Open Door");
         brokenSectors[randomPick].OpenDoor();
     }
 }

@@ -21282,21 +21282,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4872985630740152, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21344,21 +21329,36 @@ Prefab:
       propertyPath: sectorExit
       value: 
       objectReference: {fileID: 1000361316}
-    - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
         type: 2}
-      propertyPath: sectorTerminals.Array.data[2]
+      propertyPath: sectorTerminals.Array.data[0]
       value: 
-      objectReference: {fileID: 1771168718}
-    - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[3]
-      value: 
-      objectReference: {fileID: 1771168718}
-    - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+      objectReference: {fileID: 1485435751}
+    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
         type: 2}
       propertyPath: sectorTerminals.Array.data[1]
       value: 
-      objectReference: {fileID: 1771168718}
+      objectReference: {fileID: 1008331263}
+    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
+      propertyPath: sectorExit
+      value: 
+      objectReference: {fileID: 1623109744}
+    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
+      propertyPath: sectorTerminals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1626235976}
+    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
+      propertyPath: sectorTerminals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1054927922}
+    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
+      propertyPath: sectorExit
+      value: 
+      objectReference: {fileID: 17069319}
     - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
         type: 2}
       propertyPath: sectorTerminals.Array.data[0]
@@ -21366,59 +21366,14 @@ Prefab:
       objectReference: {fileID: 99317622}
     - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
         type: 2}
+      propertyPath: sectorTerminals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1771168718}
+    - target: {fileID: 114475924681726756, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
       propertyPath: sectorExit
       value: 
       objectReference: {fileID: 1932537230}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorExit
-      value: 
-      objectReference: {fileID: 17069319}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[2]
-      value: 
-      objectReference: {fileID: 1054927922}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[3]
-      value: 
-      objectReference: {fileID: 1054927922}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[1]
-      value: 
-      objectReference: {fileID: 1054927922}
-    - target: {fileID: 114271238736751084, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[0]
-      value: 
-      objectReference: {fileID: 1626235976}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorExit
-      value: 
-      objectReference: {fileID: 1623109744}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[2]
-      value: 
-      objectReference: {fileID: 1008331263}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[3]
-      value: 
-      objectReference: {fileID: 1008331263}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[1]
-      value: 
-      objectReference: {fileID: 1008331263}
-    - target: {fileID: 114235345349888560, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
-        type: 2}
-      propertyPath: sectorTerminals.Array.data[0]
-      value: 
-      objectReference: {fileID: 1485435751}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
   m_IsPrefabAsset: 0

@@ -9,6 +9,7 @@ public class SectorController : MonoBehaviour {
     public Door sectorExit;
     public int brokenTerminals = 0;
     public bool brokenSector = false;
+    private int maxBrokenTerminals;
     private GameManager gm;
 	// Use this for initialization
 	void Start () {
