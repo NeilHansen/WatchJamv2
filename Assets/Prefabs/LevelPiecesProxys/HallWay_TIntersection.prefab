@@ -343,7 +343,7 @@ MonoBehaviour:
   heuristic: 0
   pathfindingPrevious: {fileID: 0}
   pathfindingNext: {fileID: 0}
-  traverseInterval: 0.2
+  pulseInterval: 0.1
   flashInterval: 1
   lightRenderer: {fileID: 23101858860548488}
   tranverseTex:
