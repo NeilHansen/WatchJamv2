@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1021570711526746
 GameObject:
   m_ObjectHideFlags: 1
@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1062938993848642
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1207155257860670
 GameObject:
   m_ObjectHideFlags: 1
@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1325853038954186
 GameObject:
   m_ObjectHideFlags: 1
@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1389667639532816
 GameObject:
   m_ObjectHideFlags: 1
@@ -286,7 +286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1402890769897344
 GameObject:
   m_ObjectHideFlags: 1
@@ -372,7 +372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1493677705719614
 GameObject:
   m_ObjectHideFlags: 1
@@ -441,7 +441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1557972579651072
 GameObject:
   m_ObjectHideFlags: 1
@@ -530,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1657827636944948
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1839787066540720
 GameObject:
   m_ObjectHideFlags: 1
@@ -798,7 +798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1995499056078866
 GameObject:
   m_ObjectHideFlags: 1
@@ -1104,10 +1104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cu mollis impedit eam, quaestio dissentias at usu. Vim ei brute doctus,
-    expetendis concludaturque cum id, pri eu omnis altera euripidis. Ubique sententiae
-    vel ad, sed ne sumo aliquam detraxit. Sit ne erant electram laboramus, ea repudiare
-    aliquando voluptaria usu. Elit utroque similique quo no.
+  m_Text: 
 --- !u!114 &114127381376926038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1471,7 +1468,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Focus Area
+  m_Text: 
 --- !u!114 &114385331838822840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1617,7 +1614,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Health Area
+  m_Text: 
 --- !u!114 &114457720716129694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1736,7 +1733,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: House
+  m_Text: 
 --- !u!114 &114516749743937712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1829,7 +1826,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bot
+  m_Text: '
+
+'
 --- !u!114 &114558527461101504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2915,7 +2914,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1657827636944948}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 13.65}
+  m_LocalPosition: {x: 0, y: 0, z: 14.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4418987295530974}
@@ -2923,8 +2922,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.28, y: 0}
-  m_SizeDelta: {x: 138.22, y: 129.03}
+  m_AnchoredPosition: {x: 6.04, y: -0}
+  m_SizeDelta: {x: 111.58, y: 102.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224273239176062206
 RectTransform:

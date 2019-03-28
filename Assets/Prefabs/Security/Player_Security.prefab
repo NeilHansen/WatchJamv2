@@ -2871,13 +2871,13 @@ MonoBehaviour:
   OffSet: {x: 0, y: 0, z: 0}
   Icon: {fileID: 21300114, guid: b2ff3b281537fbc4d91af3e848afde5c, type: 3}
   DeathIcon: {fileID: 0}
-  IconColor: {r: 1, g: 0, b: 0.55099344, a: 1}
+  IconColor: {r: 1, g: 1, b: 1, a: 0}
   Size: 14
   ShowCircleArea: 0
   CircleAreaRadius: 10
   CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
   isInteractable: 0
-  InfoItem: This is a Bot
+  InfoItem: 
   OffScreen: 1
   DestroyWithObject: 0
   BorderOffScreen: 0
