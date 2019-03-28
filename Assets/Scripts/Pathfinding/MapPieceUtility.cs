@@ -54,26 +54,30 @@ namespace MapPieceUtility
         public AbstractPiece pathfindingNext = null;
         [Space(1)]
 
-        //Light variables
-        [Header("Lighting")]
-        public float traverseInterval;
+        //Light time variables
+        [Header("Light Timers")]
+        public float pulseInterval;
         public float flashInterval = 1.0f;
+
+        //Light textures
+        [Header("Light Textures")]
+        public bool invertLighting;
+        protected Texture fullLitTex;
+        public Texture[] tranverseTex;
+        public Texture darkTex;
+        public Texture[] inverseTranverseTex;
+
+        //Light renderer, material and colour
         public Renderer lightRenderer;
         protected int materialIndex = 0;
         protected MaterialPropertyBlock mpb;
         protected Color litColour;
         protected Color offColour;
-        protected Texture fullLitTex;
-        public Texture[] tranverseTex;
+        
+        //Flash light vairiables
         protected bool increaseIntensity;
         protected bool flashLight = false;
         float lightTimer = 0.0f;
-
-        //Light debug variables
-        [Header("LightTesting")]
-        public bool invertLighting;
-        public Texture darkTex;
-        public Texture[] inverseTranverseTex;
 
         void Awake()
         {
@@ -185,34 +189,28 @@ namespace MapPieceUtility
             flashLight = true;
         }
 
-        public void StopLightFlash()
+        public void ResetLight(bool stopCouroutine = false)
         {
-            StopAllCoroutines();
+            if (stopCouroutine)
+                StopAllCoroutines();
             mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
             mpb.SetColor("_EmissionColor", litColour);
             lightRenderer.SetPropertyBlock(mpb);
             flashLight = false;
         }
 
-        public void StartLightTraverse()
+        public void StartLightPulse()
         {
             StopAllCoroutines();
             if (pathfindingNext)
-                StartCoroutine(TraverseLight());
+                StartCoroutine(PulseLight());
         }
 
-        public void StopLightTraverse()
-        {
-            StopAllCoroutines();
-            mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
-            lightRenderer.SetPropertyBlock(mpb);
-        }
-
-        protected virtual IEnumerator TraverseLight()
+        protected virtual IEnumerator PulseLight()
         {
             yield return null;
-            //Start traverse light to next map piece
-            pathfindingNext.StartLightTraverse();
+            //Start pulse light to next map piece
+            pathfindingNext.StartLightPulse();
         }
         #endregion
 

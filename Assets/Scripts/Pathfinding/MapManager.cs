@@ -414,8 +414,8 @@ public class MapManager : MonoBehaviour {
             current = current.pathfindingNext;
         }
         StopAllCoroutines();
-        StartCoroutine(LightPath(start));
-        if (current.roomIndex != 1)
+        StartCoroutine(SendPulseDownPath(start));
+        if (current.roomIndex != -1)
         {
             foreach(AbstractPiece piece in RoomList[current.roomIndex].roomPieces)
             {
@@ -430,14 +430,14 @@ public class MapManager : MonoBehaviour {
         AbstractPiece end = start;
         while (end.pathfindingNext != null)
         {
-            end.StopLightTraverse();
+            end.ResetLight(true);
             end = end.pathfindingNext;
         }
-        if (end.roomIndex != 1)
+        if (end.roomIndex != -1)
         {
             foreach (AbstractPiece piece in RoomList[end.roomIndex].roomPieces)
             {
-                end.StopLightFlash();
+                end.ResetLight(true);
             }
         }
         foreach (GameObject map in arrowLineRenderers)
@@ -448,12 +448,12 @@ public class MapManager : MonoBehaviour {
 
     }
 
-    IEnumerator LightPath(AbstractPiece start)
+    IEnumerator SendPulseDownPath(AbstractPiece start)
     {
         while (true)
         {
             yield return new WaitForSeconds(lightInterval);
-            start.StartLightTraverse();
+            start.StartLightPulse();
         }
     }
     #endregion

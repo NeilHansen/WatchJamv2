@@ -48252,7 +48252,7 @@ MonoBehaviour:
   debugShowArrow: 0
   arrowLinePrefab: {fileID: 1822033098940170, guid: 483baa35b6cad594e81c371ebe305ff9,
     type: 2}
-  lightInterval: 0.65
+  lightInterval: 0.4
 --- !u!4 &1853453978
 Transform:
   m_ObjectHideFlags: 0

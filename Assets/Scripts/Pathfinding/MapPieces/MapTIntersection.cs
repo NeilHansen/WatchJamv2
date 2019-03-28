@@ -15,13 +15,15 @@ public class MapTIntersection : AbstractPiece
         materialIndex = 1;
     }
 
-    protected override IEnumerator TraverseLight()
+    protected override IEnumerator PulseLight()
     {
-        if (flashLight)
+        //If tile is flashing or part of room, skip current tile
+        if (flashLight || roomIndex != -1)
             goto SkipTraverse;
 
         List<int> lightTexturePattern = new List<int>();
 
+        //Add incoming pattern
         if (pathfindingPrevious)
         {
             Vector3 fromDirection = pathfindingPrevious.transform.position - transform.position;
@@ -40,8 +42,10 @@ public class MapTIntersection : AbstractPiece
             }
         }
 
+        //Add middle pattern
         lightTexturePattern.Add(1);
 
+        //Add outgoing pattern
         Vector3 nextDirection = pathfindingNext.transform.position - transform.position;
         int exitDirection = DirectionTowardsIncomingVector(-nextDirection);
         if (exitDirection > -1)
@@ -60,19 +64,19 @@ public class MapTIntersection : AbstractPiece
             }
         }
 
+        //Loop through all emissive texture patterns in list
         foreach (int index in lightTexturePattern)
         {
             mpb.SetTexture("_EmissionMap", invertLighting ? inverseTranverseTex[index] : tranverseTex[index]);
             lightRenderer.SetPropertyBlock(mpb);
-            yield return new WaitForSeconds(traverseInterval);
+            yield return new WaitForSeconds(pulseInterval);
         }
 
-        mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
-        lightRenderer.SetPropertyBlock(mpb);
+        ResetLight();
 
         SkipTraverse:
         yield return null;
-        //Start traverse light to next map piece
-        pathfindingNext.StartLightTraverse();
+        //Start pulse light to next map piece
+        pathfindingNext.StartLightPulse();
     }
 }
