@@ -17,7 +17,7 @@ public class MonsterMovement : NetworkBehaviour {
     public float FOVmin = -30.0f;
     public float FOVmax = 30.0f;
 
-    
+    private Animator anim;
 
     // Use this for initialization
     void Start () {
@@ -29,7 +29,7 @@ public class MonsterMovement : NetworkBehaviour {
             fpsCamera.transform.SetParent(this.transform);
             fpsCamera.transform.localRotation = Quaternion.identity;
             fpsCamera.transform.localPosition = new Vector3(0, 1.5f, 0); //Vector3.zero;
-         // fpsCamera.transform.localPosition = CameraPosition.transform.position;
+            // fpsCamera.transform.localPosition = CameraPosition.transform.position;
 
             //Set MiniMap
             FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
@@ -37,6 +37,8 @@ public class MonsterMovement : NetworkBehaviour {
             //Set Controls and display to right screen
             player = Rewired.ReInput.players.GetPlayer(controllerNumber);
             GetComponent<MonsterController>().player = player;
+
+            anim = GetComponent<Animator>();
         }
     }
 	
@@ -50,11 +52,12 @@ public class MonsterMovement : NetworkBehaviour {
 
     void InputHandler()
     {
-        //Simple Movement
-        transform.Translate(player.GetAxis("VerticalMove") * Time.deltaTime * speed, 0.0f, player.GetAxis("HorizontalMove") * Time.deltaTime * speed);
+        float x = player.GetAxis("VerticalMove");
+        float y = player.GetAxis("HorizontalMove");
 
-        float walking = player.GetAxis("HorizontalMove");
-        this.GetComponent<Animator>().SetFloat("Walking", walking);
+        //Simple Movement
+        transform.Translate(x * Time.deltaTime * speed, 0.0f, y * Time.deltaTime * speed);
+
         //Converting Angles to negation
         float currentRotationX = fpsCamera.transform.localEulerAngles.x;
         currentRotationX = (currentRotationX > 180) ? currentRotationX - 360 : currentRotationX;
@@ -81,5 +84,8 @@ public class MonsterMovement : NetworkBehaviour {
                 fpsCamera.transform.Rotate(player.GetAxis("RotVertical") * rotSpeed * Time.deltaTime * -1.0f, 0.0f, 0.0f);
             }
         }
+
+        //anim.SetFloat("VelX", x);
+        anim.SetFloat("VelY", y);
     }
 }
