@@ -18,6 +18,11 @@ public class MonsterMovement : NetworkBehaviour {
     public float FOVmax = 30.0f;
 
     private Animator anim;
+    [SyncVar]
+    public float x = 0.0f;
+    [SyncVar]
+    public float y = 0.0f;
+
 
     // Use this for initialization
     void Start () {
@@ -37,14 +42,17 @@ public class MonsterMovement : NetworkBehaviour {
             //Set Controls and display to right screen
             player = Rewired.ReInput.players.GetPlayer(controllerNumber);
             GetComponent<MonsterController>().player = player;
-
-            anim = GetComponent<Animator>();
         }
+
+        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(hasAuthority)
+        //anim.SetFloat("VelX", x);
+        anim.SetFloat("VelY", y);
+
+        if (hasAuthority)
         {
             InputHandler();
         }
@@ -52,8 +60,8 @@ public class MonsterMovement : NetworkBehaviour {
 
     void InputHandler()
     {
-        float x = player.GetAxis("VerticalMove");
-        float y = player.GetAxis("HorizontalMove");
+        x = player.GetAxis("VerticalMove");
+        y = player.GetAxis("HorizontalMove");
 
         //Simple Movement
         transform.Translate(x * Time.deltaTime * speed, 0.0f, y * Time.deltaTime * speed);
@@ -84,8 +92,5 @@ public class MonsterMovement : NetworkBehaviour {
                 fpsCamera.transform.Rotate(player.GetAxis("RotVertical") * rotSpeed * Time.deltaTime * -1.0f, 0.0f, 0.0f);
             }
         }
-
-        //anim.SetFloat("VelX", x);
-        anim.SetFloat("VelY", y);
     }
 }
