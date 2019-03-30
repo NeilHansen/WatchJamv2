@@ -24,6 +24,7 @@ public class MonsterController : NetworkBehaviour {
 
     public bool b_terminalInteraction = false;
 
+    public bool isSmashing = false;
     public bool isDraining = false;
     public bool drainCooldown = false;
     public bool isPunching = false;
@@ -46,8 +47,10 @@ public class MonsterController : NetworkBehaviour {
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
     [SyncVar(hook = "OnChangeMonsterAlpha")]
-    public float monsterHealth = 0.1f;
+    public float monsterHealth = 1.0f;
     public float monsterAlphaWhenSeen = 0.35f;
+    public float monsterSmashSeenAmount = 1.0f;
+    private float oldMonserAlphaWhenSeen;
 
     public Material monsterMaterial;
     private Color monsterColor;
@@ -58,7 +61,6 @@ public class MonsterController : NetworkBehaviour {
     void Start () {
         if(hasAuthority)
         {
-  
             mm = FindObjectOfType<bl_MiniMap>();
             //Set MiniMap off
            // mm.gameObject.transform.parent.gameObject.SetActive(false);
@@ -69,6 +71,8 @@ public class MonsterController : NetworkBehaviour {
                 t.ShowOutline(true);
             }
         }
+
+        oldMonserAlphaWhenSeen = monsterAlphaWhenSeen;
 
         //Give children a reference to this script
         powerDrain.monster = this;
@@ -88,12 +92,27 @@ public class MonsterController : NetworkBehaviour {
         if (!hasAuthority)
             return;
 
-        if (Security1InSight || Security2InSight || Security3InSight)
+        if (player.GetButtonDown("Punch") && b_terminalInteraction)
         {
+            isSmashing = true;
+            GetComponent<Animator>().SetBool("IsAttacking", true);
+        }
+
+        if(isSmashing)
+        {
+            MonsterUI.Instance.SetMonsterSeenIcon(true);
+            monsterAlphaWhenSeen = monsterSmashSeenAmount;
+            CmdShowMonster();
+        }
+        else if (Security1InSight || Security2InSight || Security3InSight)
+        {
+            MonsterUI.Instance.SetMonsterSeenIcon(true);
+            monsterAlphaWhenSeen = oldMonserAlphaWhenSeen;
             CmdShowMonster();
         }
         else
         {
+            MonsterUI.Instance.SetMonsterSeenIcon(false);
             CmdHideMonster();
         }
 
@@ -102,9 +121,9 @@ public class MonsterController : NetworkBehaviour {
             CmdTakeDamage();
         }
 
-        if (monsterHealth >= 1.0f)
+        if (monsterHealth <= 0.0f)
         {
-            monsterHealth = 0.0f;
+            monsterHealth = 1.0f;
             ResetMonster();
         }
 
@@ -113,7 +132,7 @@ public class MonsterController : NetworkBehaviour {
             mm.ToggleSize();
         }
 
-        powerPunch.MonsterPunch();
+        //powerPunch.MonsterPunch();
         powerDrain.MonsterDrain();
 
         if (b_terminalInteraction)
@@ -145,7 +164,6 @@ public class MonsterController : NetworkBehaviour {
         {
             if (hasAuthority)
             {
-                MonsterUI.Instance.SetMonsterSeenIcon(true);
                 MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
         }
@@ -153,7 +171,6 @@ public class MonsterController : NetworkBehaviour {
         {
             if (hasAuthority)
             {
-                MonsterUI.Instance.SetMonsterSeenIcon(false);
                 MonsterUI.Instance.SetVisibilitySlider(alpha);
             }
         }
@@ -162,6 +179,8 @@ public class MonsterController : NetworkBehaviour {
     //Repspawn player in right position
     public void ResetMonster()
     {
+        isSmashing = false;
+        b_terminalInteraction = false;
         CmdMinusMonsterLife();
         CmdResetHealth();
         MonsterUI.Instance.ResetMonsterUI();
@@ -180,7 +199,7 @@ public class MonsterController : NetworkBehaviour {
     [Command]
     public void CmdResetHealth()
     {
-        monsterHealth = 0.0f;
+        monsterHealth = 1.0f;
     }
 
     #region Drain and Flashlight
@@ -189,14 +208,14 @@ public class MonsterController : NetworkBehaviour {
     public void CmdTakeDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
-        monsterHealth += damage;
+        monsterHealth -= damage;
     }
 
     [Command]
     public void CmdRemoveDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
-        monsterHealth -= damage;
+        monsterHealth += damage;
     }
 
     [Command]

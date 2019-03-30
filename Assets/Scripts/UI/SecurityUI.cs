@@ -53,11 +53,11 @@ public class SecurityUI : MonoBehaviour {
 
         if (b)
         {
-            MonsterWins.SetActive(true);
+            SecurityWins.SetActive(true);
         }
         else
         {
-            SecurityWins.SetActive(true);
+            MonsterWins.SetActive(true);
         }
     }
 

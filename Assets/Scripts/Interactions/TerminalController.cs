@@ -12,12 +12,28 @@ public class TerminalController : NetworkBehaviour {
     public Color BrokenColor;
 
     public Outline terminal1;
+    private MonsterController monster;
+
+    public GameObject Position;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterController>().b_terminalInteraction = true;
+            monster = other.GetComponent<MonsterController>();
+            monster.b_terminalInteraction = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            monster = other.GetComponent<MonsterController>();
+            if(monster.isSmashing)
+            {
+                other.transform.position = Position.transform.position;
+            }
         }
     }
 
@@ -25,7 +41,8 @@ public class TerminalController : NetworkBehaviour {
     {
         if (other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterController>().b_terminalInteraction = false;
+            monster = other.GetComponent<MonsterController>();
+            monster.b_terminalInteraction = false;
         }
     }
 
@@ -45,6 +62,9 @@ public class TerminalController : NetworkBehaviour {
     void RpcBreakTerminal()
     {
         DoorController.Instance.CheckDoors();
+        monster.isSmashing = false;
+        monster.b_terminalInteraction = false;
+        GetComponent<BoxCollider>().enabled = false;
         GetComponent<bl_MiniMapItem>().SetIconColor(BrokenColor);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);

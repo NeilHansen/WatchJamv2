@@ -52,6 +52,9 @@ public class MonsterMovement : NetworkBehaviour {
         //anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 
+        if (GetComponent<MonsterController>().isSmashing)
+            return;
+
         if (hasAuthority)
         {
             InputHandler();

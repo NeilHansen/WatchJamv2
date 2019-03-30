@@ -10,8 +10,8 @@ public class Footprints : MonoBehaviour {
     public Transform leftFootLocation;
     public Transform rightFootlocation;
 
-    float footprintLifeTime = 1.0f;
-    float footOffset = 0.05f;
+    public float footprintLifeTime = 1.0f;
+    public float footOffset = 0.05f;
 
     void LeftFootStep()
     {
