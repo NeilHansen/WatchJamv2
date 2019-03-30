@@ -445,7 +445,6 @@ public class MapManager : MonoBehaviour {
             Destroy(map);
         }
         arrowLineRenderers.Clear();
-
     }
 
     IEnumerator SendPulseDownPath(AbstractPiece start)

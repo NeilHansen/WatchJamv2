@@ -81,6 +81,7 @@ public class MapXIntersection : AbstractPiece
         SkipTraverse:
         yield return null;
         //Start pulse light to next map piece
-        pathfindingNext.StartLightPulse();
+        if (pathfindingNext != null)
+            pathfindingNext.StartLightPulse();
     }
 }
