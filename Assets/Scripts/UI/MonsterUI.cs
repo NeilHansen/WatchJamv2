@@ -54,7 +54,6 @@ public class MonsterUI : MonoBehaviour {
         drainColor = drainIcon.color;
         punchColor = punchIcon.color;
 
-        VisibilitySlider.fillAmount = 0;
         VisibilitySlider.fillAmount = 1;
 
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
@@ -89,7 +88,7 @@ public class MonsterUI : MonoBehaviour {
 
     public void ResetMonsterUI()
     {
-        VisibilitySlider.fillAmount = 0.0f;
+        VisibilitySlider.fillAmount = 1.0f;
     }
 
     //Turn on/off interaction text when hitting terminal
@@ -138,6 +137,14 @@ public class MonsterUI : MonoBehaviour {
 
     public void ReturnToLobby()
     {
+        LobbyPlayer[] l = GameObject.FindObjectsOfType<LobbyPlayer>();
+
+        //Reset the bool so host cant just start it right away
+        foreach(LobbyPlayer lp in l)
+        {
+            lp.readyToBegin = false;
+        }
+
         LobbyManager.s_Singleton.SendReturnToLobby();
     }
 }

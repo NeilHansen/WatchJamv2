@@ -75,6 +75,9 @@ public class MonsterWallMovement : NetworkBehaviour
         if (!hasAuthority)
             return;
 
+        if (GetComponent<MonsterController>().isSmashing)
+            return;
+
         // If flipping don't update
         if (flipping)
             return;

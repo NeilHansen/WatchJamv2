@@ -17,7 +17,12 @@ public class MonsterMovement : NetworkBehaviour {
     public float FOVmin = -30.0f;
     public float FOVmax = 30.0f;
 
-    
+    private Animator anim;
+    [SyncVar]
+    public float x = 0.0f;
+    [SyncVar]
+    public float y = 0.0f;
+
 
     // Use this for initialization
     void Start () {
@@ -29,7 +34,7 @@ public class MonsterMovement : NetworkBehaviour {
             fpsCamera.transform.SetParent(this.transform);
             fpsCamera.transform.localRotation = Quaternion.identity;
             fpsCamera.transform.localPosition = new Vector3(0, 1.5f, 0); //Vector3.zero;
-         // fpsCamera.transform.localPosition = CameraPosition.transform.position;
+            // fpsCamera.transform.localPosition = CameraPosition.transform.position;
 
             //Set MiniMap
             FindObjectOfType<bl_MiniMap>().SetTarget(this.gameObject);
@@ -38,11 +43,19 @@ public class MonsterMovement : NetworkBehaviour {
             player = Rewired.ReInput.players.GetPlayer(controllerNumber);
             GetComponent<MonsterController>().player = player;
         }
+
+        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(hasAuthority)
+        //anim.SetFloat("VelX", x);
+        anim.SetFloat("VelY", y);
+
+        if (GetComponent<MonsterController>().isSmashing)
+            return;
+
+        if (hasAuthority)
         {
             InputHandler();
         }
@@ -50,11 +63,12 @@ public class MonsterMovement : NetworkBehaviour {
 
     void InputHandler()
     {
-        //Simple Movement
-        transform.Translate(player.GetAxis("VerticalMove") * Time.deltaTime * speed, 0.0f, player.GetAxis("HorizontalMove") * Time.deltaTime * speed);
+        x = player.GetAxis("VerticalMove");
+        y = player.GetAxis("HorizontalMove");
 
-        float walking = player.GetAxis("HorizontalMove");
-        this.GetComponent<Animator>().SetFloat("Walking", walking);
+        //Simple Movement
+        transform.Translate(x * Time.deltaTime * speed, 0.0f, y * Time.deltaTime * speed);
+
         //Converting Angles to negation
         float currentRotationX = fpsCamera.transform.localEulerAngles.x;
         currentRotationX = (currentRotationX > 180) ? currentRotationX - 360 : currentRotationX;
