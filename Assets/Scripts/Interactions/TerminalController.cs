@@ -33,6 +33,7 @@ public class TerminalController : NetworkBehaviour {
             if(monster.isSmashing)
             {
                 other.transform.position = Position.transform.position;
+                other.transform.rotation = Quaternion.LookRotation(Position.transform.forward, Position.transform.up);
             }
         }
     }
@@ -54,6 +55,7 @@ public class TerminalController : NetworkBehaviour {
     [Command]
     public void CmdReceiveBreakTerminal()
     {
+        GameManager.Instance.AddToTermainalCount();
         isBroken = true;
         RpcBreakTerminal();
     }
