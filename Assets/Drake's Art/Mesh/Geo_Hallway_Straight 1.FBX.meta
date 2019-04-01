@@ -33,7 +33,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Walls
-    second: {fileID: 2100000, guid: 23d14a3ecb0b0f642bf9a179c65e9dba, type: 2}
+    second: {fileID: 2100000, guid: ddf7fbd00c5fa8c4cb8f4c6df4da26cb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
