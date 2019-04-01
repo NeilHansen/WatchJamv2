@@ -3309,7 +3309,7 @@ ReflectionProbe:
   m_IntensityMultiplier: 0.5
   m_BlendDistance: 1
   m_HDR: 1
-  m_BoxProjection: 0
+  m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
@@ -33270,7 +33270,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1910461297}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.4, y: 0, z: -53.18}
+  m_LocalPosition: {x: -47.27093, y: 1.6554508, z: -53.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1320747048}
@@ -33291,7 +33291,7 @@ ReflectionProbe:
   m_Resolution: 128
   m_UpdateFrequency: 0
   m_BoxSize: {x: 12.05323, y: 4.736576, z: 29.99423}
-  m_BoxOffset: {x: -3.1945229, y: 1.7099686, z: -0.56294346}
+  m_BoxOffset: {x: -0.08001709, y: 0.054517746, z: -0.5629425}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -33303,7 +33303,7 @@ ReflectionProbe:
   m_IntensityMultiplier: 0.5
   m_BlendDistance: 1
   m_HDR: 1
-  m_BoxProjection: 0
+  m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
