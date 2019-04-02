@@ -11176,12 +11176,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4990227058356134, guid: 41f67f0e57c5b0a4aa97a7f0b7fb2a9e,
     type: 2}
   m_PrefabInternal: {fileID: 734883102}
---- !u!114 &734883104 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114238328201401278, guid: 41f67f0e57c5b0a4aa97a7f0b7fb2a9e,
-    type: 2}
-  m_PrefabInternal: {fileID: 734883102}
-  m_Script: {fileID: 11500000, guid: 3db5011dba07a52488c52c42e804b438, type: 3}
 --- !u!1001 &739034320
 Prefab:
   m_ObjectHideFlags: 0
@@ -22395,12 +22389,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4893953100277218, guid: 246ef8d972102504884867d449bdcf83,
     type: 2}
   m_PrefabInternal: {fileID: 1321477124}
---- !u!114 &1321477126 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114716326885602994, guid: 246ef8d972102504884867d449bdcf83,
-    type: 2}
-  m_PrefabInternal: {fileID: 1321477124}
-  m_Script: {fileID: 11500000, guid: 1a971002ab07e524fa3b60483df431b6, type: 3}
 --- !u!1001 &1324807536
 Prefab:
   m_ObjectHideFlags: 0
@@ -32060,8 +32048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205737fbc905a9d4db8ef4bda5d9199d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathStart: {fileID: 734883104}
-  pathEnd: {fileID: 1321477126}
+  pathStart: {fileID: 0}
+  pathEnd: {fileID: 0}
   debugDrawOption: 0
   debugShowArrow: 0
   arrowLinePrefab: {fileID: 1822033098940170, guid: 483baa35b6cad594e81c371ebe305ff9,
