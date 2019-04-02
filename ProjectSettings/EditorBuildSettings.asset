@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-22)WillLevel.unity
     guid: 74c5e9f3783bfae4ea265fb7e095faa3
+  - enabled: 1
+    path: Assets/Scenes/NewLevels/LevelUpMainLevel(04-1)WillLevel.unity
+    guid: d997075052586da46a67eeff4d66f269
   m_configObjects: {}

@@ -13,7 +13,7 @@ public class Path_Comp : MonoBehaviour
     public float gizmoLineSize = 1.0f;
 
     [HideInInspector]
-    public Path _path = new Path();
+    public Path2 _path = new Path2();
 
     public float TotalDistance
     {
@@ -133,7 +133,7 @@ public struct Path_Point
     }
 }
 
-public class Path
+public class Path2
 {
 
     public float TotalDistance;
