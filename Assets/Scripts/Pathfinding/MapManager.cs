@@ -111,14 +111,17 @@ public class MapManager : MonoBehaviour {
 
                         //Hard code fix
                         //****************************************************************
-                        if (hit.collider.transform.parent.tag == "MapPiece")
-                            neighbourPiece = hit.collider.transform.parent.GetComponent<AbstractPiece>();
+
+                      
+                            if (hit.collider.transform.parent.tag == "MapPiece")
+                                neighbourPiece = hit.collider.transform.parent.GetComponent<AbstractPiece>();
+                        
                         //****************************************************************
 
                         int neighbourPieceDirection = neighbourPiece.DirectionTowardsIncomingVector(rayDirection);
                         if (neighbourPieceDirection == -1)
                         {
-                            Debug.LogError("Error when getting direction from neighbouring piece.");
+                            Debug.LogError("Error when getting direction from neighbouring piece." , mapPiece);
                             return;
                         }
                         AbstractPiece.CreateConnection(mapPiece, i, neighbourPiece, neighbourPieceDirection);

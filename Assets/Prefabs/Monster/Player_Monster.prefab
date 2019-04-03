@@ -18304,7 +18304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNumber: 0
   fpsCamera: {fileID: 0}
-  speed: 6
+  speed: 10
   rotSpeed: 90
   FOVmin: -30
   FOVmax: 30

@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-19)NeilLevel.unity
     guid: 02a13a69e19bc7c4399eaf4750ccb3a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-22)WillLevel.unity
     guid: 74c5e9f3783bfae4ea265fb7e095faa3
   - enabled: 1
