@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33413017935810964}
   - component: {fileID: 23755914446280080}
   - component: {fileID: 64202279175742182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_XIntersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33555944606884010}
   - component: {fileID: 23745159449362384}
   - component: {fileID: 64110744153002520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geo_Hallway_XIntersection 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
