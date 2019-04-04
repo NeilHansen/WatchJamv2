@@ -110,12 +110,12 @@ public class GameManager : NetworkBehaviour {
         {
             if (MonsterUI.Instance != null)
             {
-                MonsterUI.Instance.SetMonsterWin(false);
+                MonsterUI.Instance.SetMonsterWin(true);
             }
 
             if (SecurityUI.Instance != null)
             {
-                SecurityUI.Instance.SetMonsterWin(true);
+                SecurityUI.Instance.SetMonsterWin(false);
             }
         }
     }
