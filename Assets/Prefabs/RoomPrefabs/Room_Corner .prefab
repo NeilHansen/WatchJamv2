@@ -106,8 +106,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1656089080465818}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: -3.00001, y: -1, z: 13}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4899752308084234}
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 4569013358120088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4281666241378826
 Transform:
   m_ObjectHideFlags: 1
@@ -437,6 +437,7 @@ MonoBehaviour:
   pulseInterval: 0.1
   flashInterval: 1
   invertLighting: 1
+  fullLitTex: {fileID: 2800000, guid: 6935374d9ab159c4985ae8994e30cd0b, type: 3}
   tranverseTex:
   - {fileID: 2800000, guid: 6b0d00ca25f5de547bf1f67d481dccd0, type: 3}
   - {fileID: 2800000, guid: 0ce23fa776d3b184eb82ac23079b0c15, type: 3}
@@ -447,3 +448,5 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 6d4f38c09d674244d898ab75478a4116, type: 3}
   - {fileID: 2800000, guid: ee6a85eea3130f447ad21aa2f99972df, type: 3}
   lightRenderer: {fileID: 23725547157935982}
+  overrideIndex: 1
+  matOverrideIndex: 2

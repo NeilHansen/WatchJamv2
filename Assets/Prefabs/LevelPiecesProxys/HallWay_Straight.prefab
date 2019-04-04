@@ -346,6 +346,7 @@ MonoBehaviour:
   pulseInterval: 0.1
   flashInterval: 1
   invertLighting: 1
+  fullLitTex: {fileID: 2800000, guid: 6935374d9ab159c4985ae8994e30cd0b, type: 3}
   tranverseTex:
   - {fileID: 2800000, guid: 2ca988fa3ac414a458e827b94ff1c5c8, type: 3}
   - {fileID: 2800000, guid: bc872039e47ad644d8b84075da6d87d7, type: 3}
@@ -356,3 +357,5 @@ MonoBehaviour:
   - {fileID: 2800000, guid: df5b0cf85194d154a849b837964153ab, type: 3}
   - {fileID: 2800000, guid: 0d74cb02c9f572f4c9a239b38384b65f, type: 3}
   lightRenderer: {fileID: 23587603837440456}
+  overrideIndex: 0
+  matOverrideIndex: 0

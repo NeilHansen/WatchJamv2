@@ -11,7 +11,7 @@ public class MapCorner : AbstractPiece {
         localCenter = Vector3.zero;
         AddOpening(Vector3.forward);
         AddOpening(Vector3.left);
-        materialIndex = 3;
+        materialIndex = overrideIndex ? 3 : matOverrideIndex;
     }
 
     protected override IEnumerator PulseLight()

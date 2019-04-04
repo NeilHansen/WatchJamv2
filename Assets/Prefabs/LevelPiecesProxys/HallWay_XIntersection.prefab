@@ -345,16 +345,19 @@ MonoBehaviour:
   pathfindingNext: {fileID: 0}
   pulseInterval: 0.15
   flashInterval: 1
-  lightRenderer: {fileID: 23520467730084814}
+  invertLighting: 1
+  fullLitTex: {fileID: 2800000, guid: 6935374d9ab159c4985ae8994e30cd0b, type: 3}
   tranverseTex:
   - {fileID: 2800000, guid: 77a93ae162b706a4aa261766ae31f6e5, type: 3}
   - {fileID: 2800000, guid: cfb35288391adfb439aab32680dfe48d, type: 3}
   - {fileID: 2800000, guid: c2758fb3efe922b43bc7b8f4b6630aae, type: 3}
   - {fileID: 2800000, guid: a344c0a77e28a794186694924c5f174d, type: 3}
-  invertLighting: 1
   darkTex: {fileID: 2800000, guid: 786596861f91d1d45b483310b3a906fd, type: 3}
   inverseTranverseTex:
   - {fileID: 2800000, guid: 8b708ac359c9f014486dd5dc22b87e1e, type: 3}
   - {fileID: 2800000, guid: 508d1293f829b9b429122b585e42f30b, type: 3}
   - {fileID: 2800000, guid: d9f6076212edd6c48bbbfd0e4aff96ef, type: 3}
   - {fileID: 2800000, guid: a473f6ffa7abe3243b7e40ad784da69e, type: 3}
+  lightRenderer: {fileID: 23520467730084814}
+  overrideIndex: 0
+  matOverrideIndex: 0

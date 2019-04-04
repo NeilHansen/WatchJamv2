@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1530035913185676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: -1, z: 7}
+  m_LocalPosition: {x: 12, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4878618422481290}
@@ -345,14 +345,17 @@ MonoBehaviour:
   pathfindingNext: {fileID: 0}
   pulseInterval: 0.1
   flashInterval: 1
-  lightRenderer: {fileID: 23292524474343794}
+  invertLighting: 1
+  fullLitTex: {fileID: 2800000, guid: 6935374d9ab159c4985ae8994e30cd0b, type: 3}
   tranverseTex:
   - {fileID: 2800000, guid: 6b0d00ca25f5de547bf1f67d481dccd0, type: 3}
   - {fileID: 2800000, guid: 0ce23fa776d3b184eb82ac23079b0c15, type: 3}
   - {fileID: 2800000, guid: fe26a70efddd60b45ad64d07f2193cfd, type: 3}
-  invertLighting: 1
   darkTex: {fileID: 2800000, guid: 786596861f91d1d45b483310b3a906fd, type: 3}
   inverseTranverseTex:
   - {fileID: 2800000, guid: 07083a9f61e4a7742ba0977632ed48ef, type: 3}
   - {fileID: 2800000, guid: 6d4f38c09d674244d898ab75478a4116, type: 3}
   - {fileID: 2800000, guid: ee6a85eea3130f447ad21aa2f99972df, type: 3}
+  lightRenderer: {fileID: 23292524474343794}
+  overrideIndex: 0
+  matOverrideIndex: 0

@@ -13,13 +13,13 @@ public class MapXIntersection : AbstractPiece
         AddOpening(Vector3.back);
         AddOpening(Vector3.left);
         AddOpening(Vector3.right);
-        materialIndex = 1;
+        materialIndex = overrideIndex ? 2 : matOverrideIndex;
     }
 
     protected override IEnumerator PulseLight()
     {
         //If tile is flashing or part of room, skip current tile
-        if (flashLight || roomIndex != -1)
+        if (materialIndex == -1 || flashLight || roomIndex != -1)
             goto SkipTraverse;
 
         List<int> lightTexturePattern = new List<int>();

@@ -11,7 +11,7 @@ public class MapStraight : AbstractPiece
         localCenter = Vector3.zero;
         AddOpening(Vector3.forward);
         AddOpening(Vector3.back);
-        materialIndex = 0;
+        materialIndex = overrideIndex ? 0 : matOverrideIndex;
     }
 
     protected override IEnumerator PulseLight()

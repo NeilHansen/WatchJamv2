@@ -33155,7 +33155,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1530035913185676, guid: 189ac8c0171c807439a2e1da8d79cd88, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 189ac8c0171c807439a2e1da8d79cd88, type: 2}
@@ -33588,8 +33588,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathStart: {fileID: 905590853}
-  pathEnd: {fileID: 1905892810}
-  debugDrawOption: 0
+  pathEnd: {fileID: 1877831188}
+  debugDrawOption: 2
   debugShowArrow: 0
   arrowLinePrefab: {fileID: 1822033098940170, guid: 483baa35b6cad594e81c371ebe305ff9,
     type: 2}
@@ -34456,6 +34456,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4044860843109942, guid: 858c66537d1e0524594d52ea36c09394,
     type: 2}
   m_PrefabInternal: {fileID: 1875307759}
+--- !u!114 &1877831188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114940239819379090, guid: 858c66537d1e0524594d52ea36c09394,
+    type: 2}
+  m_PrefabInternal: {fileID: 1875307759}
+  m_Script: {fileID: 11500000, guid: fcfa49e5972b0d14989f557f7a91a02c, type: 3}
 --- !u!1001 &1882651376
 Prefab:
   m_ObjectHideFlags: 0
@@ -34667,12 +34673,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 820fa69ea02034e429d56b478ce67b25, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &1905892810 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114307539813885698, guid: 820fa69ea02034e429d56b478ce67b25,
-    type: 2}
-  m_PrefabInternal: {fileID: 1905892808}
-  m_Script: {fileID: 11500000, guid: fcfa49e5972b0d14989f557f7a91a02c, type: 3}
 --- !u!1001 &1906682994
 Prefab:
   m_ObjectHideFlags: 0

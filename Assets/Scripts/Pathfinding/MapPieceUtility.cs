@@ -62,7 +62,7 @@ namespace MapPieceUtility
         //Light textures
         [Header("Light Textures")]
         public bool invertLighting;
-        protected Texture fullLitTex;
+        public Texture fullLitTex;
         public Texture[] tranverseTex;
         public Texture darkTex;
         public Texture[] inverseTranverseTex;
@@ -73,6 +73,8 @@ namespace MapPieceUtility
         protected MaterialPropertyBlock mpb;
         protected Color litColour;
         protected Color offColour;
+        public bool overrideIndex = false;
+        public int matOverrideIndex;
         
         //Flash light vairiables
         protected bool increaseIntensity;
@@ -81,21 +83,36 @@ namespace MapPieceUtility
 
         void Awake()
         {
+            if (materialIndex == -1)
+                return;
+
             mpb = new MaterialPropertyBlock();
             lightRenderer.GetPropertyBlock(mpb);
-            litColour = lightRenderer.materials[materialIndex].GetColor("_EmissionColor");
+            litColour = new Color(1.137f, 0.0f, 0.0f, 1.0f);
+            //litColour = lightRenderer.materials[materialIndex].GetColor("_EmissionColor");
             offColour = Color.black;
-            fullLitTex = lightRenderer.materials[materialIndex].GetTexture("_EmissionMap");
+            //fullLitTex = lightRenderer.materials[materialIndex].GetTexture("_EmissionMap");
             if (invertLighting)
             {
                 mpb.SetTexture("_EmissionMap", darkTex);
                 lightRenderer.SetPropertyBlock(mpb);
             }
             increaseIntensity = invertLighting;
+
+            if (litColour != Color.black)
+                Debug.Log(litColour);
         }
 
         void Update()
         {
+            if (materialIndex == -1)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartLightFlash();
+            }
+
             if (flashLight)
             {
                 lightTimer += Time.deltaTime;
@@ -182,6 +199,9 @@ namespace MapPieceUtility
         #region Lighting
         public void StartLightFlash()
         {
+            if (materialIndex == -1)
+                return;
+
             StopAllCoroutines();
             mpb.SetTexture("_EmissionMap", fullLitTex);
             lightTimer = 0.0f;
@@ -191,6 +211,9 @@ namespace MapPieceUtility
 
         public void ResetLight(bool stopCouroutine = false)
         {
+            if (materialIndex == -1)
+                return;
+
             if (stopCouroutine)
                 StopAllCoroutines();
             mpb.SetTexture("_EmissionMap", invertLighting ? darkTex : fullLitTex);
@@ -201,6 +224,9 @@ namespace MapPieceUtility
 
         public void StartLightPulse()
         {
+            if (materialIndex == -1)
+                return;
+
             StopAllCoroutines();
             if (pathfindingNext)
                 StartCoroutine(PulseLight());

@@ -121,7 +121,7 @@ public class MapManager : MonoBehaviour {
                         int neighbourPieceDirection = neighbourPiece.DirectionTowardsIncomingVector(rayDirection);
                         if (neighbourPieceDirection == -1)
                         {
-                            Debug.LogError("Error when getting direction from neighbouring piece." , mapPiece);
+                            Debug.LogError("Error when getting direction from neighbouring piece." + mapPiece);
                             return;
                         }
                         AbstractPiece.CreateConnection(mapPiece, i, neighbourPiece, neighbourPieceDirection);

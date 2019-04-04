@@ -12,7 +12,7 @@ public class MapTIntersection : AbstractPiece
         AddOpening(Vector3.forward);
         AddOpening(Vector3.back);
         AddOpening(Vector3.left);
-        materialIndex = 1;
+        materialIndex = overrideIndex ? 1 : matOverrideIndex;
     }
 
     protected override IEnumerator PulseLight()

@@ -37,8 +37,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4044860843109942}
-  - component: {fileID: 114253059427315820}
   - component: {fileID: 65386231132100988}
+  - component: {fileID: 114940239819379090}
   m_Layer: 15
   m_Name: Room_Wall
   m_TagString: MapPiece
@@ -52,27 +52,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493418549800460}
-  m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
-  m_LocalPosition: {x: 10.838167, y: 4.6418543, z: -52.096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4444359029879370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4444359029879370
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487093115687784}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4044860843109942}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!23 &23891483642464656
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -144,7 +144,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &114253059427315820
+--- !u!114 &114940239819379090
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,10 +152,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493418549800460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a971002ab07e524fa3b60483df431b6, type: 3}
+  m_Script: {fileID: 11500000, guid: fcfa49e5972b0d14989f557f7a91a02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   localCenter: {x: 0, y: 0, z: 0}
   graphListIndex: -1
   roomIndex: -1
@@ -167,13 +167,18 @@ MonoBehaviour:
   pulseInterval: 0.1
   flashInterval: 1
   invertLighting: 1
+  fullLitTex: {fileID: 2800000, guid: 6935374d9ab159c4985ae8994e30cd0b, type: 3}
   tranverseTex:
-  - {fileID: 2800000, guid: 2ca988fa3ac414a458e827b94ff1c5c8, type: 3}
-  - {fileID: 2800000, guid: bc872039e47ad644d8b84075da6d87d7, type: 3}
-  - {fileID: 2800000, guid: e34bfb81f3a1e1243a6cf0096856c49d, type: 3}
+  - {fileID: 2800000, guid: a3c74463f7e145447937a7803b9c576c, type: 3}
+  - {fileID: 2800000, guid: a2e97d8e082d821438a34b0ffa7c657b, type: 3}
+  - {fileID: 2800000, guid: b1c8747b33597934fa183e6a19894ff0, type: 3}
+  - {fileID: 2800000, guid: f37e40fe10ac7494e894bd082579da6a, type: 3}
   darkTex: {fileID: 2800000, guid: 786596861f91d1d45b483310b3a906fd, type: 3}
   inverseTranverseTex:
-  - {fileID: 2800000, guid: 5e0a9d915922c2448abaeb48e3030e86, type: 3}
-  - {fileID: 2800000, guid: df5b0cf85194d154a849b837964153ab, type: 3}
-  - {fileID: 2800000, guid: 0d74cb02c9f572f4c9a239b38384b65f, type: 3}
+  - {fileID: 2800000, guid: 774402f1abb16ec42ae91fe57379f60e, type: 3}
+  - {fileID: 2800000, guid: 4d6a68294289fb14eaaf16d6faa25c56, type: 3}
+  - {fileID: 2800000, guid: f2c8dd833055e0841942822d7c8380d7, type: 3}
+  - {fileID: 2800000, guid: f772fc87215f91449be0af95928ccf4a, type: 3}
   lightRenderer: {fileID: 23891483642464656}
+  overrideIndex: 0
+  matOverrideIndex: 0
