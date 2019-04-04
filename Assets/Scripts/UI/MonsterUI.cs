@@ -64,7 +64,7 @@ public class MonsterUI : MonoBehaviour {
     {
         SetGameTimerText(GameManager.Instance.GameTimer);
         livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
-        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount;
+        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount + "/6";
     }
 
     public void SetMonsterWin(bool b)

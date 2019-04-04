@@ -39,13 +39,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1656958500675690}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.05, y: 1.322, z: 67.1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -39.1, y: 1.322, z: 4.03}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 89.99999, z: -0.000015258789}
 --- !u!23 &23290488719937012
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -149,15 +149,15 @@ MonoBehaviour:
   GraphicPrefab: {fileID: 197840, guid: 2b4fb31f6472842468de0a7249d7b8da, type: 2}
   Target: {fileID: 0}
   OffSet: {x: 0, y: 0, z: 0}
-  Icon: {fileID: 21300000, guid: 12af3aaf8878e2443b325833b84b5aab, type: 3}
+  Icon: {fileID: 21300000, guid: 5ff3be958e9c9104594f50ade00bee44, type: 3}
   DeathIcon: {fileID: 0}
-  IconColor: {r: 0, g: 0.073209524, b: 1, a: 1}
+  IconColor: {r: 0.19122803, g: 1, b: 0, a: 1}
   Size: 14
   ShowCircleArea: 0
   CircleAreaRadius: 10
   CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
   isInteractable: 0
-  InfoItem: This is a Bot
+  InfoItem: 
   OffScreen: 1
   DestroyWithObject: 0
   BorderOffScreen: 0

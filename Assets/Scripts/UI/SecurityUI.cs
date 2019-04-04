@@ -44,7 +44,7 @@ public class SecurityUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SetGameTimerText(GameManager.Instance.GameTimer);
-        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount; 
+        terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount + "/6"; 
     }
 
     public void SetMonsterWin(bool b)
