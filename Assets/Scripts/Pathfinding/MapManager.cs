@@ -77,10 +77,6 @@ public class MapManager : MonoBehaviour {
         GenerateMapGraph();
 
         FindRooms();
-        
-        if (FindPath(pathStart, pathEnd))
-            EnablePath(pathStart);
-        
     }
 
     #region Map Generation
@@ -440,7 +436,7 @@ public class MapManager : MonoBehaviour {
         {
             foreach (AbstractPiece piece in RoomList[end.roomIndex].roomPieces)
             {
-                end.ResetLight(true);
+                piece.ResetLight(true);
             }
         }
         foreach (GameObject map in arrowLineRenderers)

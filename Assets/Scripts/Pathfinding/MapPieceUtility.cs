@@ -78,6 +78,7 @@ namespace MapPieceUtility
         
         //Flash light vairiables
         protected bool increaseIntensity;
+        [SerializeField]
         protected bool flashLight = false;
         float lightTimer = 0.0f;
 
@@ -88,6 +89,7 @@ namespace MapPieceUtility
 
             mpb = new MaterialPropertyBlock();
             lightRenderer.GetPropertyBlock(mpb);
+            //litColour = new Color(1.136917f, 0.4166709f, 0.1250013f, 1.0f);
             litColour = new Color(1.137f, 0.0f, 0.0f, 1.0f);
             //litColour = lightRenderer.materials[materialIndex].GetColor("_EmissionColor");
             offColour = Color.black;
@@ -107,11 +109,6 @@ namespace MapPieceUtility
         {
             if (materialIndex == -1)
                 return;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartLightFlash();
-            }
 
             if (flashLight)
             {
@@ -212,7 +209,10 @@ namespace MapPieceUtility
         public void ResetLight(bool stopCouroutine = false)
         {
             if (materialIndex == -1)
+            {
                 return;
+            }
+                
 
             if (stopCouroutine)
                 StopAllCoroutines();
