@@ -56,6 +56,7 @@ public class MonsterController : NetworkBehaviour {
     private Color monsterColor;
 
     private bl_MiniMap mm;
+    private Outline outline;
 
     // Use this for initialization
     void Start () {
@@ -82,6 +83,8 @@ public class MonsterController : NetworkBehaviour {
         monsterMaterial = GameObject.FindGameObjectWithTag("Monster Material").GetComponent<SkinnedMeshRenderer>().material;
         monsterMaterial.color = monsterColor;
 
+        outline = GetComponent<Outline>();
+
         MonsterUI.Instance.SetMonsterSeenIcon(false);
         MonsterUI.Instance.SetVisibilitySlider(monsterHealth);
     }
@@ -89,6 +92,17 @@ public class MonsterController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //To Happen on all clients enabled and disabled outline when hurt
+        if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
+        {
+            outline.enabled = true;
+        }
+        else if (outline.enabled)
+        {
+            outline.enabled = false;
+        }
+
+        //Stuff only for local monster
         if (!hasAuthority)
             return;
 
@@ -118,7 +132,12 @@ public class MonsterController : NetworkBehaviour {
 
         if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
         {
+            MonsterUI.Instance.SetMonsterHurt(true);
             CmdTakeDamage();
+        }
+        else
+        {
+            MonsterUI.Instance.SetMonsterHurt(false);
         }
 
         if (monsterHealth <= 0.0f)

@@ -106,7 +106,19 @@ public class GameManager : NetworkBehaviour {
             }
         }
 
-        if(SecurityWins || MonsterWins)
+        if(SecurityWins)
+        {
+            if (MonsterUI.Instance != null)
+            {
+                MonsterUI.Instance.SetMonsterWin(false);
+            }
+
+            if (SecurityUI.Instance != null)
+            {
+                SecurityUI.Instance.SetMonsterWin(true);
+            }
+        }
+        else if(MonsterWins)
         {
             if (MonsterUI.Instance != null)
             {

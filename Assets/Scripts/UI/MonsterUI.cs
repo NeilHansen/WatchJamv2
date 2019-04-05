@@ -11,6 +11,7 @@ public class MonsterUI : MonoBehaviour {
     public Text interactText;
 
     public GameObject SeenImage;
+    public GameObject Hurt;
     public Image VisibilitySlider;
     public Text livesText;
 
@@ -95,6 +96,13 @@ public class MonsterUI : MonoBehaviour {
     public void ToggleMonsterInteractText(bool b)
     {
         interactText.enabled = b;
+    }
+
+    //Call to either see or hide the hurt screen
+    public void SetMonsterHurt(bool b)
+    {
+        //Turn off seen imageg when alpha is 0
+        Hurt.SetActive(b);
     }
 
     //Call to either see or hide the icon

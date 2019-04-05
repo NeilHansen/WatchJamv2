@@ -159,12 +159,16 @@ public class FlashlightController : MonoBehaviour
                         if (hit.collider.gameObject.tag == "Monster")
                         {
                             if (!monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber) && canHurt)
+                            {
                                 securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, true);
+                            }
                         }
                         else
                         {
                             if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+                            {
                                 securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+                            }
                         }
                     }
                 }
@@ -179,7 +183,9 @@ public class FlashlightController : MonoBehaviour
             if (monster != null)
             {
                 if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+                {
                     securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+                }
             }
 
             securityController.CmdTurnUVLightOff();
@@ -192,7 +198,9 @@ public class FlashlightController : MonoBehaviour
         if (monster != null)
         {
             if (monster.CheckSecurityDamage(securityController.networkPlayer.playerNumber))
+            {
                 securityController.CmdDamageTarget(monster.gameObject, securityController.networkPlayer.playerNumber, false);
+            }
         }
 
         TurnUVOff();
