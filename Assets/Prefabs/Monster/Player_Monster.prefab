@@ -18274,7 +18274,7 @@ MonoBehaviour:
     type: 2}
   leftFootLocation: {fileID: 4595732362949994}
   rightFootlocation: {fileID: 4379282323924108}
-  footprintLifeTime: 1
+  footprintLifeTime: 10
   footOffset: 0.05
 --- !u!114 &114093867689942054
 MonoBehaviour:
