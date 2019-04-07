@@ -100,9 +100,6 @@ namespace MapPieceUtility
                 lightRenderer.SetPropertyBlock(mpb);
             }
             increaseIntensity = invertLighting;
-
-            if (litColour != Color.black)
-                Debug.Log(litColour);
         }
 
         void Update()
@@ -189,6 +186,15 @@ namespace MapPieceUtility
             else if (other.gameObject.tag == "Security" && other.gameObject.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 MapManager.Instance.ChangePathStart(graphListIndex);
+            }
+            else if (other.gameObject.tag == "Security" && !other.gameObject.GetComponent<NetworkIdentity>().hasAuthority)
+            {
+                SecurityController sc = other.gameObject.GetComponent<SecurityController>();
+                if (sc.mapManagerListIndex == -1)
+                {
+                    sc.mapManagerListIndex = MapManager.Instance.AddSecurityToList();
+                }
+                MapManager.Instance.SecurityMoved(graphListIndex, sc.mapManagerListIndex);
             }
         }
         #endregion
