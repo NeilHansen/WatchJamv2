@@ -14,6 +14,7 @@ public class SecurityUI : MonoBehaviour {
 
     public TMP_Text GameTimerText;
 
+    public GameObject Flashlightoverheat;
     public GameObject GameOver;
     public GameObject MonsterWins;
     public GameObject SecurityWins;
@@ -45,6 +46,12 @@ public class SecurityUI : MonoBehaviour {
 	void Update () {
         SetGameTimerText(GameManager.Instance.GameTimer);
         terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount + "/6"; 
+    }
+
+    public void SetOverHeatIcon(bool b)
+    {
+        //Turn off seen imageg when alpha is 0
+        Flashlightoverheat.SetActive(b);
     }
 
     public void SetMonsterWin(bool b)

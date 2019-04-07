@@ -262,6 +262,16 @@ namespace UGUIMiniMap
             float vertical = player.GetAxis("HorizontalMove");
 
             bool waswalking = m_IsWalking;
+            bool isBackWalking = false;
+
+            if(vertical < 0)
+            {
+                isBackWalking = true;
+            }
+            else
+            {
+                isBackWalking = false;
+            }
 
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
@@ -269,7 +279,7 @@ namespace UGUIMiniMap
             m_IsWalking = !player.GetButton("Sprint");
 #endif
             // set the desired speed to be walking or running
-            speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+            speed = (m_IsWalking ? m_WalkSpeed : m_RunSpeed) * (isBackWalking ? 0.5f : 1.0f);
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
