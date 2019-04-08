@@ -38,10 +38,15 @@ public class MonsterMovement : NetworkBehaviour {
     //Camera Variables
     public Vector3 smashOffset = new Vector3(0, 2.0f, -5.0f);
     public Vector3 smashViewAngle = new Vector3(90.0f, 0.0f, 0.0f);
+    public Vector3 deathOffset = new Vector3(0, 2.0f, -5.0f);
+    public Vector3 deathViewAngle = new Vector3(90.0f, 0.0f, 0.0f);
     private Vector3 animStartCamPosition;
     private bool duringSmashAnim = false;
     float smashDuration;
     float smashTimer;
+    private bool duringDeathAnim = false;
+    float deathDuration;
+    float deathTimer;
     //Percentage of time taken for camera to zoom out/in during smash
     //Example: cameraZoomPercentageTime = 0.25f, camera will zoom out during 1st quarter of the anim, 
     //         stay stationary for 2nd, 3rd quarter, then return to original postition during the 4th
@@ -169,6 +174,24 @@ public class MonsterMovement : NetworkBehaviour {
                 fpsCamera.transform.localRotation = Quaternion.Euler(newCameraAngle);
                 return;
             }
+            else if (duringDeathAnim)
+            {
+                deathTimer += deltaTime;
+                float normalized = Mathf.Clamp(deathTimer / deathDuration, 0.0f, 1.0f);
+                if (normalized < cameraZoomPercentageTime)
+                {
+                    newCameraPosition = Vector3.Lerp(animStartCamPosition, deathOffset, normalized / cameraZoomPercentageTime);
+                    newCameraAngle = Vector3.Lerp(Vector3.zero, deathViewAngle, normalized / cameraZoomPercentageTime);
+                }
+                else
+                {
+                    newCameraPosition = fpsCamera.transform.localPosition;
+                    newCameraAngle = deathViewAngle;
+                }
+                fpsCamera.transform.localPosition = newCameraPosition;
+                fpsCamera.transform.localRotation = Quaternion.Euler(newCameraAngle);
+                return;
+            }
             if (!m_UseHeadBob)
             {
                 return;
@@ -196,6 +219,9 @@ public class MonsterMovement : NetworkBehaviour {
     //Zooming out then in during smash animation, should only be called by anim events at the start of "Smash" anim
     public void StartSmash()
     {
+        if (!hasAuthority)
+            return;
+
         //Hard coded anim name and speed;
         foreach (AnimationClip ac in anim.runtimeAnimatorController.animationClips)
         {
@@ -210,5 +236,36 @@ public class MonsterMovement : NetworkBehaviour {
         fpsCamera.transform.localRotation = Quaternion.identity;
         smashTimer = 0.0f;
         duringSmashAnim = true;
+    }
+
+    //Zooming out during death animation, should only be called by anim events at the start of "Death" anim
+    public void StartDeath()
+    {
+        if (!hasAuthority)
+            return;
+
+        foreach (AnimationClip ac in anim.runtimeAnimatorController.animationClips)
+        {
+            if (ac.name == "Death")
+            {
+                deathDuration = ac.length;
+                break;
+            }
+        }
+        deathDuration /= 1.0f;
+        animStartCamPosition = fpsCamera.transform.localPosition;
+        fpsCamera.transform.localRotation = Quaternion.identity;
+        deathTimer = 0.0f;
+        duringDeathAnim = true;
+    }
+
+    public void ResetCameraAfterRespawn()
+    {
+        if (!hasAuthority)
+            return;
+
+        fpsCamera.transform.localPosition = animStartCamPosition;
+        fpsCamera.transform.localRotation = Quaternion.identity;
+        duringSmashAnim = false;
     }
 }

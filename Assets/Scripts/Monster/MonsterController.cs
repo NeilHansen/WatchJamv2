@@ -205,16 +205,22 @@ public class MonsterController : NetworkBehaviour {
     //Start playing death animation
     public void TriggerDeath()
     {
-        Debug.Log("Trigger death");
+        if (!hasAuthority)
+            return;
+
         deathAnimPlaying = true;
         monsterAlphaWhenSeen = monsterSmashSeenAmount;
-        GetComponent<Animator>().SetTrigger("Death");
+        GetComponent<Animator>().SetBool("DeathAnimPlaying", true);
     }
 
     //Repspawn player in right position, should only be called by anim events at the end of "Death" anim
     public void ResetMonster()
     {
-        GetComponent<Animator>().SetTrigger("Respawn");
+        if (!hasAuthority)
+            return;
+
+        GetComponent<Animator>().SetBool("DeathAnimPlaying", false);
+        GetComponent<MonsterMovement>().ResetCameraAfterRespawn();
         deathAnimPlaying = false;
         monsterHealth = 1.0f;
         isSmashing = false;
