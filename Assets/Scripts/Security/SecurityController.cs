@@ -108,7 +108,7 @@ public class SecurityController : NetworkBehaviour
             //If we used anything then keep refilling it
             if (flashLightUseTime < flashLightMaxTime)
             {
-                SecurityUI.Instance.SetOverHeatIcon(true);
+               
                 flashLightUseTime += Time.deltaTime / 2.0f;
             }
             else

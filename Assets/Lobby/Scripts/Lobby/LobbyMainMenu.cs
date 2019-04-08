@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Rewired;
 
 namespace Prototype.NetworkLobby
 {
@@ -14,9 +15,17 @@ namespace Prototype.NetworkLobby
 
         public InputField ipInput;
         public InputField matchNameInput;
+        private Player player;
+        private int controllerNum = 0;
 
+
+        private void Start()
+        {
+            player = Rewired.ReInput.players.GetPlayer(controllerNum);
+        }
         public void OnEnable()
         {
+           
             lobbyManager.topPanel.ToggleVisibility(true);
 
             ipInput.onEndEdit.RemoveAllListeners();
@@ -26,6 +35,20 @@ namespace Prototype.NetworkLobby
             matchNameInput.onEndEdit.AddListener(onEndEditGameName);
         }
 
+        private void Update()
+        {
+            if (player.GetButtonDown("Drain"))
+            {
+                OnClickHost();
+            }
+
+            if (player.GetButtonDown("WallClimb"))
+            {
+                OnClickJoin();
+            }
+                 
+        }
+
         public void OnClickHost()
         {
             lobbyManager.StartHost();
@@ -33,15 +56,17 @@ namespace Prototype.NetworkLobby
 
         public void OnClickJoin()
         {
-            lobbyManager.ChangeTo(lobbyPanel);
+           
+                lobbyManager.ChangeTo(lobbyPanel);
 
-            lobbyManager.networkAddress = ipInput.text;
-            lobbyManager.StartClient();
+                lobbyManager.networkAddress = ipInput.text;
+                lobbyManager.StartClient();
 
-            lobbyManager.backDelegate = lobbyManager.StopClientClbk;
-            lobbyManager.DisplayIsConnecting();
+                lobbyManager.backDelegate = lobbyManager.StopClientClbk;
+                lobbyManager.DisplayIsConnecting();
 
-            lobbyManager.SetServerInfo("Connecting...", lobbyManager.networkAddress);
+                lobbyManager.SetServerInfo("Connecting...", lobbyManager.networkAddress);
+            
         }
 
         public void OnClickDedicated()

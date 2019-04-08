@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Rewired;
 
 namespace Prototype.NetworkLobby
 {
@@ -46,8 +47,13 @@ namespace Prototype.NetworkLobby
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
 
+        private Player player;
+        private int controllerNum = 0;
+
         void Start()
         {
+            player = Rewired.ReInput.players.GetPlayer(controllerNum);
+
             playerChoice.onValueChanged.AddListener(delegate
             {
                 DropdownValueChanged(playerChoice);
@@ -73,6 +79,14 @@ namespace Prototype.NetworkLobby
         void CmdChangeDropDown(int vartosync)
         {
             RpcChangeDropDown(vartosync);
+        }
+
+        private void Update()
+        {
+            if(hasAuthority && player.GetButtonDown("Interact"))
+            {
+                OnReadyClicked();
+            }
         }
 
         public override void OnClientEnterLobby()

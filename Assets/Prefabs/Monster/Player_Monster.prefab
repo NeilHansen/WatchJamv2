@@ -18311,6 +18311,70 @@ MonoBehaviour:
   FOVmax: 30
   x: 0
   y: 0
+  is2D: 0
+  m_HeadBob:
+    HorizontalBobRange: 0.33
+    VerticalBobRange: 0.33
+    Bobcurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.5
+        value: -1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    VerticaltoHorizontalRatio: 1
+  m_UseHeadBob: 1
+  m_StepInterval: 0
+  m_RunstepLenghten: 0.7
+  smashOffset: {x: 0, y: 2, z: -5}
+  smashViewAngle: {x: 25, y: 0, z: 0}
+  deathOffset: {x: 0, y: 2, z: -5}
+  deathViewAngle: {x: 25, y: 0, z: 0}
+  cameraZoomPercentageTime: 0.25
 --- !u!114 &114404981717284742
 MonoBehaviour:
   m_ObjectHideFlags: 1
