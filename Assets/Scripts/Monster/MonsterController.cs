@@ -12,6 +12,8 @@ public class MonsterController : NetworkBehaviour {
     public PowerDrain powerDrain;
     public PowerPunch powerPunch;
 
+    private MonsterMovement monsterMovement;
+
     //Drain and punch Variables
     public float stunTime = 3.0f;
     public float punchLength = 3.0f;
@@ -58,6 +60,9 @@ public class MonsterController : NetworkBehaviour {
     private bl_MiniMap mm;
     private Outline outline;
 
+    //Anim Variables
+    bool deathAnimPlaying = false;
+
     // Use this for initialization
     void Start () {
         if(hasAuthority)
@@ -74,6 +79,8 @@ public class MonsterController : NetworkBehaviour {
         }
 
         oldMonserAlphaWhenSeen = monsterAlphaWhenSeen;
+
+        monsterMovement = GetComponent<MonsterMovement>();
 
         //Give children a reference to this script
         powerDrain.monster = this;
@@ -114,11 +121,12 @@ public class MonsterController : NetworkBehaviour {
 
         if(isSmashing)
         {
+            Debug.Log("Show monster");
             MonsterUI.Instance.SetMonsterSeenIcon(true);
             monsterAlphaWhenSeen = monsterSmashSeenAmount;
             CmdShowMonster();
         }
-        else if (Security1InSight || Security2InSight || Security3InSight)
+        else if (!deathAnimPlaying && (Security1InSight || Security2InSight || Security3InSight))
         {
             MonsterUI.Instance.SetMonsterSeenIcon(true);
             monsterAlphaWhenSeen = oldMonserAlphaWhenSeen;
@@ -130,7 +138,7 @@ public class MonsterController : NetworkBehaviour {
             CmdHideMonster();
         }
 
-        if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
+        if (!deathAnimPlaying && (Security1DoDamage || Security2DoDamage || Security3DoDamage))
         {
             MonsterUI.Instance.SetMonsterHurt(true);
             CmdTakeDamage();
@@ -140,10 +148,9 @@ public class MonsterController : NetworkBehaviour {
             MonsterUI.Instance.SetMonsterHurt(false);
         }
 
-        if (monsterHealth <= 0.0f)
+        if (monsterHealth <= 0.0f && !deathAnimPlaying)
         {
-            monsterHealth = 1.0f;
-            ResetMonster();
+            TriggerDeath();
         }
 
         if (player.GetButtonDown("MiniMap"))
@@ -195,9 +202,19 @@ public class MonsterController : NetworkBehaviour {
         }
     }
 
-    //Repspawn player in right position
+    //Start playing death animation
+    public void TriggerDeath()
+    {
+        deathAnimPlaying = true;
+        monsterAlphaWhenSeen = monsterSmashSeenAmount;
+        GetComponent<Animator>().SetTrigger("Death");
+    }
+
+    //Repspawn player in right position, should only be called by anim events at the end of "Death" anim
     public void ResetMonster()
     {
+        deathAnimPlaying = false;
+        monsterHealth = 1.0f;
         isSmashing = false;
         b_terminalInteraction = false;
         CmdMinusMonsterLife();

@@ -34,6 +34,7 @@ public class MapManager : MonoBehaviour {
     public GameObject arrowLinePrefab;
     List<GameObject> arrowLineRenderers = new List<GameObject>();
     public float lightInterval = 1.5f;
+    List<int> SecurityList = new List<int>();
 
     private void Awake()
     {
@@ -398,6 +399,35 @@ public class MapManager : MonoBehaviour {
             arrowLineRenderers.Clear();
             if (FindPath(pathStart, pathEnd))
                 EnablePath(pathStart);
+        }
+    }
+
+    public int AddSecurityToList()
+    {
+        int index = SecurityList.Count;
+        SecurityList.Add(-1);
+        return index;
+    }
+
+    //Monster only function, updates positions of all security, then check for closets and set that as start;
+    public void SecurityMoved(int mapPieceIndex, int securityIndex)
+    {
+        if (securityIndex < SecurityList.Count && pathEnd != null)
+        {
+            SecurityList[securityIndex] = mapPieceIndex;
+            float smallestDist = 10000.0f;
+            int smallestIndex = MapGraph.Count;
+            foreach (int mpi in SecurityList)
+            {
+                float dist = (MapGraph[mpi].gameObject.transform.position - pathStart.gameObject.transform.position).magnitude;
+                if (dist < smallestDist)
+                {
+                    smallestDist = dist;
+                    smallestIndex = mpi;
+                }
+            }
+            if (smallestIndex < MapGraph.Count)
+                ChangePathStart(smallestIndex);
         }
     }
     #endregion
