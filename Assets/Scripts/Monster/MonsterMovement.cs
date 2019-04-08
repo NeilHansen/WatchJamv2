@@ -266,6 +266,7 @@ public class MonsterMovement : NetworkBehaviour {
 
         fpsCamera.transform.localPosition = animStartCamPosition;
         fpsCamera.transform.localRotation = Quaternion.identity;
+        duringDeathAnim = false;
         duringSmashAnim = false;
     }
 }
