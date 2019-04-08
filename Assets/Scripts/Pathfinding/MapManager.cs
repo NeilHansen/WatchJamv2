@@ -287,11 +287,10 @@ public class MapManager : MonoBehaviour {
             Debug.Log("Pathfinding start equals end.");
             return false;
         }
-            
+
         //Manually visit start
-        VisitMapPiece(start, end);
+        bool foundEnd = VisitMapPiece(start, end);
         //A* pathfinding
-        bool foundEnd = false;
         while(!foundEnd && neighbouring.Count != 0)
         {
             int lowestCostIndex = -1;
@@ -421,15 +420,19 @@ public class MapManager : MonoBehaviour {
             int smallestIndex = MapGraph.Count;
             foreach (int mpi in SecurityList)
             {
-                float dist = (MapGraph[mpi].gameObject.transform.position - pathStart.gameObject.transform.position).magnitude;
-                if (dist < smallestDist)
+                float dist = (MapGraph[mpi].gameObject.transform.position - pathEnd.gameObject.transform.position).magnitude;
+                if (smallestIndex == MapGraph.Count)
+                {
+                    smallestDist = dist;
+                    smallestIndex = mpi;
+                }
+                else if (dist < smallestDist)
                 {
                     smallestDist = dist;
                     smallestIndex = mpi;
                 }
             }
-            if (smallestIndex < MapGraph.Count)
-                ChangePathStart(smallestIndex);
+            ChangePathStart(smallestIndex);
         }
     }
     #endregion

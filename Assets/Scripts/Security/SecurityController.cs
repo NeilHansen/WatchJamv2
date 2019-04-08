@@ -36,7 +36,6 @@ public class SecurityController : NetworkBehaviour
 
     //Monster pathfinding use only, no need to replicate
     public int mapManagerListIndex = -1;
-    public bool isClosestToMonster = false;
 
     // Use this for initialization
     void Start()
