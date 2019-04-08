@@ -244,7 +244,12 @@ public class MonsterController : NetworkBehaviour {
     public void CmdTakeDamage()
     {
         float damage = materialAlphaChangeRate * Time.deltaTime;
-        monsterHealth -= damage;
+        if (Security1DoDamage)
+            monsterHealth -= damage;
+        if (Security2DoDamage)
+            monsterHealth -= damage;
+        if (Security3DoDamage)
+            monsterHealth -= damage;
     }
 
     [Command]

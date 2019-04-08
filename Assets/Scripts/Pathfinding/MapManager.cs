@@ -118,7 +118,9 @@ public class MapManager : MonoBehaviour {
                         int neighbourPieceDirection = neighbourPiece.DirectionTowardsIncomingVector(rayDirection);
                         if (neighbourPieceDirection == -1)
                         {
-                            Debug.LogError("Error when getting direction from neighbouring piece." + mapPiece);
+                            Debug.LogError("Connection error when getting direction from " + mapPiece.name + " to neighbouring piece " + hit.collider.gameObject.name + ".");
+                            Debug.LogError("Raycast direction is local " + mapPiece.openings[i] + ", world " + rayDirection);
+                            Debug.DrawLine(rayStartPoint, rayStartPoint + rayDirection * 20, debugLineColours[lineColourCount % 6], 1000.0f);
                             return;
                         }
                         AbstractPiece.CreateConnection(mapPiece, i, neighbourPiece, neighbourPieceDirection);
