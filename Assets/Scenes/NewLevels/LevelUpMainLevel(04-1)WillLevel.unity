@@ -32143,6 +32143,11 @@ Prefab:
       propertyPath: sectorExit
       value: 
       objectReference: {fileID: 1000361316}
+    - target: {fileID: 114431707938121550, guid: f5aec3dfec3f55a4ea87dc684e4bff06,
+        type: 2}
+      propertyPath: MonsterNumOfLives
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5aec3dfec3f55a4ea87dc684e4bff06, type: 2}
   m_IsPrefabAsset: 0
