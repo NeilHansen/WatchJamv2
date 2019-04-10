@@ -39,6 +39,8 @@ public class MonsterController : NetworkBehaviour {
     [SyncVar]
     public bool Security3InSight = false;
 
+    public bool firstTimeDamage = false;
+
     [SyncVar]
     public bool Security1DoDamage = false;
     [SyncVar]
@@ -48,11 +50,14 @@ public class MonsterController : NetworkBehaviour {
 
     //Monster Transparency
     public float materialAlphaChangeRate = 0.1f;
+    public bool monsterGen = true;
+    public float materialAlphaRegenAmount = 0.1f;
     [SyncVar(hook = "OnChangeMonsterAlpha")]
     public float monsterHealth = 1.0f;
     public float monsterAlphaWhenSeen = 0.35f;
     public float monsterSmashSeenAmount = 1.0f;
     private float oldMonserAlphaWhenSeen;
+
 
     public Material monsterMaterial;
     private Color monsterColor;
@@ -99,10 +104,14 @@ public class MonsterController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+            return;
+
         //To Happen on all clients enabled and disabled outline when hurt
         if (Security1DoDamage || Security2DoDamage || Security3DoDamage)
         {
             outline.enabled = true;
+            firstTimeDamage = true;
         }
         else if (outline.enabled)
         {
@@ -145,6 +154,10 @@ public class MonsterController : NetworkBehaviour {
         }
         else
         {
+            if (monsterGen && monsterHealth <= 1.0f)
+            {
+                CmdRemoveDamage();
+            }
             MonsterUI.Instance.SetMonsterHurt(false);
         }
 
@@ -263,7 +276,7 @@ public class MonsterController : NetworkBehaviour {
     [Command]
     public void CmdRemoveDamage()
     {
-        float damage = materialAlphaChangeRate * Time.deltaTime;
+        float damage = materialAlphaRegenAmount * Time.deltaTime;
         monsterHealth += damage;
     }
 

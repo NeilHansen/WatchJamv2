@@ -19,6 +19,7 @@ public class Door : NetworkBehaviour {
     private float downfracJourney;
     private float distCovered;
 
+    [SyncVar]
     public bool movingUp;
     // Use this for initialization
     void Start () {

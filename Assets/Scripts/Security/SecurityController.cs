@@ -64,6 +64,9 @@ public class SecurityController : NetworkBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+            return;
+
         playerName.text = playername;
 
         if (!hasAuthority)
@@ -72,7 +75,15 @@ public class SecurityController : NetworkBehaviour
         if (!isPinging && player.GetButtonDown("Ping"))
         {
             isPinging = true;
-            CmdSecurityPing();
+            CmdSecurityPing();         
+        }
+        else if(isPinging)
+        {
+            SecurityUI.Instance.SetPing(true);
+        }
+        else
+        {
+            SecurityUI.Instance.SetPing(false);
         }
 
         if (player.GetButtonDown("MiniMap"))
@@ -84,10 +95,13 @@ public class SecurityController : NetworkBehaviour
         if (player.GetButton("FlashLight") && flashLightUseTime >= 0.0f && !b_OverHeatFlashLight)
         {
             CmdTurnUVLightOn();
+            SecurityUI.Instance.SetFlashLightUse(true);
         }
         else
         {
             CmdTurnUVLightOff();
+            if(!b_OverHeatFlashLight)
+                SecurityUI.Instance.SetFlashLightUse(false);
             SecurityUI.Instance.SetFlashUIValue(flashLightUseTime);
         }
 

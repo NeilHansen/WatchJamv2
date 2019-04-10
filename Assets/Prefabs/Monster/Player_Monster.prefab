@@ -18268,6 +18268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0b52ef21d60934c8efcb0d47f304ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mon: {fileID: 114793082615492070}
   leftFootPrint: {fileID: 1860507510820452, guid: b1177ac07daa6964ba4bff3f8640d7f7,
     type: 2}
   rightFootPrint: {fileID: 1098496663574526, guid: 13d2894f7d478354e965f0f4c6061a50,
@@ -18466,6 +18467,7 @@ MonoBehaviour:
   Security1InSight: 0
   Security2InSight: 0
   Security3InSight: 0
+  firstTimeDamage: 0
   Security1DoDamage: 0
   Security2DoDamage: 0
   Security3DoDamage: 0

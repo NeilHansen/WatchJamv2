@@ -83,6 +83,9 @@ public class MonsterMovement : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+            return;
+
         //anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 

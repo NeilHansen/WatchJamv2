@@ -72,6 +72,9 @@ public class MonsterWallMovement : NetworkBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+            return;
+
         if (!hasAuthority)
             return;
 

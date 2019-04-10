@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Rewired;
 
 public class GameManager : NetworkBehaviour {
+
+    private Player player;
+    private int controllerNumber = 0;
 
     public static GameManager Instance;
 
@@ -49,6 +53,7 @@ public class GameManager : NetworkBehaviour {
             Destroy(gameObject);
             return;
         }
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
     }
 
     void Start()
@@ -97,6 +102,11 @@ public class GameManager : NetworkBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(player.GetButton("Ping") && player.GetButton("Respawn") && player.GetButton("Punch"))
+        {
+            CmdMonsterWins();
+        }
+
         if(GameTimer >= 0.0f)
         {
             GameTimer += Time.deltaTime;

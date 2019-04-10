@@ -50,6 +50,9 @@ public class bl_MiniMapItem : MonoBehaviour {
     private Vector3 position;
     private bl_MiniMap MiniMap;
 
+    private Door door;
+    private bool doOnce = true;
+
     /// <summary>
     /// Get all required component in start
     /// </summary>
@@ -61,6 +64,8 @@ public class bl_MiniMapItem : MonoBehaviour {
             CreateIcon();
         }
         else { Debug.Log("You need a MiniMap in scene for use MiniMap Items."); }
+
+        door = GetComponent<Door>();
     }
 
     /// <summary>
@@ -106,6 +111,16 @@ public class bl_MiniMapItem : MonoBehaviour {
                 transform.position = MiniMap.Target.TransformPoint((MiniMap.Target.forward) * 100);
             }
         }
+
+        if(door != null)
+        {
+            if (door.movingUp && doOnce)
+            {
+                doOnce = false;
+                cacheItem.AddComponent<BlinkingImage>();
+            }
+        }
+
         //Get the Rect of Target UI
         RectTransform rt = Graphic.GetComponent<RectTransform>();
         //Setting the modify position

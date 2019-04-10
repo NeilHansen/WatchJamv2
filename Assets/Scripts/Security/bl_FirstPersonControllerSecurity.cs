@@ -96,6 +96,9 @@ namespace UGUIMiniMap
         // Update is called once per frame
         private void Update()
         {
+            if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+                return;
+
             if (!hasAuthority)
                 return;
 
@@ -135,6 +138,9 @@ namespace UGUIMiniMap
 
         private void FixedUpdate()
         {
+            if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
+                return;
+
             if (!hasAuthority)
                 return;
 
@@ -278,6 +284,15 @@ namespace UGUIMiniMap
             // keep track of whether or not the character is walking or running
             m_IsWalking = !player.GetButton("Sprint");
 #endif
+            if(!m_IsWalking)
+            {
+                SecurityUI.Instance.SetSprint(true);
+            }
+            else
+            {
+                SecurityUI.Instance.SetSprint(false);
+            }
+
             // set the desired speed to be walking or running
             speed = (m_IsWalking ? m_WalkSpeed : m_RunSpeed) * (isBackWalking ? 0.5f : 1.0f);
             m_Input = new Vector2(horizontal, vertical);
