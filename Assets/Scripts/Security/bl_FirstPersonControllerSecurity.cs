@@ -54,8 +54,6 @@ namespace UGUIMiniMap
         private float x;
         [SyncVar]
         private float y;
-        [SyncVar]
-        private float z;
 
         // Use this for initialization
         private void Start()
@@ -109,8 +107,8 @@ namespace UGUIMiniMap
             if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
                 return;
 
-            //anim.SetFloat("VelX", m_MoveDir.x);
-            anim.SetFloat("VelY", m_MoveDir.z);
+            //anim.SetFloat("VelX", x);
+            anim.SetFloat("VelY", y);
 
             if (!hasAuthority)
                 return;
@@ -138,27 +136,14 @@ namespace UGUIMiniMap
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
-
-            CmdUpdateMoveDir();
         }
 
         [Command]
-        private void CmdUpdateMoveDir()
+        private void CmdUpdateMoveDir(float sx, float sy)
         {
             //Gets sent up to the server
-            x = m_MoveDir.x;
-            y = m_MoveDir.y;
-            z = m_MoveDir.z;
-            //Update it accross all clients
-            RpcUpdateMoveDir();
-        }
-
-        [ClientRpc]
-        private void RpcUpdateMoveDir()
-        {
-            m_MoveDir.x = x;
-            m_MoveDir.y = y;
-            m_MoveDir.z = z;
+            x = sx;
+            y = sy;
         }
 
 
@@ -216,7 +201,6 @@ namespace UGUIMiniMap
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
-            
         }
 
 
@@ -300,6 +284,8 @@ namespace UGUIMiniMap
             // Read input
             float horizontal = player.GetAxis("VerticalMove");
             float vertical = player.GetAxis("HorizontalMove");
+
+            CmdUpdateMoveDir(horizontal, vertical);
 
             bool waswalking = m_IsWalking;
             bool isBackWalking = false;
