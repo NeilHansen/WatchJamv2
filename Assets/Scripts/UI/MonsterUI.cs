@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Prototype.NetworkLobby;
+using Rewired;
 
 public class MonsterUI : MonoBehaviour {
     public static MonsterUI Instance;
+    public Player player;
+    private int controllerNumber = 0;
 
     public Text interactText;
 
@@ -34,6 +37,8 @@ public class MonsterUI : MonoBehaviour {
 
     public TMP_Text terminalText;
 
+    private bool doOnce = true;
+
     // Use this for initialization
     void Awake()
     {
@@ -59,10 +64,18 @@ public class MonsterUI : MonoBehaviour {
 
         NumOfLives = GameManager.Instance.MonsterNumOfLives;
         livesText.text = "Lives: " + NumOfLives;
+
+        player = Rewired.ReInput.players.GetPlayer(controllerNumber);
     }
 
     void Update()
     {
+        if ((GameManager.Instance.MonsterWins || GameManager.Instance.SecurityWins) && doOnce && player.GetButton("Interact"))
+        {
+            doOnce = false;
+            ReturnToLobby();
+        }
+
         SetGameTimerText(GameManager.Instance.GameTimer);
         livesText.text = "Lives: " + GameManager.Instance.MonsterNumOfLives;
         terminalText.text = "Terminals Broken : " + GameManager.Instance.brokenTerminalCount + "/6";
@@ -151,8 +164,10 @@ public class MonsterUI : MonoBehaviour {
         foreach(LobbyPlayer lp in l)
         {
             lp.readyToBegin = false;
+            lp.doOnce = true;
         }
 
+        LobbyManager.s_Singleton.doOnce = true;
         LobbyManager.s_Singleton.SendReturnToLobby();
     }
 }

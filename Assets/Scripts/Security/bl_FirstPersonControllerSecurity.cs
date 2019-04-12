@@ -49,6 +49,14 @@ namespace UGUIMiniMap
         public Player player;
         private GameObject flashlightTran;
 
+        private Animator anim;
+        [SyncVar]
+        private float x;
+        [SyncVar]
+        private float y;
+        [SyncVar]
+        private float z;
+
         // Use this for initialization
         private void Start()
         {
@@ -90,6 +98,8 @@ namespace UGUIMiniMap
                     m_MouseLookFlashLight.Init(transform, flashlightTran.transform, player);
                 }
             }
+
+            anim = GetComponent<Animator>();
         }
 
 
@@ -98,6 +108,9 @@ namespace UGUIMiniMap
         {
             if (GameManager.Instance.SecurityWins || GameManager.Instance.MonsterWins)
                 return;
+
+            //anim.SetFloat("VelX", m_MoveDir.x);
+            anim.SetFloat("VelY", m_MoveDir.z);
 
             if (!hasAuthority)
                 return;
@@ -125,6 +138,27 @@ namespace UGUIMiniMap
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            CmdUpdateMoveDir();
+        }
+
+        [Command]
+        private void CmdUpdateMoveDir()
+        {
+            //Gets sent up to the server
+            x = m_MoveDir.x;
+            y = m_MoveDir.y;
+            z = m_MoveDir.z;
+            //Update it accross all clients
+            RpcUpdateMoveDir();
+        }
+
+        [ClientRpc]
+        private void RpcUpdateMoveDir()
+        {
+            m_MoveDir.x = x;
+            m_MoveDir.y = y;
+            m_MoveDir.z = z;
         }
 
 

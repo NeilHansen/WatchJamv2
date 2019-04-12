@@ -12,22 +12,21 @@ public class TutorialVideoPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(PlayVideo());
+        //StartCoroutine(PlayVideo());
 	}
 
-    IEnumerator PlayVideo()
-        {
+    public IEnumerator PlayVideo()
+     {
+        videoPlayer.Stop();
         videoPlayer.Prepare();
-        WaitForSeconds waitForSeconds = new WaitForSeconds(1);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(1.0f);
         while(!videoPlayer.isPrepared)
         {
             yield return waitForSeconds;
             break;
         }
         rawImage.texture = videoPlayer.texture;
-        videoPlayer.Play();
-
-       
+        videoPlayer.Play();      
     }
 	
 	// Update is called once per frame

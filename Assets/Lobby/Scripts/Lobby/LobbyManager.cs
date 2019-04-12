@@ -29,6 +29,7 @@ namespace Prototype.NetworkLobby
 
         public LobbyInfoPanel infoPanel;
         public LobbyCountdownPanel countdownPanel;
+        public LobbyTutorialScript tutorialVideos;
         public GameObject addPlayerButton;
 
         protected RectTransform currentPanel;
@@ -52,6 +53,8 @@ namespace Prototype.NetworkLobby
         protected ulong _currentMatchID;
 
         protected LobbyHook _lobbyHooks;
+
+        public bool doOnce = true;
 
         void Start()
         {
@@ -392,6 +395,13 @@ namespace Prototype.NetworkLobby
                             (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
                         }
                     }
+                }
+
+                if (doOnce && countdownPanel.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+                {
+                    doOnce = false;
+                    tutorialVideos.ResetFading();
+                    tutorialVideos.StartFading();
                 }
             }
 

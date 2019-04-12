@@ -49,6 +49,8 @@ namespace Prototype.NetworkLobby
 
         private Player player;
         private int controllerNum = 0;
+        [SyncVar]
+        public bool doOnce = true;
 
         void Start()
         {
@@ -200,6 +202,8 @@ namespace Prototype.NetworkLobby
 
         public override void OnClientReady(bool readyState)
         {
+            doOnce = true;
+
             if (readyState)
             {
                 ChangeReadyButtonColor(TransparentColor);
@@ -288,6 +292,13 @@ namespace Prototype.NetworkLobby
         [ClientRpc]
         public void RpcUpdateCountdown(int countdown)
         {
+            if (doOnce && LobbyManager.s_Singleton.countdownPanel.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+            {
+                doOnce = false;
+                LobbyManager.s_Singleton.tutorialVideos.ResetFading();
+                LobbyManager.s_Singleton.tutorialVideos.StartFading();
+            }
+
             LobbyManager.s_Singleton.countdownPanel.UIText.text = "Match Starting in " + countdown;
             LobbyManager.s_Singleton.countdownPanel.gameObject.SetActive(countdown != 0);
         }

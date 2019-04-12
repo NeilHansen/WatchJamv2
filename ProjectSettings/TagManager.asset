@@ -16,6 +16,7 @@ TagManager:
   - SecurityCam
   - MiniMap
   - MapPiece
+  - LobbyPlayer
   layers:
   - Default
   - TransparentFX
