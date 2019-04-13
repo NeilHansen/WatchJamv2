@@ -52,14 +52,20 @@ namespace Prototype.NetworkLobby
         [SyncVar]
         public bool doOnce = true;
 
-      
+        public GameObject countDown;
+
 
         private void Awake()
         {
+            countDown = GameObject.FindObjectOfType<LobbyCountdownPanel>().gameObject;
            
         }
+
         void Start()
         {
+
+            /*Resources.FindObjectsOfTypeAll<LobbyCountdownPanel>().First().gameObject;*/
+           // countDown.SetActive(false);
             player = Rewired.ReInput.players.GetPlayer(controllerNum);
             
             playerChoice.onValueChanged.AddListener(delegate
@@ -91,7 +97,7 @@ namespace Prototype.NetworkLobby
 
         private void Update()
         {
-            if(hasAuthority && player.GetButtonDown("Interact") && doOnce == true )
+            if(hasAuthority && player.GetButtonDown("Interact") && countDown.transform.GetChild(0).gameObject.activeInHierarchy == false /*GameObject.FindGameObjectWithTag("Countdown").activeInHierarchy == false*//* && doOnce == true*/ )
             {
                 OnReadyClicked();
             }
@@ -307,6 +313,7 @@ namespace Prototype.NetworkLobby
 
             LobbyManager.s_Singleton.countdownPanel.UIText.text = "Match Starting in " + countdown;
             LobbyManager.s_Singleton.countdownPanel.gameObject.SetActive(countdown != 0);
+            LobbyManager.s_Singleton.tutorialVideos.gameObject.SetActive(countdown != 0);
         }
 
         [ClientRpc]
