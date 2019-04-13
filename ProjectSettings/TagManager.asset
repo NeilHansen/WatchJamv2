@@ -17,6 +17,7 @@ TagManager:
   - MiniMap
   - MapPiece
   - LobbyPlayer
+  - Countdown
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,7 @@ namespace Prototype.NetworkLobby
         public InputField matchNameInput;
         private Player player;
         private int controllerNum = 0;
+        public GameObject countDownPanel;
 
 
         private void Start()

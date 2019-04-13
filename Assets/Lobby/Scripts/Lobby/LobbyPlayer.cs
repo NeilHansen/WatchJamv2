@@ -52,10 +52,16 @@ namespace Prototype.NetworkLobby
         [SyncVar]
         public bool doOnce = true;
 
+      
+
+        private void Awake()
+        {
+           
+        }
         void Start()
         {
             player = Rewired.ReInput.players.GetPlayer(controllerNum);
-
+            
             playerChoice.onValueChanged.AddListener(delegate
             {
                 DropdownValueChanged(playerChoice);
@@ -85,7 +91,7 @@ namespace Prototype.NetworkLobby
 
         private void Update()
         {
-            if(hasAuthority && player.GetButtonDown("Interact"))
+            if(hasAuthority && player.GetButtonDown("Interact") && doOnce == true )
             {
                 OnReadyClicked();
             }

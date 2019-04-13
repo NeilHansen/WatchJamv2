@@ -14,12 +14,16 @@ public class TutorialVideoPlayer : MonoBehaviour {
 	void Start () {
         //StartCoroutine(PlayVideo());
 	}
+    private void OnEnable()
+    {
+        StartCoroutine(PlayVideo());
+    }
 
     public IEnumerator PlayVideo()
      {
-        videoPlayer.Stop();
+        //videoPlayer.Stop();
         videoPlayer.Prepare();
-        WaitForSeconds waitForSeconds = new WaitForSeconds(1.0f);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(1.5f);
         while(!videoPlayer.isPrepared)
         {
             yield return waitForSeconds;

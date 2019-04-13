@@ -18472,8 +18472,10 @@ MonoBehaviour:
   Security2DoDamage: 0
   Security3DoDamage: 0
   materialAlphaChangeRate: 0.1
+  monsterGen: 1
+  materialAlphaRegenAmount: 0.05
   monsterHealth: 1
-  monsterAlphaWhenSeen: 0.5
+  monsterAlphaWhenSeen: 0.65
   monsterSmashSeenAmount: 1
   monsterMaterial: {fileID: 2100000, guid: 93cf7ca78948fff4e95815235cb34e1d, type: 2}
 --- !u!114 &114873671681735608

@@ -5,30 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/OldLevels/NeilLevel2.unity
-    guid: f22ebe26c7dd6384ca9f4081872cb078
   - enabled: 1
     path: Assets/Scenes/NewLevels/DannyLobby.unity
     guid: 38977a1ae4e015440b211cd79e886433
-  - enabled: 0
-    path: Assets/Scenes/NewLevels/MainLevelNew.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/NewLevels/MainLevelNew Neil.unity
-    guid: e671579854993d343bf3030a012649ee
-  - enabled: 0
-    path: Assets/WillsSIIIICKNewMap.unity
-    guid: 581d1c68e44e4104894d6e2ad84f83cf
-  - enabled: 0
-    path: Assets/Scenes/NewLevels/LevelUpMain(03-17).unity
-    guid: 6eb6dcb72fdce934588f92bdfd7cd6d7
-  - enabled: 0
-    path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-19)NeilLevel.unity
-    guid: 02a13a69e19bc7c4399eaf4750ccb3a1
-  - enabled: 0
-    path: Assets/Scenes/NewLevels/LevelUpMainLevel(03-22)WillLevel.unity
-    guid: 74c5e9f3783bfae4ea265fb7e095faa3
   - enabled: 1
     path: Assets/Scenes/NewLevels/LevelUpMainLevel(04-1)WillLevel.unity
     guid: d997075052586da46a67eeff4d66f269
