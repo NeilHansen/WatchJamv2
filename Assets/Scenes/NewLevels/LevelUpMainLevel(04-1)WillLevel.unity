@@ -6561,45 +6561,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 142
       objectReference: {fileID: 0}
-    - target: {fileID: 4435126970886154, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4435126970886154, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4435126970886154, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1878784966331542, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
       propertyPath: m_Name
       value: Room_Middle (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1948477909256048, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1482473988685552, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299339755409304, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1094827912482090, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878784966331542, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1525229372011466, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c086450b1c99b24a8feb2527157ac8e, type: 2}
@@ -11104,7 +11068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tonemapper: 1
-  Exposure: 2
+  Exposure: 1.5
   LinearWhitePoint: 11.2
   ApplyDithering: 0
   QualityLevel: 1
